@@ -62,12 +62,7 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     //canvas.drawPath(qPath, strokePaint);
 
     var counter = 0;
-    int sides = getSides(points);
     for (var point in points) {
-      //debug logging the getSides() method
-      if (points.length > 2) {
-        print('Sides: $sides');
-      }
       // displaying point value
       TextSpan span = TextSpan(style: TextStyle(color: Colors.red[900]), text: '${alphabet[counter]}(${point.dx.toInt()}, ${point.dy.toInt()})');
       TextPainter tp = TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr, textScaleFactor: .8);
