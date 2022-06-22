@@ -6,7 +6,34 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
   late List<Offset> qPoints;
   var strokes = <List<Offset>>[];
   var points = <Offset>[];
-  List<String> alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  List<String> alphabet = [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z'
+  ];
   bool hitTest(Offset position) => true;
 
   void startStroke(Offset position) {
@@ -25,7 +52,8 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
 
   // Distance function::
   distance(Offset point1, Offset point2) {
-    var getDistance = math.pow((point2.dx - point1.dx), 2) + math.pow((point2.dy - point1.dy), 2);
+    var getDistance = math.pow((point2.dx - point1.dx), 2) +
+        math.pow((point2.dy - point1.dy), 2);
     return math.sqrt(getDistance).toInt();
   }
 
@@ -62,10 +90,24 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     //canvas.drawPath(qPath, strokePaint);
 
     var counter = 0;
+<<<<<<< HEAD
     for (var point in points) {
+=======
+
+    for (var point in points) {
+      //debug logging the getSides() method
+
+>>>>>>> 1c4c287089928eba7a349d5ffa0dd0bedf1b8bbf
       // displaying point value
-      TextSpan span = TextSpan(style: TextStyle(color: Colors.red[900]), text: '${alphabet[counter]}(${point.dx.toInt()}, ${point.dy.toInt()})');
-      TextPainter tp = TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr, textScaleFactor: .8);
+      TextSpan span = TextSpan(
+          style: TextStyle(color: Colors.red[900]),
+          text:
+              '${alphabet[counter]}(${point.dx.toInt()}, ${point.dy.toInt()})');
+      TextPainter tp = TextPainter(
+          text: span,
+          textAlign: TextAlign.left,
+          textDirection: TextDirection.ltr,
+          textScaleFactor: .8);
       tp.layout();
       tp.paint(canvas, Offset(point.dx, point.dy));
 
@@ -74,8 +116,14 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
       print('Distance:  ${distance(points[counter], points[counter + 1])}');
       // distance will only show if there are more than 1 point(s)
       if (points.length > 1) {
-        TextSpan span = TextSpan(style: TextStyle(color: Colors.red[900]), text: '${distance(points[counter], points[counter + 1])}cm');
-        TextPainter tp = TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr, textScaleFactor: 1.0);
+        TextSpan span = TextSpan(
+            style: TextStyle(color: Colors.red[900]),
+            text: '${distance(points[counter], points[counter + 1])}cm');
+        TextPainter tp = TextPainter(
+            text: span,
+            textAlign: TextAlign.left,
+            textDirection: TextDirection.ltr,
+            textScaleFactor: 1.0);
         tp.layout();
         tp.paint(canvas, midPoint(points[counter], points[counter + 1]));
       }
