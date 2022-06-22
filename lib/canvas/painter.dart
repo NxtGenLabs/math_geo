@@ -77,7 +77,9 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     var counter = 0;
     for (var point in points) {
       TextSpan span = TextSpan(
-          style: TextStyle(color: Colors.grey[700]), text: alphabet[counter]);
+          style: TextStyle(color: Colors.grey[700]),
+          text:
+              "${alphabet[counter]} ( ${points[counter].dx.round()}, ${points[counter].dy.round()})");
       TextPainter tp = TextPainter(
           text: span,
           textAlign: TextAlign.left,
