@@ -79,8 +79,8 @@ class TransFormationsLevels extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               child: Option(
                 text: 'Level ${levels[index].level}',
-                route: () => Navigator.pushNamed(context,
-                    './pages/topics/transformations/transformation_intro',
+                route: () => Navigator.pushNamed(
+                    context, './pages/topics/transformations/beginner',
                     arguments: levels[index]),
               ),
             );

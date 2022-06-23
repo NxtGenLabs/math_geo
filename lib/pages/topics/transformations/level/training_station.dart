@@ -3,12 +3,12 @@ import 'dart:math' as math;
 import '../../../../canvas/grid.dart';
 import '../../../../canvas/transformation_intro_painter.dart';
 
-class TransformIntro extends StatefulWidget {
+class TrainingStation extends StatefulWidget {
   @override
-  _TransformIntroState createState() => _TransformIntroState();
+  _TrainingStationState createState() => _TrainingStationState();
 }
 
-class _TransformIntroState extends State<TransformIntro> {
+class _TrainingStationState extends State<TrainingStation> {
   var _sides = 3.0;
   var _radius = 100.0;
   var _radians = 0.0;
