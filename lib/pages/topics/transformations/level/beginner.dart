@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:math_geometry/pages/topics/transformations/levels/beginner_level.dart';
 import 'package:math_geometry/widgets/toolbar.dart';
-import '../../../canvas/painter.dart';
-import '../../../canvas/grid.dart';
+import '../../../../canvas/painter.dart';
+import '../../../../canvas/grid.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
 
-class Transformations extends StatefulWidget {
-  const Transformations({Key? key}) : super(key: key);
+import '../menus/beginner_level.dart';
+
+class Beginner extends StatefulWidget {
+  const Beginner({Key? key}) : super(key: key);
 
   @override
-  State<Transformations> createState() => _TransformationsState();
+  State<Beginner> createState() => _BeginnerState();
 }
 
-class _TransformationsState extends State<Transformations> {
+class _BeginnerState extends State<Beginner> {
   late GestureDetector touch;
   late CustomPaint canvas;
   late LinePainter linePainter;

@@ -15,7 +15,7 @@ class Topics extends StatelessWidget {
               Option(
                   text: 'Training \n Station',
                   route: () => Navigator.pushNamed(context,
-                      './pages/topics/transformations/levels/training_station')),
+                      './pages/topics/transformations/levels/training_station_level')),
               Option(
                   text: "Beginner",
                   route: () => Navigator.pushNamed(context,
