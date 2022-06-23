@@ -90,14 +90,10 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     //canvas.drawPath(qPath, strokePaint);
 
     var counter = 0;
-<<<<<<< HEAD
-    for (var point in points) {
-=======
 
     for (var point in points) {
       //debug logging the getSides() method
 
->>>>>>> 1c4c287089928eba7a349d5ffa0dd0bedf1b8bbf
       // displaying point value
       TextSpan span = TextSpan(
           style: TextStyle(color: Colors.red[900]),

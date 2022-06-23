@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import '../../../canvas/grid.dart';
-import '../../../canvas/transformation_intro_painter.dart';
+import '../../../../canvas/grid.dart';
+import '../../../../canvas/transformation_intro_painter.dart';
 
 class TransformIntro extends StatefulWidget {
   @override
@@ -18,11 +17,12 @@ class _TransformIntroState extends State<TransformIntro> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Polygons'),
+        title: const Text('Polygons'),
       ),
       body: SafeArea(
         child: Stack(children: [
-          Expanded(
+          Container(
+            color: Colors.grey[400],
             child: CustomPaint(
               foregroundPainter: ShapePainter(_sides, _radius, _radians),
               painter: MyGridPainter(),

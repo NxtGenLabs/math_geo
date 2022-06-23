@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:math_geometry/pages/topics/transformations/levels.dart';
+import 'package:math_geometry/pages/topics/transformations/levels/beginner_level.dart';
 import 'package:math_geometry/widgets/toolbar.dart';
 import '../../../canvas/painter.dart';
 import '../../../canvas/grid.dart';
