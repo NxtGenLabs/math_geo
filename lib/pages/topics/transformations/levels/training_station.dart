@@ -16,11 +16,12 @@ class _TransformIntroState extends State<TransformIntro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Polygons'),
+        title: const Text('Transformations Visualizer'),
       ),
       body: SafeArea(
-        child: Stack(children: [
+          child: Stack(children: [
           Container(
             color: Colors.grey[400],
             child: CustomPaint(
@@ -36,7 +37,7 @@ class _TransformIntroState extends State<TransformIntro> {
               children: [
                 Container(
                   color: Colors.grey,
-                  height: 220,
+                  height: 300,
                   width: MediaQuery.of(context).size.width / 2,
                   child: Column(children: [
                     const Padding(
@@ -83,12 +84,27 @@ class _TransformIntroState extends State<TransformIntro> {
                         });
                       },
                     ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 16.0),
+                      child: Text('Translate'),
+                    ),
+                    Slider(
+                      value: _radians,
+                      min: 0.0,
+                      max: math.pi,
+                      onChanged: (value) {
+                        setState(() {
+                          _radians = value;
+                        });
+                      },
+                    ),
                   ]),
                 ),
               ],
             ),
           )
         ]),
+      
       ),
     );
   }
