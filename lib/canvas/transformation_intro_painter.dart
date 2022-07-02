@@ -10,16 +10,6 @@ class ShapePainter extends CustomPainter {
   final double radians;
   ShapePainter(this.sides, this.radius, this.radians);
 
-  // angle calculator method
-  calcAngle(Offset v1, Offset v2) {
-    var vecDotProduct = (v1.dx * v2.dx) + (v1.dy * v2.dy); // the dotproduct of 2d vectors
-    var magVec1 = math.sqrt(math.pow(v1.dx, 2) + math.pow(v1.dy, 2)); // magnitude of vector 1
-    var magVec2 = math.sqrt(math.pow(v2.dx, 2) + math.pow(v2.dy, 2)); // magnitude of vector 2
-    var magProduct = magVec1 * magVec2;
-
-    var angle = math.acos(vecDotProduct / magProduct);
-    return angle;
-  }
 
   @override
   void paint(Canvas canvas, Size size) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import '../../../../canvas/grid.dart';
-import '../../../../canvas/transformation_intro_painter.dart';
+import '../../../../../canvas/grid.dart';
+import '../../../../../canvas/transformation_intro_painter.dart';
 
 class TrainingStation extends StatefulWidget {
   @override
@@ -21,7 +21,7 @@ class _TrainingStationState extends State<TrainingStation> {
         title: const Text('Transformations Visualizer'),
       ),
       body: SafeArea(
-          child: Stack(children: [
+        child: Stack(children: [
           Container(
             color: Colors.grey[400],
             child: CustomPaint(
@@ -81,6 +81,7 @@ class _TrainingStationState extends State<TrainingStation> {
                       onChanged: (value) {
                         setState(() {
                           _radians = value;
+                          print("Its rotated: $_radians radians");
                         });
                       },
                     ),
@@ -104,7 +105,6 @@ class _TrainingStationState extends State<TrainingStation> {
             ),
           )
         ]),
-      
       ),
     );
   }
