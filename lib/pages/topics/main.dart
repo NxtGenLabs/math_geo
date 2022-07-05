@@ -15,14 +15,15 @@ class Topics extends StatelessWidget {
               Option(
                   text: 'Training \n Station',
                   route: () => Navigator.pushNamed(context,
-                      './pages/topics/transformations/levels/training_station_level')),
+                      './pages/topics/transformations/menus/training_station_level')),
               Option(
                   text: "Beginner",
                   route: () => Navigator.pushNamed(context,
-                      './pages/topics/transformations/levels/beginner_level')),
+                      './pages/topics/transformations/menus/beginner_level')),
               Option(
                 text: "Intermediate",
-                route: () {},
+                route: () => Navigator.pushNamed(context,
+                    './pages/topics/transformations/menus/intermediate_level'),
               ),
               Option(text: "Advanced", route: () {})
             ],

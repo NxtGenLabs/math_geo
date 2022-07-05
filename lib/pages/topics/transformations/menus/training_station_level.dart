@@ -20,10 +20,17 @@ class TrainingStationLevels extends StatelessWidget {
               child: Option(
                 text: 'Level',
                 route: () => Navigator.pushNamed(context,
-                    './pages/topics/transformations/levels/training_station'),
+                    './pages/topics/transformations/level/training_station'),
               ),
             );
           }),
     );
   }
+}
+
+class Training {
+  String level;
+  String desc;
+
+  Training(this.level, this.desc);
 }

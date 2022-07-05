@@ -3,7 +3,11 @@ import 'dart:ui';
 import 'dart:math' as math;
 
 class LinePainter extends ChangeNotifier implements CustomPainter {
-  late List<Offset> qPoints;
+  late List<Offset> qPoints = [
+    Offset(200, 100),
+    Offset(100, 0),
+    Offset(50, 60)
+  ];
   var strokes = <List<Offset>>[];
   var points = <Offset>[];
   List<String> alphabet = [
@@ -34,6 +38,7 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     'Y',
     'Z'
   ];
+  @override
   bool hitTest(Offset position) => true;
 
   void startStroke(Offset position) {
@@ -83,12 +88,6 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
       canvas.drawPath(strokePath, strokePaint);
     }
 
-    //Questions List
-
-    //Path qPath = Path();
-    //qPath.addPolygon(qPoints, true);
-    //canvas.drawPath(qPath, strokePaint);
-
     var counter = 0;
 
     for (var point in points) {
@@ -129,11 +128,9 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     }
 
     //////////paint question points
-    for (var qp in qPoints) {
-      Path path = Path();
-      path.addPolygon(qPoints, true);
-      canvas.drawPath(path, strokePaint);
-    }
+    Path path = Path();
+    path.addPolygon(qPoints, true);
+    canvas.drawPath(path, strokePaint);
   }
 
   @override
