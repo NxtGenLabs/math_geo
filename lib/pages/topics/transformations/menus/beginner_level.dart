@@ -11,7 +11,7 @@ class BeginnerLevel extends StatelessWidget {
       height: double.infinity,
       width: double.infinity,
       child: GridView.builder(
-          itemCount: 1,
+          itemCount: 8,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               childAspectRatio: MediaQuery.of(context).size.width /
@@ -20,7 +20,7 @@ class BeginnerLevel extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.all(20.0),
               child: Option(
-                text: 'Level',
+                text: 'Level ${index + 1}',
                 route: () => Navigator.pushNamed(
                     context, './pages/topics/transformations/level/beginner'),
               ),

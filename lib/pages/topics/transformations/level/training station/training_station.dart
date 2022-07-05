@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import '../../../../canvas/grid.dart';
-import '../../../../canvas/transformation_intro_painter.dart';
+import '../../../../../canvas/grid.dart';
+import '../../../../../canvas/transformation_intro_painter.dart';
 
 class TrainingStation extends StatefulWidget {
   @override
@@ -16,8 +16,9 @@ class _TrainingStationState extends State<TrainingStation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Polygons'),
+        title: const Text('Transformations Visualizer'),
       ),
       body: SafeArea(
         child: Stack(children: [
@@ -36,7 +37,7 @@ class _TrainingStationState extends State<TrainingStation> {
               children: [
                 Container(
                   color: Colors.grey,
-                  height: 220,
+                  height: 300,
                   width: MediaQuery.of(context).size.width / 2,
                   child: Column(children: [
                     const Padding(
@@ -72,6 +73,21 @@ class _TrainingStationState extends State<TrainingStation> {
                     const Padding(
                       padding: EdgeInsets.only(left: 16.0),
                       child: Text('Rotation'),
+                    ),
+                    Slider(
+                      value: _radians,
+                      min: 0.0,
+                      max: math.pi,
+                      onChanged: (value) {
+                        setState(() {
+                          _radians = value;
+                          print("Its rotated: $_radians radians");
+                        });
+                      },
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 16.0),
+                      child: Text('Translate'),
                     ),
                     Slider(
                       value: _radians,

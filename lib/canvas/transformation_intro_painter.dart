@@ -3,13 +3,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-
 // FOR PAINTING POLYGONS
 class ShapePainter extends CustomPainter {
   final double sides;
   final double radius;
   final double radians;
   ShapePainter(this.sides, this.radius, this.radians);
+
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -35,6 +35,12 @@ class ShapePainter extends CustomPainter {
     }
     path.close();
     canvas.drawPath(path, paint);
+
+    // displaying angle
+    TextSpan span = TextSpan(style: TextStyle(color: Colors.red[900]), text: '${Offset(0, 0)}');
+    TextPainter tp = TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr, textScaleFactor: .8);
+    tp.layout();
+    tp.paint(canvas, Offset(size.width / 2, size.height / 2));
   }
 
   @override
