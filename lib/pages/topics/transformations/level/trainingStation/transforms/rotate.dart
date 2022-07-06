@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import '../../../../../canvas/grid.dart';
-import '../../../../../canvas/transformation_intro_painter.dart';
+import '../../../../../../canvas/grid.dart';
+import '../../../../../../canvas/transformation_intro_painter.dart';
 
-class TrainingStation extends StatefulWidget {
+class Rotate extends StatefulWidget {
   @override
-  _TrainingStationState createState() => _TrainingStationState();
+  _RotateState createState() => _RotateState();
 }
 
-class _TrainingStationState extends State<TrainingStation> {
+class _RotateState extends State<Rotate> {
   var _sides = 3.0;
   var _radius = 100.0;
   var _radians = 0.0;
@@ -37,11 +37,11 @@ class _TrainingStationState extends State<TrainingStation> {
               children: [
                 Container(
                   color: Colors.grey,
-                  height: 300,
+                  height: 100,
                   width: MediaQuery.of(context).size.width / 2,
                   child: Column(children: [
                     const Padding(
-                      padding: EdgeInsets.only(left: 16.0),
+                      padding: EdgeInsets.only(left: 16.0, top: 10.0),
                       child: Text('Sides'),
                     ),
                     Slider(
@@ -58,20 +58,6 @@ class _TrainingStationState extends State<TrainingStation> {
                     ),
                     const Padding(
                       padding: EdgeInsets.only(left: 16.0),
-                      child: Text('Size'),
-                    ),
-                    Slider(
-                      value: _radius,
-                      min: 10.0,
-                      max: MediaQuery.of(context).size.width / 2,
-                      onChanged: (value) {
-                        setState(() {
-                          _radius = value;
-                        });
-                      },
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 16.0),
                       child: Text('Rotation'),
                     ),
                     Slider(
@@ -82,20 +68,6 @@ class _TrainingStationState extends State<TrainingStation> {
                         setState(() {
                           _radians = value;
                           print("Its rotated: $_radians radians");
-                        });
-                      },
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 16.0),
-                      child: Text('Translate'),
-                    ),
-                    Slider(
-                      value: _radians,
-                      min: 0.0,
-                      max: math.pi,
-                      onChanged: (value) {
-                        setState(() {
-                          _radians = value;
                         });
                       },
                     ),
