@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/pages/landing.dart';
-import 'package:math_geometry/pages/topics/transformations/level/training%20station/training_station.dart';
+import 'package:math_geometry/pages/topics/transformations/level/trainingStation/training_station.dart';
 import 'package:math_geometry/pages/topics/transformations/menus/beginner_level.dart';
 import 'package:math_geometry/pages/topics/transformations/menus/training_station_level.dart';
 import 'pages/topics/main.dart';
@@ -13,11 +13,11 @@ void main() => runApp(MaterialApp(
         './pages/landing': (context) => LandingPage(),
         './pages/topics/main': (context) => Topics(),
         './pages/topics/transformations/levels/training_station_level':
-            (context) => TrainingStationLevels(),
+            (context) => TrainingStationLevel(),
         './pages/topics/transformations/levels/beginner_level': (context) =>
             TransFormationsLevels(),
         './pages/topics/transformations/levels/training_station': (context) =>
-            TrainingStation(),
+            const TrainingStation(),
         './pages/topics/transformations/beginner': (context) =>
             const Beginner(),
       },
