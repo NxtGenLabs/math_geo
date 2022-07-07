@@ -1,8 +1,10 @@
 # math_geometry
-An EduGame based Application
+A Mathematics EduGame Application
 
 ## Getting Started
 
-This project is s Mathematics educational application catered to teaching secondary students the fundamentals of mathematics and mathematical (analytical) thinking and problem solving.
+This project is a Mathematics educational application catered to Teachers to help educate secondary school students the fundamentals of mathematics and mathematical (analytical) thinking and problem solving.
 
-A few resources to get you started if this is your first Flutter project:
+Terminal commands to get going:
+run - flutter run 
+      Then choose whichever platform you wish to test the application on.
