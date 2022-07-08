@@ -42,22 +42,6 @@ class _RotateState extends State<Rotate> {
                   child: Column(children: [
                     const Padding(
                       padding: EdgeInsets.only(left: 16.0, top: 10.0),
-                      child: Text('Sides'),
-                    ),
-                    Slider(
-                      value: _sides,
-                      min: 3.0,
-                      max: 10.0,
-                      label: _sides.toInt().toString(),
-                      divisions: 7,
-                      onChanged: (value) {
-                        setState(() {
-                          _sides = value;
-                        });
-                      },
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 16.0),
                       child: Text('Rotation'),
                     ),
                     Slider(
