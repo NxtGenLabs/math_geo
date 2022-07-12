@@ -3,33 +3,9 @@ import 'dart:ui';
 import 'dart:math' as math;
 
 class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
-  late List<Offset> qPoints1 = [
-    Offset(500, 100),
-    Offset(100, 100),
-    Offset(100, 300)
-  ];
-
-  late List<Offset> Option1 = [
-    Offset(1200, 100),
-    Offset(1000, 100),
-    Offset(1000, 300)
-  ];
-
-  late List<Offset> Option2 = [
-    Offset(1200, 400),
-    Offset(1000, 400),
-    Offset(1000, 600)
-  ];
-
-  late List<Offset> Option3 = [
-    Offset(500, 400),
-    Offset(100, 400),
-    Offset(100, 600)
-  ];
-
   List<String> alphabet = [
-    'A',
-    'B',
+    'a',
+    'b',
     'C',
     'D',
     'E',
@@ -59,6 +35,33 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    double centerX = size.width / 2;
+    double centerY = size.height / 2;
+
+    late List<Offset> qPoints1 = [
+      Offset(500, 100),
+      Offset(100, 100),
+      Offset(100, 300)
+    ];
+
+    late List<Offset> OptionA = [
+      Offset(1200, 100),
+      Offset(1000, 100),
+      Offset(1000, 300)
+    ];
+
+    late List<Offset> OptionB = [
+      Offset(1200, 400),
+      Offset(1000, 400),
+      Offset(1000, 600)
+    ];
+
+    late List<Offset> OptionC = [
+      Offset(500, 400),
+      Offset(100, 400),
+      Offset(100, 600)
+    ];
+
     Paint strokePaint = Paint();
     strokePaint.color = Colors.teal;
     strokePaint.style = PaintingStyle.stroke;
@@ -73,16 +76,16 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
     path.addPolygon(qPoints1, true);
     canvas.drawPath(path, strokePaint);
 
-    Path option1Path = Path();
-    path.addPolygon(Option1, true);
+    Path OptionAPath = Path();
+    path.addPolygon(OptionA, true);
     canvas.drawPath(path, strokePaint);
 
-    Path option2Path = Path();
-    path.addPolygon(Option2, true);
+    Path OptionBPath = Path();
+    path.addPolygon(OptionB, true);
     canvas.drawPath(path, strokePaint);
 
     Path option3Path = Path();
-    path.addPolygon(Option3, true);
+    path.addPolygon(OptionC, true);
     canvas.drawPath(path, strokePaint);
 
     var counter = 0;
@@ -103,7 +106,7 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
       ++counter;
     }
     counter = 0;
-    for (var point in Option1) {
+    for (var point in OptionA) {
       //debug logging the getSides() method
 
       // displaying point value
@@ -121,7 +124,7 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
     }
 
     counter = 0;
-    for (var point in Option2) {
+    for (var point in OptionB) {
       //debug logging the getSides() method
 
       // displaying point value
@@ -139,7 +142,7 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
     }
 
     counter = 0;
-    for (var point in Option3) {
+    for (var point in OptionC) {
       //debug logging the getSides() method
 
       // displaying point value
@@ -155,6 +158,36 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
       tp.paint(canvas, Offset(point.dx, point.dy));
       ++counter;
     }
+
+    TextSpan span =
+        TextSpan(style: TextStyle(color: Colors.red[900]), text: 'A');
+    TextPainter tp = TextPainter(
+        text: span,
+        textAlign: TextAlign.left,
+        textDirection: TextDirection.ltr,
+        textScaleFactor: 2);
+    tp.layout();
+    tp.paint(canvas, Offset(centerX + 20, centerY - 50));
+
+    TextSpan btext =
+        TextSpan(style: TextStyle(color: Colors.red[900]), text: 'B');
+    TextPainter tpB = TextPainter(
+        text: btext,
+        textAlign: TextAlign.left,
+        textDirection: TextDirection.ltr,
+        textScaleFactor: 2);
+    tpB.layout();
+    tpB.paint(canvas, Offset(centerX + 20, centerY));
+
+    TextSpan ctext =
+        TextSpan(style: TextStyle(color: Colors.red[900]), text: 'C');
+    TextPainter tpC = TextPainter(
+        text: ctext,
+        textAlign: TextAlign.left,
+        textDirection: TextDirection.ltr,
+        textScaleFactor: 2);
+    tpC.layout();
+    tpC.paint(canvas, Offset(centerX - 40, centerY));
 
     // indexer
   }
