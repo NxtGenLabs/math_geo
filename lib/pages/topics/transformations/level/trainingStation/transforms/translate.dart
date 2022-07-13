@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_final_fields, non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import '../../../../../../canvas/grid.dart';
@@ -23,6 +22,7 @@ class _TranslateState extends State<Translate> {
       HTranslatePainter(_sides, _radius, _radians, _HPosition);
 
   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -41,67 +41,65 @@ class _TranslateState extends State<Translate> {
           ),
           Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  color: Colors.grey,
-                  height: 250,
-                  width: MediaQuery.of(context).size.width / 2,
-                  child: Column(children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 16.0, top: 10.0),
-                      child: Text('Horizontal Translation'),
-                    ),
-                    Slider(
-                      value: _HPosition,
-                      min: 0.0,
-                      max: _max,
-                      onChanged: (value) {
-                        painterChoice = HTranslatePainter(
-                            _sides, _radius, _radians, _HPosition);
-                        setState(() {
-                          _HPosition = value;
-                        });
-                      },
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 16.0, top: 10.0),
-                      child: Text('Vertical Translation'),
-                    ),
-                    Slider(
-                      value: _VPosition,
-                      min: 0.0,
-                      max: _max,
-                      onChanged: (value) {
-                        painterChoice = VTranslatePainter(
-                            _sides, _radius, _radians, _VPosition);
-                        setState(() {
-                          _VPosition = value;
-                        });
-                      },
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 16.0, top: 10.0),
-                      child: Text('Diagonal Translation'),
-                    ),
-                    Slider(
-                      value: _DPosition,
-                      min: 0.0,
-                      max: _max,
-                      onChanged: (value) {
-                        painterChoice = DTranslatePainter(
-                            _sides, _radius, _radians, _DPosition);
-                        setState(() {
-                          _DPosition = value;
-                        });
-                      },
-                    ),
-                  ]),
-                ),
-              ],
-            ),
-          )
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                      color: Colors.grey,
+                      height: 250,
+                      width: MediaQuery.of(context).size.width / 2,
+                      child: Column(children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 16.0, top: 10.0),
+                          child: Text('Horizontal Translation'),
+                        ),
+                        Slider(
+                          value: _HPosition,
+                          min: 0.0,
+                          max: _max,
+                          onChanged: (value) {
+                            painterChoice = HTranslatePainter(
+                                _sides, _radius, _radians, _HPosition);
+                            setState(() {
+                              _HPosition = value;
+                            });
+                          },
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 16.0, top: 10.0),
+                          child: Text('Vertical Translation'),
+                        ),
+                        Slider(
+                          value: _VPosition,
+                          min: 0.0,
+                          max: _max,
+                          onChanged: (value) {
+                            painterChoice = VTranslatePainter(
+                                _sides, _radius, _radians, _VPosition);
+                            setState(() {
+                              _VPosition = value;
+                            });
+                          },
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 16.0, top: 10.0),
+                          child: Text('Diagonal Translation'),
+                        ),
+                        Slider(
+                          value: _DPosition,
+                          min: 0.0,
+                          max: _max,
+                          onChanged: (value) {
+                            painterChoice = DTranslatePainter(
+                                _sides, _radius, _radians, _DPosition);
+                            setState(() {
+                              _DPosition = value;
+                            });
+                          },
+                        ),
+                      ]))
+                ]),
+          ),
         ]),
       ),
     );
