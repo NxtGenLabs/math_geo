@@ -14,7 +14,6 @@ class _TranslateState extends State<Translate> {
   var _radians = 0.0;
 
   @override
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
