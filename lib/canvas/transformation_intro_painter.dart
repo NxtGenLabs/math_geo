@@ -8,8 +8,9 @@ class ShapePainter extends CustomPainter {
   final double sides;
   final double radius;
   final double radians;
-  ShapePainter(this.sides, this.radius, this.radians);
+  final double position;
 
+  ShapePainter(this.sides, this.radius, this.radians, this.position);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -24,21 +25,27 @@ class ShapePainter extends CustomPainter {
     var angle = (math.pi * 2) / sides;
 
     Offset center = Offset(size.width / 2, size.height / 2);
-    Offset startPoint = Offset(radius * math.cos(radians), radius * math.sin(radians));
+    Offset startPoint =
+        Offset(radius * math.cos(radians), radius * math.sin(radians));
 
     path.moveTo(startPoint.dx + center.dx, startPoint.dy + center.dy);
 
     for (int i = 1; i <= sides; i++) {
       double x = radius * math.cos(radians + angle * i) + center.dx;
       double y = radius * math.sin(radians + angle * i) + center.dy;
-      path.lineTo(x, y);
+      path.lineTo(x + position, y + position);
     }
     path.close();
     canvas.drawPath(path, paint);
 
     // displaying angle
-    TextSpan span = TextSpan(style: TextStyle(color: Colors.red[900]), text: '${Offset(0, 0)}');
-    TextPainter tp = TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr, textScaleFactor: .8);
+    TextSpan span = TextSpan(
+        style: TextStyle(color: Colors.red[900]), text: '${Offset(0, 0)}');
+    TextPainter tp = TextPainter(
+        text: span,
+        textAlign: TextAlign.left,
+        textDirection: TextDirection.ltr,
+        textScaleFactor: .8);
     tp.layout();
     tp.paint(canvas, Offset(size.width / 2, size.height / 2));
   }

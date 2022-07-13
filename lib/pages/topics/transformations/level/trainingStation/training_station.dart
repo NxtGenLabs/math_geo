@@ -14,6 +14,7 @@ class _TrainingStationState extends State<TrainingStation> {
   var _sides = 3.0;
   var _radius = 100.0;
   var _radians = 0.0;
+  var _position = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class _TrainingStationState extends State<TrainingStation> {
           Container(
             color: Colors.grey[400],
             child: CustomPaint(
-              foregroundPainter: ShapePainter(_sides, _radius, _radians),
+              foregroundPainter: ShapePainter(_sides, _radius, _radians, _position),
               painter: MyGridPainter(),
               child: Container(),
             ),
@@ -43,7 +44,7 @@ class _TrainingStationState extends State<TrainingStation> {
                   width: MediaQuery.of(context).size.width / 2,
                   child: Column(children: [
                     const Padding(
-                     padding: EdgeInsets.only(left: 16.0, top: 10.0),
+                      padding: EdgeInsets.only(left: 16.0, top: 10.0),
                       child: Text('Sides'),
                     ),
                     Slider(
@@ -91,12 +92,13 @@ class _TrainingStationState extends State<TrainingStation> {
                       child: Text('Translate'),
                     ),
                     Slider(
-                      value: _radians,
+                      value: _position,
                       min: 0.0,
-                      max: math.pi,
+                      divisions: 10,
+                      max: 100,
                       onChanged: (value) {
                         setState(() {
-                          _radians = value;
+                          _position = value;
                         });
                       },
                     ),

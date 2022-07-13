@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/canvas/grid.dart';
 import 'package:math_geometry/canvas/multipleChoiceQs.dart';
+import 'package:math_geometry/widgets/multipleChoiceOptions.dart';
 
 class Beginner extends StatelessWidget {
   const Beginner({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class Beginner extends StatelessWidget {
           IconButton(onPressed: () {}, icon: const Icon(Icons.question_mark))
         ],
       ),
+      floatingActionButton: MultipleChoiceOptions(),
       body: GestureDetector(
         child: RepaintBoundary(
           child: Container(

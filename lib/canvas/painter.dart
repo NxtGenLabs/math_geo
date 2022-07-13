@@ -11,8 +11,8 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
   var strokes = <List<Offset>>[];
   var points = <Offset>[];
   List<String> alphabet = [
-    'A',
-    'B',
+    'a',
+    'b',
     'C',
     'D',
     'E',

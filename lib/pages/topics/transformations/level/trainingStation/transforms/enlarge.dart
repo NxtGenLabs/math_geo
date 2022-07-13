@@ -12,7 +12,7 @@ class _EnlargeState extends State<Enlarge> {
   var _sides = 3.0;
   var _radius = 100.0;
   var _radians = 0.0;
-
+  var _position = 0.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,7 @@ class _EnlargeState extends State<Enlarge> {
           Container(
             color: Colors.grey[400],
             child: CustomPaint(
-              foregroundPainter: ShapePainter(_sides, _radius, _radians),
+              foregroundPainter: ShapePainter(_sides, _radius, _radians, _position),
               painter: MyGridPainter(),
               child: Container(),
             ),

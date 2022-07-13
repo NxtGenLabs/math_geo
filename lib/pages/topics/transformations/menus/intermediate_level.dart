@@ -2,62 +2,62 @@ import 'package:flutter/material.dart';
 import '../../../../widgets/option.dart';
 
 class TransFormationsLevels extends StatelessWidget {
-  List<Levels> levels = [
-    Levels(
+  List<IntermediateLs> levels = [
+    IntermediateLs(
         level: '1',
         question: 'Rotate the triangle 45 degrees about the vertex A',
         rating: '3/3',
         qPoints: []),
-    Levels(
+    IntermediateLs(
         level: '2',
         question:
             'Dont get too cocky, my grandma got to this level faster than you did',
         rating: '3/3',
         qPoints: []),
-    Levels(
+    IntermediateLs(
         level: '3',
         question: 'Impressive, but i still think you can flunk the exam pssstt',
         rating: '3/3',
         qPoints: []),
-    Levels(
+    IntermediateLs(
         level: '4',
         question:
             'Draw the image of square ABDC when it is rotated 270 degrees about O. Find the coordinates of E` F` and G`',
         rating: '3/3',
         qPoints: []),
-    Levels(
+    IntermediateLs(
         level: '5',
         question: 'Rotate the triangle 20 degrees about the vertex A',
         rating: '3/3',
         qPoints: []),
-    Levels(
+    IntermediateLs(
         level: '6',
         question:
             'The parallelogram MNOP is rotated -90 degrees about S. Find the coordiantes of M`, N` O` and P`',
         rating: '3/3',
         qPoints: []),
-    Levels(
+    IntermediateLs(
         level: '7',
         question: 'Dude, im tired of asking questions ok',
         rating: '3/3',
         qPoints: []),
-    Levels(
+    IntermediateLs(
         level: '8',
         question: 'You aint gon make it to this level anyway lol',
         rating: '3/3',
         qPoints: []),
-    Levels(
+    IntermediateLs(
         level: '9',
         question: 'Ohh wow, props on proving me wrong',
         rating: '3/3',
         qPoints: []),
-    Levels(
+    IntermediateLs(
         level: '10',
         question:
             'Congratulations on wasting your valubale time on math youll never need anyway',
         rating: '3/3',
         qPoints: []),
-    Levels(
+    IntermediateLs(
         level: '11',
         question: 'Ok, now im impressed. You guarranteed to ace that exam bro',
         rating: '3/3',
@@ -89,13 +89,13 @@ class TransFormationsLevels extends StatelessWidget {
   }
 }
 
-class Levels {
+class IntermediateLs {
   String level;
   String question;
   String rating;
   List qPoints;
 
-  Levels(
+  IntermediateLs(
       {required this.level,
       required this.question,
       required this.rating,

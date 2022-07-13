@@ -33,7 +33,7 @@ class _IntermediateState extends State<Intermediate> {
 
   @override
   Widget build(BuildContext context) {
-    final level = ModalRoute.of(context)!.settings.arguments as Levels;
+    final level = ModalRoute.of(context)!.settings.arguments as IntermediateLs;
 
     void _showDialog() {
       showDialog(

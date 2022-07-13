@@ -12,6 +12,7 @@ class _TranslateState extends State<Translate> {
   var _sides = 3.0;
   var _radius = 100.0;
   var _radians = 0.0;
+  var _position = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class _TranslateState extends State<Translate> {
           Container(
             color: Colors.grey[400],
             child: CustomPaint(
-              foregroundPainter: ShapePainter(_sides, _radius, _radians),
+              foregroundPainter: ShapePainter(_sides, _radius, _radians, _position),
               painter: MyGridPainter(),
               child: Container(),
             ),
@@ -46,12 +47,13 @@ class _TranslateState extends State<Translate> {
                       child: Text('Translate'),
                     ),
                     Slider(
-                      value: _radians,
+                      value: _position,
                       min: 0.0,
-                      max: math.pi,
+                      divisions: 10,
+                      max: 100,
                       onChanged: (value) {
                         setState(() {
-                          _radians = value;
+                          _position = value;
                         });
                       },
                     ),

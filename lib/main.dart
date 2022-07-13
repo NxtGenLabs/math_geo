@@ -17,7 +17,7 @@ void main() => runApp(MaterialApp(
         './pages/topics/transformations/menus/training_station_level':
             (context) => TrainingStationLevel(),
         './pages/topics/transformations/menus/beginner_level': (context) =>
-            const BeginnerLevel(),
+            BeginnerLevel(),
         './pages/topics/transformations/menus/intermediate_level': (context) =>
             TransFormationsLevels(),
         './pages/topics/transformations/level/training_station': (context) =>

@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:math_geometry/widgets/option.dart';
 
 class BeginnerLevel extends StatelessWidget {
-  const BeginnerLevel({Key? key}) : super(key: key);
+  List<BeginnerLs> levels = [
+    BeginnerLs(
+        level: '1',
+        question: '',
+        rating: '',
+        qPoints: [],
+        optionA: [],
+        optionB: [],
+        optionC: [])
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -28,4 +37,23 @@ class BeginnerLevel extends StatelessWidget {
           }),
     );
   }
+}
+
+class BeginnerLs {
+  String level;
+  String question;
+  String rating;
+  List qPoints;
+  List optionA;
+  List optionB;
+  List optionC;
+
+  BeginnerLs(
+      {required this.level,
+      required this.question,
+      required this.rating,
+      required this.qPoints,
+      required this.optionA,
+      required this.optionB,
+      required this.optionC});
 }
