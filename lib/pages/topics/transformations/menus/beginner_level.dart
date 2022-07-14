@@ -8,6 +8,78 @@ class BeginnerLevel extends StatelessWidget {
         question: '',
         rating: '',
         qPoints: [],
+        optionA: [Offset(1200, 100), Offset(1000, 100), Offset(1000, 300)],
+        optionB: [],
+        optionC: []),
+    BeginnerLs(
+        level: '2',
+        question: '',
+        rating: '',
+        qPoints: [],
+        optionA: [],
+        optionB: [],
+        optionC: []),
+    BeginnerLs(
+        level: '3',
+        question: '',
+        rating: '',
+        qPoints: [],
+        optionA: [],
+        optionB: [],
+        optionC: []),
+    BeginnerLs(
+        level: '4',
+        question: '',
+        rating: '',
+        qPoints: [],
+        optionA: [],
+        optionB: [],
+        optionC: []),
+    BeginnerLs(
+        level: '5',
+        question: '',
+        rating: '',
+        qPoints: [],
+        optionA: [],
+        optionB: [],
+        optionC: []),
+    BeginnerLs(
+        level: '6',
+        question: '',
+        rating: '',
+        qPoints: [],
+        optionA: [],
+        optionB: [],
+        optionC: []),
+    BeginnerLs(
+        level: '7',
+        question: '',
+        rating: '',
+        qPoints: [],
+        optionA: [],
+        optionB: [],
+        optionC: []),
+    BeginnerLs(
+        level: '8',
+        question: '',
+        rating: '',
+        qPoints: [],
+        optionA: [],
+        optionB: [],
+        optionC: []),
+    BeginnerLs(
+        level: '9',
+        question: '',
+        rating: '',
+        qPoints: [],
+        optionA: [],
+        optionB: [],
+        optionC: []),
+    BeginnerLs(
+        level: '10',
+        question: '',
+        rating: '',
+        qPoints: [],
         optionA: [],
         optionB: [],
         optionC: [])
@@ -20,16 +92,16 @@ class BeginnerLevel extends StatelessWidget {
       height: double.infinity,
       width: double.infinity,
       child: GridView.builder(
-          itemCount: 8,
+          itemCount: levels.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
+              crossAxisCount: 4,
               childAspectRatio: MediaQuery.of(context).size.width /
                   (MediaQuery.of(context).size.height)),
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(20.0),
               child: Option(
-                text: 'Level ${index + 1}',
+                text: 'Level ${levels[index].level}',
                 route: () => Navigator.pushNamed(
                     context, './pages/topics/transformations/level/beginner'),
               ),
