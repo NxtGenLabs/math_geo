@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:math_geometry/canvas/grid.dart';
 import 'package:math_geometry/canvas/multipleChoiceQs.dart';
 import 'package:math_geometry/pages/topics/transformations/menus/beginner_level.dart';
+import 'package:math_geometry/widgets/countdownTimer.dart';
 import 'package:math_geometry/widgets/multipleChoiceOptions.dart';
 
 class Beginner extends StatelessWidget {
@@ -17,7 +18,8 @@ class Beginner extends StatelessWidget {
         foregroundColor: const Color.fromARGB(224, 224, 224, 255),
         title: const Text('NxtGen Labs Geometry'),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.question_mark))
+          IconButton(onPressed: () {}, icon: const Icon(Icons.question_mark)),
+          CountdownTimer()
         ],
       ),
       floatingActionButton: const MultipleChoiceOptions(),
