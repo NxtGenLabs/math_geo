@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/widgets/option.dart';
 
-import '../../../../canvas/multipleChoiceQs.dart';
 
 class BeginnerLevel extends StatelessWidget {
 
@@ -10,6 +9,8 @@ class BeginnerLevel extends StatelessWidget {
         level: '1',
         question: '',
         rating: '',
+        answer: '',
+        timeLimit: 1,
         qPoints: [const Offset(-100, -100),const Offset(-400, -100),const Offset(-450,-200)],
         optionA: [const Offset(100, -100),const Offset(400, -100),const Offset(50, -200)],
         optionB: [const Offset(100,100),const Offset(400, 100),const Offset(50, 200)],
@@ -18,6 +19,8 @@ class BeginnerLevel extends StatelessWidget {
         level: '2',
         question: '',
         rating: '',
+        answer: '',
+        timeLimit: 1,
         qPoints: [],
         optionA: [],
         optionB: [],
@@ -26,6 +29,8 @@ class BeginnerLevel extends StatelessWidget {
         level: '3',
         question: '',
         rating: '',
+        answer: '',
+        timeLimit: 1,
         qPoints: [],
         optionA: [],
         optionB: [],
@@ -34,6 +39,8 @@ class BeginnerLevel extends StatelessWidget {
         level: '4',
         question: '',
         rating: '',
+        answer: '',
+        timeLimit: 1,
         qPoints: [],
         optionA: [],
         optionB: [],
@@ -42,6 +49,8 @@ class BeginnerLevel extends StatelessWidget {
         level: '5',
         question: '',
         rating: '',
+        answer: '',
+        timeLimit: 1,
         qPoints: [],
         optionA: [],
         optionB: [],
@@ -50,6 +59,8 @@ class BeginnerLevel extends StatelessWidget {
         level: '6',
         question: '',
         rating: '',
+        answer: '',
+        timeLimit: 1,
         qPoints: [],
         optionA: [],
         optionB: [],
@@ -58,6 +69,8 @@ class BeginnerLevel extends StatelessWidget {
         level: '7',
         question: '',
         rating: '',
+        answer: '',
+        timeLimit: 1,
         qPoints: [],
         optionA: [],
         optionB: [],
@@ -66,6 +79,8 @@ class BeginnerLevel extends StatelessWidget {
         level: '8',
         question: '',
         rating: '',
+        answer: '',
+        timeLimit: 1,
         qPoints: [],
         optionA: [],
         optionB: [],
@@ -74,6 +89,8 @@ class BeginnerLevel extends StatelessWidget {
         level: '9',
         question: '',
         rating: '',
+        answer: '',
+        timeLimit: 1,
         qPoints: [],
         optionA: [],
         optionB: [],
@@ -82,11 +99,15 @@ class BeginnerLevel extends StatelessWidget {
         level: '10',
         question: '',
         rating: '',
+        answer: '',
+        timeLimit: 1,
         qPoints: [],
         optionA: [],
         optionB: [],
         optionC: [])
   ];
+
+  BeginnerLevel({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +140,8 @@ class BeginnerLs {
   String level;
   String question;
   String rating;
+  String answer;
+  double timeLimit;
   List<Offset> qPoints;
   List<Offset> optionA;
   List<Offset> optionB;
@@ -128,6 +151,8 @@ class BeginnerLs {
       {required this.level,
       required this.question,
       required this.rating,
+      required this.answer,
+      required this.timeLimit,
       required this.qPoints,
       required this.optionA,
       required this.optionB,
