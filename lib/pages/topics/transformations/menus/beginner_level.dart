@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/widgets/option.dart';
 
+import '../../../../canvas/multipleChoiceQs.dart';
+
 class BeginnerLevel extends StatelessWidget {
+
   List<BeginnerLs> levels = [
     BeginnerLs(
         level: '1',
         question: '',
         rating: '',
-        qPoints: [],
-        optionA: [Offset(1200, 100), Offset(1000, 100), Offset(1000, 300)],
-        optionB: [],
-        optionC: []),
+        qPoints: [const Offset(-100, -100),const Offset(-400, -100),const Offset(-450,-200)],
+        optionA: [const Offset(100, -100),const Offset(400, -100),const Offset(50, -200)],
+        optionB: [const Offset(100,100),const Offset(400, 100),const Offset(50, 200)],
+        optionC: [const Offset(-100,100),const Offset(-400,100),const Offset(-450,200)]),
     BeginnerLs(
         level: '2',
         question: '',
@@ -103,7 +106,8 @@ class BeginnerLevel extends StatelessWidget {
               child: Option(
                 text: 'Level ${levels[index].level}',
                 route: () => Navigator.pushNamed(
-                    context, './pages/topics/transformations/level/beginner'),
+                    context, './pages/topics/transformations/level/beginner',
+                    arguments: levels[index]),
               ),
             );
           }),
@@ -115,10 +119,10 @@ class BeginnerLs {
   String level;
   String question;
   String rating;
-  List qPoints;
-  List optionA;
-  List optionB;
-  List optionC;
+  List<Offset> qPoints;
+  List<Offset> optionA;
+  List<Offset> optionB;
+  List<Offset> optionC;
 
   BeginnerLs(
       {required this.level,

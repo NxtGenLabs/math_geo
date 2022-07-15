@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:math_geometry/pages/topics/transformations/level/beginner.dart';
 import 'dart:math' as math;
 
 import '../pages/topics/transformations/menus/beginner_level.dart';
 
 class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
+
+  late int index;
+
+  MultipleChoiceQs(int index){
+    this.index = index;
+  }
   List<String> alphabet = [
     'a',
     'b',
@@ -32,6 +39,10 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
     'Y',
     'Z'
   ];
+
+  BeginnerLevel levels = BeginnerLevel();
+  Beginner level = Beginner();
+
   bool hitTest(Offset position) => true;
 
   @override
@@ -39,29 +50,26 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
     double centerX = size.width / 2;
     double centerY = size.height / 2;
 
-    late List<Offset> qPoints1 = [
-      Offset(centerX - 100, centerY - 100),
-      Offset(centerX - 400, centerY - 100),
-      Offset(centerX - 450, centerY - 200)
-    ];
+    List<Offset> qp = [];
+    List<Offset> oA = [];
+    List<Offset> oB = [];
+    List<Offset> oC = [];
 
-    late List<Offset> OptionA = [
-      Offset(centerX + 100, centerY - 100),
-      Offset(centerX + 400, centerY - 100),
-      Offset(centerX + 50, centerY - 200)
-    ];
 
-    late List<Offset> OptionB = [
-      Offset(centerX + 100, centerY + 100),
-      Offset(centerX + 400, centerY + 100),
-      Offset(centerX + 50, centerY + 200)
-    ];
+    for (var point in levels.levels[index].qPoints){
+      qp.add(Offset(point.dx + centerX, point.dy + centerY));
+    }
+    for (var point in levels.levels[index].optionA){
+      oA.add(Offset(point.dx + centerX, point.dy + centerY));
+    }
+    for (var point in levels.levels[index].optionB){
+      oB.add(Offset(point.dx + centerX, point.dy + centerY));
+    }
+    for (var point in levels.levels[index].optionC){
+      oC.add(Offset(point.dx + centerX, point.dy + centerY));
+    }
+    
 
-    late List<Offset> OptionC = [
-      Offset(centerX - 100, centerY + 100),
-      Offset(centerX - 400, centerY + 100),
-      Offset(centerX - 450, centerY + 200)
-    ];
 
     Paint strokePaint = Paint();
     strokePaint.color = Colors.teal;
@@ -74,23 +82,16 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
     pointPaint.strokeCap = StrokeCap.round;
 
     Path path = Path();
-    path.addPolygon(qPoints1, true);
+    path.addPolygon(qp, true);
+    path.addPolygon(oA, true);
+    path.addPolygon(oB, true);
+    path.addPolygon(oC, true);
     canvas.drawPath(path, strokePaint);
 
-    Path OptionAPath = Path();
-    path.addPolygon(OptionA, true);
-    canvas.drawPath(path, strokePaint);
 
-    Path OptionBPath = Path();
-    path.addPolygon(OptionB, true);
-    canvas.drawPath(path, strokePaint);
-
-    Path option3Path = Path();
-    path.addPolygon(OptionC, true);
-    canvas.drawPath(path, strokePaint);
 
     var counter = 0;
-    for (var point in qPoints1) {
+    for (var point in qp) {
       //debug logging the getSides() method
 
       // displaying point value
@@ -106,24 +107,7 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
       ++counter;
     }
     counter = 0;
-    for (var point in OptionA) {
-      //debug logging the getSides() method
-
-      // displaying point value
-      TextSpan span = TextSpan(
-          style: TextStyle(color: Colors.orange[800]), text: alphabet[counter]);
-      TextPainter tp = TextPainter(
-          text: span,
-          textAlign: TextAlign.left,
-          textDirection: TextDirection.ltr,
-          textScaleFactor: 1);
-      tp.layout();
-      tp.paint(canvas, Offset(point.dx, point.dy));
-      ++counter;
-    }
-
-    counter = 0;
-    for (var point in OptionB) {
+    for (var point in oA) {
       //debug logging the getSides() method
 
       // displaying point value
@@ -140,7 +124,24 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
     }
 
     counter = 0;
-    for (var point in OptionC) {
+    for (var point in oB) {
+      //debug logging the getSides() method
+
+      // displaying point value
+      TextSpan span = TextSpan(
+          style: TextStyle(color: Colors.orange[800]), text: alphabet[counter]);
+      TextPainter tp = TextPainter(
+          text: span,
+          textAlign: TextAlign.left,
+          textDirection: TextDirection.ltr,
+          textScaleFactor: 1);
+      tp.layout();
+      tp.paint(canvas, Offset(point.dx, point.dy));
+      ++counter;
+    }
+
+    counter = 0;
+    for (var point in oC) {
       //debug logging the getSides() method
 
       // displaying point value

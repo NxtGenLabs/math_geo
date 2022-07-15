@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/canvas/grid.dart';
 import 'package:math_geometry/canvas/multipleChoiceQs.dart';
+import 'package:math_geometry/pages/topics/transformations/menus/beginner_level.dart';
 import 'package:math_geometry/widgets/multipleChoiceOptions.dart';
 
 class Beginner extends StatelessWidget {
@@ -8,6 +9,8 @@ class Beginner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final level = ModalRoute.of(context)!.settings.arguments as BeginnerLs;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -17,7 +20,7 @@ class Beginner extends StatelessWidget {
           IconButton(onPressed: () {}, icon: const Icon(Icons.question_mark))
         ],
       ),
-      floatingActionButton: MultipleChoiceOptions(),
+      floatingActionButton: const MultipleChoiceOptions(),
       body: GestureDetector(
         child: RepaintBoundary(
           child: Container(
@@ -25,7 +28,7 @@ class Beginner extends StatelessWidget {
               height: double.infinity,
               width: double.infinity,
               child: CustomPaint(
-                foregroundPainter: MultipleChoiceQs(),
+                foregroundPainter: MultipleChoiceQs(int.parse(level.level) - 1),
                 child: Visibility(
                   child: const MyGrid(),
                 ),
