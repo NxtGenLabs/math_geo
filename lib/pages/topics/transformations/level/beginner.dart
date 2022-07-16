@@ -13,7 +13,7 @@ class Beginner extends StatelessWidget {
     final level = ModalRoute.of(context)!.settings.arguments as BeginnerLs;
 
     return Scaffold(
-      floatingActionButton: const MultipleChoiceOptions(),
+      floatingActionButton: MultipleChoiceOptions(),
       body: Stack(
         alignment: AlignmentDirectional.topCenter,
         children: [
@@ -27,7 +27,7 @@ class Beginner extends StatelessWidget {
                   child: const MyGrid(),
                 ),
               )),
-          CustomAppBar(level.level, level.question)
+          CustomAppBar(level.level, level.question, level.answer)
         ],
       ),
     );

@@ -13,9 +13,9 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
   List<String> alphabet = [
     'a',
     'b',
-    'C',
-    'D',
-    'E',
+    'c',
+    'd',
+    'e',
     'F',
     'G',
     'H',
