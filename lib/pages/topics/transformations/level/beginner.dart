@@ -4,6 +4,7 @@ import 'package:math_geometry/canvas/multipleChoiceQs.dart';
 import 'package:math_geometry/pages/topics/transformations/menus/beginner_level.dart';
 import 'package:math_geometry/widgets/countdownTimer.dart';
 import 'package:math_geometry/widgets/multipleChoiceOptions.dart';
+import 'package:math_geometry/widgets/customAppbar.dart';
 
 class Beginner extends StatelessWidget {
   const Beginner({Key? key}) : super(key: key);
@@ -13,15 +14,7 @@ class Beginner extends StatelessWidget {
     final level = ModalRoute.of(context)!.settings.arguments as BeginnerLs;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        foregroundColor: const Color.fromARGB(224, 224, 224, 255),
-        title: const Text('NxtGen Labs Geometry'),
-        actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.question_mark)),
-          CountdownTimer()
-        ],
-      ),
+      appBar: CustomAppBar(),
       floatingActionButton: const MultipleChoiceOptions(),
       body: GestureDetector(
         child: RepaintBoundary(

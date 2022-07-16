@@ -14,7 +14,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
   int timeLeft = 120;
 
   void _startCountDown(){
-    Timer.periodic(Duration(seconds: 1), (timer) { 
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         timeLeft--;
       });
@@ -22,8 +22,10 @@ class _CountdownTimerState extends State<CountdownTimer> {
   }
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(timeLeft.toString())
+    return Center(
+      child: GestureDetector(
+      onTap: _startCountDown,
+      child: Text(timeLeft.toString()))
     );
     
   }
