@@ -3,6 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatefulWidget {
+  late String level;
+  late String question;
+  CustomAppBar(String level, String question) {
+    this.level = level;
+    this.question = question;
+  }
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
 }
@@ -26,16 +32,28 @@ class _CustomAppBarState extends State<CustomAppBar> {
           builder: (context) {
             return AlertDialog(
               backgroundColor: Colors.grey[400],
-              title: const Text('Level'),
-              content: const Text("question"),
+              title: Text('Level ${widget.level}'),
+              content: Text(widget.question),
               actions: [
-                MaterialButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    _startCountDown();
-                  },
-                  child: Text('Attempt'),
-                  color: Colors.teal,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    MaterialButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        _startCountDown();
+                      },
+                      child: Text('Attempt'),
+                      color: Colors.teal,
+                    ),
+                    MaterialButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text('Quit'),
+                      color: Colors.red[800],
+                    )
+                  ],
                 )
               ],
             );
@@ -53,31 +71,39 @@ class _CustomAppBarState extends State<CustomAppBar> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back),
-            color: Colors.grey[300],
+          Text(
+            timeLeft.toString(),
+            style: TextStyle(color: Colors.grey[300]),
           ),
           IconButton(
-            icon: const Icon(Icons.check_circle),
+            icon: const Icon(Icons.question_mark),
             color: Colors.grey[300],
+            onPressed: _showDialog,
+          ),
+          IconButton(
             onPressed: () {},
+            icon: const Icon(Icons.lightbulb_outline),
+            color: Colors.grey[300],
           ),
           IconButton(
             icon: const Icon(Icons.person_pin_circle_outlined),
             color: Colors.grey[300],
             onPressed: () {},
           ),
-          Container(
-            child: Text(
-              timeLeft.toString(),
-              style: TextStyle(color: Colors.grey[300]),
-            ),
+          IconButton(
+            icon: const Icon(Icons.check_circle_outline),
+            color: Colors.grey[300],
+            onPressed: () {},
           ),
           IconButton(
-            icon: const Icon(Icons.question_mark),
+            icon: const Icon(Icons.refresh),
             color: Colors.grey[300],
-            onPressed: _showDialog,
+            onPressed: () {},
+          ),
+          IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.home_outlined),
+            color: Colors.grey[300],
           ),
         ],
       ),

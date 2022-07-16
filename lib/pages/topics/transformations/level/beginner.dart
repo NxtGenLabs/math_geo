@@ -17,22 +17,17 @@ class Beginner extends StatelessWidget {
       body: Stack(
         alignment: AlignmentDirectional.topCenter,
         children: [
-          GestureDetector(
-            child: RepaintBoundary(
-              child: Container(
-                  color: Colors.grey[400],
-                  height: double.infinity,
-                  width: double.infinity,
-                  child: CustomPaint(
-                    foregroundPainter:
-                        MultipleChoiceQs(int.parse(level.level) - 1),
-                    child: Visibility(
-                      child: const MyGrid(),
-                    ),
-                  )),
-            ),
-          ),
-          CustomAppBar()
+          Container(
+              color: Colors.grey[400],
+              height: double.infinity,
+              width: double.infinity,
+              child: CustomPaint(
+                foregroundPainter: MultipleChoiceQs(int.parse(level.level) - 1),
+                child: Visibility(
+                  child: const MyGrid(),
+                ),
+              )),
+          CustomAppBar(level.level, level.question)
         ],
       ),
     );

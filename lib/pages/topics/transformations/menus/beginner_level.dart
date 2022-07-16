@@ -1,20 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/widgets/option.dart';
 
-
 class BeginnerLevel extends StatelessWidget {
-
   List<BeginnerLs> levels = [
     BeginnerLs(
         level: '1',
-        question: '',
+        question: 'Find the blah blah',
         rating: '',
-        answer: '',
-        timeLimit: 1,
-        qPoints: [const Offset(-100, -100),const Offset(-400, -100),const Offset(-450,-200)],
-        optionA: [const Offset(100, -100),const Offset(400, -100),const Offset(50, -200)],
-        optionB: [const Offset(100,100),const Offset(400, 100),const Offset(50, 200)],
-        optionC: [const Offset(-100,100),const Offset(-400,100),const Offset(-450,200)]),
+        answer: 'B',
+        timeLimit: 120,
+        qPoints: [
+          const Offset(-100, -100),
+          const Offset(-400, -100),
+          const Offset(-450, -200)
+        ],
+        optionA: [
+          const Offset(100, -100),
+          const Offset(400, -100),
+          const Offset(50, -200)
+        ],
+        optionB: [
+          const Offset(100, 100),
+          const Offset(400, 100),
+          const Offset(50, 200)
+        ],
+        optionC: [
+          const Offset(-100, 100),
+          const Offset(-400, 100),
+          const Offset(-450, 200)
+        ]),
     BeginnerLs(
         level: '2',
         question: '',
