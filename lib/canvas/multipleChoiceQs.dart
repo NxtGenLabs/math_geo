@@ -5,10 +5,9 @@ import 'dart:math' as math;
 import '../pages/topics/transformations/menus/beginner_level.dart';
 
 class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
-
   late int index;
 
-  MultipleChoiceQs(int index){
+  MultipleChoiceQs(int index) {
     this.index = index;
   }
   List<String> alphabet = [
@@ -55,21 +54,18 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
     List<Offset> oB = [];
     List<Offset> oC = [];
 
-
-    for (var point in levels.levels[index].qPoints){
+    for (var point in levels.levels[index].qPoints) {
       qp.add(Offset(point.dx + centerX, point.dy + centerY));
     }
-    for (var point in levels.levels[index].optionA){
+    for (var point in levels.levels[index].optionA) {
       oA.add(Offset(point.dx + centerX, point.dy + centerY));
     }
-    for (var point in levels.levels[index].optionB){
+    for (var point in levels.levels[index].optionB) {
       oB.add(Offset(point.dx + centerX, point.dy + centerY));
     }
-    for (var point in levels.levels[index].optionC){
+    for (var point in levels.levels[index].optionC) {
       oC.add(Offset(point.dx + centerX, point.dy + centerY));
     }
-    
-
 
     Paint strokePaint = Paint();
     strokePaint.color = Colors.teal;
@@ -87,8 +83,6 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
     path.addPolygon(oB, true);
     path.addPolygon(oC, true);
     canvas.drawPath(path, strokePaint);
-
-
 
     var counter = 0;
     for (var point in qp) {
@@ -165,7 +159,7 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
         textDirection: TextDirection.ltr,
         textScaleFactor: 2);
     tp.layout();
-    tp.paint(canvas, Offset(centerX + 20, centerY - 50));
+    tp.paint(canvas, Offset(centerX + 10, centerY - 40));
 
     TextSpan btext =
         TextSpan(style: TextStyle(color: Colors.orange[800]), text: 'B');
@@ -175,7 +169,7 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
         textDirection: TextDirection.ltr,
         textScaleFactor: 2);
     tpB.layout();
-    tpB.paint(canvas, Offset(centerX + 20, centerY));
+    tpB.paint(canvas, Offset(centerX + 10, centerY));
 
     TextSpan ctext =
         TextSpan(style: TextStyle(color: Colors.orange[800]), text: 'C');
@@ -185,7 +179,7 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
         textDirection: TextDirection.ltr,
         textScaleFactor: 2);
     tpC.layout();
-    tpC.paint(canvas, Offset(centerX - 40, centerY));
+    tpC.paint(canvas, Offset(centerX - 30, centerY));
 
     // indexer
   }

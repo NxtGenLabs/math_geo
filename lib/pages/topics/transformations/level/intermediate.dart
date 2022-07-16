@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_geometry/widgets/customAppbar.dart';
 import 'package:math_geometry/widgets/toolbar.dart';
 import '../../../../canvas/painter.dart';
 import '../../../../canvas/grid.dart';
@@ -55,15 +56,6 @@ class _IntermediateState extends State<Intermediate> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        foregroundColor: const Color.fromARGB(224, 224, 224, 255),
-        title: const Text('NxtGen Labs Geometry'),
-        actions: [
-          IconButton(
-              onPressed: _showDialog, icon: const Icon(Icons.question_mark))
-        ],
-      ),
       floatingActionButton: ToolBar(
           zoomIn: () {
             _scale = _scale * 1.1;
@@ -79,36 +71,43 @@ class _IntermediateState extends State<Intermediate> {
                 isVisible = !isVisible;
               }),
           delete: () => linePainter.deletePoint()),
-      body: GestureDetector(
-        // onScaleStart: (ScaleStartDetails details) {
-        //   _previousScale = _scale;
-        //   setState(() {});
-        // },
-        // onScaleUpdate: (ScaleUpdateDetails details) {
-        //   _scale = _previousScale * details.scale;
-        // },
-        // onScaleEnd: (ScaleEndDetails details) {
-        //   _previousScale = 1.0;
-        //   setState(() {});
-        // },
-        onPanStart: onPanStart,
-        child: RepaintBoundary(
-          child: Container(
-              color: Colors.grey[400],
-              height: double.infinity,
-              width: double.infinity,
-              child: Transform(
-                alignment: FractionalOffset.center,
-                transform: Matrix4.diagonal3(Vector3(_scale, _scale, _scale)),
-                child: CustomPaint(
-                  foregroundPainter: linePainter,
-                  child: Visibility(
-                    child: const MyGrid(),
-                    visible: isVisible,
-                  ),
-                ),
-              )),
-        ),
+      body: Stack(
+        alignment: AlignmentDirectional.topCenter,
+        children: [
+          GestureDetector(
+            // onScaleStart: (ScaleStartDetails details) {
+            //   _previousScale = _scale;
+            //   setState(() {});
+            // },
+            // onScaleUpdate: (ScaleUpdateDetails details) {
+            //   _scale = _previousScale * details.scale;
+            // },
+            // onScaleEnd: (ScaleEndDetails details) {
+            //   _previousScale = 1.0;
+            //   setState(() {});
+            // },
+            onPanStart: onPanStart,
+            child: RepaintBoundary(
+              child: Container(
+                  color: Colors.grey[400],
+                  height: double.infinity,
+                  width: double.infinity,
+                  child: Transform(
+                    alignment: FractionalOffset.center,
+                    transform:
+                        Matrix4.diagonal3(Vector3(_scale, _scale, _scale)),
+                    child: CustomPaint(
+                      foregroundPainter: linePainter,
+                      child: Visibility(
+                        child: const MyGrid(),
+                        visible: isVisible,
+                      ),
+                    ),
+                  )),
+            ),
+          ),
+          CustomAppBar()
+        ],
       ),
     );
   }
