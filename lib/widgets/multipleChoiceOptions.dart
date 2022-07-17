@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
-class MultipleChoiceOptions extends StatefulWidget {
-  String pick = '';
-  @override
-  State<MultipleChoiceOptions> createState() => _MultipleChoiceOptionsState();
-}
+class MultipleChoiceOptions extends StatelessWidget {
+  final String pick;
+  final Function(String) onPicked;
 
-class _MultipleChoiceOptionsState extends State<MultipleChoiceOptions> {
+  MultipleChoiceOptions(@required this.pick, this.onPicked);
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -16,28 +14,21 @@ class _MultipleChoiceOptionsState extends State<MultipleChoiceOptions> {
             heroTag: "A",
             child: Text("A"),
             onPressed: () {
-              setState(() {
-                widget.pick = 'A';
-              });
-              print(widget.pick);
+              onPicked("A");
             }),
         const SizedBox(width: 10),
         FloatingActionButton(
             heroTag: "B",
             child: Text("B"),
             onPressed: () {
-              setState(() {
-                widget.pick = 'B';
-              });
-              print(widget.pick);
+              onPicked("B");
             }),
         const SizedBox(width: 10),
         FloatingActionButton(
             heroTag: "C",
             child: Text("C"),
             onPressed: () {
-              widget.pick = 'C';
-              print(widget.pick);
+              onPicked("C");
             })
       ],
     );

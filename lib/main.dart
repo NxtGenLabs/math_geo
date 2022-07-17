@@ -23,7 +23,7 @@ void main() => runApp(MaterialApp(
         './pages/topics/transformations/level/training_station': (context) =>
             const TrainingStation(),
         './pages/topics/transformations/level/beginner': (context) =>
-            const Beginner(),
+            Beginner(),
         './pages/topics/transformations/level/intermediate': (context) =>
             const Intermediate(),
       },

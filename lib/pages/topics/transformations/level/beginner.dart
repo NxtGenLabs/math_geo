@@ -5,15 +5,25 @@ import 'package:math_geometry/pages/topics/transformations/menus/beginner_level.
 import 'package:math_geometry/widgets/multipleChoiceOptions.dart';
 import 'package:math_geometry/widgets/customAppbar.dart';
 
-class Beginner extends StatelessWidget {
-  const Beginner({Key? key}) : super(key: key);
+class Beginner extends StatefulWidget {
+
+  @override
+  State<Beginner> createState() => _BeginnerState();
+}
+
+class _BeginnerState extends State<Beginner> {
+  String pick = '';
 
   @override
   Widget build(BuildContext context) {
     final level = ModalRoute.of(context)!.settings.arguments as BeginnerLs;
 
     return Scaffold(
-      floatingActionButton: MultipleChoiceOptions(),
+      floatingActionButton: MultipleChoiceOptions(pick, (String val ){
+        setState(() {
+          pick = val;
+        });
+      }),
       body: Stack(
         alignment: AlignmentDirectional.topCenter,
         children: [
@@ -27,7 +37,7 @@ class Beginner extends StatelessWidget {
                   child: const MyGrid(),
                 ),
               )),
-          CustomAppBar(level.level, level.question, level.answer)
+          CustomAppBar(level.level, level.question, level.answer, pick)
         ],
       ),
     );

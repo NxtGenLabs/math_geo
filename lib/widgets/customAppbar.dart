@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:math_geometry/widgets/multipleChoiceOptions.dart';
 
 class CustomAppBar extends StatefulWidget {
-  late String level;
-  late String question;
-  late String answer;
-  CustomAppBar(String level, String question, String answer) {
-    this.level = level;
-    this.question = question;
-    this.answer = answer;
-  }
+  final String level;
+  final String question;
+  final String answer;
+  final String pick;
+  CustomAppBar(this.level, this.question, this.answer,this.pick);
+
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
 }
@@ -29,7 +27,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    MultipleChoiceOptions pick = MultipleChoiceOptions();
     void _showDialog() {
       showDialog(
           context: context,
@@ -98,7 +95,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
             icon: const Icon(Icons.check_circle_outline),
             color: Colors.grey[300],
             onPressed: () {
-              if (pick.pick == widget.answer) {
+              if(widget.pick == widget.answer){
                 print("Correct");
               }
             },
