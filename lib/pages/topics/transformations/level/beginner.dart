@@ -13,6 +13,7 @@ class Beginner extends StatefulWidget {
 
 class _BeginnerState extends State<Beginner> {
   String pick = '';
+  int score = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class _BeginnerState extends State<Beginner> {
                   child: const MyGrid(),
                 ),
               )),
-          CustomAppBar(level.level, level.question, level.answer, pick, level.hint)
+          CustomAppBar(level.level, level.question, level.answer, pick, level.hint, score, (){}, level.timeLimit)
         ],
       ),
     );

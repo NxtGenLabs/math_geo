@@ -166,7 +166,7 @@ class BeginnerLs {
   String rating;
   String answer;
   String hint;
-  double timeLimit;
+  int timeLimit;
   List<Offset> qPoints;
   List<Offset> optionA;
   List<Offset> optionB;

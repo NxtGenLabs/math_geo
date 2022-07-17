@@ -9,7 +9,10 @@ class CustomAppBar extends StatefulWidget {
   final String answer;
   final String pick;
   final String hint;
-  CustomAppBar(this.level, this.question, this.answer,this.pick, this.hint);
+  final int timeLimit;
+  int score;
+  final Function onUpdateScore;
+  CustomAppBar(this.level, this.question, this.answer,this.pick, this.hint, this.score, this.onUpdateScore, this.timeLimit);
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
@@ -17,8 +20,10 @@ class CustomAppBar extends StatefulWidget {
 
 class _CustomAppBarState extends State<CustomAppBar> {
   int initTime = 0;
+  int retries = 0;
   bool isStartTimer = false;
   bool isCorrect = false;
+  bool usedHint = false;
 
   void _startCountDown() {
     Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -32,8 +37,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
     
     
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -128,6 +131,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   children: [
                     MaterialButton(
                       onPressed: () {
+                        retries++;
                         Navigator.pop(context);
                       },
                       child: Text('Retry'),
@@ -173,6 +177,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           IconButton(
             onPressed: () {
               _showHint();
+              usedHint = true;
             },
             icon: const Icon(Icons.lightbulb_outline),
             color: Colors.grey[300],
@@ -187,6 +192,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
             color: Colors.grey[300],
             onPressed: () {
               if(widget.pick == widget.answer){
+                widget.score++;
                 setState(() {
                   isStartTimer = true;
                   isCorrect = true;
@@ -198,6 +204,17 @@ class _CustomAppBarState extends State<CustomAppBar> {
               });
               }
               _showResult();
+              
+              if(initTime < widget.timeLimit){
+        widget.score++;}
+              if(retries == 0){
+              widget.score++;
+              }
+              if(!usedHint){
+              widget.score++;
+              }
+        print(widget.score);
+        print(retries);
             },
           ),
           IconButton(
