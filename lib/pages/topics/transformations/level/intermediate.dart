@@ -106,7 +106,7 @@ class _IntermediateState extends State<Intermediate> {
                   )),
             ),
           ),
-          CustomAppBar(level.level, level.question, level.answer,'')
+          CustomAppBar(level.level, level.question, level.answer,'', '')
         ],
       ),
     );

@@ -8,6 +8,7 @@ class BeginnerLevel extends StatelessWidget {
         question: 'Find the blah blah',
         rating: '',
         answer: 'B',
+        hint: 'Lets keep putting up points',
         timeLimit: 120,
         qPoints: [
           const Offset(-100, -100),
@@ -34,6 +35,7 @@ class BeginnerLevel extends StatelessWidget {
         question: '',
         rating: '',
         answer: '',
+        hint: 'Lets keep putting up points',
         timeLimit: 1,
         qPoints: [],
         optionA: [],
@@ -44,6 +46,7 @@ class BeginnerLevel extends StatelessWidget {
         question: '',
         rating: '',
         answer: '',
+        hint: 'Lets keep putting up points',
         timeLimit: 1,
         qPoints: [],
         optionA: [],
@@ -54,6 +57,7 @@ class BeginnerLevel extends StatelessWidget {
         question: '',
         rating: '',
         answer: '',
+        hint: 'Lets keep putting up points',
         timeLimit: 1,
         qPoints: [],
         optionA: [],
@@ -64,6 +68,7 @@ class BeginnerLevel extends StatelessWidget {
         question: '',
         rating: '',
         answer: '',
+        hint: 'Lets keep putting up points',
         timeLimit: 1,
         qPoints: [],
         optionA: [],
@@ -74,6 +79,7 @@ class BeginnerLevel extends StatelessWidget {
         question: '',
         rating: '',
         answer: '',
+        hint: 'Lets keep putting up points',
         timeLimit: 1,
         qPoints: [],
         optionA: [],
@@ -84,6 +90,7 @@ class BeginnerLevel extends StatelessWidget {
         question: '',
         rating: '',
         answer: '',
+        hint: 'Lets keep putting up points',
         timeLimit: 1,
         qPoints: [],
         optionA: [],
@@ -94,6 +101,7 @@ class BeginnerLevel extends StatelessWidget {
         question: '',
         rating: '',
         answer: '',
+        hint: 'Lets keep putting up points',
         timeLimit: 1,
         qPoints: [],
         optionA: [],
@@ -104,6 +112,7 @@ class BeginnerLevel extends StatelessWidget {
         question: '',
         rating: '',
         answer: '',
+        hint: 'Lets keep putting up points',
         timeLimit: 1,
         qPoints: [],
         optionA: [],
@@ -114,6 +123,7 @@ class BeginnerLevel extends StatelessWidget {
         question: '',
         rating: '',
         answer: '',
+        hint: 'Lets keep putting up points',
         timeLimit: 1,
         qPoints: [],
         optionA: [],
@@ -155,6 +165,7 @@ class BeginnerLs {
   String question;
   String rating;
   String answer;
+  String hint;
   double timeLimit;
   List<Offset> qPoints;
   List<Offset> optionA;
@@ -166,6 +177,7 @@ class BeginnerLs {
       required this.question,
       required this.rating,
       required this.answer,
+      required this.hint,
       required this.timeLimit,
       required this.qPoints,
       required this.optionA,

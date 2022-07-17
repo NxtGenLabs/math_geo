@@ -8,19 +8,20 @@ class CustomAppBar extends StatefulWidget {
   final String question;
   final String answer;
   final String pick;
-  CustomAppBar(this.level, this.question, this.answer,this.pick);
+  final String hint;
+  CustomAppBar(this.level, this.question, this.answer,this.pick, this.hint);
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
-  int timeLeft = 120;
+  int initTime = 0;
 
   void _startCountDown() {
     Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
-        timeLeft--;
+        initTime++;
       });
     });
   }
@@ -61,6 +62,31 @@ class _CustomAppBarState extends State<CustomAppBar> {
           });
     }
 
+    void _showHint(){
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              backgroundColor: Colors.grey[400],
+              title: Text('Hint'),
+              content: Text(widget.hint),
+              actions: [
+                MaterialButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Close'),
+                  color: Colors.red[800],
+                )
+              ],
+            );
+          });
+    }
+
+    void _showResult(){
+
+    }
+
     return Container(
       decoration: const BoxDecoration(
           color: Colors.teal,
@@ -73,7 +99,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            timeLeft.toString(),
+            initTime.toString(),
             style: TextStyle(color: Colors.grey[300]),
           ),
           IconButton(
@@ -82,7 +108,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
             onPressed: _showDialog,
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              _showHint();
+            },
             icon: const Icon(Icons.lightbulb_outline),
             color: Colors.grey[300],
           ),

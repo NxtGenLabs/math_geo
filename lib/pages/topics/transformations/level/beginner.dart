@@ -37,7 +37,7 @@ class _BeginnerState extends State<Beginner> {
                   child: const MyGrid(),
                 ),
               )),
-          CustomAppBar(level.level, level.question, level.answer, pick)
+          CustomAppBar(level.level, level.question, level.answer, pick, level.hint)
         ],
       ),
     );
