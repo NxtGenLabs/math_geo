@@ -25,6 +25,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   bool isCorrect = false;
   bool usedHint = false;
 
+///////////timer function
   void _startCountDown() {
     Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
@@ -39,10 +40,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    void _showDialog() {
+  void initState(){
+    super.initState();
+
+    Future.delayed(Duration.zero, (){
       showDialog(
-          context: context,
+        context: context,
           builder: (context) {
             return AlertDialog(
               backgroundColor: Colors.grey[400],
@@ -63,8 +66,39 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     MaterialButton(
                       onPressed: () {
                         Navigator.pop(context);
+                        Navigator.pop(context);
                       },
                       child: Text('Quit'),
+                      color: Colors.red[800],
+                    )
+                  ],
+                )
+              ],
+            );
+          }
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    void _showDialog() {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              backgroundColor: Colors.grey[400],
+              title: Text('Level ${widget.level}'),
+              content: Text(widget.question),
+              actions: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    MaterialButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text('Close'),
                       color: Colors.red[800],
                     )
                   ],
@@ -74,6 +108,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           });
     }
 
+////////hint function
     void _showHint(){
       showDialog(
           context: context,
@@ -95,6 +130,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           });
     }
 
+//////dialog on submit, plus checks if answer is right or wrong
     void _showResult(){
       if(isCorrect){
         showDialog(
@@ -107,6 +143,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
               actions: [
                 MaterialButton(
                   onPressed: () {
+                    Navigator.pop(context);
                     Navigator.pop(context);
                   },
                   child: Text('Next'),
