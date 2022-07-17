@@ -17,14 +17,23 @@ class CustomAppBar extends StatefulWidget {
 
 class _CustomAppBarState extends State<CustomAppBar> {
   int initTime = 0;
+  bool isStartTimer = false;
+  bool isCorrect = false;
 
   void _startCountDown() {
     Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         initTime++;
       });
+      if(isStartTimer){
+        timer.cancel();
+    }
     });
+    
+    
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +93,60 @@ class _CustomAppBarState extends State<CustomAppBar> {
     }
 
     void _showResult(){
+      if(isCorrect){
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              backgroundColor: Colors.grey[400],
+              title: Text('Correct'),
+              content: Text("Good job!!"),
+              actions: [
+                MaterialButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Next'),
+                  color: Colors.teal,
+                )
+              ],
+            );
+          });
+      }
+
+      else{
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              backgroundColor: Colors.grey[400],
+              title: Text('Wrong'),
+              content: Text("Ooo!! you just missed it, try again"),
+              actions: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    MaterialButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text('Retry'),
+                      color: Colors.teal,
+                    ),
+                    MaterialButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Quit'),
+                  color: Colors.red[800],
+                )
+                  ],
+                ),
+                
+              ],
+            );
+          });
+      }
 
     }
 
@@ -124,8 +187,17 @@ class _CustomAppBarState extends State<CustomAppBar> {
             color: Colors.grey[300],
             onPressed: () {
               if(widget.pick == widget.answer){
-                print("Correct");
+                setState(() {
+                  isStartTimer = true;
+                  isCorrect = true;
+                });
               }
+              else{
+              setState((){
+              isCorrect = false;
+              });
+              }
+              _showResult();
             },
           ),
           IconButton(
