@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:math_geometry/pages/authenticate/signIn.dart';
+import 'package:math_geometry/pages/authenticate/signUp.dart';
 import 'package:math_geometry/pages/landing.dart';
 import 'package:math_geometry/pages/topics/transformations/level/trainingStation/training_station.dart';
 import 'package:math_geometry/pages/topics/transformations/menus/beginner_level.dart';
@@ -13,6 +15,8 @@ void main() => runApp(MaterialApp(
       theme: ThemeData(primarySwatch: Colors.teal),
       home: Wrapper(),
       routes: {
+        './pages/authenticate/signIn': (context) => const SignIn(),
+        './pages/authenticate/signUp': (context) => const SignUp(),
         './pages/topics/main': (context) => Topics(),
         './pages/topics/transformations/menus/training_station_level':
             (context) => TrainingStationLevel(),
