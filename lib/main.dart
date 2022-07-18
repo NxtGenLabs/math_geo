@@ -15,8 +15,6 @@ void main() => runApp(MaterialApp(
       theme: ThemeData(primarySwatch: Colors.teal),
       home: Wrapper(),
       routes: {
-        './pages/authenticate/signIn': (context) => const SignIn(),
-        './pages/authenticate/signUp': (context) => const SignUp(),
         './pages/topics/main': (context) => Topics(),
         './pages/topics/transformations/menus/training_station_level':
             (context) => TrainingStationLevel(),

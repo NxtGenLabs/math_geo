@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
 
-class SignUp extends StatelessWidget {
-  const SignUp({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  final Function toggleView;
+
+  SignUp(this.toggleView);
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+
+
+  String fullname = '';
+  String grade = '';
+  String password = '';
+  String school = '';
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +33,12 @@ class SignUp extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 25),
                 padding: const EdgeInsets.only(left: 10),
                 decoration: BoxDecoration(border: Border.all(color: Colors.grey),borderRadius: BorderRadius.circular(12)),
-                child: TextField(
+                child: TextFormField(
+                  onChanged: (val){
+                    setState(() {
+                      fullname = val;
+                    });
+                  },
                   cursorColor: Colors.white,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(border: InputBorder.none,hintText: 'FullName',hintStyle: TextStyle(color: Colors.grey[300])),
@@ -30,7 +49,12 @@ class SignUp extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 25),
                 padding: const EdgeInsets.only(left: 10),
                 decoration: BoxDecoration(border: Border.all(color: Colors.grey),borderRadius: BorderRadius.circular(12)),
-                child: TextField(
+                child: TextFormField(
+                  onChanged: (val){
+                    setState(() {
+                      school = val;
+                    });
+                  },
                   cursorColor: Colors.white,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(border: InputBorder.none,hintText: 'School',hintStyle: TextStyle(color: Colors.grey[300])),
@@ -41,7 +65,12 @@ class SignUp extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 25),
                 padding: const EdgeInsets.only(left: 10),
                 decoration: BoxDecoration(border: Border.all(color: Colors.grey),borderRadius: BorderRadius.circular(12)),
-                child: TextField(
+                child: TextFormField(
+                  onChanged: (val){
+                    setState(() {
+                      grade = val;
+                    });
+                  },
                   cursorColor: Colors.white,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(border: InputBorder.none,hintText: 'Class',hintStyle: TextStyle(color: Colors.grey[300])),
@@ -52,7 +81,12 @@ class SignUp extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 25),
                 padding: const EdgeInsets.only(left: 10),
                 decoration: BoxDecoration(border: Border.all(color: Colors.grey),borderRadius: BorderRadius.circular(12)),
-                child: TextField(
+                child: TextFormField(
+                  onChanged: (val){
+                    setState(() {
+                      password = val;
+                    });
+                  },
                   obscureText: true,
                   cursorColor: Colors.white,
                   textInputAction: TextInputAction.next,
@@ -60,14 +94,20 @@ class SignUp extends StatelessWidget {
                 ),
               ),
               const SizedBox(height:20),
-              MaterialButton(color: Colors.grey[300] ,onPressed: (){},child: const Text("Signup"),),
+              MaterialButton(color: Colors.grey[300] ,onPressed: () async{
+                print(fullname);
+                print(school);
+                print(grade);
+                print(password);
+
+              },child: const Text("Signup"),),
               const SizedBox(height:20),
               Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children:[
                 const Text("Already have an account?"),
                 GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, './pages/authenticate/signIn'),
+                  onTap: () => widget.toggleView(),
                     child: Text("SignIn")
                 )
               ])

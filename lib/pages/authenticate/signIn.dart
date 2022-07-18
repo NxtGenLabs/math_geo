@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
 
-class  SignIn extends StatelessWidget {
-  const  SignIn({Key? key}) : super(key: key);
+class  SignIn extends StatefulWidget {
+
+  final Function toggleView;
+
+  SignIn(this.toggleView);
+
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+
+
+
+  String email = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +33,12 @@ class  SignIn extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 25),
                 padding: const EdgeInsets.only(left: 10),
                 decoration: BoxDecoration(border: Border.all(color: Colors.grey),borderRadius: BorderRadius.circular(12)),
-                child: TextField(
+                child: TextFormField(
+                  onChanged: (val){
+                    setState(() {
+                      email = val;
+                    });
+                  },
                   cursorColor: Colors.white,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(border: InputBorder.none,hintText: 'FullName',hintStyle: TextStyle(color: Colors.grey[300])),
@@ -30,7 +49,12 @@ class  SignIn extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 25),
                 padding: const EdgeInsets.only(left: 10),
                 decoration: BoxDecoration(border: Border.all(color: Colors.grey),borderRadius: BorderRadius.circular(12)),
-                child: TextField(
+                child: TextFormField(
+                  onChanged: (val){
+                    setState(() {
+                      password = val;
+                    });
+                  },
                   obscureText: true,
                   cursorColor: Colors.white,
                   textInputAction: TextInputAction.next,
@@ -38,14 +62,17 @@ class  SignIn extends StatelessWidget {
                 ),
               ),
               const SizedBox(height:20),
-              MaterialButton(color: Colors.grey[300] ,onPressed: (){},child: const Text("SignIn"),),
+              MaterialButton(color: Colors.grey[300] ,onPressed: () async {
+                print(email);
+                print(password);
+              },child: const Text("SignIn"),),
               const SizedBox(height:20),
               Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children:[
                 const Text("Don't have an account?"),
                 GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, './pages/authenticate/signUp'),
+                  onTap: () => widget.toggleView(),
                     child: Text("SignUp")
                 )
               ])
