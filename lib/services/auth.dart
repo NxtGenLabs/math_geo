@@ -1,21 +1,29 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:math_geometry/services/user.dart';
 
-class AuthService{
-  
+class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  MyUser? _userFromFirebaseUser(User user){
+  MyUser? _userFromFirebaseUser(User user) {
     return user != null ? MyUser(user.uid) : null;
   }
 
-  Future registerWithEmailAndPassword() async {
+  Future signInWithEmailAndPassword(String fullname, String password) async {
     try {
-      UserCredential result = await _auth.createUserWithEmailAndPassword(email: '', password: '');
-      User user = result.user!;
-
-    } catch(e) {
-
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+          email: fullname, password: password);
+      User? user = result.user;
+      return _userFromFirebaseUser(user!);
+    } catch (e) {
+      print(e.toString());
     }
+  }
+
+  Future registerWithEmailAndPassword(String fullname, String password) async {
+    try {
+      UserCredential result =
+          await _auth.createUserWithEmailAndPassword(email: '', password: '');
+      User user = result.user!;
+    } catch (e) {}
   }
 }

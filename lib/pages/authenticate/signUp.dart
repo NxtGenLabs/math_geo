@@ -16,6 +16,7 @@ class _SignUpState extends State<SignUp> {
   String grade = '';
   String password = '';
   String school = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
