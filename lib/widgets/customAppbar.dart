@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:math_geometry/widgets/multipleChoiceOptions.dart';
 
 class CustomAppBar extends StatefulWidget {
   final String level;
@@ -12,7 +10,8 @@ class CustomAppBar extends StatefulWidget {
   final int timeLimit;
   int score;
   final Function onUpdateScore;
-  CustomAppBar(this.level, this.question, this.answer,this.pick, this.hint, this.score, this.onUpdateScore, this.timeLimit);
+  CustomAppBar(this.level, this.question, this.answer, this.pick, this.hint,
+      this.score, this.onUpdateScore, this.timeLimit);
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
@@ -31,21 +30,19 @@ class _CustomAppBarState extends State<CustomAppBar> {
       setState(() {
         initTime++;
       });
-      if(isStartTimer){
+      if (isStartTimer) {
         timer.cancel();
-    }
+      }
     });
-    
-    
   }
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
 
-    Future.delayed(Duration.zero, (){
+    Future.delayed(Duration.zero, () {
       showDialog(
-        context: context,
+          context: context,
           builder: (context) {
             return AlertDialog(
               backgroundColor: Colors.grey[400],
@@ -75,8 +72,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 )
               ],
             );
-          }
-      );
+          });
     });
   }
 
@@ -109,7 +105,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     }
 
 ////////hint function
-    void _showHint(){
+    void _showHint() {
       showDialog(
           context: context,
           builder: (context) {
@@ -131,64 +127,60 @@ class _CustomAppBarState extends State<CustomAppBar> {
     }
 
 //////dialog on submit, plus checks if answer is right or wrong
-    void _showResult(){
-      if(isCorrect){
+    void _showResult() {
+      if (isCorrect) {
         showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              backgroundColor: Colors.grey[400],
-              title: Text('Correct'),
-              content: Text("Good job!!"),
-              actions: [
-                MaterialButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pop(context);
-                  },
-                  child: Text('Next'),
-                  color: Colors.teal,
-                )
-              ],
-            );
-          });
-      }
-
-      else{
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                backgroundColor: Colors.grey[400],
+                title: Text('Correct'),
+                content: Text("Good job!!"),
+                actions: [
+                  MaterialButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    },
+                    child: Text('Next'),
+                    color: Colors.teal,
+                  )
+                ],
+              );
+            });
+      } else {
         showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              backgroundColor: Colors.grey[400],
-              title: Text('Wrong'),
-              content: Text("Ooo!! you just missed it, try again"),
-              actions: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    MaterialButton(
-                      onPressed: () {
-                        retries++;
-                        Navigator.pop(context);
-                      },
-                      child: Text('Retry'),
-                      color: Colors.teal,
-                    ),
-                    MaterialButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text('Quit'),
-                  color: Colors.red[800],
-                )
-                  ],
-                ),
-                
-              ],
-            );
-          });
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                backgroundColor: Colors.grey[400],
+                title: Text('Wrong'),
+                content: Text("Ooo!! you just missed it, try again"),
+                actions: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      MaterialButton(
+                        onPressed: () {
+                          retries++;
+                          Navigator.pop(context);
+                        },
+                        child: Text('Retry'),
+                        color: Colors.teal,
+                      ),
+                      MaterialButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text('Quit'),
+                        color: Colors.red[800],
+                      )
+                    ],
+                  ),
+                ],
+              );
+            });
       }
-
     }
 
     return Container(
@@ -228,30 +220,30 @@ class _CustomAppBarState extends State<CustomAppBar> {
             icon: const Icon(Icons.check_circle_outline),
             color: Colors.grey[300],
             onPressed: () {
-              if(widget.pick == widget.answer){
+              if (widget.pick == widget.answer) {
                 widget.score++;
                 setState(() {
                   isStartTimer = true;
                   isCorrect = true;
                 });
-              }
-              else{
-              setState((){
-              isCorrect = false;
-              });
+              } else {
+                setState(() {
+                  isCorrect = false;
+                });
               }
               _showResult();
-              
-              if(initTime < widget.timeLimit){
-        widget.score++;}
-              if(retries == 0){
-              widget.score++;
+
+              if (initTime < widget.timeLimit) {
+                widget.score++;
               }
-              if(!usedHint){
-              widget.score++;
+              if (retries == 0) {
+                widget.score++;
               }
-        print(widget.score);
-        print(retries);
+              if (!usedHint) {
+                widget.score++;
+              }
+              print(widget.score);
+              print(retries);
             },
           ),
           IconButton(
