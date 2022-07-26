@@ -16,7 +16,7 @@ class LandingPage extends StatelessWidget {
           Option(
               text: 'PLAY',
               route: () => Navigator.pushNamed(context, './pages/topics/main')),
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           Option(
               text: "SignOut",
               route: () async {

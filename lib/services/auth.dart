@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:math_geometry/services/database.dart';
 import 'package:math_geometry/services/user.dart';
 
 class AuthService {
@@ -20,11 +21,17 @@ class AuthService {
     }
   }
 
+
+//register new user
   Future registerWithEmailAndPassword(String fullname, String password) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: '$fullname@donald.com', password: password);
       User user = result.user!;
+
+//creating document for new user
+      await DataBaseService(user.uid).updateUserData(0, 1, 0);
+      return _userFromFirebaseUser(user);
     } catch (e) {
       print(e);
       return null;
