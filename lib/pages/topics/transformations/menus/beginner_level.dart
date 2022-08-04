@@ -32,13 +32,24 @@ class BeginnerLevel extends StatelessWidget {
         ]),
     BeginnerLs(
         level: '2',
-        question: '',
+        question:
+            'How many degrees has the figure been rotated by? \n A. 180 Degrees. \n B. 90 degrees clockwise. \n C. 90 degrees anti-clockwise.',
         rating: '',
         answer: '',
         hint: 'Lets keep putting up points',
         timeLimit: 1,
-        qPoints: [],
-        optionA: [],
+        qPoints: [
+          const Offset(-450, 150),
+          const Offset(-200, 150),
+          const Offset(-150, -80),
+          const Offset(-450, -150)
+        ],
+        optionA: [
+          const Offset(450, 150),
+          const Offset(200, 150),
+          const Offset(150, -80),
+          const Offset(450, -150)
+        ],
         optionB: [],
         optionC: []),
     BeginnerLs(

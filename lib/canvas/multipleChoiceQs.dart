@@ -70,7 +70,7 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
     Paint strokePaint = Paint();
     strokePaint.color = Colors.teal;
     strokePaint.style = PaintingStyle.stroke;
-    strokePaint.strokeWidth = 2;
+    strokePaint.strokeWidth = 4;
 
     Paint pointPaint = Paint();
     pointPaint.strokeWidth = 10;
@@ -95,7 +95,7 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
           text: span,
           textAlign: TextAlign.left,
           textDirection: TextDirection.ltr,
-          textScaleFactor: 1);
+          textScaleFactor: 2);
       tp.layout();
       tp.paint(canvas, Offset(point.dx, point.dy));
       ++counter;
@@ -111,7 +111,7 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
           text: span,
           textAlign: TextAlign.left,
           textDirection: TextDirection.ltr,
-          textScaleFactor: 1);
+          textScaleFactor: 2);
       tp.layout();
       tp.paint(canvas, Offset(point.dx, point.dy));
       ++counter;

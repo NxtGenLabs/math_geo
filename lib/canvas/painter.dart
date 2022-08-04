@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'dart:math' as math;
 
+import 'package:math_geometry/pages/topics/transformations/menus/intermediate_level.dart';
+
 class LinePainter extends ChangeNotifier implements CustomPainter {
-  late List<Offset> qPoints = [
-    Offset(200, 100),
-    Offset(100, 0),
-    Offset(50, 60)
-  ];
+  late int index;
+  TransFormationsLevels levels = TransFormationsLevels();
+
+  LinePainter(int index) {
+    this.index = index;
+  }
+
   var strokes = <List<Offset>>[];
   var points = <Offset>[];
   List<String> alphabet = [
@@ -94,6 +98,11 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     pointPaint.color = Colors.teal;
     pointPaint.strokeCap = StrokeCap.round;
 
+    //question points
+    Path path = Path();
+    path.addPolygon(levels.levels[0].answer, true);
+    canvas.drawPath(path, strokePaint);
+
     for (var stroke in strokes) {
       canvas.drawPoints(PointMode.points, stroke, pointPaint);
       Path strokePath = Path();
@@ -144,11 +153,6 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
       // indexer
       ++counter;
     }
-
-    //////////paint question points
-    Path path = Path();
-    path.addPolygon(qPoints, true);
-    canvas.drawPath(path, strokePaint);
   }
 
   @override

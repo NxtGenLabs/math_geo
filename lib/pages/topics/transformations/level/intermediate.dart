@@ -29,7 +29,8 @@ class _IntermediateState extends State<Intermediate> {
   @override
   void initState() {
     super.initState();
-    linePainter = LinePainter();
+    final level = ModalRoute.of(context)!.settings.arguments as Intermediate;
+    linePainter = LinePainter(0);
   }
 
   @override
@@ -106,7 +107,7 @@ class _IntermediateState extends State<Intermediate> {
                   )),
             ),
           ),
-          CustomAppBar(level.level, level.question, level.answer,'', '',0,(){},0)
+          CustomAppBar(level.level, level.question, '', '', '', 0, () {}, 0)
         ],
       ),
     );
