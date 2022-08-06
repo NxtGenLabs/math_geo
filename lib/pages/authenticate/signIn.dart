@@ -24,14 +24,17 @@ class _SignInState extends State<SignIn> {
       child: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
-          color: const Color.fromARGB(1, 227, 242, 218),
+          color: const Color.fromRGBO(227, 242, 218, .15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               const SizedBox(height: 40),
               Column(
                 children: [
-                  Text("Welcome back candidate"),
+                  Text(
+                    "Welcome back candidate",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
                   SizedBox(height: 20),
                   Image(
                     image: AssetImage('images/nxtminds.jpg'),
@@ -43,14 +46,16 @@ class _SignInState extends State<SignIn> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Enter your username"),
+                    Text("Enter your username",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 16)),
                     const SizedBox(height: 20),
                     Container(
                       padding: const EdgeInsets.only(left: 20),
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(100, 255, 255, 255),
+                          color: const Color.fromRGBO(255, 255, 255, 1),
                           border: Border.all(
-                              color: Color.fromARGB(25, 105, 105, 105)),
+                              color: const Color.fromRGBO(105, 105, 105, 0.25)),
                           borderRadius: BorderRadius.circular(5)),
                       child: TextFormField(
                         onChanged: (val) {
@@ -67,14 +72,16 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Text("Enter your password"),
+                    Text("Enter your password",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 16)),
                     const SizedBox(height: 20),
                     Container(
                       padding: const EdgeInsets.only(left: 20),
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(100, 255, 255, 255),
+                          color: const Color.fromRGBO(255, 255, 255, 1),
                           border: Border.all(
-                              color: Color.fromARGB(25, 105, 105, 105)),
+                              color: Color.fromRGBO(105, 105, 105, 0.25)),
                           borderRadius: BorderRadius.circular(5)),
                       child: TextFormField(
                         onChanged: (val) {
@@ -97,10 +104,15 @@ class _SignInState extends State<SignIn> {
               Column(
                 children: [
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    const Text("Don't have an account?"),
+                    const Text("Don't have an account?",
+                        style: TextStyle(fontSize: 16)),
                     TextButton(
                         onPressed: () => widget.toggleView(),
-                        child: Text("Sign Up"))
+                        child: Text("Sign Up",
+                            style: TextStyle(
+                                color: Color.fromRGBO(98, 166, 62, 1),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16)))
                   ]),
                   MaterialButton(
                     minWidth: MediaQuery.of(context).size.width - 60,
@@ -115,7 +127,11 @@ class _SignInState extends State<SignIn> {
                         });
                       }
                     },
-                    child: const Text("Sign In"),
+                    child: const Text("SIGN IN",
+                        style: TextStyle(
+                            color: Color.fromRGBO(255, 255, 255, 1),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18)),
                   ),
                 ],
               )
