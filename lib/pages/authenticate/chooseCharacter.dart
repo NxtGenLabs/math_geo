@@ -1,34 +1,31 @@
 import 'package:flutter/material.dart';
 
-class GenderXAge extends StatelessWidget {
-  const GenderXAge({Key? key}) : super(key: key);
+class ChooseCharacter extends StatelessWidget {
+  const ChooseCharacter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return (Scaffold(
-      body: SafeArea(
-        child: Container(
+        backgroundColor: Colors.white,
+        body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          color: const Color.fromRGBO(227, 242, 218, .15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text('Select your gender'),
               Container(
                 height: 200,
                 width: 200,
-                decoration: const BoxDecoration(color: Colors.teal),
+                decoration: BoxDecoration(color: Colors.teal),
               ),
-              const Text('Whats your age ?'),
               MaterialButton(
                 minWidth: MediaQuery.of(context).size.width - 60,
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 color: const Color.fromRGBO(98, 166, 62, 1),
                 onPressed: () {
                   Navigator.pushNamed(
-                      context, './pages/authenticate/chooseCharacter');
+                      context, './pages/authenticate/submitPage');
                 },
                 child: const Text("CONTINUE",
                     style: TextStyle(
@@ -38,8 +35,6 @@ class GenderXAge extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ),
-    ));
+        )));
   }
 }

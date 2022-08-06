@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:math_geometry/pages/authenticate/chooseCharacter.dart';
 import 'package:math_geometry/pages/authenticate/genderXage.dart';
+import 'package:math_geometry/pages/authenticate/submitPage.dart';
 import 'package:math_geometry/pages/topics/transformations/level/trainingStation/training_station.dart';
 import 'package:math_geometry/pages/topics/transformations/menus/beginner_level.dart';
 import 'package:math_geometry/pages/topics/transformations/menus/intermediate_level.dart';
@@ -19,6 +21,9 @@ void main() async {
     home: Wrapper(),
     routes: {
       './pages/authenticate/genderXage': (context) => const GenderXAge(),
+      './pages/authenticate/chooseCharacter': (context) =>
+          const ChooseCharacter(),
+      './pages/authenticate/submitPage': (context) => const SubmitPage(),
       './pages/topics/main': (context) => Topics(),
       './pages/topics/transformations/menus/training_station_level':
           (context) => TrainingStationLevel(),

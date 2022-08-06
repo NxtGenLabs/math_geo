@@ -21,7 +21,6 @@ class AuthService {
     }
   }
 
-
 //register new user
   Future registerWithEmailAndPassword(String fullname, String password) async {
     try {
@@ -36,6 +35,11 @@ class AuthService {
       print(e);
       return null;
     }
+  }
+
+  storeUsernameAndPassword(String fullname, String password) {
+    String tempFullName = fullname;
+    String tempPassword = password;
   }
 
   Future signOut() async {

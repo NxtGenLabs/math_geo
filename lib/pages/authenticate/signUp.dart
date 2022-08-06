@@ -166,13 +166,10 @@ class _SignUpState extends State<SignUp> {
                     color: const Color.fromRGBO(98, 166, 62, 1),
                     onPressed: () async {
                       if (_formkey.currentState!.validate()) {
-                        dynamic result = await _auth
-                            .registerWithEmailAndPassword(fullname, password);
-                        if (result == null) {
-                          setState(() {
-                            error = 'Some error';
-                          });
-                        }
+                        dynamic result = await _auth.storeUsernameAndPassword(
+                            fullname, password);
+                        Navigator.pushNamed(
+                            context, './pages/authenticate/genderXage');
                       }
                     },
                     child: const Text("CONTINUE",
