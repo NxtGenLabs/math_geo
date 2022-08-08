@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/services/auth.dart';
 import 'package:math_geometry/widgets/actionButton.dart';
+import 'package:math_geometry/widgets/textInputValidated.dart';
 
 class SignUp extends StatefulWidget {
   final Function toggleView;
@@ -33,11 +34,14 @@ class _SignUpState extends State<SignUp> {
             children: [
               Row(
                 children: [
-                  TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: const Text("Back"))
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.arrow_back))
                 ],
               ),
+              const Text("Please enter your information"),
               Form(
                 key: _formkey,
                 child: Column(
@@ -49,95 +53,53 @@ class _SignUpState extends State<SignUp> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 20),
-                          const Text("Enter your First Name",
+                          const Text("Enter your Username",
                               style: TextStyle(
                                   fontWeight: FontWeight.w600, fontSize: 16)),
                           const SizedBox(height: 20),
-                          Container(
-                            padding: const EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: const Color.fromRGBO(
-                                        105, 105, 105, 0.25)),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: TextFormField(
-                              validator: (val) => val!.isEmpty
-                                  ? 'Please enter your fullname'
-                                  : null,
-                              onChanged: (val) {
+                          TextInputValidated(
+                              icon: Icons.person,
+                              hintText: "Username",
+                              onChange: (val) {
                                 setState(() {
                                   fullname = val;
                                 });
                               },
-                              cursorColor: Colors.white,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Full Name',
-                                  hintStyle:
-                                      TextStyle(color: Colors.grey[300])),
-                            ),
-                          ),
+                              validator: (val) => val!.isEmpty
+                                  ? 'Please enter your fullname'
+                                  : null),
                           const SizedBox(height: 20),
                           const Text("Enter your Password",
                               style: TextStyle(
                                   fontWeight: FontWeight.w600, fontSize: 16)),
                           const SizedBox(height: 20),
-                          Container(
-                            padding: const EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: const Color.fromRGBO(
-                                        105, 105, 105, 0.25)),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: TextFormField(
+                          TextInputValidated(
+                              hintText: "Password",
                               validator: (val) => val!.isEmpty
                                   ? 'Password must have atleast 6 characters'
                                   : null,
-                              onChanged: (val) {
+                              onChange: (val) {
                                 setState(() {
                                   password = val;
                                 });
                               },
-                              cursorColor: Colors.white,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Password',
-                                  hintStyle:
-                                      TextStyle(color: Colors.grey[300])),
-                            ),
-                          ),
+                              icon: Icons.lock),
                           const SizedBox(height: 20),
                           const Text("Confirm password",
                               style: TextStyle(
                                   fontWeight: FontWeight.w600, fontSize: 16)),
                           const SizedBox(height: 20),
-                          Container(
-                            padding: const EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: const Color.fromRGBO(
-                                        105, 105, 105, 0.25)),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: TextFormField(
+                          TextInputValidated(
+                              hintText: "Password",
                               validator: (val) => val!.isEmpty
                                   ? 'Password empty or does not match'
                                   : null,
-                              onChanged: (val) {
+                              onChange: (val) {
                                 setState(() {
                                   confirmPass = val;
                                 });
                               },
-                              cursorColor: Colors.white,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Confirm password',
-                                  hintStyle:
-                                      TextStyle(color: Colors.grey[300])),
-                            ),
-                          ),
+                              icon: Icons.lock)
                         ],
                       ),
                     ),

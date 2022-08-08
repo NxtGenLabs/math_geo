@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/services/auth.dart';
 import 'package:math_geometry/widgets/actionButton.dart';
+import 'package:math_geometry/widgets/textInput.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
@@ -22,23 +23,30 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-      child: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          color: const Color.fromRGBO(227, 242, 218, .15),
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        color: const Color.fromRGBO(227, 242, 218, .15),
+        child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(height: 40),
               Column(
                 children: [
-                  Text(
-                    "Welcome back candidate",
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      IconButton(
+                          onPressed: () {}, icon: Icon(Icons.arrow_back)),
+                    ],
+                  ),
+                  const Text(
+                    "Hello, Welcome back.",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
-                  SizedBox(height: 20),
-                  Image(
-                    image: AssetImage('images/nxtminds.jpg'),
+                  const SizedBox(height: 20),
+                  const Image(
+                    image: AssetImage('images/nxtlogo.png'),
                   ),
                 ],
               ),
@@ -47,58 +55,31 @@ class _SignInState extends State<SignIn> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Enter your username",
+                    const Text("Enter your username",
                         style: TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 16)),
                     const SizedBox(height: 20),
-                    Container(
-                      padding: const EdgeInsets.only(left: 20),
-                      decoration: BoxDecoration(
-                          color: const Color.fromRGBO(255, 255, 255, 1),
-                          border: Border.all(
-                              color: const Color.fromRGBO(105, 105, 105, 0.25)),
-                          borderRadius: BorderRadius.circular(5)),
-                      child: TextFormField(
-                        onChanged: (val) {
+                    TextInput(
+                        icon: Icons.person,
+                        hintText: "Username",
+                        onChange: (val) {
                           setState(() {
                             fullname = val;
                           });
-                        },
-                        cursorColor: Colors.white,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Username',
-                            hintStyle: TextStyle(color: Colors.grey[300])),
-                      ),
-                    ),
+                        }),
                     const SizedBox(height: 20),
-                    Text("Enter your password",
+                    const Text("Enter your password",
                         style: TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 16)),
                     const SizedBox(height: 20),
-                    Container(
-                      padding: const EdgeInsets.only(left: 20),
-                      decoration: BoxDecoration(
-                          color: const Color.fromRGBO(255, 255, 255, 1),
-                          border: Border.all(
-                              color: Color.fromRGBO(105, 105, 105, 0.25)),
-                          borderRadius: BorderRadius.circular(5)),
-                      child: TextFormField(
-                        onChanged: (val) {
+                    TextInput(
+                        icon: Icons.lock,
+                        hintText: "Password",
+                        onChange: (val) {
                           setState(() {
                             password = val;
                           });
-                        },
-                        obscureText: true,
-                        cursorColor: Colors.white,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Password',
-                            hintStyle: TextStyle(color: Colors.grey[300])),
-                      ),
-                    ),
+                        })
                   ],
                 ),
               ),
@@ -109,7 +90,7 @@ class _SignInState extends State<SignIn> {
                         style: TextStyle(fontSize: 16)),
                     TextButton(
                         onPressed: () => widget.toggleView(),
-                        child: Text("Sign Up",
+                        child: const Text("Sign Up",
                             style: TextStyle(
                                 color: Color.fromRGBO(98, 166, 62, 1),
                                 fontWeight: FontWeight.w600,
