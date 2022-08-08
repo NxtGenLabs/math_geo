@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/services/auth.dart';
+import 'package:math_geometry/widgets/actionButton.dart';
 
 class SignUp extends StatefulWidget {
   final Function toggleView;
@@ -160,24 +161,16 @@ class _SignUpState extends State<SignUp> {
                               fontSize: 16),
                         ))
                   ]),
-                  MaterialButton(
-                    minWidth: MediaQuery.of(context).size.width - 60,
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    color: const Color.fromRGBO(98, 166, 62, 1),
-                    onPressed: () async {
-                      if (_formkey.currentState!.validate()) {
-                        dynamic result = await _auth.storeUsernameAndPassword(
-                            fullname, password);
-                        Navigator.pushNamed(
-                            context, './pages/authenticate/genderXage');
-                      }
-                    },
-                    child: const Text("CONTINUE",
-                        style: TextStyle(
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18)),
-                  ),
+                  ActionButton(
+                      text: "Continue",
+                      onPress: () async {
+                        if (_formkey.currentState!.validate()) {
+                          dynamic result = await _auth.storeUsernameAndPassword(
+                              fullname, password);
+                          Navigator.pushNamed(
+                              context, './pages/authenticate/genderXage');
+                        }
+                      })
                 ],
               ),
             ],

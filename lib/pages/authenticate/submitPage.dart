@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_geometry/widgets/actionButton.dart';
 
 import '../../services/auth.dart';
 
@@ -21,20 +22,8 @@ class _SubmitPageState extends State<SubmitPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Back"),
-          MaterialButton(
-            minWidth: MediaQuery.of(context).size.width - 60,
-            padding: const EdgeInsets.symmetric(vertical: 15),
-            color: const Color.fromRGBO(98, 166, 62, 1),
-            onPressed: () {
-              //function to submit registration details from temp to firebase
-            },
-            child: const Text("Finish",
-                style: TextStyle(
-                    color: Color.fromRGBO(255, 255, 255, 1),
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18)),
-          ),
+          const Text("Back"),
+          ActionButton(text: "Finish", onPress: () {})
         ],
       ),
     )));

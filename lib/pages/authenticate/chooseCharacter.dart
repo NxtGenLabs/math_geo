@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_geometry/widgets/actionButton.dart';
 
 class ChooseCharacter extends StatelessWidget {
   const ChooseCharacter({Key? key}) : super(key: key);
@@ -19,20 +20,12 @@ class ChooseCharacter extends StatelessWidget {
                 width: 200,
                 decoration: BoxDecoration(color: Colors.teal),
               ),
-              MaterialButton(
-                minWidth: MediaQuery.of(context).size.width - 60,
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                color: const Color.fromRGBO(98, 166, 62, 1),
-                onPressed: () {
-                  Navigator.pushNamed(
-                      context, './pages/authenticate/submitPage');
-                },
-                child: const Text("CONTINUE",
-                    style: TextStyle(
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18)),
-              ),
+              ActionButton(
+                  text: "Continue",
+                  onPress: () {
+                    Navigator.pushNamed(
+                        context, './pages/authenticate/submitPage');
+                  })
             ],
           ),
         )));

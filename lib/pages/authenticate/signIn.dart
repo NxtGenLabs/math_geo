@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/services/auth.dart';
+import 'package:math_geometry/widgets/actionButton.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
@@ -114,25 +115,17 @@ class _SignInState extends State<SignIn> {
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16)))
                   ]),
-                  MaterialButton(
-                    minWidth: MediaQuery.of(context).size.width - 60,
-                    padding: EdgeInsets.symmetric(vertical: 15),
-                    color: Color.fromRGBO(98, 166, 62, 1),
-                    onPressed: () async {
-                      dynamic result = await _auth.signInWithEmailAndPassword(
-                          fullname, password);
-                      if (result == null) {
-                        setState(() {
-                          error = 'Could not sign in';
-                        });
-                      }
-                    },
-                    child: const Text("SIGN IN",
-                        style: TextStyle(
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18)),
-                  ),
+                  ActionButton(
+                      text: "SIGN IN",
+                      onPress: () async {
+                        dynamic result = await _auth.signInWithEmailAndPassword(
+                            fullname, password);
+                        if (result == null) {
+                          setState(() {
+                            error = 'Could not sign in';
+                          });
+                        }
+                      })
                 ],
               )
             ],
