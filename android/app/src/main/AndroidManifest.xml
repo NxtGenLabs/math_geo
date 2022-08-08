@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.math_geometry">
+    package="com.example.splash">
    <application
-        android:label="math_geometry"
+        android:label="splash"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

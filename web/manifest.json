@@ -1,6 +1,6 @@
 {
-    "name": "math_geometry",
-    "short_name": "math_geometry",
+    "name": "splash",
+    "short_name": "splash",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

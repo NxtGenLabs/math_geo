@@ -1,11 +1,16 @@
-# math_geometry
-A Mathematics EduGame Application
+# splash
+
+A new Flutter project.
 
 ## Getting Started
 
-This project is a Mathematics educational application catered to Teachers to help educate secondary school students the fundamentals of mathematics, analytical thinking and problem solving.
+This project is a starting point for a Flutter application.
 
-## Terminal commands to get going:
-- flutter pub get: retrieves necessary packages required by the application. 
-- flutter run: starts development server.
- 
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

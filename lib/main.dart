@@ -1,34 +1,34 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:math_geometry/pages/topics/transformations/level/trainingStation/training_station.dart';
-import 'package:math_geometry/pages/topics/transformations/menus/beginner_level.dart';
-import 'package:math_geometry/pages/topics/transformations/menus/intermediate_level.dart';
-import 'package:math_geometry/pages/topics/transformations/menus/training_station_level.dart';
-import 'package:math_geometry/pages/wrapper.dart';
-import 'pages/topics/main.dart';
-import 'pages/topics/transformations/level/beginner.dart';
-import 'pages/topics/transformations/level/intermediate.dart';
+import 'pages/StartUp/Loading.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
 
-  runApp(MaterialApp(
-    theme: ThemeData(primarySwatch: Colors.teal),
-    home: Wrapper(),
-    routes: {
-      './pages/topics/main': (context) => Topics(),
-      './pages/topics/transformations/menus/training_station_level':
-          (context) => TrainingStationLevel(),
-      './pages/topics/transformations/menus/beginner_level': (context) =>
-          BeginnerLevel(),
-      './pages/topics/transformations/menus/intermediate_level': (context) =>
-          TransFormationsLevels(),
-      './pages/topics/transformations/level/training_station': (context) =>
-          const TrainingStation(),
-      './pages/topics/transformations/level/beginner': (context) => Beginner(),
-      './pages/topics/transformations/level/intermediate': (context) =>
-          const Intermediate(),
-    },
-  ));
+void main() {
+  runApp(const MyApp());
 }
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'NXT',
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // Try running your application with "flutter run". You'll see the
+        // application has a blue toolbar. Then, without quitting the app, try
+        // changing the primarySwatch below to Colors.green and then invoke
+        // "hot reload" (press "r" in the console where you ran "flutter run",
+        // or simply save your changes to "hot reload" in a Flutter IDE).
+        // Notice that the counter didn't reset back to zero; the application
+        // is not restarted.
+      ),
+      debugShowCheckedModeBanner: false,
+      home: AnimatedSplashScreen(splash: 'assets/images/X minds.png', duration: 2000, nextScreen: Load(),),
+    );
+  }
+}
+

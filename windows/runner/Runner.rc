@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "math_geometry" "\0"
+            VALUE "FileDescription", "splash" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "math_geometry" "\0"
+            VALUE "InternalName", "splash" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "math_geometry.exe" "\0"
-            VALUE "ProductName", "math_geometry" "\0"
+            VALUE "OriginalFilename", "splash.exe" "\0"
+            VALUE "ProductName", "splash" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
