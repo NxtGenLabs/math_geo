@@ -28,9 +28,9 @@ class LandingPage extends StatelessWidget {
                       children: [
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.person_pin_circle)),
+                            icon: const Icon(Icons.person_pin_circle)),
                         IconButton(
-                            onPressed: () {}, icon: Icon(Icons.settings)),
+                            onPressed: () {}, icon: const Icon(Icons.settings)),
                       ],
                     ),
                     Column(
@@ -50,7 +50,8 @@ class LandingPage extends StatelessWidget {
                     Center(
                       child: IconButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, './pages/topics/main');
+                            Navigator.pushNamed(
+                                context, './pages/classes/classes');
                           },
                           icon: const Icon(Icons.arrow_downward)),
                     )

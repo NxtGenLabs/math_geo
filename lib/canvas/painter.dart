@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'dart:math' as math;
 
-import 'package:math_geometry/pages/topics/transformations/menus/intermediate_level.dart';
+import '../pages/classes/Form 3/subjects/Mathematics/topics/transformations/menus/intermediate_level.dart';
 
 class LinePainter extends ChangeNotifier implements CustomPainter {
   late int index;

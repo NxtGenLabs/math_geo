@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import '../../../../../../canvas/grid.dart';
-import '../../../../../../canvas/transformation_intro_painter.dart';
+
+import '../../../../../../../../../../canvas/grid.dart';
 
 class Reflection extends StatefulWidget {
   @override

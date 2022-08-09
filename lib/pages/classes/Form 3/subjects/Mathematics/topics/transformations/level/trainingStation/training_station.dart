@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import '../../../../../canvas/grid.dart';
-import '../../../../../canvas/transformation_intro_painter.dart';
+
+import '../../../../../../../../../canvas/grid.dart';
+import '../../../../../../../../../canvas/transformation_intro_painter.dart';
 
 class TrainingStation extends StatefulWidget {
   const TrainingStation({Key? key}) : super(key: key);

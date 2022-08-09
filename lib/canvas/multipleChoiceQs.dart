@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:math_geometry/pages/topics/transformations/level/beginner.dart';
+import 'package:math_geometry/pages/classes/Form%203/subjects/Mathematics/topics/transformations/menus/beginner_level.dart';
 import 'dart:math' as math;
 
-import '../pages/topics/transformations/menus/beginner_level.dart';
+import '../pages/classes/Form 3/subjects/Mathematics/topics/transformations/level/beginner.dart';
 
 class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
   late int index;

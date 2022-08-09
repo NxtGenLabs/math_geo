@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../widgets/option.dart';
+import '../../../../../../../../widgets/option.dart';
 import '../level/trainingStation/training_station.dart';
 import '../level/trainingStation/transforms/reflection.dart';
 import '../level/trainingStation/transforms/rotate.dart';

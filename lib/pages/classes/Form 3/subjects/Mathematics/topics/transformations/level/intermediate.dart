@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/widgets/customAppbar.dart';
 import 'package:math_geometry/widgets/toolbar.dart';
-import '../../../../canvas/painter.dart';
-import '../../../../canvas/grid.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
+import '../../../../../../../../canvas/grid.dart';
+import '../../../../../../../../canvas/painter.dart';
 import '../menus/intermediate_level.dart';
 
 class Intermediate extends StatefulWidget {
