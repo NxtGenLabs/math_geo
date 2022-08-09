@@ -16,15 +16,38 @@ class _SubmitPageState extends State<SubmitPage> {
   @override
   Widget build(BuildContext context) {
     return (Scaffold(
-        body: Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text("Back"),
-          ActionButton(text: "Finish", onPress: () {})
-        ],
+        body: SafeArea(
+      child: Container(
+        child: Stack(
+          children: [
+            SizedBox(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: const Image(
+                    fit: BoxFit.cover,
+                    image: AssetImage('images/submit_bg.jpg'))),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.arrow_back)),
+                  ],
+                ),
+                const Text("Let us begin..."),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: ActionButton(
+                      text: "Finish",
+                      onPress: () {
+                        Navigator.pushNamed(context, './pages/landing');
+                      }),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     )));
   }

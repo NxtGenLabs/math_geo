@@ -7,26 +7,60 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.teal,
-      child: Center(
-          child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Option(
-              text: 'PLAY',
-              route: () => Navigator.pushNamed(context, './pages/topics/main')),
-          const SizedBox(width: 20),
-          Option(
-              text: "SignOut",
-              route: () async {
-                dynamic result = await _auth.signOut();
-                if (result == null) {
-                  print("Some error");
-                }
-              })
-        ],
-      )),
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: const Image(
+                  fit: BoxFit.cover, image: AssetImage("images/savannah.jpg")),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.person_pin_circle)),
+                        IconButton(
+                            onPressed: () {}, icon: Icon(Icons.settings)),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text("Welcome, Dude!"),
+                        Text("Let's get started upgrading your skills")
+                      ],
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text("Let's Start"),
+                    Center(
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, './pages/topics/main');
+                          },
+                          icon: const Icon(Icons.arrow_downward)),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

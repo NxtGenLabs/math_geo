@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:math_geometry/pages/authenticate/chooseCharacter.dart';
 import 'package:math_geometry/pages/authenticate/genderXage.dart';
 import 'package:math_geometry/pages/authenticate/submitPage.dart';
+import 'package:math_geometry/pages/landing.dart';
 import 'package:math_geometry/pages/topics/transformations/level/trainingStation/training_station.dart';
 import 'package:math_geometry/pages/topics/transformations/menus/beginner_level.dart';
 import 'package:math_geometry/pages/topics/transformations/menus/intermediate_level.dart';
@@ -20,6 +21,7 @@ void main() async {
     theme: ThemeData(primarySwatch: Colors.teal),
     home: Wrapper(),
     routes: {
+      './pages/landing': (context) => LandingPage(),
       './pages/authenticate/genderXage': (context) => const GenderXAge(),
       './pages/authenticate/chooseCharacter': (context) =>
           const ChooseCharacter(),

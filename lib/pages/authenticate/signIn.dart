@@ -26,91 +26,87 @@ class _SignInState extends State<SignIn> {
       child: Container(
         height: MediaQuery.of(context).size.height,
         color: const Color.fromRGBO(227, 242, 218, .15),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(height: 40),
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      IconButton(
-                          onPressed: () {}, icon: Icon(Icons.arrow_back)),
-                    ],
-                  ),
-                  const Text(
-                    "Hello, Welcome back.",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                  const SizedBox(height: 20),
-                  const Image(
-                    image: AssetImage('images/nxtlogo.png'),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const Text("Enter your username",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 16)),
-                    const SizedBox(height: 20),
-                    TextInput(
-                        icon: Icons.person,
-                        hintText: "Username",
-                        onChange: (val) {
-                          setState(() {
-                            fullname = val;
-                          });
-                        }),
-                    const SizedBox(height: 20),
-                    const Text("Enter your password",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 16)),
-                    const SizedBox(height: 20),
-                    TextInput(
-                        icon: Icons.lock,
-                        hintText: "Password",
-                        onChange: (val) {
-                          setState(() {
-                            password = val;
-                          });
-                        })
+                    IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
                   ],
                 ),
-              ),
-              Column(
+                const Text(
+                  "Hello, Welcome back.",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+                const SizedBox(height: 80),
+                const Image(
+                  image: AssetImage('images/nxtlogo.png'),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    const Text("Don't have an account?",
-                        style: TextStyle(fontSize: 16)),
-                    TextButton(
-                        onPressed: () => widget.toggleView(),
-                        child: const Text("Sign Up",
-                            style: TextStyle(
-                                color: Color.fromRGBO(98, 166, 62, 1),
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16)))
-                  ]),
-                  ActionButton(
-                      text: "SIGN IN",
-                      onPress: () async {
-                        dynamic result = await _auth.signInWithEmailAndPassword(
-                            fullname, password);
-                        if (result == null) {
-                          setState(() {
-                            error = 'Could not sign in';
-                          });
-                        }
+                  const Text("Enter your username",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
+                  const SizedBox(height: 20),
+                  TextInput(
+                      icon: Icons.person,
+                      hintText: "Username",
+                      onChange: (val) {
+                        setState(() {
+                          fullname = val;
+                        });
+                      }),
+                  const SizedBox(height: 20),
+                  const Text("Enter your password",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
+                  const SizedBox(height: 20),
+                  TextInput(
+                      icon: Icons.lock,
+                      hintText: "Password",
+                      onChange: (val) {
+                        setState(() {
+                          password = val;
+                        });
                       })
                 ],
-              )
-            ],
-          ),
+              ),
+            ),
+            Column(
+              children: [
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  const Text("Don't have an account?",
+                      style: TextStyle(fontSize: 16)),
+                  TextButton(
+                      onPressed: () => widget.toggleView(),
+                      child: const Text("Sign Up",
+                          style: TextStyle(
+                              color: Color.fromRGBO(98, 166, 62, 1),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16)))
+                ]),
+                ActionButton(
+                    text: "SIGN IN",
+                    onPress: () async {
+                      dynamic result = await _auth.signInWithEmailAndPassword(
+                          fullname, password);
+                      if (result == null) {
+                        setState(() {
+                          error = 'Could not sign in';
+                        });
+                      }
+                    })
+              ],
+            )
+          ],
         ),
       ),
     ));
