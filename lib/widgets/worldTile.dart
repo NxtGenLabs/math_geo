@@ -3,18 +3,20 @@ import 'package:flutter/cupertino.dart';
 class WorldTile extends StatelessWidget {
   final String image;
   final String title;
+  final String route;
   final Color color;
-  final void Function() onPress;
   WorldTile(
       {required this.image,
       required this.title,
       required this.color,
-      required this.onPress});
+      required this.route});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPress,
+      onTap: () {
+        Navigator.pushNamed(context,route);
+      },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 20),
         height: 300,
