@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-
-import '../../../../../../../../../../canvas/grid.dart';
+// user defined imports
+import 'package:math_geometry/canvas/grid.dart';
 
 class Reflection extends StatefulWidget {
   @override
@@ -9,21 +9,22 @@ class Reflection extends StatefulWidget {
 }
 
 class _ReflectionState extends State<Reflection> {
-  // positional variables
-  var _moveMidline = 0.0;
-  var _moveShapeX = 0.0;
-  var _moveShapeY = 0.0;
-  var _moveShapeXY = 0.0;
-  // reflection variables
-  String defaultReflection = 'Reflection Across X-axis';
-  var _reflections = [
-    'Reflection Across X-axis',
+  // reflection types
+  var _reflectionsTypes = [
     'Reflection Across Y-axis',
-    // 'Reflection Across Y = X',
-    // 'Reflection Across Y = -X',
+    'Reflection Across X-axis',
+    'Reflection Across Y = X',
+    'Reflection Across Y = -X'
   ];
-  var _reflectionType = 1;
-  var _moveAxis = 'Move the X-axis';
+
+  // positional variables
+  double _moveMidline = 0.0;
+  double _moveShapeByY = 0.0;
+  double _moveShapeByX = 0.0;
+
+  // labels
+  late var defaultReflectionType = _reflectionsTypes[0];
+  int _reflectionTypeChecker = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -38,39 +39,46 @@ class _ReflectionState extends State<Reflection> {
             Expanded(
               child: CustomPaint(
                 painter: MyGridPainter(),
-                foregroundPainter: ShapePainter(_moveShapeX, _moveShapeY,
-                    _moveShapeXY, _moveMidline, _reflectionType),
+                foregroundPainter: reflectionPainter(_moveMidline, _moveShapeByY,
+                    _moveShapeByX, _reflectionTypeChecker),
                 child: Container(),
               ),
             ),
-            // for the selector
+            // dropdown menu for the selector
             Center(
               child: DropdownButton(
-                value: defaultReflection,
+                value: defaultReflectionType,
                 icon: const Icon(Icons.keyboard_arrow_down),
-                items: _reflections.map((String types) {
+                items: _reflectionsTypes.map((String types) {
                   return DropdownMenuItem(value: types, child: Text(types));
                 }).toList(),
                 onChanged: (String? newValue) {
                   setState(() {
-                    defaultReflection = newValue!;
+                    defaultReflectionType = newValue!;
                     switch (newValue) {
-                      case 'Reflection Across X-axis':
-                        {
-                          _reflectionType = 1;
-                          _moveAxis = 'Move the X-axis';
-                        }
-                        break;
                       case 'Reflection Across Y-axis':
                         {
-                          _reflectionType = 2;
-                          _moveAxis = 'Move the Y-axis';
+                          _reflectionTypeChecker = 1;
+                        }
+                        break;
+                      case 'Reflection Across X-axis':
+                        {
+                          _reflectionTypeChecker = 2;
+                        }
+                        break;
+                      case 'Reflection Across Y = X':
+                        {
+                          _reflectionTypeChecker = 3;
+                        }
+                        break;
+                      case 'Reflection Across Y = -X':
+                        {
+                          _reflectionTypeChecker = 4;
                         }
                         break;
                       default:
                         {
-                          _reflectionType = 1;
-                          _moveAxis = 'Move the X-axis';
+                          _reflectionTypeChecker = 1;
                         }
                         break;
                     }
@@ -78,57 +86,45 @@ class _ReflectionState extends State<Reflection> {
                 },
               ),
             ),
-            // for the slider
-            Padding(
+            // for the yaxis slider
+            const Padding(
               padding: EdgeInsets.only(left: 16.0),
-              child: Text('Move Shape by X'),
+              child: Text('move by y'),
             ),
             Slider(
-              value: _moveShapeX,
-              min: 0.0,
-              max: 600,
+              value: _moveShapeByY,
+              min: -MediaQuery.of(context).size.width / 2.5,
+              max: MediaQuery.of(context).size.width / 2.5,
               onChanged: (value) {
                 setState(() {
-                  _moveShapeX = value;
+                  _moveShapeByY = value;
                 });
               },
             ),
-            Padding(
+            // for the  xaxis slider
+            const Padding(
               padding: EdgeInsets.only(left: 16.0),
-              child: Text('Move Shape by Y'),
+              child: Text('move by x'),
             ),
             Slider(
-              value: _moveShapeY,
-              min: 0.0,
-              max: 600,
+              value: _moveShapeByX,
+              min: -MediaQuery.of(context).size.height / 3,
+              max: MediaQuery.of(context).size.height / 3,
               onChanged: (value) {
                 setState(() {
-                  _moveShapeY = value;
+                  _moveShapeByX = value;
                 });
               },
             ),
-            Padding(
+            // for the  midline slider
+            const Padding(
               padding: EdgeInsets.only(left: 16.0),
-              child: Text('Move Shape by XY'),
-            ),
-            Slider(
-              value: _moveShapeXY,
-              min: 0.0,
-              max: 600,
-              onChanged: (value) {
-                setState(() {
-                  _moveShapeXY = value;
-                });
-              },
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 16.0),
-              child: Text(_moveAxis),
+              child: Text('move by x'),
             ),
             Slider(
               value: _moveMidline,
-              min: 0.0,
-              max: 600,
+              min: -MediaQuery.of(context).size.height / 3,
+              max: MediaQuery.of(context).size.height / 3,
               onChanged: (value) {
                 setState(() {
                   _moveMidline = value;
@@ -142,148 +138,168 @@ class _ReflectionState extends State<Reflection> {
   }
 }
 
-// FOR PAINTING POLYGONS
-class ShapePainter extends CustomPainter {
-  // externally changing vars
-  final double moveShapeX;
-  final double moveShapeY;
-  final double moveShapeXY;
-  final double moveMidline;
-  final int reflectionType;
+class reflectionPainter extends CustomPainter {
+  // positional variables
+  double moveMidline;
+  double moveShapeByY;
+  double moveShapeByX;
+  int reflectionTypeChecker;
 
-  // constructor
-  ShapePainter(this.moveShapeX, this.moveShapeY, this.moveShapeXY,
-      this.moveMidline, this.reflectionType);
+  reflectionPainter(this.moveMidline, this.moveShapeByY, this.moveShapeByX,
+      this.reflectionTypeChecker);
 
   @override
   void paint(Canvas canvas, Size size) {
-    // painting style of shapes
-    var paint = Paint()
+    // screen's center
+    Offset screenCenter = Offset(size.width / 2, size.height / 2);
+    // translating entire canvas to ensure it behaves like a classical graph
+    canvas.translate(screenCenter.dx, screenCenter.dy);
+    canvas.scale(1, -1);
+
+    // object paints and paths
+    Paint ogPaint = Paint()
       ..color = Colors.black
       ..strokeWidth = 2
-      ..style = PaintingStyle.stroke;
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+    Path ogPath = Path();
 
-    // cartesian center coordinate
-    final Offset center = Offset(size.width / 2, size.height / 2);
+    Paint imgPaint = Paint()
+      ..color = Colors.teal
+      ..strokeWidth = ogPaint.strokeWidth
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+    Path imgPath = Path();
 
-    // original shape coordinates
-    var distFromMid = 400;
+    Paint midlinePaint = imgPaint;
+    Path midlinePath = Path();
+
+    // shape Coordinates
     List<Offset> original = [
-      Offset(400 + moveShapeX + moveShapeXY, 100 + moveShapeY + moveShapeXY),
-      Offset(400 + moveShapeX + moveShapeXY, 200 + moveShapeY + moveShapeXY),
-      Offset(600 + moveShapeX + moveShapeXY, 200 + moveShapeY + moveShapeXY)
+      Offset(-100 + moveShapeByY, 200 + moveShapeByX),
+      Offset(-100 + moveShapeByY, 100 + moveShapeByX),
+      Offset(-50 + moveShapeByY, 50 + moveShapeByX),
     ];
-    Path originalPath = Path();
-    originalPath.addPolygon(original, true);
-    canvas.drawPath(originalPath, paint);
-
-    // image shape coordinates
     List<Offset> image = [];
-    Path imagePath = Path();
-    // midline coordinates
-    List<Offset> midlineX = [
-      Offset(0, (size.height / 2) + moveMidline),
-      Offset(size.width, (size.height / 2) + moveMidline)
-    ];
-    List<Offset> midlineY = [
-      Offset(center.dx + moveMidline, 0),
-      Offset(center.dx + moveMidline, size.height)
-    ];
-    List<Offset> midlineYEqX = [Offset(size.width, 0), Offset(0, size.height)];
 
-    // reflection across the y-axis = (-x, y)
+    // painting original shape
+    ogPath.addPolygon(original, true);
+    canvas.drawPath(ogPath, ogPaint);
 
-    // reflection across the y-axis = (-x, y)
-    reflectionAcrossY(List<Offset> original, List<Offset> image) {
-      // !image plot
-      for (Offset point in original) {
-        var tempDist = distance(point, Offset(midlineY[0].dx, point.dy));
-        if (point.dx < midlineY[0].dx) {
-          image.add(Offset((midlineY[0].dx + tempDist), point.dy));
-        } else if (point.dx > midlineY[0].dx) {
-          image.add(Offset((midlineY[0].dx - tempDist), point.dy));
+    // !reflection functions
+    reflectionAcrossY(
+        List<Offset> ogShape, List<Offset> imgShape, List<Offset> midline) {
+      for (Offset point in ogShape) {
+        double distFromPointToMidline =
+            distanceBetweenTwoPoints(point, Offset(midline[0].dx, point.dy));
+        if (point.dx < midline[0].dx) {
+          imgShape
+              .add(Offset(midline[0].dx + distFromPointToMidline, point.dy));
+        } else if (point.dx > midline[0].dx) {
+          imgShape
+              .add(Offset(midline[0].dx - distFromPointToMidline, point.dy));
         } else {
-          print('im at not lesser nor greater than the midline');
+          print('on center!');
         }
       }
-      return (image);
+      return (imgShape);
     }
 
-    // reflection across the X-axis = (x, -y)
-    reflectionAcrossX(List<Offset> original, List<Offset> image) {
-      // !image plot
-      for (Offset point in original) {
-        var tempDist = distance(point, Offset(point.dx, midlineX[0].dy));
-        if (point.dy < midlineX[0].dy) {
-          image.add(Offset(point.dx, midlineX[0].dy + tempDist));
-        } else if (point.dy > midlineX[0].dy) {
-          image.add(Offset(point.dx, midlineX[0].dy - tempDist));
+    reflectionAcrossX(
+        List<Offset> ogShape, List<Offset> imgShape, List<Offset> midline) {
+      for (Offset point in ogShape) {
+        double distFromPointToMidline =
+            distanceBetweenTwoPoints(point, Offset(point.dx, midline[0].dy));
+        if (point.dy < midline[0].dy) {
+          imgShape
+              .add(Offset(point.dx, midline[0].dy + distFromPointToMidline));
+        } else if (point.dy > midline[0].dy) {
+          imgShape
+              .add(Offset(point.dx, midline[0].dy - distFromPointToMidline));
         } else {
-          print('im at not lesser nor greater than the midline');
+          print('on center!');
         }
       }
-      return (image);
+      return (imgShape);
     }
 
-    // reflection when y = x => (y, x)
-    reflectionAcrossYEqualsX(List<Offset> original, List<Offset> image) {
-      // !image plot
-      for (Offset point in original) {
-        image.add(Offset(point.dy, point.dx));
+    reflectionAcrossYEqX(List<Offset> ogShape, List<Offset> imgShape) {
+      for (Offset point in ogShape) {
+        imgShape.add(Offset(point.dy, point.dx));
       }
-      return (image);
+      return (imgShape);
     }
 
-    // reflection when y = -x => (-y, -x)
-    reflectionAcrossYEqualsNegX(List<Offset> original, List<Offset> image) {
-      // !image plot
-      for (Offset point in original) {
-        image.add(Offset((-point.dy), (-point.dy)));
+    reflectionAcrossYEqNegX(List<Offset> ogShape, List<Offset> imgShape) {
+      for (Offset point in ogShape) {
+        imgShape.add(Offset(-point.dy, -point.dx));
       }
-      return (image);
+      return (imgShape);
     }
 
-    // switch case for selecting reflectionType
-    switch (reflectionType) {
+    // painting image shape
+    switch (reflectionTypeChecker) {
       case 1:
         {
-          // across x-axis
-          image = reflectionAcrossX(original, image);
-          imagePath.addPolygon(image, true);
-          canvas.drawPath(imagePath, paint);
-          print(reflectionType);
-          // midline
-          Path midlinePath = Path();
-          midlinePath.addPolygon(midlineX, true);
-          canvas.drawPath(midlinePath, paint);
+          // painting line of symmetry
+          List<Offset> midline = [
+            Offset(0 + moveMidline, size.height),
+            Offset(0 + moveMidline, -size.height)
+          ];
+          canvas.drawLine(midline[0], midline[1], midlinePaint);
+
+          image = reflectionAcrossY(original, image, midline);
+          imgPath.addPolygon(image, true);
+          canvas.drawPath(imgPath, imgPaint);
         }
         break;
       case 2:
         {
-          // across y-axis
-          image = reflectionAcrossY(original, image);
-          imagePath.addPolygon(image, true);
-          canvas.drawPath(imagePath, paint);
-          // midline
-          Path midlinePath = Path();
-          midlinePath.addPolygon(midlineY, true);
-          canvas.drawPath(midlinePath, paint);
+          // painting line of symmetry
+          List<Offset> midline = [
+            Offset(-size.width, 0 + moveMidline),
+            Offset(size.width, 0 + moveMidline)
+          ];
+          canvas.drawLine(midline[0], midline[1], midlinePaint);
+
+          image = reflectionAcrossX(original, image, midline);
+          imgPath.addPolygon(image, true);
+          canvas.drawPath(imgPath, imgPaint);
+        }
+        break;
+      case 3:
+        {
+          // painting line of symmetry
+          List<Offset> midline = [
+            Offset(size.width, size.height),
+            Offset(-size.width, -size.height)
+          ];
+          canvas.drawLine(midline[0], midline[1], midlinePaint);
+
+          image = reflectionAcrossYEqX(original, image);
+          imgPath.addPolygon(image, true);
+          canvas.drawPath(imgPath, imgPaint);
+        }
+        break;
+      case 4:
+        {
+          // painting line of symmetry
+          List<Offset> midline = [
+            Offset(-size.width, size.height),
+            Offset(size.width, -size.height)
+          ];
+          canvas.drawLine(midline[0], midline[1], midlinePaint);
+
+          image = reflectionAcrossYEqNegX(original, image);
+          imgPath.addPolygon(image, true);
+          canvas.drawPath(imgPath, imgPaint);
         }
         break;
       default:
         {
-          // defaults to across x-axis
-          image = reflectionAcrossY(original, image);
-          imagePath.addPolygon(image, true);
-          canvas.drawPath(imagePath, paint);
-          // midline
-          Path midlinePath = Path();
-          midlinePath.addPolygon(midlineY, true);
-          canvas.drawPath(midlinePath, paint);
+          reflectionTypeChecker = 1;
         }
         break;
-
-      //TODO: implement two remaining reflection types
     }
   }
 
@@ -294,13 +310,13 @@ class ShapePainter extends CustomPainter {
 }
 
 // Distance function d= sqrt((X2   - X1)² + (y2 - y1)²)
-distance(Offset point1, Offset point2) {
+distanceBetweenTwoPoints(Offset point1, Offset point2) {
   var getDistance = math.pow((point2.dx - point1.dx), 2) +
       math.pow((point2.dy - point1.dy), 2);
   return (math.sqrt(getDistance));
 }
 
-slopeOfLine(Offset point1, Offset point2) {
+slopeOfLineOfTwoPoints(Offset point1, Offset point2) {
   var changeInY = (point2.dy - point1.dy);
   var changeInX = (point2.dx - point1.dx);
   var slope = changeInY / changeInX;

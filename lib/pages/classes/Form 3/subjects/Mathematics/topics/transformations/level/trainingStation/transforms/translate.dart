@@ -1,8 +1,7 @@
-// ignore_for_file: prefer_final_fields, non_constant_identifier_names
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-
-import '../../../../../../../../../../canvas/grid.dart';
+// user defined imports
+import 'package:math_geometry/canvas/grid.dart';
 
 class Translate extends StatefulWidget {
   const Translate({Key? key}) : super(key: key);
@@ -12,215 +11,126 @@ class Translate extends StatefulWidget {
 }
 
 class _TranslateState extends State<Translate> {
-  var _sides = 3.0;
-  var _radius = 100.0;
-  var _radians = 0.0;
-  var _HPosition = 0.0;
-  var _VPosition = 0.0;
-  var _DPosition = 0.0;
-  var _max = 100.0;
-  late CustomPainter painterChoice =
-      HTranslatePainter(_sides, _radius, _radians, _HPosition);
+  // positional variables
+  double _moveShapeByXY = 0.0;
+  double _moveShapeByY = 0.0;
+  double _moveShapeByX = 0.0;
+  double _sides = 3;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Transformations Visualizer'),
+        title: const Text('Reflection'),
       ),
       body: SafeArea(
-        child: Stack(children: [
-          Container(
-            color: Colors.grey[400],
-            child: CustomPaint(
-              foregroundPainter: painterChoice,
-              painter: MyGridPainter(),
-              child: Container(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              child: CustomPaint(
+                painter: MyGridPainter(),
+                foregroundPainter: translationPainter(
+                    _moveShapeByXY, _moveShapeByY, _moveShapeByX, _sides),
+                child: Container(),
+              ),
             ),
-          ),
-          Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                      color: Colors.grey,
-                      height: 250,
-                      width: MediaQuery.of(context).size.width / 2,
-                      child: Column(children: [
-                        const Padding(
-                          padding: EdgeInsets.only(left: 16.0, top: 10.0),
-                          child: Text('Horizontal Translation'),
-                        ),
-                        Slider(
-                          value: _HPosition,
-                          min: 0.0,
-                          max: _max,
-                          onChanged: (value) {
-                            painterChoice = HTranslatePainter(
-                                _sides, _radius, _radians, _HPosition);
-                            setState(() {
-                              _HPosition = value;
-                            });
-                          },
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 16.0, top: 10.0),
-                          child: Text('Vertical Translation'),
-                        ),
-                        Slider(
-                          value: _VPosition,
-                          min: 0.0,
-                          max: _max,
-                          onChanged: (value) {
-                            painterChoice = VTranslatePainter(
-                                _sides, _radius, _radians, _VPosition);
-                            setState(() {
-                              _VPosition = value;
-                            });
-                          },
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 16.0, top: 10.0),
-                          child: Text('Diagonal Translation'),
-                        ),
-                        Slider(
-                          value: _DPosition,
-                          min: 0.0,
-                          max: _max,
-                          onChanged: (value) {
-                            painterChoice = DTranslatePainter(
-                                _sides, _radius, _radians, _DPosition);
-                            setState(() {
-                              _DPosition = value;
-                            });
-                          },
-                        ),
-                      ]))
-                ]),
-          ),
-        ]),
+            // for the yaxis slider
+            const Padding(
+              padding: EdgeInsets.only(left: 16.0),
+              child: Text('Move Shape Along X'),
+            ),
+            Slider(
+              value: _moveShapeByY,
+              min: -MediaQuery.of(context).size.width / 2.5,
+              max: MediaQuery.of(context).size.width / 2.5,
+              onChanged: (value) {
+                setState(() {
+                  _moveShapeByY = value;
+                });
+              },
+            ),
+            // for the  xaxis slider
+            const Padding(
+              padding: EdgeInsets.only(left: 16.0),
+              child: Text('Move Shape Along Y'),
+            ),
+            Slider(
+              value: _moveShapeByX,
+              min: -MediaQuery.of(context).size.height / 3,
+              max: MediaQuery.of(context).size.height / 3,
+              onChanged: (value) {
+                setState(() {
+                  _moveShapeByX = value;
+                });
+              },
+            ),
+            // // for the  xy-axis slider
+            // const Padding(
+            //   padding: EdgeInsets.only(left: 16.0),
+            //   child: Text('move by xy'),
+            // ),
+            // Slider(
+            //   value: _moveShapeByXY,
+            //   min: -MediaQuery.of(context).size.height / 3,
+            //   max: MediaQuery.of(context).size.height / 3,
+            //   onChanged: (value) {
+            //     setState(() {
+            //       _moveShapeByXY = value;
+            //     });
+            //   },
+            // ),
+          ],
+        ),
       ),
     );
   }
 }
 
-// paints shapes horizontal translation
-class HTranslatePainter extends CustomPainter {
+// FOR PAINTING SHAPES
+class translationPainter extends CustomPainter {
+  // positional variables
+  final double moveShapeByXY;
+  final double moveShapeByY;
+  final double moveShapeByX;
   final double sides;
-  final double radius;
-  final double radians;
-  final double position;
-  HTranslatePainter(this.sides, this.radius, this.radians, this.position);
+
+  translationPainter(
+      this.moveShapeByXY, this.moveShapeByY, this.moveShapeByX, this.sides);
 
   @override
   void paint(Canvas canvas, Size size) {
-    var paint = Paint()
-      ..color = Colors.teal
-      ..strokeWidth = 5
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-
-    var path = Path();
-
+    var radius = 100;
+    var radians = 0.0;
     var angle = (math.pi * 2) / sides;
 
-    Offset center = Offset(size.width / 2, size.height / 2);
-    Offset startPoint = Offset(
-        (radius * math.cos(radians)) + position, radius * math.sin(radians));
+    // screen's center
+    Offset screenCenter = Offset(size.width / 2, size.height / 2);
+    // translating entire canvas to ensure it behaves like a classical graph
+    canvas.translate(screenCenter.dx, screenCenter.dy);
+    canvas.scale(1, -1);
 
-    path.moveTo(startPoint.dx + center.dx, startPoint.dy + center.dy);
-
-    for (int i = 1; i <= sides; i++) {
-      double x = radius * math.cos(radians + angle * i) + center.dx + position;
-      double y = radius * math.sin(radians + angle * i) + center.dy;
-      path.lineTo(x, y);
-    }
-    path.close();
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
-  }
-}
-
-// paints shapes vertical translation
-class VTranslatePainter extends CustomPainter {
-  final double sides;
-  final double radius;
-  final double radians;
-  final double position;
-  VTranslatePainter(this.sides, this.radius, this.radians, this.position);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    var paint = Paint()
-      ..color = Colors.teal
-      ..strokeWidth = 5
+    // object paints and paths
+    Paint ogPaint = Paint()
+      ..color = Colors.black
+      ..strokeWidth = 2
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
+    Path ogPath = Path();
 
-    var path = Path();
+    // shape Coordinates
+    List<Offset> original = [];
 
-    var angle = (math.pi * 2) / sides;
-
-    Offset center = Offset(size.width / 2, size.height / 2);
-    Offset startPoint = Offset(
-        radius * math.cos(radians), radius * math.sin(radians) + position);
-
-    path.moveTo(startPoint.dx + center.dx, startPoint.dy + center.dy);
-
+    Offset startPoint = Offset(radius * math.cos(radians) + moveShapeByY,
+        radius * math.sin(radians) + moveShapeByX);
     for (int i = 1; i <= sides; i++) {
-      double x = radius * math.cos(radians + angle * i) + center.dx;
-      double y = radius * math.sin(radians + angle * i) + center.dy + position;
-      path.lineTo(x, y);
+      double x = radius * math.cos(radians + angle * i) + 0;
+      double y = radius * math.sin(radians + angle * i) + 0;
+      original.add(Offset(
+          x + moveShapeByY + moveShapeByXY, y + moveShapeByX + moveShapeByXY));
     }
-    path.close();
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
-  }
-}
-
-// paints shapes diagonal translation
-class DTranslatePainter extends CustomPainter {
-  final double sides;
-  final double radius;
-  final double radians;
-  final double position;
-  DTranslatePainter(this.sides, this.radius, this.radians, this.position);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    var paint = Paint()
-      ..color = Colors.teal
-      ..strokeWidth = 5
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-
-    var path = Path();
-
-    var angle = (math.pi * 2) / sides;
-
-    Offset center = Offset(size.width / 2, size.height / 2);
-    Offset startPoint = Offset(radius * math.cos(radians) + position,
-        radius * math.sin(radians) + position);
-
-    path.moveTo(startPoint.dx + center.dx, startPoint.dy + center.dy);
-
-    for (int i = 1; i <= sides; i++) {
-      double x = radius * math.cos(radians + angle * i) + center.dx + position;
-      double y = radius * math.sin(radians + angle * i) + center.dy + position;
-      path.lineTo(x, y);
-    }
-    path.close();
-    canvas.drawPath(path, paint);
+    ogPath.addPolygon(original, true);
+    canvas.drawPath(ogPath, ogPaint);
   }
 
   @override

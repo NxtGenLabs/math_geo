@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-
-import '../../../../../../../../../canvas/grid.dart';
-import '../../../../../../../../../canvas/transformation_intro_painter.dart';
+// user defiend imports
+import 'package:math_geometry/canvas/grid.dart';
+import 'package:math_geometry/canvas/transformation_intro_painter.dart';
 
 class TrainingStation extends StatefulWidget {
   const TrainingStation({Key? key}) : super(key: key);
@@ -29,7 +29,8 @@ class _TrainingStationState extends State<TrainingStation> {
           Container(
             color: Colors.grey[400],
             child: CustomPaint(
-              foregroundPainter: ShapePainter(_sides, _radius, _radians, _position),
+              foregroundPainter:
+                  ShapePainter(_sides, _radius, _radians, _position),
               painter: MyGridPainter(),
               child: Container(),
             ),
