@@ -70,9 +70,13 @@ flutter:
     - images/savannah.jpg
     - images/savannah_cropped.png
     - images/biology.png
+    - images/lock.png
     - images/agriculture.png
     - images/physics.png
     - images/math.png
+    - images/training_station.png
+    - images/the_field.png
+    - images/the_lake.png
     - images/math-set.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
