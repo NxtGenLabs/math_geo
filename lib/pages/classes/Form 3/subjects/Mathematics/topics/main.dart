@@ -40,7 +40,12 @@ class Topics extends StatelessWidget {
                     ChapterTile(
                         onPress: () {},
                         chapter: "8. Circle II: Angle properties of a circle."),
-                    ChapterTile(onPress: () {}, chapter: "9. Transformations."),
+                    ChapterTile(
+                        onPress: () {
+                          Navigator.pushNamed(
+                              context, './pages/classes/transformations');
+                        },
+                        chapter: "9. Transformations."),
                     ChapterTile(
                         onPress: () {},
                         chapter: "10. Exponential and logarithimic functions"),
