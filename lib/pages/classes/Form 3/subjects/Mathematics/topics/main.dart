@@ -4,31 +4,41 @@ import 'package:math_geometry/widgets/option.dart';
 class Topics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.teal,
-      child: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Scaffold(
+      backgroundColor: Colors.redAccent,
+      body: Stack(
+        fit: StackFit.passthrough,
+        children: [
+          SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height / 2,
+              child: const Image(
+                  fit: BoxFit.cover, image: AssetImage("images/math-set.jpg"))),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Option(
-                  text: 'Training \n Station',
-                  route: () => Navigator.pushNamed(context,
-                      './pages/topics/transformations/menus/training_station_level')),
-              Option(
-                  text: "Beginner",
-                  route: () => Navigator.pushNamed(context,
-                      './pages/topics/transformations/menus/beginner_level')),
-              Option(
-                text: "Intermediate",
-                route: () => Navigator.pushNamed(context,
-                    './pages/topics/transformations/menus/intermediate_level'),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 60),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                height: MediaQuery.of(context).size.height / 1.5,
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 242, 242, 242),
+                    borderRadius: BorderRadiusDirectional.only(
+                        topStart: Radius.circular(50),
+                        topEnd: Radius.circular(50))),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text("Chapters"),
+                    
+                  ],
+                ),
               ),
-              Option(text: "Advanced", route: () {})
             ],
-          ),
-        ),
+          )
+        ],
       ),
     );
   }

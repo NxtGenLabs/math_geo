@@ -14,41 +14,40 @@ class Classes extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              color: Colors.black,
-              child: Stack(
-                children: [
-                  const Image(
+            Stack(
+              children: [
+                const SizedBox(
+                  height: 200,
+                  child: Image(
                       fit: BoxFit.cover,
                       image: AssetImage("images/savannah_cropped.png")),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.person_pin_circle)),
-                          IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.settings))
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.person_pin_circle)),
+                        IconButton(
+                            onPressed: () {}, icon: const Icon(Icons.settings))
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text("Welcome, Dude!"),
+                          Text("Let's get started upgrading your skills")
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(30.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text("Welcome, Dude!"),
-                            Text("Let's get started upgrading your skills")
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 40),
@@ -71,7 +70,12 @@ class Classes extends StatelessWidget {
                   StaggeredGridTile.count(
                       crossAxisCellCount: 2,
                       mainAxisCellCount: 2,
-                      child: Tile(subject: "Mathematics")),
+                      child: Tile(
+                        subject: "Mathematics",
+                        onPressed: () {
+                          Navigator.pushNamed(context, './pages/topics/main');
+                        },
+                      )),
                   StaggeredGridTile.count(
                       crossAxisCellCount: 2,
                       mainAxisCellCount: 1.7,
