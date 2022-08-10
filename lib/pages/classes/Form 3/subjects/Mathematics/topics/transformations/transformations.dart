@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/worldTile.dart';
 
 class Transformations extends StatelessWidget {
@@ -52,7 +53,7 @@ class Transformations extends StatelessWidget {
                     children: [
                       const Padding(
                         padding: EdgeInsets.symmetric(vertical: 40),
-                        child: Text("World Select"),
+                        child: Text("World Select", style: ThemeText.header2),
                       ),
                       Expanded(
                         child: ListView.builder(

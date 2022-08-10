@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:math_geometry/themes/textStyles.dart';
+import 'package:math_geometry/widgets/levelContainer.dart';
 import '../../../../../../../../widgets/option.dart';
 import '../level/trainingStation/training_station.dart';
 import '../level/trainingStation/transforms/reflection.dart';
@@ -47,29 +49,27 @@ class TrainingStationLevel extends StatelessWidget {
                     children: [
                       const Padding(
                         padding: EdgeInsets.symmetric(vertical: 40),
-                        child: Text("World Select"),
+                        child: Text(
+                          "Level Select",
+                          style: ThemeText.header2,
+                        ),
                       ),
                       Expanded(
                         child: GridView.builder(
                             itemCount: levels.length,
                             gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
-                                    childAspectRatio: MediaQuery.of(context)
-                                            .size
-                                            .width /
-                                        (MediaQuery.of(context).size.height)),
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisSpacing: 10,
+                                    mainAxisSpacing: 10,
+                                    crossAxisCount: 4,
+                                    childAspectRatio: .7),
                             itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Option(
-                                  text: levels[index].level,
-                                  route: () => Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return levels[index].levelRoute;
-                                  })),
-                                ),
-                              );
+                              return LevelContainer(
+                                  onPress: () => Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return levels[index].levelRoute;
+                                      })),
+                                  level: levels[index].level);
                             }),
                       )
                     ],

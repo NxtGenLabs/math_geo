@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/chapterTile.dart';
 import 'package:math_geometry/widgets/option.dart';
 
@@ -19,8 +20,7 @@ class Topics extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 60),
+                padding: const EdgeInsets.symmetric(horizontal: 50),
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 height: MediaQuery.of(context).size.height / 1.5,
                 width: MediaQuery.of(context).size.width,
@@ -30,12 +30,11 @@ class Topics extends StatelessWidget {
                         topStart: Radius.circular(50),
                         topEnd: Radius.circular(50))),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: Text("Chapters"),
+                      padding: EdgeInsets.symmetric(vertical: 40),
+                      child: Text("Chapters", style: ThemeText.header2),
                     ),
                     ChapterTile(
                         onPress: () {},

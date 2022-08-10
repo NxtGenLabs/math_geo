@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/option.dart';
+
+import '../../../../../../../../widgets/levelContainer.dart';
 
 class BeginnerLevel extends StatelessWidget {
   List<BeginnerLs> levels = [
@@ -146,27 +149,62 @@ class BeginnerLevel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.teal,
-      height: double.infinity,
-      width: double.infinity,
-      child: GridView.builder(
-          itemCount: levels.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              childAspectRatio: MediaQuery.of(context).size.width /
-                  (MediaQuery.of(context).size.height)),
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Option(
-                text: 'Level ${levels[index].level}',
-                route: () => Navigator.pushNamed(
-                    context, './pages/topics/transformations/level/beginner',
-                    arguments: levels[index]),
-              ),
-            );
-          }),
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
+          fit: StackFit.passthrough,
+          children: [
+            SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 2,
+                child: const Image(
+                    fit: BoxFit.cover,
+                    image: AssetImage("images/math-set.jpg"))),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  height: MediaQuery.of(context).size.height / 1.5,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 242, 242, 242),
+                      borderRadius: BorderRadiusDirectional.only(
+                          topStart: Radius.circular(50),
+                          topEnd: Radius.circular(50))),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 40),
+                        child: Text("Level Select", style: ThemeText.header2),
+                      ),
+                      Expanded(
+                        child: GridView.builder(
+                            itemCount: levels.length,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisSpacing: 10,
+                                    mainAxisSpacing: 10,
+                                    crossAxisCount: 4,
+                                    childAspectRatio: .7),
+                            itemBuilder: (context, index) {
+                              return LevelContainer(
+                                  onPress: () => Navigator.pushNamed(context,
+                                      './pages/topics/transformations/level/beginner',
+                                      arguments: levels[index]),
+                                  level: levels[index].level);
+                            }),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 }

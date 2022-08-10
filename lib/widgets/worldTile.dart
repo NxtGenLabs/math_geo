@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:math_geometry/themes/textStyles.dart';
 
 class WorldTile extends StatelessWidget {
   final String image;
@@ -15,7 +16,7 @@ class WorldTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context,route);
+        Navigator.pushNamed(context, route);
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 20),
@@ -32,7 +33,7 @@ class WorldTile extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                     color: color),
-                child: Center(child: Text(title)),
+                child: Center(child: Text(title, style: ThemeText.world)),
               ),
             )
           ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_geometry/themes/textStyles.dart';
 
 class ChapterTile extends StatelessWidget {
   final String chapter;
@@ -11,6 +12,7 @@ class ChapterTile extends StatelessWidget {
     return GestureDetector(
       onTap: onPress,
       child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(5)),
             color: Color.fromARGB(255, 230, 230, 230)),
@@ -36,7 +38,7 @@ class ChapterTile extends StatelessWidget {
                       child: const Image(image: AssetImage("images/lock.png"))),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Text(chapter),
+                    child: Text(chapter, style: ThemeText.chapter),
                   ),
                 ],
               ),
