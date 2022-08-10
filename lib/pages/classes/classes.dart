@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/inactiveTile.dart';
 import 'package:math_geometry/widgets/tile.dart';
 
@@ -40,8 +41,9 @@ class Classes extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
-                          Text("Welcome, Dude!"),
-                          Text("Let's get started upgrading your skills")
+                          Text("Welcome, Dude!", style: ThemeText.header2),
+                          Text("Let's get started upgrading your skills",
+                              style: ThemeText.normal)
                         ],
                       ),
                     ),

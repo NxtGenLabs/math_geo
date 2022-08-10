@@ -154,12 +154,18 @@ class BeginnerLevel extends StatelessWidget {
         child: Stack(
           fit: StackFit.passthrough,
           children: [
-            SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2,
-                child: const Image(
-                    fit: BoxFit.cover,
-                    image: AssetImage("images/math-set.jpg"))),
+            Stack(
+              alignment: AlignmentDirectional.center,
+              children: [
+                SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 2,
+                    child: const Image(
+                        fit: BoxFit.cover,
+                        image: AssetImage("images/math-set.jpg"))),
+                const Text("The Field", style: ThemeText.levelHeader),
+              ],
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

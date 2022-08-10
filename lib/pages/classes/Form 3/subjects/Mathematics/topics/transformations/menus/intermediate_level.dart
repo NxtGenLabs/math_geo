@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 
 import '../../../../../../../../widgets/levelContainer.dart';
-import '../../../../../../../../widgets/option.dart';
 
 class TransFormationsLevels extends StatelessWidget {
   List<IntermediateLs> levels = [
@@ -111,12 +110,18 @@ class TransFormationsLevels extends StatelessWidget {
         child: Stack(
           fit: StackFit.passthrough,
           children: [
-            SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2,
-                child: const Image(
-                    fit: BoxFit.cover,
-                    image: AssetImage("images/math-set.jpg"))),
+            Stack(
+              alignment: AlignmentDirectional.center,
+              children: [
+                SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 2,
+                    child: const Image(
+                        fit: BoxFit.cover,
+                        image: AssetImage("images/math-set.jpg"))),
+                const Text("The Lake", style: ThemeText.levelHeader),
+              ],
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

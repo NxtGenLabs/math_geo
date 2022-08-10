@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_geometry/themes/textStyles.dart';
 
 class Tile extends StatelessWidget {
   final String subject;
@@ -25,7 +26,7 @@ class Tile extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 116, 204, 222),
                       borderRadius: BorderRadius.circular(20)),
-                  child: Text(subject)),
+                  child: Text(subject, style: ThemeText.world)),
             )
           ],
         ),

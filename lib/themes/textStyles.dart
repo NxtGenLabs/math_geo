@@ -6,6 +6,11 @@ abstract class ThemeText {
       color: Colors.black,
       fontSize: 24,
       fontWeight: FontWeight.w600);
+  static const TextStyle normal = TextStyle(
+      fontFamily: 'Popins',
+      color: Colors.black,
+      fontSize: 16,
+      fontWeight: FontWeight.normal);
   static const TextStyle chapter = TextStyle(
       fontFamily: 'Popins',
       color: Colors.black,
@@ -20,5 +25,10 @@ abstract class ThemeText {
       fontFamily: 'Popins',
       color: Colors.white,
       fontSize: 45,
+      fontWeight: FontWeight.w800);
+  static const TextStyle levelHeader = TextStyle(
+      fontFamily: 'Popins',
+      color: Colors.white,
+      fontSize: 30,
       fontWeight: FontWeight.w800);
 }

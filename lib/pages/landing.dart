@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:math_geometry/services/auth.dart';
 import 'package:math_geometry/widgets/option.dart';
 
+import '../themes/textStyles.dart';
+
 class LandingPage extends StatelessWidget {
   final AuthService _auth = AuthService();
 
@@ -33,12 +35,16 @@ class LandingPage extends StatelessWidget {
                             onPressed: () {}, icon: const Icon(Icons.settings)),
                       ],
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text("Welcome, Dude!"),
-                        Text("Let's get started upgrading your skills")
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text("Welcome, Dude!", style: ThemeText.header2),
+                          Text("Let's get started upgrading your skills",
+                              style: ThemeText.normal)
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -46,14 +52,14 @@ class LandingPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text("Let's Start"),
+                    const Text("Let's Start", style: ThemeText.level),
                     Center(
                       child: IconButton(
                           onPressed: () {
                             Navigator.pushNamed(
                                 context, './pages/classes/classes');
                           },
-                          icon: const Icon(Icons.arrow_downward)),
+                          icon: const Icon(Icons.chevron_right)),
                     )
                   ],
                 ),
