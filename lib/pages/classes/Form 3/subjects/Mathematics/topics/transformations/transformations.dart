@@ -4,20 +4,21 @@ import 'package:math_geometry/widgets/worldTile.dart';
 class Transformations extends StatelessWidget {
   final List _worlds = [
     WorldTile(
-        image: "images/training_station.png",
-        title: "Training Station",
-        color: const Color.fromARGB(255, 204, 205, 251),
-        onPress: () {}),
+      image: "images/training_station.png",
+      title: "Training Station",
+      color: const Color.fromARGB(255, 204, 205, 251),
+      route: './pages/topics/transformations/menus/training_station_level',
+    ),
     WorldTile(
         image: "images/the_field.png",
         title: "The Field",
         color: const Color.fromARGB(255, 106, 117, 21),
-        onPress: () {}),
+        route: './pages/topics/transformations/menus/beginner_level'),
     WorldTile(
         image: "images/the_lake.png",
         title: "The Lake",
         color: const Color.fromARGB(255, 244, 181, 168),
-        onPress: () {})
+        route: './pages/topics/transformations/menus/intermediate_level')
   ];
 
   @override
