@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-
-import '../../../../../../../../../../canvas/grid.dart';
-import '../../../../../../../../../../canvas/transformation_intro_painter.dart';
+// user defined imports
+import 'package:math_geometry/canvas/grid.dart';
 
 class Enlarge extends StatefulWidget {
   @override
@@ -10,58 +9,97 @@ class Enlarge extends StatefulWidget {
 }
 
 class _EnlargeState extends State<Enlarge> {
-  var _sides = 3.0;
-  var _radius = 100.0;
-  var _radians = 0.0;
-  var _position = 0.0;
+  // positional variables
+  double _sides = 3;
+  double _scale = 0.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Transformations Visualizer'),
+        title: const Text('Reflection'),
       ),
       body: SafeArea(
-        child: Stack(children: [
-          Container(
-            color: Colors.grey[400],
-            child: CustomPaint(
-              foregroundPainter: ShapePainter(_sides, _radius, _radians, _position),
-              painter: MyGridPainter(),
-              child: Container(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              child: CustomPaint(
+                painter: MyGridPainter(),
+                foregroundPainter: enlargementPainter(_sides, _scale),
+                child: Container(),
+              ),
             ),
-          ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  color: Colors.grey,
-                  height: 100,
-                  width: MediaQuery.of(context).size.width / 2,
-                  child: Column(children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 16.0, top: 10.0),
-                      child: Text('Enlarge'),
-                    ),
-                    Slider(
-                      value: _radius,
-                      min: 10.0,
-                      max: MediaQuery.of(context).size.width / 2,
-                      onChanged: (value) {
-                        setState(() {
-                          _radius = value;
-                        });
-                      },
-                    ),
-                  ]),
+            // for the  enlargement slider
+            const Padding(
+              padding: EdgeInsets.only(left: 16.0),
+              child: Center(
+                child: Text(
+                  'Enlarge',
+                  style: TextStyle(fontSize: 20),
                 ),
-              ],
+              ),
             ),
-          )
-        ]),
+            Slider(
+              value: _scale,
+              min: -MediaQuery.of(context).size.width / 15,
+              max: MediaQuery.of(context).size.width / 15,
+              onChanged: (value) {
+                setState(() {
+                  _scale = value;
+                });
+              },
+            ),
+          ],
+        ),
       ),
     );
+  }
+}
+
+// FOR PAINTING SHAPES
+class enlargementPainter extends CustomPainter {
+  // positional variables
+  final double sides;
+  final double scale;
+
+  enlargementPainter(this.sides, this.scale);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    var radius = 100 + scale;
+    var radians = 0.0;
+    var angle = (math.pi * 2) / sides;
+
+    // screen's center
+    Offset screenCenter = Offset(size.width / 2, size.height / 2);
+    // translating entire canvas to ensure it behaves like a classical graph
+    canvas.translate(screenCenter.dx, screenCenter.dy);
+    canvas.scale(1, -1);
+
+    // object paints and paths
+    Paint ogPaint = Paint()
+      ..color = Colors.black
+      ..strokeWidth = 2
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+    Path ogPath = Path();
+
+    // shape Coordinates
+    List<Offset> original = [];
+
+    Offset startPoint =
+        Offset(radius * math.cos(radians), radius * math.sin(radians));
+    for (int i = 1; i <= sides; i++) {
+      double x = radius * math.cos(radians + angle * i) + 0;
+      double y = radius * math.sin(radians + angle * i) + 0;
+      original.add(Offset(x, y));
+    }
+    ogPath.addPolygon(original, true);
+    canvas.drawPath(ogPath, ogPaint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
   }
 }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-
-import '../../../../../../../../../../canvas/grid.dart';
-import '../../../../../../../../../../canvas/transformation_intro_painter.dart';
+// user defined imports
+import 'package:math_geometry/canvas/grid.dart';
 
 class Rotate extends StatefulWidget {
   @override
@@ -10,11 +9,12 @@ class Rotate extends StatefulWidget {
 }
 
 class _RotateState extends State<Rotate> {
-  var _sides = 3.0;
-  var _radius = 100.0;
-  var _radians = 0.0;
+  // positional variables
+  double _sides = 4;
+  double _radius = 4;
+  double _radians = 0.0;
 
-  var _position = 0.0;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +27,8 @@ class _RotateState extends State<Rotate> {
           Container(
             color: Colors.grey[400],
             child: CustomPaint(
-              foregroundPainter: ShapePainter(_sides, _radius, _radians, _position),
+              foregroundPainter:
+                  rotationPainer(_sides, _radius, _radians),
               painter: MyGridPainter(),
               child: Container(),
             ),
@@ -65,5 +66,51 @@ class _RotateState extends State<Rotate> {
         ]),
       ),
     );
+  }
+}
+
+// FOR PAINTING SHAPES
+class rotationPainer extends CustomPainter {
+  // positional variables
+  final double sides;
+  final double radians;
+  final double radius;
+  rotationPainer(this.sides, this.radius, this.radians);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    var angle = (math.pi * 2) / sides;
+
+    // screen's center
+    Offset screenCenter = Offset(size.width / 2, size.height / 2);
+    // translating entire canvas to ensure it behaves like a classical graph
+    canvas.translate(screenCenter.dx, screenCenter.dy);
+    canvas.scale(1, -1);
+
+    // object paints and paths
+    Paint ogPaint = Paint()
+      ..color = Colors.black
+      ..strokeWidth = 2
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+    Path ogPath = Path();
+
+    // shape Coordinates
+    List<Offset> original = [];
+
+    Offset startPoint =
+        Offset(radius * math.cos(radians), radius * math.sin(radians));
+    for (int i = 1; i <= sides; i++) {
+      double x = radius * math.cos(-radians + angle * i) + 0;
+      double y = radius * math.sin(-radians + angle * i) + 0;
+      original.add(Offset(x, y));
+    }
+    ogPath.addPolygon(original, true);
+    canvas.drawPath(ogPath, ogPaint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
   }
 }
