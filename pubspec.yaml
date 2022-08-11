@@ -78,6 +78,13 @@ flutter:
     - images/the_field.png
     - images/the_lake.png
     - images/math-set.jpg
+    - images/active_chapter.png
+    - images/icons/checkmark.png
+    - images/icons/hint.png
+    - images/icons/home.png
+    - images/icons/question.png
+    - images/icons/retry.png
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:math_geometry/themes/textStyles.dart';
-import 'package:math_geometry/widgets/inactiveTile.dart';
-import 'package:math_geometry/widgets/tile.dart';
+
+import '../../widgets/inactiveTile.dart';
+import '../../widgets/tile.dart';
 
 class Classes extends StatelessWidget {
   const Classes({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-      child: Container(
+
+
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+          body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
               children: [
                 const SizedBox(
-                  height: 200,
+                  height: 150,
                   child: Image(
                       fit: BoxFit.cover,
                       image: AssetImage("images/savannah_cropped.png")),
@@ -31,9 +35,9 @@ class Classes extends StatelessWidget {
                       children: [
                         IconButton(
                             onPressed: () {},
-                            icon: const Icon(Icons.person_pin_circle)),
+                            icon: const Icon(Icons.person_pin_circle), iconSize: 40, color: const Color.fromARGB(255, 60, 64, 58)),
                         IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.settings))
+                            onPressed: () {}, icon: const Icon(Icons.settings), iconSize: 40, color: const Color.fromARGB(255, 60, 64, 58))
                       ],
                     ),
                     Padding(
@@ -51,19 +55,31 @@ class Classes extends StatelessWidget {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 40),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    Text("Form 1"),
-                    Text("Form 2"),
-                    Text("Form 3"),
-                    Text("Form 4"),
-                  ]),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+            
+            Expanded(
+              child: Column(
+                children:  [
+                  SizedBox(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: TabBar(
+                        labelStyle: ThemeText.chapter,
+                        isScrollable: true,
+                        labelColor: Colors.black,
+                        unselectedLabelColor: Colors.grey,
+                        labelPadding: const EdgeInsets.only(left: 30, right: 20, bottom: 10, top: 10),
+                        indicator: Indicator(),
+                        tabs: const [Tab(text: "Form 1"), Tab(text: "Form 2"),Tab(text: "Form 3"), Tab(text: "Form 4")]),
+                    ),
+                  ),
+                  Expanded(
+                child: TabBarView(children: [
+                  const Text("1"),
+                  const Text("2"),
+                  Padding(
+              padding:  const EdgeInsets.symmetric(horizontal: 30),
               child: StaggeredGrid.count(
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
@@ -101,9 +117,39 @@ class Classes extends StatelessWidget {
                 ],
               ),
             ),
+                  const Text("4")
+                ]),
+              ),
+                ],
+              ),
+            ),
+            
           ],
         ),
-      ),
-    ));
+      )),
+    );
+  }
+}
+
+
+class Indicator extends Decoration{
+  
+  @override
+  BoxPainter createBoxPainter([VoidCallback? onChanged]){
+    return _TabUnderline();
+  }
+}
+
+class _TabUnderline extends BoxPainter {
+
+  @override
+  void paint(Canvas canvas, Offset offset, ImageConfiguration cfg){
+    Paint paint = Paint()
+    ..strokeWidth = 3
+    ..color = Colors.black;
+
+    Offset underlineOffset = offset + Offset(cfg.size!.width / 2, cfg.size!.height);
+
+    canvas.drawLine(Offset(underlineOffset.dx - 18,underlineOffset.dy - 10), Offset(underlineOffset.dx + 25,underlineOffset.dy - 10), paint);
   }
 }

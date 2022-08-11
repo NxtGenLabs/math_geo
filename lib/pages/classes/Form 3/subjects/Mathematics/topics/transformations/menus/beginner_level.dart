@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/themes/textStyles.dart';
-import 'package:math_geometry/widgets/option.dart';
 
 import '../../../../../../../../widgets/levelContainer.dart';
 
@@ -157,12 +156,26 @@ class BeginnerLevel extends StatelessWidget {
             Stack(
               alignment: AlignmentDirectional.center,
               children: [
-                SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 2,
-                    child: const Image(
-                        fit: BoxFit.cover,
-                        image: AssetImage("images/math-set.jpg"))),
+                Stack(
+                  children: [
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 2,
+                        child: const Image(
+                            fit: BoxFit.cover,
+                            image: AssetImage("images/the_field.png"))),
+                            Padding(
+                              padding: const EdgeInsets.all(30.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                   IconButton(onPressed: (){Navigator.pop(context);}, icon: const Icon(
+                                    Icons.chevron_left), iconSize: 40)
+                                ],
+                              ),
+                            ),
+                  ],
+                ),
                 const Text("The Field", style: ThemeText.levelHeader),
               ],
             ),

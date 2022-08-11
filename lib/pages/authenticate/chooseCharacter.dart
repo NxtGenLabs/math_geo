@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/actionButton.dart';
 
 class ChooseCharacter extends StatelessWidget {
@@ -44,7 +45,7 @@ class ChooseCharacter extends StatelessWidget {
                                         image: AssetImage(
                                             'images/male_character.png')),
                                   ),
-                                  Text("Name")
+                                  Text("Name", style: ThemeText.normal)
                                 ],
                               ),
                             ),
@@ -56,12 +57,15 @@ class ChooseCharacter extends StatelessWidget {
                   control: const SwiperControl(),
                 ),
               ),
-              ActionButton(
-                  text: "Continue",
-                  onPress: () {
-                    Navigator.pushNamed(
-                        context, './pages/authenticate/submitPage');
-                  })
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: ActionButton(
+                    text: "CONTINUE",
+                    onPress: () {
+                      Navigator.pushNamed(
+                          context, './pages/authenticate/submitPage');
+                    }),
+              )
             ],
           ),
         )));

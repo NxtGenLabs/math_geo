@@ -11,7 +11,7 @@ class _ScrollWheelState extends State<ScrollWheel> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
       height: size.height * 0.3,
       width: size.width * 0.1,
       child: ListWheelScrollView.useDelegate(

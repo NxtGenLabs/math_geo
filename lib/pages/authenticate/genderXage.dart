@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/actionButton.dart';
 import 'package:math_geometry/widgets/scrollWheel.dart';
 
@@ -19,14 +20,14 @@ class GenderXAge extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 40),
-              const Text('Select your gender'),
+              const Text('Select your gender', style: ThemeText.chapter,),
               SizedBox(
                 height: 300,
                 child: Swiper(
                   scale: 2,
                   layout: SwiperLayout.STACK,
                   itemCount: 3,
-                  itemWidth: MediaQuery.of(context).size.width + 2 * 250,
+                  itemWidth: MediaQuery.of(context).size.width + 2 * 350,
                   itemBuilder: (BuildContext context, index) {
                     return Stack(
                       children: [
@@ -63,7 +64,7 @@ class GenderXAge extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [Text('Whats your age:'), ScrollWheel()],
+                children: const [Text('Whats your age:', style: ThemeText.chapter), ScrollWheel()],
               ),
               ActionButton(
                   text: "CONTINUE",

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/levelContainer.dart';
-import '../../../../../../../../widgets/option.dart';
 import '../level/trainingStation/training_station.dart';
 import '../level/trainingStation/transforms/reflection.dart';
 import '../level/trainingStation/transforms/rotate.dart';
@@ -12,11 +11,11 @@ class TrainingStationLevel extends StatelessWidget {
   TrainingStationLevel({Key? key}) : super(key: key);
 
   final List<Levels> levels = [
-    Levels(level: 'All In One', levelRoute: const TrainingStation()),
-    Levels(level: 'Reflection', levelRoute: Reflection()),
-    Levels(level: 'Rotation', levelRoute: Rotate()),
-    Levels(level: 'Translation', levelRoute: const Translate()),
-    Levels(level: 'Enlargement', levelRoute: Enlarge()),
+    Levels(level: '1', levelRoute: const TrainingStation()),
+    Levels(level: '2', levelRoute: Reflection()),
+    Levels(level: '3', levelRoute: Rotate()),
+    Levels(level: '4', levelRoute: const Translate()),
+    Levels(level: '5', levelRoute: Enlarge()),
   ];
   @override
   Widget build(BuildContext context) {
@@ -28,12 +27,26 @@ class TrainingStationLevel extends StatelessWidget {
             Stack(
               alignment: AlignmentDirectional.center,
               children: [
-                SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 2,
-                    child: const Image(
-                        fit: BoxFit.cover,
-                        image: AssetImage("images/math-set.jpg"))),
+                Stack(
+                  children: [
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 2,
+                        child: const Image(
+                            fit: BoxFit.cover,
+                            image: AssetImage("images/training_station.png"))),
+                            Padding(
+                              padding: const EdgeInsets.all(30.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                   IconButton(onPressed: (){Navigator.pop(context);}, icon: const Icon(
+                                    Icons.chevron_left), iconSize: 40)
+                                ],
+                              ),
+                            ),
+                  ],
+                ),
                 const Text("Training Station", style: ThemeText.levelHeader),
               ],
             ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/chapterTile.dart';
 
+import '../../../../../../widgets/activeChapterTile.dart';
+
 class Topics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,12 +16,26 @@ class Topics extends StatelessWidget {
             Stack(
               alignment: AlignmentDirectional.center,
               children: [
-                SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 2,
-                    child: const Image(
-                        fit: BoxFit.cover,
-                        image: AssetImage("images/math-set.jpg"))),
+                Stack(
+                  children: [
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 2,
+                        child: const Image(
+                            fit: BoxFit.cover,
+                            image: AssetImage("images/math-set.jpg"))),
+                            Padding(
+                              padding: const EdgeInsets.all(30.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                   IconButton(onPressed: (){Navigator.pop(context);}, icon: const Icon(
+                                    Icons.chevron_left), iconSize: 40)
+                                ],
+                              ),
+                            ),
+                  ],
+                ),
                 const Text("Mathematics", style: ThemeText.levelHeader),
               ],
             ),
@@ -43,11 +59,14 @@ class Topics extends StatelessWidget {
                         padding: EdgeInsets.symmetric(vertical: 40),
                         child: Text("Chapters", style: ThemeText.header2),
                       ),
-                      ChapterTile(
-                          onPress: () {},
-                          chapter:
-                              "8. Circle II: Angle properties of a circle."),
-                      ChapterTile(
+                      Expanded(
+                        child: ListView(
+                          children: [
+                            ChapterTile(
+                                onPress: () {},
+                                chapter:
+                                    "8. Circle II: Angle properties of a circle."),
+                                    ActiveChapterTile(
                           onPress: () {
                             Navigator.pushNamed(
                                 context, './pages/classes/transformations');
@@ -60,6 +79,10 @@ class Topics extends StatelessWidget {
                       ChapterTile(
                           onPress: () {},
                           chapter: "11. Change of subject of the formula")
+                          ],
+                        ),
+                      ),
+                      
                     ],
                   ),
                 ),

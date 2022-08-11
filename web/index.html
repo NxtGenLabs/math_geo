@@ -40,19 +40,23 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+
   <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        }
-      }).then(function(engineInitializer) {
-        return engineInitializer.initializeEngine();
-      }).then(function(appRunner) {
-        return appRunner.runApp();
-      });
+    window.addEventListener('load', function (ev) {
+        // Download main.dart.js
+        _flutter.loader.loadEntrypoint({
+            serviceWorker: {
+                serviceWorkerVersion: serviceWorkerVersion,
+            }
+        }).then(function (engineInitializer) {
+            // Initialize the Flutter engine
+            return engineInitializer.initializeEngine();
+        }).then(function (appRunner) {
+            // Run the app
+            return appRunner.runApp();
+        });
     });
-  </script>
+ </script>
+ 
 </body>
 </html>

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:math_geometry/themes/textStyles.dart';
 
 class CustomAppBar extends StatefulWidget {
   final String level;
@@ -57,16 +58,16 @@ class _CustomAppBarState extends State<CustomAppBar> {
                         Navigator.pop(context);
                         _startCountDown();
                       },
-                      child: Text('Attempt'),
                       color: Colors.teal,
+                      child: const Text('Attempt'),
                     ),
                     MaterialButton(
                       onPressed: () {
                         Navigator.pop(context);
                         Navigator.pop(context);
                       },
-                      child: Text('Quit'),
                       color: Colors.red[800],
+                      child: const Text('Quit'),
                     )
                   ],
                 )
@@ -94,8 +95,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      child: Text('Close'),
                       color: Colors.red[800],
+                      child: const Text('Close'),
                     )
                   ],
                 )
@@ -111,15 +112,15 @@ class _CustomAppBarState extends State<CustomAppBar> {
           builder: (context) {
             return AlertDialog(
               backgroundColor: Colors.grey[400],
-              title: Text('Hint'),
+              title: const Text('Hint'),
               content: Text(widget.hint),
               actions: [
                 MaterialButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text('Close'),
                   color: Colors.red[800],
+                  child: const Text('Close'),
                 )
               ],
             );
@@ -134,16 +135,16 @@ class _CustomAppBarState extends State<CustomAppBar> {
             builder: (context) {
               return AlertDialog(
                 backgroundColor: Colors.grey[400],
-                title: Text('Correct'),
-                content: Text("Good job!!"),
+                title: const Text('Correct'),
+                content: const Text("Good job!!"),
                 actions: [
                   MaterialButton(
                     onPressed: () {
                       Navigator.pop(context);
                       Navigator.pop(context);
                     },
-                    child: Text('Next'),
                     color: Colors.teal,
+                    child: const Text('Next'),
                   )
                 ],
               );
@@ -154,8 +155,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
             builder: (context) {
               return AlertDialog(
                 backgroundColor: Colors.grey[400],
-                title: Text('Wrong'),
-                content: Text("Ooo!! you just missed it, try again"),
+                title: const Text('Wrong'),
+                content: const Text("Ooo!! you just missed it, try again"),
                 actions: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -165,15 +166,15 @@ class _CustomAppBarState extends State<CustomAppBar> {
                           retries++;
                           Navigator.pop(context);
                         },
-                        child: Text('Retry'),
                         color: Colors.teal,
+                        child: const Text('Retry'),
                       ),
                       MaterialButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: Text('Quit'),
                         color: Colors.red[800],
+                        child: const Text('Quit'),
                       )
                     ],
                   ),
@@ -185,7 +186,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
     return Container(
       decoration: const BoxDecoration(
-          color: Colors.teal,
+          color: Color.fromARGB(255, 242, 242, 242),
           borderRadius: BorderRadius.all(Radius.circular(50))),
       margin: const EdgeInsets.only(top: 15),
       width: 800,
@@ -196,7 +197,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         children: [
           Text(
             initTime.toString(),
-            style: TextStyle(color: Colors.grey[300]),
+            style: ThemeText.chapter,
           ),
           IconButton(
             icon: const Icon(Icons.question_mark),
