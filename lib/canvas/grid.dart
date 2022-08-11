@@ -25,12 +25,12 @@ class MyGridPainter extends CustomPainter {
     Paint gridPaint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1
-      ..color = Colors.grey;
+      ..color = const Color.fromARGB(255, 60, 64, 58);
 
     Paint centralCordPaint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3
-      ..color = Colors.grey;
+      ..color = const Color.fromARGB(255, 60, 64, 58);
 
     Path gridLines = Path();
     Path centralCoord = Path();

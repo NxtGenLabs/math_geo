@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/pages/classes/Form%203/subjects/Mathematics/topics/transformations/menus/beginner_level.dart';
-import 'dart:math' as math;
 
 import '../pages/classes/Form 3/subjects/Mathematics/topics/transformations/level/beginner.dart';
 
@@ -42,6 +41,7 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
   BeginnerLevel levels = BeginnerLevel();
   Beginner level = Beginner();
 
+  @override
   bool hitTest(Offset position) => true;
 
   @override
@@ -68,13 +68,13 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
     }
 
     Paint strokePaint = Paint();
-    strokePaint.color = Colors.teal;
+    strokePaint.color = Colors.black;
     strokePaint.style = PaintingStyle.stroke;
     strokePaint.strokeWidth = 4;
 
     Paint pointPaint = Paint();
     pointPaint.strokeWidth = 10;
-    pointPaint.color = Colors.teal;
+    pointPaint.color = Colors.white;
     pointPaint.strokeCap = StrokeCap.round;
 
     Path path = Path();

@@ -4,21 +4,21 @@ import 'package:math_geometry/widgets/worldTile.dart';
 
 class Transformations extends StatelessWidget {
   final List _worlds = [
-    WorldTile(
+    const WorldTile(
       image: "images/training_station.png",
       title: "Training Station",
-      color: const Color.fromARGB(255, 204, 205, 251),
+      color: Color.fromARGB(255, 204, 205, 251),
       route: './pages/topics/transformations/menus/training_station_level',
     ),
-    WorldTile(
+    const WorldTile(
         image: "images/the_field.png",
         title: "The Field",
-        color: const Color.fromARGB(255, 106, 117, 21),
+        color: Color.fromARGB(255, 106, 117, 21),
         route: './pages/topics/transformations/menus/beginner_level'),
-    WorldTile(
+    const WorldTile(
         image: "images/the_lake.png",
         title: "The Lake",
-        color: const Color.fromARGB(255, 244, 181, 168),
+        color: Color.fromARGB(255, 244, 181, 168),
         route: './pages/topics/transformations/menus/intermediate_level')
   ];
 
@@ -39,17 +39,21 @@ class Transformations extends StatelessWidget {
                         height: MediaQuery.of(context).size.height / 2,
                         child: const Image(
                             fit: BoxFit.cover,
-                            image: AssetImage("images/math-set.jpg"))),
-                            Padding(
-                              padding: const EdgeInsets.all(30.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                   IconButton(onPressed: (){Navigator.pop(context);}, icon: const Icon(
-                                    Icons.chevron_left), iconSize: 40)
-                                ],
-                              ),
-                            ),
+                            image: AssetImage("images/math-set.png"))),
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(Icons.chevron_left),
+                              iconSize: 40)
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 const Text("Transformations", style: ThemeText.levelHeader),

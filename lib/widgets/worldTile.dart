@@ -6,7 +6,7 @@ class WorldTile extends StatelessWidget {
   final String title;
   final String route;
   final Color color;
-  WorldTile(
+  const WorldTile(
       {required this.image,
       required this.title,
       required this.color,
@@ -25,7 +25,10 @@ class WorldTile extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(5))),
         child: Stack(
           children: [
-            Image(image: AssetImage(image)),
+            SizedBox(
+                height: 350,
+                width: MediaQuery.of(context).size.width - 50,
+                child: Image(fit: BoxFit.cover, image: AssetImage(image))),
             Center(
               child: Container(
                 height: 50,

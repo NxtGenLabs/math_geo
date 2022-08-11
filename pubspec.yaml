@@ -65,6 +65,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/nxtlogo.png
+    - images/bg.png
+    - images/rotated_bg.png
+    - images/dummy_field.png
     - images/male_character.png
     - images/submit_bg.jpg
     - images/savannah.jpg
@@ -77,13 +80,14 @@ flutter:
     - images/training_station.png
     - images/the_field.png
     - images/the_lake.png
-    - images/math-set.jpg
+    - images/math-set.png
     - images/active_chapter.png
     - images/icons/checkmark.png
     - images/icons/hint.png
     - images/icons/home.png
     - images/icons/question.png
     - images/icons/retry.png
+    
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

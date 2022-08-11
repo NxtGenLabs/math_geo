@@ -184,81 +184,118 @@ class _CustomAppBarState extends State<CustomAppBar> {
       }
     }
 
-    return Container(
-      decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 242, 242, 242),
-          borderRadius: BorderRadius.all(Radius.circular(50))),
-      margin: const EdgeInsets.only(top: 15),
-      width: 800,
-      height: 70,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            initTime.toString(),
-            style: ThemeText.chapter,
-          ),
-          IconButton(
-            icon: const Icon(Icons.question_mark),
-            color: Colors.grey[300],
-            onPressed: _showDialog,
-          ),
-          IconButton(
-            onPressed: () {
-              _showHint();
-              usedHint = true;
-            },
-            icon: const Icon(Icons.lightbulb_outline),
-            color: Colors.grey[300],
-          ),
-          IconButton(
-            icon: const Icon(Icons.person_pin_circle_outlined),
-            color: Colors.grey[300],
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.check_circle_outline),
-            color: Colors.grey[300],
-            onPressed: () {
-              if (widget.pick == widget.answer) {
-                widget.score++;
-                setState(() {
-                  isStartTimer = true;
-                  isCorrect = true;
-                });
-              } else {
-                setState(() {
-                  isCorrect = false;
-                });
-              }
-              _showResult();
+    return Stack(
+      alignment: AlignmentDirectional.topCenter,
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 242, 242, 242),
+              borderRadius: BorderRadius.all(Radius.circular(20))),
+          margin: const EdgeInsets.only(top: 15),
+          width: 600,
+          height: 70,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "${initTime}s",
+                    style: ThemeText.header2,
+                  ),
+                  const SizedBox(width: 5),
+                  Container(
+                    height: 50,
+                    width: 1,
+                    color: const Color.fromARGB(255, 60, 64, 58),
+                  )
+                ],
+              ),
+              GestureDetector(
+                onTap: _showDialog,
+                child: const SizedBox(
+                    height: 40,
+                    width: 40,
+                    child:
+                        Image(image: AssetImage("images/icons/question.png"))),
+              ),
+              GestureDetector(
+                onTap: () {
+                  _showHint();
+                  usedHint = true;
+                },
+                child: const SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: Image(image: AssetImage("images/icons/hint.png"))),
+              ),
+              IconButton(
+                icon: const Icon(Icons.person_pin_circle_outlined),
+                color: Colors.grey[300],
+                onPressed: () {},
+              ),
+              GestureDetector(
+                onTap: () {
+                  if (widget.pick == widget.answer) {
+                    widget.score++;
+                    setState(() {
+                      isStartTimer = true;
+                      isCorrect = true;
+                    });
+                  } else {
+                    setState(() {
+                      isCorrect = false;
+                    });
+                  }
+                  _showResult();
 
-              if (initTime < widget.timeLimit) {
-                widget.score++;
-              }
-              if (retries == 0) {
-                widget.score++;
-              }
-              if (!usedHint) {
-                widget.score++;
-              }
-              print(widget.score);
-              print(retries);
-            },
+                  if (initTime < widget.timeLimit) {
+                    widget.score++;
+                  }
+                  if (retries == 0) {
+                    widget.score++;
+                  }
+                  if (!usedHint) {
+                    widget.score++;
+                  }
+                },
+                child: const SizedBox(
+                    height: 40,
+                    width: 40,
+                    child:
+                        Image(image: AssetImage("images/icons/checkmark.png"))),
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: const SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: Image(image: AssetImage("images/icons/retry.png"))),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: const SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: Image(image: AssetImage("images/icons/home.png"))),
+              )
+            ],
           ),
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            color: Colors.grey[300],
-            onPressed: () {},
-          ),
-          IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.home_outlined),
-            color: Colors.grey[300],
-          ),
-        ],
-      ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 15),
+          padding: const EdgeInsets.all(20),
+          height: 120,
+          width: 120,
+          decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 242, 242, 242),
+              borderRadius: BorderRadius.all(Radius.circular(60))),
+          child: const Image(image: AssetImage("images/male_character.png")),
+        )
+      ],
     );
   }
 }

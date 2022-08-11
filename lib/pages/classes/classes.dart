@@ -10,8 +10,6 @@ class Classes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -21,9 +19,10 @@ class Classes extends StatelessWidget {
           children: [
             Stack(
               children: [
-                const SizedBox(
+                SizedBox(
                   height: 150,
-                  child: Image(
+                  width: MediaQuery.of(context).size.width,
+                  child: const Image(
                       fit: BoxFit.cover,
                       image: AssetImage("images/savannah_cropped.png")),
                 ),
@@ -35,9 +34,14 @@ class Classes extends StatelessWidget {
                       children: [
                         IconButton(
                             onPressed: () {},
-                            icon: const Icon(Icons.person_pin_circle), iconSize: 40, color: const Color.fromARGB(255, 60, 64, 58)),
+                            icon: const Icon(Icons.person_pin_circle),
+                            iconSize: 40,
+                            color: const Color.fromARGB(255, 60, 64, 58)),
                         IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.settings), iconSize: 40, color: const Color.fromARGB(255, 60, 64, 58))
+                            onPressed: () {},
+                            icon: const Icon(Icons.settings),
+                            iconSize: 40,
+                            color: const Color.fromARGB(255, 60, 64, 58))
                       ],
                     ),
                     Padding(
@@ -55,75 +59,82 @@ class Classes extends StatelessWidget {
                 ),
               ],
             ),
-            
-            Expanded(
+            SizedBox(
+              height: 50,
+              width: MediaQuery.of(context).size.width,
               child: Column(
-                children:  [
+                children: [
                   SizedBox(
                     height: 50,
                     width: MediaQuery.of(context).size.width,
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: TabBar(
-                        labelStyle: ThemeText.chapter,
-                        isScrollable: true,
-                        labelColor: Colors.black,
-                        unselectedLabelColor: Colors.grey,
-                        labelPadding: const EdgeInsets.only(left: 30, right: 20, bottom: 10, top: 10),
-                        indicator: Indicator(),
-                        tabs: const [Tab(text: "Form 1"), Tab(text: "Form 2"),Tab(text: "Form 3"), Tab(text: "Form 4")]),
+                          labelStyle: ThemeText.chapter,
+                          isScrollable: true,
+                          labelColor: Colors.black,
+                          unselectedLabelColor: Colors.grey,
+                          labelPadding: const EdgeInsets.only(
+                              left: 30, right: 20, bottom: 10, top: 10),
+                          indicator: Indicator(),
+                          tabs: const [
+                            Tab(text: "Form 1"),
+                            Tab(text: "Form 2"),
+                            Tab(text: "Form 3"),
+                            Tab(text: "Form 4")
+                          ]),
                     ),
                   ),
                   Expanded(
-                child: TabBarView(children: [
-                  const Text("1"),
-                  const Text("2"),
-                  Padding(
-              padding:  const EdgeInsets.symmetric(horizontal: 30),
-              child: StaggeredGrid.count(
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                crossAxisCount: 4,
-                children: [
-                  StaggeredGridTile.count(
-                      crossAxisCellCount: 2,
-                      mainAxisCellCount: 2,
-                      child: Tile(
-                        subject: "Mathematics",
-                        onPressed: () {
-                          Navigator.pushNamed(context, './pages/topics/main');
-                        },
-                      )),
-                  StaggeredGridTile.count(
-                      crossAxisCellCount: 2,
-                      mainAxisCellCount: 1.7,
-                      child: InactiveTile(
-                        subject: "Physics",
-                        image: "images/physics.png",
-                      )),
-                  StaggeredGridTile.count(
-                      crossAxisCellCount: 2,
-                      mainAxisCellCount: 2,
-                      child: InactiveTile(
-                        subject: "Biology",
-                        image: "images/biology.png",
-                      )),
-                  StaggeredGridTile.count(
-                      crossAxisCellCount: 2,
-                      mainAxisCellCount: 1.7,
-                      child: InactiveTile(
-                          subject: "Agriculture",
-                          image: "images/agriculture.png"))
+                    child: TabBarView(children: [
+                      const Text("1"),
+                      const Text("2"),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: StaggeredGrid.count(
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          crossAxisCount: 4,
+                          children: [
+                            StaggeredGridTile.count(
+                                crossAxisCellCount: 2,
+                                mainAxisCellCount: 2,
+                                child: Tile(
+                                  subject: "Mathematics",
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, './pages/topics/main');
+                                  },
+                                )),
+                            StaggeredGridTile.count(
+                                crossAxisCellCount: 2,
+                                mainAxisCellCount: 1.7,
+                                child: InactiveTile(
+                                  subject: "Physics",
+                                  image: "images/physics.png",
+                                )),
+                            StaggeredGridTile.count(
+                                crossAxisCellCount: 2,
+                                mainAxisCellCount: 2,
+                                child: InactiveTile(
+                                  subject: "Biology",
+                                  image: "images/biology.png",
+                                )),
+                            StaggeredGridTile.count(
+                                crossAxisCellCount: 2,
+                                mainAxisCellCount: 1.7,
+                                child: InactiveTile(
+                                    subject: "Agriculture",
+                                    image: "images/agriculture.png"))
+                          ],
+                        ),
+                      ),
+                      const Text("4")
+                    ]),
+                  ),
                 ],
               ),
             ),
-                  const Text("4")
-                ]),
-              ),
-                ],
-              ),
-            ),
-            
           ],
         ),
       )),
@@ -131,25 +142,24 @@ class Classes extends StatelessWidget {
   }
 }
 
-
-class Indicator extends Decoration{
-  
+class Indicator extends Decoration {
   @override
-  BoxPainter createBoxPainter([VoidCallback? onChanged]){
+  BoxPainter createBoxPainter([VoidCallback? onChanged]) {
     return _TabUnderline();
   }
 }
 
 class _TabUnderline extends BoxPainter {
-
   @override
-  void paint(Canvas canvas, Offset offset, ImageConfiguration cfg){
+  void paint(Canvas canvas, Offset offset, ImageConfiguration cfg) {
     Paint paint = Paint()
-    ..strokeWidth = 3
-    ..color = Colors.black;
+      ..strokeWidth = 3
+      ..color = Colors.black;
 
-    Offset underlineOffset = offset + Offset(cfg.size!.width / 2, cfg.size!.height);
+    Offset underlineOffset =
+        offset + Offset(cfg.size!.width / 2, cfg.size!.height);
 
-    canvas.drawLine(Offset(underlineOffset.dx - 18,underlineOffset.dy - 10), Offset(underlineOffset.dx + 25,underlineOffset.dy - 10), paint);
+    canvas.drawLine(Offset(underlineOffset.dx - 18, underlineOffset.dy - 10),
+        Offset(underlineOffset.dx + 25, underlineOffset.dy - 10), paint);
   }
 }

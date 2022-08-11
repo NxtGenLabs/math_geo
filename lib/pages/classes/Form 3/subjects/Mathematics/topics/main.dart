@@ -23,17 +23,21 @@ class Topics extends StatelessWidget {
                         height: MediaQuery.of(context).size.height / 2,
                         child: const Image(
                             fit: BoxFit.cover,
-                            image: AssetImage("images/math-set.jpg"))),
-                            Padding(
-                              padding: const EdgeInsets.all(30.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                   IconButton(onPressed: (){Navigator.pop(context);}, icon: const Icon(
-                                    Icons.chevron_left), iconSize: 40)
-                                ],
-                              ),
-                            ),
+                            image: AssetImage("images/math-set.png"))),
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(Icons.chevron_left),
+                              iconSize: 40)
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 const Text("Mathematics", style: ThemeText.levelHeader),
@@ -66,23 +70,22 @@ class Topics extends StatelessWidget {
                                 onPress: () {},
                                 chapter:
                                     "8. Circle II: Angle properties of a circle."),
-                                    ActiveChapterTile(
-                          onPress: () {
-                            Navigator.pushNamed(
-                                context, './pages/classes/transformations');
-                          },
-                          chapter: "9. Transformations."),
-                      ChapterTile(
-                          onPress: () {},
-                          chapter:
-                              "10. Exponential and logarithimic functions"),
-                      ChapterTile(
-                          onPress: () {},
-                          chapter: "11. Change of subject of the formula")
+                            ActiveChapterTile(
+                                onPress: () {
+                                  Navigator.pushNamed(context,
+                                      './pages/classes/transformations');
+                                },
+                                chapter: "9. Transformations."),
+                            ChapterTile(
+                                onPress: () {},
+                                chapter:
+                                    "10. Exponential and logarithimic functions"),
+                            ChapterTile(
+                                onPress: () {},
+                                chapter: "11. Change of subject of the formula")
                           ],
                         ),
                       ),
-                      
                     ],
                   ),
                 ),
