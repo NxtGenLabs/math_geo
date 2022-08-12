@@ -4,6 +4,8 @@ import 'dart:math' as math;
 import 'package:math_geometry/canvas/grid.dart';
 import 'package:math_geometry/canvas/transformation_intro_painter.dart';
 
+import '../../../../../../../../../widgets/customAppbar.dart';
+
 class TrainingStation extends StatefulWidget {
   const TrainingStation({Key? key}) : super(key: key);
 
@@ -21,9 +23,6 @@ class _TrainingStationState extends State<TrainingStation> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: const Text('Transformations Visualizer'),
-      ),
       body: SafeArea(
         child: Stack(children: [
           Container(
@@ -108,6 +107,10 @@ class _TrainingStationState extends State<TrainingStation> {
                 ),
               ],
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [CustomAppBar('', '', '', '', '', 0, () {}, 0)],
           )
         ]),
       ),

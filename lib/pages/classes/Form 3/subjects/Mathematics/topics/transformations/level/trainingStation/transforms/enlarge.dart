@@ -3,6 +3,8 @@ import 'dart:math' as math;
 // user defined imports
 import 'package:math_geometry/canvas/grid.dart';
 
+import '../../../../../../../../../../widgets/customAppbar.dart';
+
 class Enlarge extends StatefulWidget {
   @override
   _EnlargeState createState() => _EnlargeState();
@@ -10,45 +12,49 @@ class Enlarge extends StatefulWidget {
 
 class _EnlargeState extends State<Enlarge> {
   // positional variables
-  double _sides = 3;
+  final double _sides = 3;
   double _scale = 0.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Reflection'),
-      ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Expanded(
-              child: CustomPaint(
-                painter: MyGridPainter(),
-                foregroundPainter: enlargementPainter(_sides, _scale),
-                child: Container(),
-              ),
-            ),
-            // for the  enlargement slider
-            const Padding(
-              padding: EdgeInsets.only(left: 16.0),
-              child: Center(
-                child: Text(
-                  'Enlarge',
-                  style: TextStyle(fontSize: 20),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: CustomPaint(
+                    painter: MyGridPainter(),
+                    foregroundPainter: enlargementPainter(_sides, _scale),
+                    child: Container(),
+                  ),
                 ),
-              ),
+                // for the  enlargement slider
+                const Padding(
+                  padding: EdgeInsets.only(left: 16.0),
+                  child: Center(
+                    child: Text(
+                      'Enlarge',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+                Slider(
+                  value: _scale,
+                  min: -MediaQuery.of(context).size.width / 15,
+                  max: MediaQuery.of(context).size.width / 15,
+                  onChanged: (value) {
+                    setState(() {
+                      _scale = value;
+                    });
+                  },
+                ),
+              ],
             ),
-            Slider(
-              value: _scale,
-              min: -MediaQuery.of(context).size.width / 15,
-              max: MediaQuery.of(context).size.width / 15,
-              onChanged: (value) {
-                setState(() {
-                  _scale = value;
-                });
-              },
-            ),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [CustomAppBar('', '', '', '', '', 0, () {}, 0)])
           ],
         ),
       ),

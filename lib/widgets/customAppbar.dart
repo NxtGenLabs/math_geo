@@ -293,7 +293,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
           decoration: const BoxDecoration(
               color: Color.fromARGB(255, 242, 242, 242),
               borderRadius: BorderRadius.all(Radius.circular(60))),
-          child: const Image(image: AssetImage("images/male_character.png")),
+          child: const Image(
+              image: AssetImage("images/characters/male_character.png")),
         )
       ],
     );

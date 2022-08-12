@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:math_geometry/services/auth.dart';
-import 'package:math_geometry/widgets/option.dart';
 
 import '../themes/textStyles.dart';
 
 class LandingPage extends StatelessWidget {
-  final AuthService _auth = AuthService();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

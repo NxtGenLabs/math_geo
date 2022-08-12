@@ -3,6 +3,8 @@ import 'dart:math' as math;
 // user defined imports
 import 'package:math_geometry/canvas/grid.dart';
 
+import '../../../../../../../../../../widgets/customAppbar.dart';
+
 class Reflection extends StatefulWidget {
   @override
   _ReflectionState createState() => _ReflectionState();
@@ -10,7 +12,7 @@ class Reflection extends StatefulWidget {
 
 class _ReflectionState extends State<Reflection> {
   // reflection types
-  var _reflectionsTypes = [
+  final _reflectionsTypes = [
     'Reflection Across Y-axis',
     'Reflection Across X-axis',
     'Reflection Across Y = X',
@@ -29,108 +31,112 @@ class _ReflectionState extends State<Reflection> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Reflection'),
-      ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Expanded(
-              child: CustomPaint(
-                painter: MyGridPainter(),
-                foregroundPainter: reflectionPainter(_moveMidline, _moveShapeByY,
-                    _moveShapeByX, _reflectionTypeChecker),
-                child: Container(),
-              ),
-            ),
-            // dropdown menu for the selector
-            Center(
-              child: DropdownButton(
-                value: defaultReflectionType,
-                icon: const Icon(Icons.keyboard_arrow_down),
-                items: _reflectionsTypes.map((String types) {
-                  return DropdownMenuItem(value: types, child: Text(types));
-                }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    defaultReflectionType = newValue!;
-                    switch (newValue) {
-                      case 'Reflection Across Y-axis':
-                        {
-                          _reflectionTypeChecker = 1;
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: CustomPaint(
+                    painter: MyGridPainter(),
+                    foregroundPainter: reflectionPainter(_moveMidline,
+                        _moveShapeByY, _moveShapeByX, _reflectionTypeChecker),
+                    child: Container(),
+                  ),
+                ),
+                // dropdown menu for the selector
+                Center(
+                  child: DropdownButton(
+                    value: defaultReflectionType,
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: _reflectionsTypes.map((String types) {
+                      return DropdownMenuItem(value: types, child: Text(types));
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        defaultReflectionType = newValue!;
+                        switch (newValue) {
+                          case 'Reflection Across Y-axis':
+                            {
+                              _reflectionTypeChecker = 1;
+                            }
+                            break;
+                          case 'Reflection Across X-axis':
+                            {
+                              _reflectionTypeChecker = 2;
+                            }
+                            break;
+                          case 'Reflection Across Y = X':
+                            {
+                              _reflectionTypeChecker = 3;
+                            }
+                            break;
+                          case 'Reflection Across Y = -X':
+                            {
+                              _reflectionTypeChecker = 4;
+                            }
+                            break;
+                          default:
+                            {
+                              _reflectionTypeChecker = 1;
+                            }
+                            break;
                         }
-                        break;
-                      case 'Reflection Across X-axis':
-                        {
-                          _reflectionTypeChecker = 2;
-                        }
-                        break;
-                      case 'Reflection Across Y = X':
-                        {
-                          _reflectionTypeChecker = 3;
-                        }
-                        break;
-                      case 'Reflection Across Y = -X':
-                        {
-                          _reflectionTypeChecker = 4;
-                        }
-                        break;
-                      default:
-                        {
-                          _reflectionTypeChecker = 1;
-                        }
-                        break;
-                    }
-                  });
-                },
-              ),
+                      });
+                    },
+                  ),
+                ),
+                // for the yaxis slider
+                const Padding(
+                  padding: EdgeInsets.only(left: 16.0),
+                  child: Text('move by y'),
+                ),
+                Slider(
+                  value: _moveShapeByY,
+                  min: -MediaQuery.of(context).size.width / 2.5,
+                  max: MediaQuery.of(context).size.width / 2.5,
+                  onChanged: (value) {
+                    setState(() {
+                      _moveShapeByY = value;
+                    });
+                  },
+                ),
+                // for the  xaxis slider
+                const Padding(
+                  padding: EdgeInsets.only(left: 16.0),
+                  child: Text('move by x'),
+                ),
+                Slider(
+                  value: _moveShapeByX,
+                  min: -MediaQuery.of(context).size.height / 3,
+                  max: MediaQuery.of(context).size.height / 3,
+                  onChanged: (value) {
+                    setState(() {
+                      _moveShapeByX = value;
+                    });
+                  },
+                ),
+                // for the  midline slider
+                const Padding(
+                  padding: EdgeInsets.only(left: 16.0),
+                  child: Text('move by x'),
+                ),
+                Slider(
+                  value: _moveMidline,
+                  min: -MediaQuery.of(context).size.height / 3,
+                  max: MediaQuery.of(context).size.height / 3,
+                  onChanged: (value) {
+                    setState(() {
+                      _moveMidline = value;
+                    });
+                  },
+                ),
+              ],
             ),
-            // for the yaxis slider
-            const Padding(
-              padding: EdgeInsets.only(left: 16.0),
-              child: Text('move by y'),
-            ),
-            Slider(
-              value: _moveShapeByY,
-              min: -MediaQuery.of(context).size.width / 2.5,
-              max: MediaQuery.of(context).size.width / 2.5,
-              onChanged: (value) {
-                setState(() {
-                  _moveShapeByY = value;
-                });
-              },
-            ),
-            // for the  xaxis slider
-            const Padding(
-              padding: EdgeInsets.only(left: 16.0),
-              child: Text('move by x'),
-            ),
-            Slider(
-              value: _moveShapeByX,
-              min: -MediaQuery.of(context).size.height / 3,
-              max: MediaQuery.of(context).size.height / 3,
-              onChanged: (value) {
-                setState(() {
-                  _moveShapeByX = value;
-                });
-              },
-            ),
-            // for the  midline slider
-            const Padding(
-              padding: EdgeInsets.only(left: 16.0),
-              child: Text('move by x'),
-            ),
-            Slider(
-              value: _moveMidline,
-              min: -MediaQuery.of(context).size.height / 3,
-              max: MediaQuery.of(context).size.height / 3,
-              onChanged: (value) {
-                setState(() {
-                  _moveMidline = value;
-                });
-              },
-            ),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [CustomAppBar('', '', '', '', '', 0, () {}, 0)])
           ],
         ),
       ),

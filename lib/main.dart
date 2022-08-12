@@ -14,10 +14,9 @@ import 'package:math_geometry/pages/classes/classes.dart';
 import 'package:math_geometry/pages/landing.dart';
 
 void main() {
-
   runApp(MaterialApp(
     theme: ThemeData(primarySwatch: Colors.teal),
-    home: const Classes(),
+    home: LandingPage(),
     routes: {
       './pages/classes/transformations': (context) => Transformations(),
       './pages/classes/classes': (context) => const Classes(),

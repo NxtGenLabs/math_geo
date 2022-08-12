@@ -3,6 +3,8 @@ import 'dart:math' as math;
 // user defined imports
 import 'package:math_geometry/canvas/grid.dart';
 
+import '../../../../../../../../../../widgets/customAppbar.dart';
+
 class Rotate extends StatefulWidget {
   @override
   _RotateState createState() => _RotateState();
@@ -10,25 +12,20 @@ class Rotate extends StatefulWidget {
 
 class _RotateState extends State<Rotate> {
   // positional variables
-  double _sides = 4;
-  double _radius = 4;
+  final double _sides = 4;
+  final double _radius = 4;
   double _radians = 0.0;
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: const Text('Transformations Visualizer'),
-      ),
       body: SafeArea(
         child: Stack(children: [
           Container(
             color: Colors.grey[400],
             child: CustomPaint(
-              foregroundPainter:
-                  rotationPainer(_sides, _radius, _radians),
+              foregroundPainter: rotationPainer(_sides, _radius, _radians),
               painter: MyGridPainter(),
               child: Container(),
             ),
@@ -62,6 +59,10 @@ class _RotateState extends State<Rotate> {
                 ),
               ],
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [CustomAppBar('', '', '', '', '', 0, () {}, 0)],
           )
         ]),
       ),

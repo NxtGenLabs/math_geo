@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/actionButton.dart';
+import 'package:math_geometry/widgets/characterCard.dart';
 import 'package:math_geometry/widgets/scrollWheel.dart';
 
 class GenderXAge extends StatelessWidget {
@@ -9,6 +10,11 @@ class GenderXAge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<CharacterCard> characters = [
+      const CharacterCard("images/characters/female_character.png", "Female"),
+      const CharacterCard("images/characters/male_character.png", "Male"),
+      const CharacterCard("images/characters/other.png", "Other")
+    ];
     return (Scaffold(
       body: SafeArea(
         child: Container(
@@ -20,51 +26,29 @@ class GenderXAge extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 40),
-              const Text('Select your gender', style: ThemeText.chapter,),
+              const Text(
+                'Select your gender',
+                style: ThemeText.chapter,
+              ),
               SizedBox(
                 height: 300,
                 child: Swiper(
                   scale: 2,
                   layout: SwiperLayout.STACK,
-                  itemCount: 3,
+                  itemCount: characters.length,
                   itemWidth: MediaQuery.of(context).size.width + 2 * 350,
                   itemBuilder: (BuildContext context, index) {
-                    return Stack(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: 288,
-                              width: 230,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                      color: const Color.fromARGB(
-                                          50, 105, 105, 105))),
-                              child: Column(
-                                children: const [
-                                  Padding(
-                                    padding: EdgeInsets.all(40.0),
-                                    child: Image(
-                                        image: AssetImage(
-                                            'images/male_character.png')),
-                                  ),
-                                  Text("Male")
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    );
+                    return characters[index];
                   },
                   control: const SwiperControl(),
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [Text('Whats your age:', style: ThemeText.chapter), ScrollWheel()],
+                children: const [
+                  Text('Whats your age:', style: ThemeText.chapter),
+                  ScrollWheel()
+                ],
               ),
               ActionButton(
                   text: "CONTINUE",

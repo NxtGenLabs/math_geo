@@ -3,6 +3,8 @@ import 'dart:math' as math;
 // user defined imports
 import 'package:math_geometry/canvas/grid.dart';
 
+import '../../../../../../../../../../widgets/customAppbar.dart';
+
 class Translate extends StatefulWidget {
   const Translate({Key? key}) : super(key: key);
 
@@ -12,78 +14,79 @@ class Translate extends StatefulWidget {
 
 class _TranslateState extends State<Translate> {
   // positional variables
-  double _moveShapeByXY = 0.0;
+  final double _moveShapeByXY = 0.0;
   double _moveShapeByY = 0.0;
   double _moveShapeByX = 0.0;
-  double _sides = 3;
+  final double _sides = 3;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Reflection'),
+        body: SafeArea(
+            child: Stack(children: [
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            child: CustomPaint(
+              painter: MyGridPainter(),
+              foregroundPainter: translationPainter(
+                  _moveShapeByXY, _moveShapeByY, _moveShapeByX, _sides),
+              child: Container(),
+            ),
+          ),
+          // for the yaxis slider
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0),
+            child: Text('Move Shape Along X'),
+          ),
+          Slider(
+            value: _moveShapeByY,
+            min: -MediaQuery.of(context).size.width / 2.5,
+            max: MediaQuery.of(context).size.width / 2.5,
+            onChanged: (value) {
+              setState(() {
+                _moveShapeByY = value;
+              });
+            },
+          ),
+          // for the  xaxis slider
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0),
+            child: Text('Move Shape Along Y'),
+          ),
+          Slider(
+            value: _moveShapeByX,
+            min: -MediaQuery.of(context).size.height / 3,
+            max: MediaQuery.of(context).size.height / 3,
+            onChanged: (value) {
+              setState(() {
+                _moveShapeByX = value;
+              });
+            },
+          ),
+          // // for the  xy-axis slider
+          // const Padding(
+          //   padding: EdgeInsets.only(left: 16.0),
+          //   child: Text('move by xy'),
+          // ),
+          // Slider(
+          //   value: _moveShapeByXY,
+          //   min: -MediaQuery.of(context).size.height / 3,
+          //   max: MediaQuery.of(context).size.height / 3,
+          //   onChanged: (value) {
+          //     setState(() {
+          //       _moveShapeByXY = value;
+          //     });
+          //   },
+          // ),
+        ],
       ),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Expanded(
-              child: CustomPaint(
-                painter: MyGridPainter(),
-                foregroundPainter: translationPainter(
-                    _moveShapeByXY, _moveShapeByY, _moveShapeByX, _sides),
-                child: Container(),
-              ),
-            ),
-            // for the yaxis slider
-            const Padding(
-              padding: EdgeInsets.only(left: 16.0),
-              child: Text('Move Shape Along X'),
-            ),
-            Slider(
-              value: _moveShapeByY,
-              min: -MediaQuery.of(context).size.width / 2.5,
-              max: MediaQuery.of(context).size.width / 2.5,
-              onChanged: (value) {
-                setState(() {
-                  _moveShapeByY = value;
-                });
-              },
-            ),
-            // for the  xaxis slider
-            const Padding(
-              padding: EdgeInsets.only(left: 16.0),
-              child: Text('Move Shape Along Y'),
-            ),
-            Slider(
-              value: _moveShapeByX,
-              min: -MediaQuery.of(context).size.height / 3,
-              max: MediaQuery.of(context).size.height / 3,
-              onChanged: (value) {
-                setState(() {
-                  _moveShapeByX = value;
-                });
-              },
-            ),
-            // // for the  xy-axis slider
-            // const Padding(
-            //   padding: EdgeInsets.only(left: 16.0),
-            //   child: Text('move by xy'),
-            // ),
-            // Slider(
-            //   value: _moveShapeByXY,
-            //   min: -MediaQuery.of(context).size.height / 3,
-            //   max: MediaQuery.of(context).size.height / 3,
-            //   onChanged: (value) {
-            //     setState(() {
-            //       _moveShapeByXY = value;
-            //     });
-            //   },
-            // ),
-          ],
-        ),
-      ),
-    );
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [CustomAppBar('', '', '', '', '', 0, () {}, 0)],
+      )
+    ])));
   }
 }
 

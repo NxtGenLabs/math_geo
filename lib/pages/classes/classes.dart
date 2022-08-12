@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:math_geometry/themes/textStyles.dart';
+import 'package:math_geometry/widgets/inactiveTile.dart';
 
-import '../../widgets/inactiveTile.dart';
 import '../../widgets/tile.dart';
 
 class Classes extends StatelessWidget {
@@ -10,6 +10,18 @@ class Classes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List tiles = [
+      Tile(
+          subject: "Mathematics",
+          onPressed: () {
+            Navigator.pushNamed(context, './pages/topics/main');
+          }),
+      const InactiveTile(
+          subject: "Agriculture", image: "images/agriculture.png"),
+      const InactiveTile(subject: "Biology", image: "images/biology.png"),
+      const InactiveTile(subject: "Physics", image: "images/physics.png")
+    ];
+
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -59,14 +71,10 @@ class Classes extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
-              height: 50,
-              width: MediaQuery.of(context).size.width,
+            Expanded(
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width,
+                  Expanded(
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: TabBar(
@@ -75,7 +83,7 @@ class Classes extends StatelessWidget {
                           labelColor: Colors.black,
                           unselectedLabelColor: Colors.grey,
                           labelPadding: const EdgeInsets.only(
-                              left: 30, right: 20, bottom: 10, top: 10),
+                              left: 30, right: 20, bottom: 10, top: 0),
                           indicator: Indicator(),
                           tabs: const [
                             Tab(text: "Form 1"),
@@ -85,50 +93,19 @@ class Classes extends StatelessWidget {
                           ]),
                     ),
                   ),
-                  Expanded(
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height - 200,
                     child: TabBarView(children: [
                       const Text("1"),
                       const Text("2"),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
-                        child: StaggeredGrid.count(
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 10,
-                          crossAxisCount: 4,
-                          children: [
-                            StaggeredGridTile.count(
-                                crossAxisCellCount: 2,
-                                mainAxisCellCount: 2,
-                                child: Tile(
-                                  subject: "Mathematics",
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, './pages/topics/main');
-                                  },
-                                )),
-                            StaggeredGridTile.count(
-                                crossAxisCellCount: 2,
-                                mainAxisCellCount: 1.7,
-                                child: InactiveTile(
-                                  subject: "Physics",
-                                  image: "images/physics.png",
-                                )),
-                            StaggeredGridTile.count(
-                                crossAxisCellCount: 2,
-                                mainAxisCellCount: 2,
-                                child: InactiveTile(
-                                  subject: "Biology",
-                                  image: "images/biology.png",
-                                )),
-                            StaggeredGridTile.count(
-                                crossAxisCellCount: 2,
-                                mainAxisCellCount: 1.7,
-                                child: InactiveTile(
-                                    subject: "Agriculture",
-                                    image: "images/agriculture.png"))
-                          ],
-                        ),
-                      ),
+                      MasonryGridView.count(
+                          mainAxisSpacing: 20,
+                          itemCount: tiles.length,
+                          crossAxisCount: 2,
+                          itemBuilder: (context, index) {
+                            return tiles[index];
+                          }),
                       const Text("4")
                     ]),
                   ),

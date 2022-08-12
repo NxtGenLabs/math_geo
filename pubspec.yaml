@@ -68,7 +68,14 @@ flutter:
     - images/bg.png
     - images/rotated_bg.png
     - images/dummy_field.png
-    - images/male_character.png
+
+
+    ##characters
+    - images/characters/male_character.png
+    - images/characters/female_character.png
+    - images/characters/other.png
+
+
     - images/submit_bg.jpg
     - images/savannah.jpg
     - images/savannah_cropped.png
