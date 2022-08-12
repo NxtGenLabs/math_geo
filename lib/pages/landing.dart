@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../services/auth.dart';
 import '../themes/textStyles.dart';
 
 class LandingPage extends StatelessWidget {
+  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +30,10 @@ class LandingPage extends StatelessWidget {
                             onPressed: () {},
                             icon: const Icon(Icons.person_pin_circle)),
                         IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.settings)),
+                            onPressed: () {
+                              _auth.signOut();
+                            },
+                            icon: const Icon(Icons.settings)),
                       ],
                     ),
                     Padding(
@@ -50,12 +55,7 @@ class LandingPage extends StatelessWidget {
                   children: [
                     const Text("Let's Start", style: ThemeText.level),
                     Center(
-                      child: IconButton(
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, './pages/classes/classes');
-                          },
-                          icon: const Icon(Icons.chevron_right)),
+                      child: Image(image: AssetImage("images/icons/"))
                     )
                   ],
                 ),

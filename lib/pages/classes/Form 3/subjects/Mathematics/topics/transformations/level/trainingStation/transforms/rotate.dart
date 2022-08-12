@@ -13,7 +13,7 @@ class Rotate extends StatefulWidget {
 class _RotateState extends State<Rotate> {
   // positional variables
   final double _sides = 4;
-  final double _radius = 4;
+  final double _radius = 100;
   double _radians = 0.0;
 
   @override

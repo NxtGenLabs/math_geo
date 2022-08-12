@@ -7,7 +7,41 @@ class BeginnerLevel extends StatelessWidget {
   List<BeginnerLs> levels = [
     BeginnerLs(
         level: '1',
-        question: 'Find the blah blah',
+        question:
+            'What type of equation is shown in the graph? \n A. Y-intercept. \n B. X-intercept \n C. Y=X',
+        rating: '',
+        answer: 'B',
+        hint: 'Lets keep putting up points',
+        timeLimit: 120,
+        qPoints: [const Offset(-1000, 100), const Offset(600, 100)],
+        optionA: [],
+        optionB: [],
+        optionC: []),
+    BeginnerLs(
+        level: '2',
+        question:
+            'How many degrees has the figure been rotated by? \n A. 180 Degrees. \n B. 90 degrees clockwise. \n C. 90 degrees anti-clockwise.',
+        rating: '',
+        answer: 'C',
+        hint: 'Lets keep putting up points',
+        timeLimit: 1,
+        qPoints: [
+          const Offset(-450, 150),
+          const Offset(-200, 150),
+          const Offset(-150, -80),
+          const Offset(-450, -150)
+        ],
+        optionA: [
+          const Offset(450, 150),
+          const Offset(200, 150),
+          const Offset(150, -80),
+          const Offset(450, -150)
+        ],
+        optionB: [],
+        optionC: []),
+    BeginnerLs(
+        level: '3',
+        question: 'Which triangle is rotated 90 degrees of triangle A?',
         rating: '',
         answer: 'B',
         hint: 'Lets keep putting up points',
@@ -32,39 +66,6 @@ class BeginnerLevel extends StatelessWidget {
           const Offset(-400, 100),
           const Offset(-450, 200)
         ]),
-    BeginnerLs(
-        level: '2',
-        question:
-            'How many degrees has the figure been rotated by? \n A. 180 Degrees. \n B. 90 degrees clockwise. \n C. 90 degrees anti-clockwise.',
-        rating: '',
-        answer: '',
-        hint: 'Lets keep putting up points',
-        timeLimit: 1,
-        qPoints: [
-          const Offset(-450, 150),
-          const Offset(-200, 150),
-          const Offset(-150, -80),
-          const Offset(-450, -150)
-        ],
-        optionA: [
-          const Offset(450, 150),
-          const Offset(200, 150),
-          const Offset(150, -80),
-          const Offset(450, -150)
-        ],
-        optionB: [],
-        optionC: []),
-    BeginnerLs(
-        level: '3',
-        question: '',
-        rating: '',
-        answer: '',
-        hint: 'Lets keep putting up points',
-        timeLimit: 1,
-        qPoints: [],
-        optionA: [],
-        optionB: [],
-        optionC: []),
     BeginnerLs(
         level: '4',
         question: '',
@@ -164,16 +165,20 @@ class BeginnerLevel extends StatelessWidget {
                         child: const Image(
                             fit: BoxFit.cover,
                             image: AssetImage("images/the_field.png"))),
-                            Padding(
-                              padding: const EdgeInsets.all(30.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                   IconButton(onPressed: (){Navigator.pop(context);}, icon: const Icon(
-                                    Icons.chevron_left), iconSize: 40)
-                                ],
-                              ),
-                            ),
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(Icons.chevron_left),
+                              iconSize: 40)
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 const Text("The Field", style: ThemeText.levelHeader),

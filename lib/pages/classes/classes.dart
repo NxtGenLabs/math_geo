@@ -74,7 +74,9 @@ class Classes extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  Expanded(
+                  Container(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width,
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: TabBar(
@@ -83,7 +85,7 @@ class Classes extends StatelessWidget {
                           labelColor: Colors.black,
                           unselectedLabelColor: Colors.grey,
                           labelPadding: const EdgeInsets.only(
-                              left: 30, right: 20, bottom: 10, top: 0),
+                              left: 30, right: 20, bottom: 10, top: 10),
                           indicator: Indicator(),
                           tabs: const [
                             Tab(text: "Form 1"),
@@ -95,12 +97,14 @@ class Classes extends StatelessWidget {
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height - 200,
+                    height: MediaQuery.of(context).size.height - 250,
                     child: TabBarView(children: [
                       const Text("1"),
                       const Text("2"),
                       MasonryGridView.count(
+                          padding: const EdgeInsets.all(20),
                           mainAxisSpacing: 20,
+                          crossAxisSpacing: 20,
                           itemCount: tiles.length,
                           crossAxisCount: 2,
                           itemBuilder: (context, index) {

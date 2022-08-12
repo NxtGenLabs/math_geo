@@ -93,17 +93,20 @@ class _SignInState extends State<SignIn> {
                               fontWeight: FontWeight.w600,
                               fontSize: 16)))
                 ]),
-                ActionButton(
-                    text: "SIGN IN",
-                    onPress: () async {
-                      dynamic result = await _auth.signInWithEmailAndPassword(
-                          fullname, password);
-                      if (result == null) {
-                        setState(() {
-                          error = 'Could not sign in';
-                        });
-                      }
-                    })
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: ActionButton(
+                      text: "SIGN IN",
+                      onPress: () async {
+                        dynamic result = await _auth.signInWithEmailAndPassword(
+                            fullname, password);
+                        if (result == null) {
+                          setState(() {
+                            error = 'Could not sign in';
+                          });
+                        }
+                      }),
+                )
               ],
             )
           ],

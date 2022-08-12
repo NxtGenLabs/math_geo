@@ -20,8 +20,8 @@ class _EnlargeState extends State<Enlarge> {
       body: SafeArea(
         child: Stack(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Stack(
+              alignment: AlignmentDirectional.bottomCenter,
               children: <Widget>[
                 Expanded(
                   child: CustomPaint(
@@ -31,24 +31,34 @@ class _EnlargeState extends State<Enlarge> {
                   ),
                 ),
                 // for the  enlargement slider
-                const Padding(
-                  padding: EdgeInsets.only(left: 16.0),
-                  child: Center(
-                    child: Text(
-                      'Enlarge',
-                      style: TextStyle(fontSize: 20),
-                    ),
+
+                Container(
+                  height: 100,
+                  width: MediaQuery.of(context).size.width / 2,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 16.0),
+                        child: Center(
+                          child: Text(
+                            'Enlarge',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      ),
+                      Slider(
+                        value: _scale,
+                        min: -MediaQuery.of(context).size.width / 15,
+                        max: MediaQuery.of(context).size.width / 15,
+                        onChanged: (value) {
+                          setState(() {
+                            _scale = value;
+                          });
+                        },
+                      ),
+                    ],
                   ),
-                ),
-                Slider(
-                  value: _scale,
-                  min: -MediaQuery.of(context).size.width / 15,
-                  max: MediaQuery.of(context).size.width / 15,
-                  onChanged: (value) {
-                    setState(() {
-                      _scale = value;
-                    });
-                  },
                 ),
               ],
             ),

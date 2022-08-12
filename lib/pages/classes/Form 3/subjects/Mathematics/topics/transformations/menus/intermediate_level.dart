@@ -121,16 +121,20 @@ class TransFormationsLevels extends StatelessWidget {
                         child: const Image(
                             fit: BoxFit.cover,
                             image: AssetImage("images/the_lake.png"))),
-                            Padding(
-                              padding: const EdgeInsets.all(30.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                   IconButton(onPressed: (){Navigator.pop(context);}, icon: const Icon(
-                                    Icons.chevron_left), iconSize: 40)
-                                ],
-                              ),
-                            ),
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(Icons.chevron_left),
+                              iconSize: 40)
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 const Text("The Lake", style: ThemeText.levelHeader),

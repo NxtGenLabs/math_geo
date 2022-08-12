@@ -5,12 +5,9 @@ import 'dart:math' as math;
 import '../pages/classes/Form 3/subjects/Mathematics/topics/transformations/menus/intermediate_level.dart';
 
 class LinePainter extends ChangeNotifier implements CustomPainter {
-  late int index;
   TransFormationsLevels levels = TransFormationsLevels();
 
-  LinePainter(int index) {
-    this.index = index;
-  }
+  
 
   var strokes = <List<Offset>>[];
   var points = <Offset>[];

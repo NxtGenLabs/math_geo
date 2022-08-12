@@ -29,8 +29,7 @@ class _IntermediateState extends State<Intermediate> {
   @override
   void initState() {
     super.initState();
-    final level = ModalRoute.of(context)!.settings.arguments as Intermediate;
-    linePainter = LinePainter(0);
+    linePainter = LinePainter();
   }
 
   @override
@@ -100,14 +99,13 @@ class _IntermediateState extends State<Intermediate> {
                     child: CustomPaint(
                       foregroundPainter: linePainter,
                       child: Visibility(
-                        child: const MyGrid(),
+                        child: MyGrid(),
                         visible: isVisible,
                       ),
                     ),
                   )),
             ),
           ),
-          CustomAppBar(level.level, level.question, '', '', '', 0, () {}, 0)
         ],
       ),
     );

@@ -24,8 +24,7 @@ class _TranslateState extends State<Translate> {
     return Scaffold(
         body: SafeArea(
             child: Stack(children: [
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      Stack(
         children: <Widget>[
           Expanded(
             child: CustomPaint(
@@ -36,35 +35,40 @@ class _TranslateState extends State<Translate> {
             ),
           ),
           // for the yaxis slider
-          const Padding(
-            padding: EdgeInsets.only(left: 16.0),
-            child: Text('Move Shape Along X'),
-          ),
-          Slider(
-            value: _moveShapeByY,
-            min: -MediaQuery.of(context).size.width / 2.5,
-            max: MediaQuery.of(context).size.width / 2.5,
-            onChanged: (value) {
-              setState(() {
-                _moveShapeByY = value;
-              });
-            },
-          ),
-          // for the  xaxis slider
-          const Padding(
-            padding: EdgeInsets.only(left: 16.0),
-            child: Text('Move Shape Along Y'),
-          ),
-          Slider(
-            value: _moveShapeByX,
-            min: -MediaQuery.of(context).size.height / 3,
-            max: MediaQuery.of(context).size.height / 3,
-            onChanged: (value) {
-              setState(() {
-                _moveShapeByX = value;
-              });
-            },
-          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 16.0),
+                child: Text('Move Shape Along X'),
+              ),
+              Slider(
+                value: _moveShapeByY,
+                min: -MediaQuery.of(context).size.width / 2.5,
+                max: MediaQuery.of(context).size.width / 2.5,
+                onChanged: (value) {
+                  setState(() {
+                    _moveShapeByY = value;
+                  });
+                },
+              ),
+              // for the  xaxis slider
+              const Padding(
+                padding: EdgeInsets.only(left: 16.0),
+                child: Text('Move Shape Along Y'),
+              ),
+              Slider(
+                value: _moveShapeByX,
+                min: -MediaQuery.of(context).size.height / 3,
+                max: MediaQuery.of(context).size.height / 3,
+                onChanged: (value) {
+                  setState(() {
+                    _moveShapeByX = value;
+                  });
+                },
+              ),
+            ],
+          )
           // // for the  xy-axis slider
           // const Padding(
           //   padding: EdgeInsets.only(left: 16.0),
