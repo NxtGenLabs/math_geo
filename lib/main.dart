@@ -15,13 +15,10 @@ import 'package:math_geometry/pages/classes/classes.dart';
 import 'package:math_geometry/pages/landing.dart';
 import 'package:math_geometry/pages/wrapper.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-
+void main() {
   runApp(MaterialApp(
     theme: ThemeData(primarySwatch: Colors.teal),
-    home: const Wrapper(),
+    home: LandingPage(),
     routes: {
       './pages/classes/transformations': (context) => Transformations(),
       './pages/classes/classes': (context) => const Classes(),

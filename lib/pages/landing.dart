@@ -4,7 +4,6 @@ import '../services/auth.dart';
 import '../themes/textStyles.dart';
 
 class LandingPage extends StatelessWidget {
-  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,14 +25,9 @@ class LandingPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        Image(image: AssetImage("images/icons/profile.png")),
                         IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.person_pin_circle)),
-                        IconButton(
-                            onPressed: () {
-                              _auth.signOut();
-                            },
-                            icon: const Icon(Icons.settings)),
+                            onPressed: () {}, icon: const Icon(Icons.settings)),
                       ],
                     ),
                     Padding(
@@ -49,15 +43,29 @@ class LandingPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text("Let's Start", style: ThemeText.level),
-                    Center(
-                      child: Image(image: AssetImage("images/icons/"))
-                    )
-                  ],
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text("Let's Start", style: ThemeText.level),
+                      SizedBox(height: 10),
+                      Center(
+                          child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, './pages/classes/classes');
+                              },
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                child: const Image(
+                                    image:
+                                        AssetImage("images/icons/arrow.png")),
+                              )))
+                    ],
+                  ),
                 ),
               ],
             ),
