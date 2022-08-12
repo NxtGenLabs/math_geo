@@ -11,6 +11,16 @@ abstract class ThemeText {
       color: Color.fromARGB(255, 60, 64, 58),
       fontSize: 14,
       fontWeight: FontWeight.normal);
+  static const TextStyle small = TextStyle(
+      fontFamily: 'Popins',
+      color: Color.fromARGB(255, 60, 64, 58),
+      fontSize: 12,
+      fontWeight: FontWeight.normal);
+  static const TextStyle smallBold = TextStyle(
+      fontFamily: 'Popins',
+      color: Color.fromARGB(255, 60, 64, 58),
+      fontSize: 12,
+      fontWeight: FontWeight.bold);
   static const TextStyle chapter = TextStyle(
       fontFamily: 'Popins',
       color: Color.fromARGB(255, 60, 64, 58),

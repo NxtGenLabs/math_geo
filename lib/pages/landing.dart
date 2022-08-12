@@ -29,8 +29,11 @@ class LandingPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
-                              onPressed: () {},
-                              icon: const Icon(FontAwesomeIcons.circleUser,
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, './pages/profile/profile');
+                              },
+                              icon: const Icon(FontAwesomeIcons.solidCircleUser,
                                   color: Color.fromARGB(255, 60, 64, 58),
                                   size: 30)),
                           IconButton(
