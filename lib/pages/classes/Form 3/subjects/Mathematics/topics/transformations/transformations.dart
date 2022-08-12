@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/worldTile.dart';
 
@@ -25,6 +26,7 @@ class Transformations extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 137, 33, 28),
       body: SafeArea(
         child: Stack(
           fit: StackFit.passthrough,
@@ -36,21 +38,30 @@ class Transformations extends StatelessWidget {
                   children: [
                     SizedBox(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height / 2,
+                        height: MediaQuery.of(context).size.height / 2.5,
                         child: const Image(
                             fit: BoxFit.cover,
                             image: AssetImage("images/math-set.png"))),
                     Padding(
                       padding: const EdgeInsets.all(30.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              icon: const Icon(Icons.chevron_left),
-                              iconSize: 40)
+                              icon: const Icon(FontAwesomeIcons.chevronLeft),
+                              iconSize: 30),
+                          Container(
+                            padding: const EdgeInsets.all(20),
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                color: Color.fromARGB(255, 167, 45, 44)),
+                            child: const Text("Mathematics",
+                                style: ThemeText.world),
+                          )
                         ],
                       ),
                     ),
@@ -65,7 +76,7 @@ class Transformations extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   margin: const EdgeInsets.symmetric(horizontal: 10),
-                  height: MediaQuery.of(context).size.height / 1.5,
+                  height: MediaQuery.of(context).size.height / 1.4,
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 242, 242, 242),

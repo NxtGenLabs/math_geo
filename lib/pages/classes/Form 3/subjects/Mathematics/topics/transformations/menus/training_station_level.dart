@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/levelContainer.dart';
 import '../level/trainingStation/training_station.dart';
-import '../level/trainingStation/transforms/reflection.dart';
 import '../level/trainingStation/transforms/rotate.dart';
 import '../level/trainingStation/transforms/translate.dart';
 import '../level/trainingStation/transforms/enlarge.dart';
@@ -12,10 +12,9 @@ class TrainingStationLevel extends StatelessWidget {
 
   final List<Levels> levels = [
     Levels(level: '1', levelRoute: const TrainingStation()),
-    Levels(level: '2', levelRoute: Reflection()),
-    Levels(level: '3', levelRoute: Rotate()),
-    Levels(level: '4', levelRoute: const Translate()),
-    Levels(level: '5', levelRoute: Enlarge()),
+    Levels(level: '2', levelRoute: Rotate()),
+    Levels(level: '3', levelRoute: const Translate()),
+    Levels(level: '4', levelRoute: Enlarge()),
   ];
   @override
   Widget build(BuildContext context) {
@@ -35,16 +34,30 @@ class TrainingStationLevel extends StatelessWidget {
                         child: const Image(
                             fit: BoxFit.cover,
                             image: AssetImage("images/training_station.png"))),
-                            Padding(
-                              padding: const EdgeInsets.all(30.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                   IconButton(onPressed: (){Navigator.pop(context);}, icon: const Icon(
-                                    Icons.chevron_left), iconSize: 40)
-                                ],
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(
+                                FontAwesomeIcons.chevronLeft,
                               ),
-                            ),
+                              iconSize: 30),
+                          Container(
+                            padding: const EdgeInsets.all(20),
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                color: Color.fromARGB(255, 204, 205, 251)),
+                            child: const Text("Form 3", style: ThemeText.world),
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 const Text("Training Station", style: ThemeText.levelHeader),
@@ -56,7 +69,7 @@ class TrainingStationLevel extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   margin: const EdgeInsets.symmetric(horizontal: 10),
-                  height: MediaQuery.of(context).size.height / 1.5,
+                  height: MediaQuery.of(context).size.height / 1.4,
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 242, 242, 242),

@@ -38,6 +38,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   cloud_firestore: ^3.4.1
   flutter_staggered_grid_view: ^0.6.2
+  font_awesome_flutter: ^10.1.0
 
 
 dev_dependencies:
@@ -76,7 +77,6 @@ flutter:
     - images/characters/other.png
 
 
-    - images/icons/arrow.png
     - images/submit_bg.jpg
     - images/savannah.jpg
     - images/savannah_cropped.png
@@ -90,6 +90,8 @@ flutter:
     - images/the_lake.png
     - images/math-set.png
     - images/active_chapter.png
+
+    ##icons
     - images/icons/checkmark.png
     - images/icons/hint.png
     - images/icons/home.png

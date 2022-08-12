@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/inactiveTile.dart';
 
@@ -41,23 +42,27 @@ class Classes extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.person_pin_circle),
-                            iconSize: 40,
-                            color: const Color.fromARGB(255, 60, 64, 58)),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.settings),
-                            iconSize: 40,
-                            color: const Color.fromARGB(255, 60, 64, 58))
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(FontAwesomeIcons.circleUser,
+                                  color: Color.fromARGB(255, 60, 64, 58),
+                                  size: 30)),
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(FontAwesomeIcons.gear,
+                                  size: 30,
+                                  color: Color.fromARGB(255, 60, 64, 58))),
+                        ],
+                      ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(30.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
@@ -74,7 +79,7 @@ class Classes extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 50,
                     width: MediaQuery.of(context).size.width,
                     child: Align(

@@ -18,17 +18,17 @@ abstract class ThemeText {
       fontWeight: FontWeight.w600);
   static const TextStyle world = TextStyle(
       fontFamily: 'Popins',
-      color: Colors.white,
+      color: Color.fromARGB(255, 248, 252, 246),
       fontSize: 16,
       fontWeight: FontWeight.w600);
   static const TextStyle level = TextStyle(
       fontFamily: 'Popins',
-      color: Colors.white,
+      color: Color.fromARGB(255, 248, 252, 246),
       fontSize: 45,
       fontWeight: FontWeight.w800);
   static const TextStyle levelHeader = TextStyle(
       fontFamily: 'Popins',
-      color: Colors.white,
+      color: Color.fromARGB(255, 248, 252, 246),
       fontSize: 30,
       fontWeight: FontWeight.w800);
   static const TextStyle multipleChoice = TextStyle(

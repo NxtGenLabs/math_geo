@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 
 import '../../../../../../../../widgets/levelContainer.dart';
@@ -168,14 +169,23 @@ class BeginnerLevel extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(30.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              icon: const Icon(Icons.chevron_left),
-                              iconSize: 40)
+                              icon: const Icon(FontAwesomeIcons.chevronLeft),
+                              iconSize: 30),
+                          Container(
+                            padding: const EdgeInsets.all(20),
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                color: Color.fromARGB(255, 106, 117, 21)),
+                            child: const Text("Transformations",
+                                style: ThemeText.world),
+                          )
                         ],
                       ),
                     ),
@@ -190,7 +200,7 @@ class BeginnerLevel extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   margin: const EdgeInsets.symmetric(horizontal: 10),
-                  height: MediaQuery.of(context).size.height / 1.5,
+                  height: MediaQuery.of(context).size.height / 1.4,
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 242, 242, 242),

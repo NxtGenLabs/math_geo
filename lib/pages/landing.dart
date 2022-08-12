@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../services/auth.dart';
 import '../themes/textStyles.dart';
 
 class LandingPage extends StatelessWidget {
@@ -22,16 +22,27 @@ class LandingPage extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image(image: AssetImage("images/icons/profile.png")),
-                        IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.settings)),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(FontAwesomeIcons.circleUser,
+                                  color: Color.fromARGB(255, 60, 64, 58),
+                                  size: 30)),
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(FontAwesomeIcons.gear,
+                                  size: 30,
+                                  color: Color.fromARGB(255, 60, 64, 58))),
+                        ],
+                      ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
@@ -44,26 +55,22 @@ class LandingPage extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text("Let's Start", style: ThemeText.level),
-                      SizedBox(height: 10),
+                      const Text("Let's Start", style: ThemeText.levelHeader),
                       Center(
-                          child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, './pages/classes/classes');
-                              },
-                              child: Container(
-                                height: 40,
-                                width: 40,
-                                child: const Image(
-                                    image:
-                                        AssetImage("images/icons/arrow.png")),
-                              )))
+                          child: IconButton(
+                        icon: const Icon(FontAwesomeIcons.chevronDown,
+                            size: 30,
+                            color: Color.fromARGB(255, 248, 252, 246)),
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, './pages/classes/classes');
+                        },
+                      ))
                     ],
                   ),
                 ),
