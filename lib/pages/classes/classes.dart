@@ -57,7 +57,10 @@ class Classes extends StatelessWidget {
                                   color: Color.fromARGB(255, 60, 64, 58),
                                   size: 30)),
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, './pages/profile/settings');
+                              },
                               icon: const Icon(FontAwesomeIcons.gear,
                                   size: 30,
                                   color: Color.fromARGB(255, 60, 64, 58))),

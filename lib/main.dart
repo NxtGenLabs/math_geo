@@ -13,12 +13,14 @@ import 'package:math_geometry/pages/classes/Form%203/subjects/Mathematics/topics
 import 'package:math_geometry/pages/classes/classes.dart';
 import 'package:math_geometry/pages/landing.dart';
 import 'package:math_geometry/pages/profile/profile.dart';
+import 'package:math_geometry/pages/profile/settings.dart';
 
 void main() {
   runApp(MaterialApp(
     theme: ThemeData(primarySwatch: Colors.teal),
     home: LandingPage(),
     routes: {
+      './pages/profile/settings': (context) => const Settings(),
       './pages/profile/profile': (context) => const Profile(),
       './pages/classes/transformations': (context) => Transformations(),
       './pages/classes/classes': (context) => const Classes(),
