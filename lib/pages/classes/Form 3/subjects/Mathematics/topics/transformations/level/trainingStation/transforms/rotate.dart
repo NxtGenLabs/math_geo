@@ -23,7 +23,7 @@ class _RotateState extends State<Rotate> {
       body: SafeArea(
         child: Stack(children: [
           Container(
-            color: Colors.grey[400],
+            color: const Color.fromARGB(255, 189, 239, 249),
             child: CustomPaint(
               foregroundPainter: rotationPainer(_sides, _radius, _radians),
               painter: MyGridPainter(),

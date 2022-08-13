@@ -18,7 +18,7 @@ import 'package:math_geometry/pages/profile/settings.dart';
 void main() {
   runApp(MaterialApp(
     theme: ThemeData(primarySwatch: Colors.teal),
-    home: LandingPage(),
+    home: const GenderXAge(),
     routes: {
       './pages/profile/settings': (context) => const Settings(),
       './pages/profile/profile': (context) => const Profile(),

@@ -5,6 +5,8 @@ import 'package:math_geometry/widgets/actionButton.dart';
 import 'package:math_geometry/widgets/characterCard.dart';
 import 'package:math_geometry/widgets/scrollWheel.dart';
 
+import '../../themes/background.dart';
+
 class GenderXAge extends StatelessWidget {
   const GenderXAge({Key? key}) : super(key: key);
 
@@ -17,46 +19,65 @@ class GenderXAge extends StatelessWidget {
     ];
     return (Scaffold(
       body: SafeArea(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          color: const Color.fromRGBO(227, 242, 218, .15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 40),
-              const Text(
-                'Select your gender',
-                style: ThemeText.chapter,
-              ),
-              SizedBox(
-                height: 300,
-                child: Swiper(
-                  scale: 2,
-                  layout: SwiperLayout.STACK,
-                  itemCount: characters.length,
-                  itemWidth: MediaQuery.of(context).size.width + 2 * 350,
-                  itemBuilder: (BuildContext context, index) {
-                    return characters[index];
-                  },
-                  control: const SwiperControl(),
+        child: Background(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            color: const Color.fromRGBO(227, 242, 218, .15),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 40),
+                const Text(
+                  'Select your gender',
+                  style: ThemeText.chapter,
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text('Whats your age:', style: ThemeText.chapter),
-                  ScrollWheel()
-                ],
-              ),
-              ActionButton(
-                  text: "CONTINUE",
-                  onPress: () {
-                    Navigator.pushNamed(
-                        context, './pages/authenticate/chooseCharacter');
-                  })
-            ],
+                SizedBox(
+                  height: 300,
+                  child: Swiper(
+                    scale: 2,
+                    layout: SwiperLayout.STACK,
+                    itemCount: characters.length,
+                    itemWidth: MediaQuery.of(context).size.width + 2 * 350,
+                    itemBuilder: (BuildContext context, index) {
+                      return characters[index];
+                    },
+                    control: const SwiperControl(),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Whats your age:', style: ThemeText.chapter),
+                    Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: [
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                  width: 2,
+                                  color:
+                                      const Color.fromARGB(255, 242, 242, 242)),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(5))),
+                        ),
+                        const ScrollWheel(),
+                      ],
+                    )
+                  ],
+                ),
+                ActionButton(
+                    text: "CONTINUE",
+                    onPress: () {
+                      Navigator.pushNamed(
+                          context, './pages/authenticate/chooseCharacter');
+                    })
+              ],
+            ),
           ),
         ),
       ),

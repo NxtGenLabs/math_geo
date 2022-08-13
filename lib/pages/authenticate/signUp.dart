@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/services/auth.dart';
+import 'package:math_geometry/themes/background.dart';
 import 'package:math_geometry/widgets/actionButton.dart';
 import 'package:math_geometry/widgets/textInputValidated.dart';
 
 class SignUp extends StatefulWidget {
   final Function toggleView;
 
-  SignUp(this.toggleView);
+  const SignUp(this.toggleView);
 
   @override
   State<SignUp> createState() => _SignUpState();
@@ -25,8 +26,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-      child: Container(
-        color: const Color.fromRGBO(227, 242, 218, .15),
+      child: Background(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
