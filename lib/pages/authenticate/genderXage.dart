@@ -74,7 +74,7 @@ class GenderXAge extends StatelessWidget {
                     text: "CONTINUE",
                     onPress: () {
                       Navigator.pushNamed(
-                          context, './pages/authenticate/chooseCharacter');
+                          context, './pages/authenticate/submitPage');
                     })
               ],
             ),

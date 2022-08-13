@@ -5,7 +5,8 @@ class TextInput extends StatelessWidget {
   final String hintText;
   final IconData icon;
 
-  TextInput({required this.hintText, required this.onChange, required this.icon});
+  TextInput(
+      {required this.hintText, required this.onChange, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +22,12 @@ class TextInput extends StatelessWidget {
         cursorColor: Colors.white,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          icon: Icon(icon,
+          icon: Icon(
+            icon,
             color: const Color.fromARGB(255, 113, 191, 71),
           ),
-          suffixIcon: const Padding(
-            padding: EdgeInsetsDirectional.only(end: 0),
-            child: Icon(
-              Icons.visibility,
-              color: Color.fromARGB(255, 113, 191, 71),
-            ),
-          ),
           border: InputBorder.none,
-          hintText: "Password",
+          hintText: hintText,
         ),
       ),
     ));

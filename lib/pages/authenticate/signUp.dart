@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/services/auth.dart';
 import 'package:math_geometry/themes/background.dart';
+import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/actionButton.dart';
 import 'package:math_geometry/widgets/textInputValidated.dart';
+
+import '../../widgets/passwordInputValidated.dart';
 
 class SignUp extends StatefulWidget {
   final Function toggleView;
@@ -30,16 +34,20 @@ class _SignUpState extends State<SignUp> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.arrow_back))
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Row(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(FontAwesomeIcons.chevronLeft))
+                ],
+              ),
             ),
-            const Text("Please enter your information"),
+            const Text("Please enter your information",
+                style: ThemeText.chapter),
             Form(
               key: _formkey,
               child: Column(
@@ -71,7 +79,7 @@ class _SignUpState extends State<SignUp> {
                             style: TextStyle(
                                 fontWeight: FontWeight.w600, fontSize: 16)),
                         const SizedBox(height: 20),
-                        TextInputValidated(
+                        PasswordInputValidated(
                             hintText: "Password",
                             validator: (val) => val!.isEmpty
                                 ? 'Password must have atleast 6 characters'
@@ -80,14 +88,13 @@ class _SignUpState extends State<SignUp> {
                               setState(() {
                                 password = val;
                               });
-                            },
-                            icon: Icons.lock),
+                            }),
                         const SizedBox(height: 20),
                         const Text("Confirm password",
                             style: TextStyle(
                                 fontWeight: FontWeight.w600, fontSize: 16)),
                         const SizedBox(height: 20),
-                        TextInputValidated(
+                        PasswordInputValidated(
                             hintText: "Password",
                             validator: (val) => val!.isEmpty
                                 ? 'Password empty or does not match'
@@ -96,8 +103,7 @@ class _SignUpState extends State<SignUp> {
                               setState(() {
                                 confirmPass = val;
                               });
-                            },
-                            icon: Icons.lock)
+                            })
                       ],
                     ),
                   ),
@@ -121,16 +127,19 @@ class _SignUpState extends State<SignUp> {
                             fontSize: 16),
                       ))
                 ]),
-                ActionButton(
-                    text: "Continue",
-                    onPress: () async {
-                      if (_formkey.currentState!.validate()) {
-                        dynamic result = await _auth.storeUsernameAndPassword(
-                            fullname, password);
-                        Navigator.pushNamed(
-                            context, './pages/authenticate/genderXage');
-                      }
-                    })
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: ActionButton(
+                      text: "Continue",
+                      onPress: () async {
+                        if (_formkey.currentState!.validate()) {
+                          dynamic result = await _auth.storeUsernameAndPassword(
+                              fullname, password);
+                          Navigator.pushNamed(
+                              context, './pages/authenticate/genderXage');
+                        }
+                      }),
+                )
               ],
             ),
           ],

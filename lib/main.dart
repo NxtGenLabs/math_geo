@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:math_geometry/pages/authenticate/chooseCharacter.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:math_geometry/pages/authenticate/genderXage.dart';
 import 'package:math_geometry/pages/authenticate/submitPage.dart';
 import 'package:math_geometry/pages/classes/Form%203/subjects/Mathematics/topics/main.dart';
@@ -14,20 +14,22 @@ import 'package:math_geometry/pages/classes/classes.dart';
 import 'package:math_geometry/pages/landing.dart';
 import 'package:math_geometry/pages/profile/profile.dart';
 import 'package:math_geometry/pages/profile/settings.dart';
+import 'package:math_geometry/pages/wrapper.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(MaterialApp(
     theme: ThemeData(primarySwatch: Colors.teal),
-    home: const GenderXAge(),
+    home: const Wrapper(),
     routes: {
-      './pages/profile/settings': (context) => const Settings(),
+      './pages/profile/settings': (context) => Settings(),
       './pages/profile/profile': (context) => const Profile(),
       './pages/classes/transformations': (context) => Transformations(),
       './pages/classes/classes': (context) => const Classes(),
       './pages/landing': (context) => LandingPage(),
       './pages/authenticate/genderXage': (context) => const GenderXAge(),
-      './pages/authenticate/chooseCharacter': (context) =>
-          const ChooseCharacter(),
       './pages/authenticate/submitPage': (context) => const SubmitPage(),
       './pages/topics/main': (context) => Topics(),
       './pages/topics/transformations/menus/training_station_level':

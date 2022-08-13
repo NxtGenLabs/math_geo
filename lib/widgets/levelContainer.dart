@@ -5,7 +5,7 @@ class LevelContainer extends StatelessWidget {
   final void Function() onPress;
   final String level;
 
-  LevelContainer({required this.onPress, required this.level});
+  const LevelContainer({required this.onPress, required this.level});
 
   @override
   Widget build(BuildContext context) {
