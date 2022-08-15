@@ -58,11 +58,7 @@ class _SubmitPageState extends State<SubmitPage> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
-                child: ActionButton(
-                    text: "Finish",
-                    onPress: () {
-                      Navigator.pushNamed(context, './pages/landing');
-                    }),
+                child: ActionButton(text: "Finish", onPress: () {}),
               )
             ],
           ),

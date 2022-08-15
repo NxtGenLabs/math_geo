@@ -11,19 +11,37 @@ class LevelContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPress,
-      child: Container(
-        padding: const EdgeInsets.only(bottom: 8, left: 2, right: 2),
-        decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
-            color: Color.fromARGB(255, 98, 166, 62)),
-        child: Container(
-          height: 300,
-          width: 100,
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              color: Color.fromARGB(255, 113, 191, 71)),
-          child: Center(child: Text(level, style: ThemeText.level)),
-        ),
+      child: Stack(
+        alignment: AlignmentDirectional.topCenter,
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(bottom: 8, left: 2, right: 2),
+            decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+                color: Color.fromARGB(255, 98, 166, 62)),
+            child: Container(
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  color: Color.fromARGB(255, 113, 191, 71)),
+              child: Center(child: Text(level, style: ThemeText.level)),
+            ),
+          ),
+          Positioned(
+            top: -5,
+            child: Container(
+              height: 45,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Image(height: 30, image: AssetImage("images/icons/star.png")),
+                  Image(image: AssetImage("images/icons/star.png")),
+                  Image(height: 30, image: AssetImage("images/icons/star.png")),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
