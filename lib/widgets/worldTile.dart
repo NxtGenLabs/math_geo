@@ -28,7 +28,10 @@ class WorldTile extends StatelessWidget {
             SizedBox(
                 height: 350,
                 width: MediaQuery.of(context).size.width - 50,
-                child: Image(fit: BoxFit.cover, image: AssetImage(image))),
+                child: Image(
+                    filterQuality: FilterQuality.high,
+                    fit: BoxFit.cover,
+                    image: AssetImage(image))),
             Center(
               child: Container(
                 height: 50,

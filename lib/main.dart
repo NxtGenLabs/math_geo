@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:math_geometry/pages/authenticate/genderXage.dart';
 import 'package:math_geometry/pages/authenticate/submitPage.dart';
 import 'package:math_geometry/pages/classes/Form%203/subjects/Mathematics/topics/main.dart';
@@ -14,15 +13,11 @@ import 'package:math_geometry/pages/classes/classes.dart';
 import 'package:math_geometry/pages/landing.dart';
 import 'package:math_geometry/pages/profile/profile.dart';
 import 'package:math_geometry/pages/profile/settings.dart';
-import 'package:math_geometry/pages/wrapper.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-
+void main() {
   runApp(MaterialApp(
-    theme: ThemeData(primarySwatch: Colors.teal),
-    home: const Wrapper(),
+    theme: ThemeData(visualDensity: VisualDensity.adaptivePlatformDensity),
+    home: const Classes(),
     routes: {
       './pages/profile/settings': (context) => Settings(),
       './pages/profile/profile': (context) => const Profile(),

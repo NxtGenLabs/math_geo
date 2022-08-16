@@ -5,9 +5,12 @@ import 'dart:math' as math;
 import '../pages/classes/Form 3/subjects/Mathematics/topics/transformations/menus/intermediate_level.dart';
 
 class LinePainter extends ChangeNotifier implements CustomPainter {
-  TransFormationsLevels levels = TransFormationsLevels();
+  late int index;
 
-  
+  LinePainter(int index) {
+    this.index = index;
+  }
+  TransFormationsLevels levels = TransFormationsLevels();
 
   var strokes = <List<Offset>>[];
   var points = <Offset>[];
@@ -39,6 +42,7 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     'Y',
     'Z'
   ];
+  @override
   bool hitTest(Offset position) => true;
 
   void startStroke(Offset position) {
@@ -85,6 +89,18 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    //creating the center variable
+    double centerX = size.width / 2;
+    double centerY = size.height / 2;
+
+    //a temp list to iterate through the question list and add the center to each pt
+
+    List<Offset> qp = [];
+
+    for (var point in levels.levels[index].qPoints) {
+      qp.add(Offset(point.dx + centerX, point.dy + centerY));
+    }
+
     Paint strokePaint = Paint();
     strokePaint.color = Colors.teal;
     strokePaint.style = PaintingStyle.stroke;
@@ -97,8 +113,53 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
 
     //question points
     Path path = Path();
-    path.addPolygon(levels.levels[0].answer, true);
+    path.addPolygon(qp, true);
     canvas.drawPath(path, strokePaint);
+    canvas.drawPoints(PointMode.points, qp, pointPaint);
+
+    //display question point coordinates
+    for (var point in qp) {
+      //debug logging the getSides() method
+
+      // display plotted point coordinates
+      var counter = 0;
+      TextSpan span = TextSpan(
+          style: TextStyle(color: Colors.red[900]),
+          text:
+              '${alphabet[counter]}(${point.dx.toInt() + -centerX}, ${point.dy.toInt() - centerY})');
+      TextPainter tp = TextPainter(
+          text: span,
+          textAlign: TextAlign.left,
+          textDirection: TextDirection.ltr,
+          textScaleFactor: .8);
+      tp.layout();
+      tp.paint(canvas, Offset(point.dx, point.dy));
+
+      // debug logs
+      // ignore: avoid_print
+      print('Distance:  ${distance(qp[counter], qp[counter + 1])}');
+
+      // distance will only show if there are more than 1 point(s)
+      if (points.length > 1) {
+        TextSpan span = TextSpan(
+            style: TextStyle(color: Colors.red[900]),
+            text: '${distance(qp[counter], qp[counter + 1])}cm');
+        TextPainter tp = TextPainter(
+            text: span,
+            textAlign: TextAlign.left,
+            textDirection: TextDirection.ltr,
+            textScaleFactor: 1.0);
+        tp.layout();
+        tp.paint(canvas, midPoint(qp[counter], qp[counter + 1]));
+
+        // ignore: avoid_print
+        print(
+            'Angle of ${alphabet[counter]} and ${alphabet[counter + 1]}: ${calcAngle(qp[counter], qp[counter + 1])}');
+      }
+
+      // indexer
+      ++counter;
+    }
 
     for (var stroke in strokes) {
       canvas.drawPoints(PointMode.points, stroke, pointPaint);
@@ -112,11 +173,11 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     for (var point in points) {
       //debug logging the getSides() method
 
-      // displaying point value
+      // display plotted point coordinates
       TextSpan span = TextSpan(
           style: TextStyle(color: Colors.red[900]),
           text:
-              '${alphabet[counter]}(${point.dx.toInt()}, ${point.dy.toInt()})');
+              '${alphabet[counter]}(${point.dx.toInt() - centerX}, ${point.dy.toInt() - centerY})');
       TextPainter tp = TextPainter(
           text: span,
           textAlign: TextAlign.left,

@@ -8,23 +8,22 @@ class TransFormationsLevels extends StatelessWidget {
   List<IntermediateLs> levels = [
     IntermediateLs(
         level: '1',
-        question: 'Rotate the triangle 45 degrees about the vertex A',
+        question: 'Translate the shape by (3,4)',
         rating: '3/3',
-        answer: [
-          const Offset(100, 100),
-          const Offset(400, 100),
-          const Offset(450, 200)
+        answer: [],
+        qPoints: [
+          const Offset(-240, -40),
+          const Offset(-240, -180),
+          const Offset(-40, -40)
         ],
-        qPoints: [],
         hint: '',
         timeLimit: 120),
     IntermediateLs(
         level: '2',
-        question:
-            'Dont get too cocky, my grandma got to this level faster than you did',
+        question: 'Translate the rectangle by (5,8)',
         rating: '3/3',
         answer: [],
-        qPoints: [],
+        qPoints: [const Offset(-160, 200)],
         hint: '',
         timeLimit: 120),
     IntermediateLs(

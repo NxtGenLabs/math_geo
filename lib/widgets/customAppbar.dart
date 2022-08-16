@@ -19,6 +19,13 @@ class CustomAppBar extends StatefulWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
   int initTime = 0;
   int retries = 0;
   bool isStartTimer = false;
@@ -192,8 +199,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
               color: Color.fromARGB(255, 242, 242, 242),
               borderRadius: BorderRadius.all(Radius.circular(20))),
           margin: const EdgeInsets.only(top: 15),
-          width: 600,
-          height: 70,
+          height: 50,
+          width: 400,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -206,7 +213,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   ),
                   const SizedBox(width: 5),
                   Container(
-                    height: 50,
+                    height: 35,
                     width: 1,
                     color: const Color.fromARGB(255, 60, 64, 58),
                   )
@@ -215,10 +222,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
               GestureDetector(
                 onTap: _showDialog,
                 child: const SizedBox(
-                    height: 40,
-                    width: 40,
-                    child:
-                        Image(image: AssetImage("images/icons/question.png"))),
+                    height: 30,
+                    width: 30,
+                    child: Image(
+                        filterQuality: FilterQuality.high,
+                        image: AssetImage("images/icons/question.png"))),
               ),
               GestureDetector(
                 onTap: () {
@@ -226,9 +234,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   usedHint = true;
                 },
                 child: const SizedBox(
-                    height: 40,
-                    width: 40,
-                    child: Image(image: AssetImage("images/icons/hint.png"))),
+                    height: 30,
+                    width: 30,
+                    child: Image(
+                        filterQuality: FilterQuality.high,
+                        image: AssetImage("images/icons/hint.png"))),
               ),
               IconButton(
                 icon: const Icon(Icons.person_pin_circle_outlined),
@@ -261,16 +271,17 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   }
                 },
                 child: const SizedBox(
-                    height: 40,
-                    width: 40,
-                    child:
-                        Image(image: AssetImage("images/icons/checkmark.png"))),
+                    height: 30,
+                    width: 30,
+                    child: Image(
+                        filterQuality: FilterQuality.high,
+                        image: AssetImage("images/icons/checkmark.png"))),
               ),
               GestureDetector(
                 onTap: () {},
                 child: const SizedBox(
-                    height: 40,
-                    width: 40,
+                    height: 30,
+                    width: 30,
                     child: Image(image: AssetImage("images/icons/retry.png"))),
               ),
               GestureDetector(
@@ -278,22 +289,25 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   Navigator.pop(context);
                 },
                 child: const SizedBox(
-                    height: 40,
-                    width: 40,
-                    child: Image(image: AssetImage("images/icons/home.png"))),
+                    height: 30,
+                    width: 30,
+                    child: Image(
+                        filterQuality: FilterQuality.high,
+                        image: AssetImage("images/icons/home.png"))),
               )
             ],
           ),
         ),
         Container(
           margin: const EdgeInsets.only(top: 15),
-          padding: const EdgeInsets.all(20),
-          height: 120,
-          width: 120,
+          padding: const EdgeInsets.all(10),
+          height: 80,
+          width: 80,
           decoration: const BoxDecoration(
               color: Color.fromARGB(255, 242, 242, 242),
               borderRadius: BorderRadius.all(Radius.circular(60))),
           child: const Image(
+              filterQuality: FilterQuality.high,
               image: AssetImage("images/characters/male_character.png")),
         )
       ],

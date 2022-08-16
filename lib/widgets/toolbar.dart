@@ -6,7 +6,7 @@ class ToolBar extends StatelessWidget {
   final void Function() zoomIn;
   final void Function() zoomOut;
 
-  ToolBar(
+  const ToolBar(
       {required this.onClick,
       required this.delete,
       required this.zoomIn,
@@ -16,44 +16,34 @@ class ToolBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        FloatingActionButton(
-          heroTag: 'panIn',
-          backgroundColor: Colors.teal,
-          foregroundColor: const Color.fromARGB(224, 224, 224, 255),
+        IconButton(
+          color: Colors.teal,
           onPressed: zoomIn,
-          child: const Icon(Icons.zoom_in),
+          icon: const Icon(Icons.zoom_in),
         ),
         const SizedBox(width: 10),
-        FloatingActionButton(
-          heroTag: 'panOut',
-          backgroundColor: Colors.teal,
-          foregroundColor: const Color.fromARGB(224, 224, 224, 255),
+        IconButton(
+          color: Colors.teal,
           onPressed: zoomOut,
-          child: const Icon(Icons.zoom_out),
+          icon: const Icon(Icons.zoom_out),
         ),
         const SizedBox(width: 10),
-        const FloatingActionButton(
-          heroTag: 'draw',
-          backgroundColor: Colors.teal,
-          foregroundColor: Color.fromARGB(224, 224, 224, 255),
+        const IconButton(
+          color: Colors.teal,
           onPressed: _tapped,
-          child: Icon(Icons.polyline),
+          icon: Icon(Icons.polyline),
         ),
         const SizedBox(width: 10),
-        FloatingActionButton(
-          heroTag: 'delete',
-          backgroundColor: Colors.teal,
-          foregroundColor: const Color.fromARGB(224, 224, 224, 255),
+        IconButton(
+          color: Colors.teal,
           onPressed: delete,
-          child: const Icon(Icons.delete),
+          icon: const Icon(Icons.delete),
         ),
         const SizedBox(width: 10),
-        FloatingActionButton(
-          heroTag: 'grid',
-          backgroundColor: Colors.teal,
-          foregroundColor: const Color.fromARGB(224, 224, 224, 255),
+        IconButton(
+          color: Colors.teal,
           onPressed: onClick,
-          child: const Icon(Icons.grid_4x4),
+          icon: const Icon(Icons.grid_4x4),
         ),
       ],
     );

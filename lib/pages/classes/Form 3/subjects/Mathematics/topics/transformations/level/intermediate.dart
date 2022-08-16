@@ -18,42 +18,27 @@ class _IntermediateState extends State<Intermediate> {
   late CustomPaint canvas;
   late LinePainter linePainter;
   double _scale = 1.0;
-  double _previousScale = 1.0;
+  final double _previousScale = 1.0;
 
   void onPanStart(DragStartDetails details) {
     linePainter.startStroke(details.localPosition);
   }
 
   bool isVisible = true;
+  late int index;
 
   @override
   void initState() {
+    final level = ModalRoute.of(context)!.settings.arguments as IntermediateLs;
     super.initState();
-    linePainter = LinePainter();
+    linePainter = LinePainter(int.parse(level.level));
   }
 
   @override
   Widget build(BuildContext context) {
     final level = ModalRoute.of(context)!.settings.arguments as IntermediateLs;
 
-    void _showDialog() {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              backgroundColor: Colors.grey[400],
-              title: Text('Level ${level.level}'),
-              content: Text(level.question),
-              actions: [
-                MaterialButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text('Attempt'),
-                  color: Colors.teal,
-                )
-              ],
-            );
-          });
-    }
+    index = int.parse(level.level) - 1;
 
     return Scaffold(
       floatingActionButton: ToolBar(
@@ -99,13 +84,15 @@ class _IntermediateState extends State<Intermediate> {
                     child: CustomPaint(
                       foregroundPainter: linePainter,
                       child: Visibility(
-                        child: MyGrid(),
                         visible: isVisible,
+                        child: const MyGrid(),
                       ),
                     ),
                   )),
             ),
           ),
+          CustomAppBar(level.level, level.question, level.answer.toString(), '',
+              level.hint, 0, () {}, level.timeLimit)
         ],
       ),
     );

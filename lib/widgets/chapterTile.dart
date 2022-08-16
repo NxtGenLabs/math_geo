@@ -5,7 +5,7 @@ class ChapterTile extends StatelessWidget {
   final String chapter;
   final void Function() onPress;
 
-  ChapterTile({required this.chapter, required this.onPress});
+  const ChapterTile({required this.chapter, required this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,9 @@ class ChapterTile extends StatelessWidget {
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           color: Color.fromARGB(255, 217, 217, 217)),
-                      child: const Image(image: AssetImage("images/lock.png"))),
+                      child: const Image(
+                          filterQuality: FilterQuality.high,
+                          image: AssetImage("images/lock.png"))),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(chapter, style: ThemeText.chapter),

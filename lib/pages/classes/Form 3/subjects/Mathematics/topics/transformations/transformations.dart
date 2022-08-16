@@ -40,6 +40,7 @@ class Transformations extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height / 2.5,
                         child: const Image(
+                            filterQuality: FilterQuality.high,
                             fit: BoxFit.cover,
                             image: AssetImage("images/math-set.png"))),
                     Padding(

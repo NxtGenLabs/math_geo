@@ -15,7 +15,7 @@ class LevelContainer extends StatelessWidget {
         alignment: AlignmentDirectional.topCenter,
         children: [
           Container(
-            margin: EdgeInsets.only(top: 20),
+            margin: const EdgeInsets.only(top: 20),
             padding: const EdgeInsets.only(bottom: 8, left: 2, right: 2),
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -29,14 +29,22 @@ class LevelContainer extends StatelessWidget {
           ),
           Positioned(
             top: -5,
-            child: Container(
+            child: SizedBox(
               height: 45,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Image(height: 30, image: AssetImage("images/icons/star.png")),
-                  Image(image: AssetImage("images/icons/star.png")),
-                  Image(height: 30, image: AssetImage("images/icons/star.png")),
+                  Image(
+                      filterQuality: FilterQuality.high,
+                      height: 30,
+                      image: AssetImage("images/icons/star.png")),
+                  Image(
+                      filterQuality: FilterQuality.high,
+                      image: AssetImage("images/icons/star.png")),
+                  Image(
+                      filterQuality: FilterQuality.high,
+                      height: 30,
+                      image: AssetImage("images/icons/star.png")),
                 ],
               ),
             ),
