@@ -47,10 +47,15 @@ class TransFormationsLevels extends StatelessWidget {
     IntermediateLs(
         level: '4',
         question:
-            'Draw the image of square ABDC when it is rotated 270 degrees about O. Find the coordinates of E` F` and G`',
+            'Find by calculation the co–ordinates of the image of ABCD if it is enlarged by scale factor 2, the centre of enlargement being the origin.',
         rating: '3/3',
         answer: [],
-        qPoints: [],
+        qPoints: [
+          const Offset(40, -40),
+          const Offset(40, -160),
+          const Offset(200, -160),
+          const Offset(200, -40)
+        ],
         hint: '',
         timeLimit: 120),
     IntermediateLs(

@@ -19,11 +19,6 @@ class _BeginnerState extends State<Beginner> {
     final level = ModalRoute.of(context)!.settings.arguments as BeginnerLs;
 
     return Scaffold(
-      floatingActionButton: MultipleChoiceOptions(pick, (String val) {
-        setState(() {
-          pick = val;
-        });
-      }),
       body: Stack(
         alignment: AlignmentDirectional.topCenter,
         children: [
@@ -48,8 +43,18 @@ class _BeginnerState extends State<Beginner> {
                   )),
             ],
           ),
-          CustomAppBar(level.level, level.question, level.answer, pick,
-              level.hint, score, () {}, level.timeLimit)
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomAppBar(level.level, level.question, level.answer, pick,
+                  level.hint, score, () {}, level.timeLimit),
+              MultipleChoiceOptions(pick, (String val) {
+                setState(() {
+                  pick = val;
+                });
+              }),
+            ],
+          )
         ],
       ),
     );

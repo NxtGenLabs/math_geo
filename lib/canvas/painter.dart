@@ -102,13 +102,13 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     }
 
     Paint strokePaint = Paint();
-    strokePaint.color = Colors.teal;
+    strokePaint.color = const Color.fromARGB(255, 188, 141, 47);
     strokePaint.style = PaintingStyle.stroke;
-    strokePaint.strokeWidth = 2;
+    strokePaint.strokeWidth = 3;
 
     Paint pointPaint = Paint();
-    pointPaint.strokeWidth = 10;
-    pointPaint.color = Colors.teal;
+    pointPaint.strokeWidth = 15;
+    pointPaint.color = const Color.fromARGB(255, 188, 141, 47);
     pointPaint.strokeCap = StrokeCap.round;
 
     //question points
