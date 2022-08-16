@@ -13,11 +13,12 @@ class MultipleChoiceOptions extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Stack(
+          alignment: AlignmentDirectional.topCenter,
           children: [
             Container(
               margin: const EdgeInsets.only(top: 20),
               height: 50,
-              width: 300,
+              width: 220,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
@@ -34,8 +35,8 @@ class MultipleChoiceOptions extends StatelessWidget {
                       onPicked("A");
                     },
                     child: Container(
-                      height: 55,
-                      width: 55,
+                      height: 40,
+                      width: 40,
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(50)),
                           color: Color.fromARGB(255, 217, 217, 217)),
@@ -49,8 +50,8 @@ class MultipleChoiceOptions extends StatelessWidget {
                       onPicked("B");
                     },
                     child: Container(
-                      height: 55,
-                      width: 55,
+                      height: 40,
+                      width: 40,
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(50)),
                           color: Color.fromARGB(255, 217, 217, 217)),
@@ -64,8 +65,8 @@ class MultipleChoiceOptions extends StatelessWidget {
                       onPicked("C");
                     },
                     child: Container(
-                      height: 55,
-                      width: 55,
+                      height: 40,
+                      width: 40,
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(50)),
                           color: Color.fromARGB(255, 217, 217, 217)),

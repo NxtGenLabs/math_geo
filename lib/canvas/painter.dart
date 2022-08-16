@@ -120,13 +120,12 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     //display question point coordinates
     for (var point in qp) {
       //debug logging the getSides() method
+      var rackup = 0;
 
-      // display plotted point coordinates
-      var counter = 0;
       TextSpan span = TextSpan(
           style: TextStyle(color: Colors.red[900]),
           text:
-              '${alphabet[counter]}(${point.dx.toInt() + -centerX}, ${point.dy.toInt() - centerY})');
+              '${alphabet[rackup]}(${point.dx.toInt() + -centerX}, ${point.dy.toInt() - centerY})');
       TextPainter tp = TextPainter(
           text: span,
           textAlign: TextAlign.left,
@@ -137,28 +136,28 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
 
       // debug logs
       // ignore: avoid_print
-      print('Distance:  ${distance(qp[counter], qp[counter + 1])}');
+      print('Distance:  ${distance(qp[rackup], qp[rackup + 1])}');
 
       // distance will only show if there are more than 1 point(s)
-      if (points.length > 1) {
+      if (qp.length > 1) {
         TextSpan span = TextSpan(
             style: TextStyle(color: Colors.red[900]),
-            text: '${distance(qp[counter], qp[counter + 1])}cm');
+            text: '${distance(qp[rackup], qp[rackup + 1])}cm');
         TextPainter tp = TextPainter(
             text: span,
             textAlign: TextAlign.left,
             textDirection: TextDirection.ltr,
             textScaleFactor: 1.0);
         tp.layout();
-        tp.paint(canvas, midPoint(qp[counter], qp[counter + 1]));
+        tp.paint(canvas, midPoint(qp[rackup], qp[rackup + 1]));
 
         // ignore: avoid_print
         print(
-            'Angle of ${alphabet[counter]} and ${alphabet[counter + 1]}: ${calcAngle(qp[counter], qp[counter + 1])}');
+            'Angle of ${alphabet[rackup]} and ${alphabet[rackup + 1]}: ${calcAngle(qp[rackup], qp[rackup + 1])}');
       }
 
       // indexer
-      ++counter;
+      ++rackup;
     }
 
     for (var stroke in strokes) {
@@ -168,10 +167,9 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
       canvas.drawPath(strokePath, strokePaint);
     }
 
-    var counter = 0;
-
     for (var point in points) {
       //debug logging the getSides() method
+      var counter = 0;
 
       // display plotted point coordinates
       TextSpan span = TextSpan(
