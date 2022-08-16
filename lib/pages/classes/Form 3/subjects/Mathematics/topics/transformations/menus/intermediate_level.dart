@@ -20,18 +20,28 @@ class TransFormationsLevels extends StatelessWidget {
         timeLimit: 120),
     IntermediateLs(
         level: '2',
-        question: 'Translate the rectangle by (5,8)',
+        question: 'Translate the rectangle by (5,-8)',
         rating: '3/3',
         answer: [],
-        qPoints: [const Offset(-160, 200)],
+        qPoints: [
+          const Offset(-160, -20),
+          const Offset(-160, -160),
+          const Offset(-40, -160),
+          const Offset(-40, -20),
+        ],
         hint: '',
         timeLimit: 120),
     IntermediateLs(
         level: '3',
-        question: 'Impressive, but i still think you can flunk the exam pssstt',
+        question: 'Translate the the rectangle by (4,7)',
         rating: '3/3',
         answer: [],
-        qPoints: [],
+        qPoints: [
+          const Offset(40, -160),
+          const Offset(200, -160),
+          const Offset(200, -40),
+          const Offset(40, -40)
+        ],
         hint: '',
         timeLimit: 120),
     IntermediateLs(
