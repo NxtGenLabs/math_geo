@@ -17,12 +17,12 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
   List<String> alphabet = [
     'a',
     'b',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
+    'c',
+    'd',
+    'e',
+    'f',
+    'g',
+    'h',
     'I',
     'J',
     'K',
@@ -89,6 +89,7 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    var count = 0;
     //creating the center variable
     double centerX = size.width / 2;
     double centerY = size.height / 2;
@@ -118,47 +119,6 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     canvas.drawPoints(PointMode.points, qp, pointPaint);
 
     //display question point coordinates
-    for (var point in qp) {
-      //debug logging the getSides() method
-      var rackup = 0;
-
-      TextSpan span = TextSpan(
-          style: TextStyle(color: Colors.red[900]),
-          text:
-              '${alphabet[rackup]}(${point.dx.toInt() + -centerX}, ${point.dy.toInt() - centerY})');
-      TextPainter tp = TextPainter(
-          text: span,
-          textAlign: TextAlign.left,
-          textDirection: TextDirection.ltr,
-          textScaleFactor: .8);
-      tp.layout();
-      tp.paint(canvas, Offset(point.dx, point.dy));
-
-      // debug logs
-      // ignore: avoid_print
-      print('Distance:  ${distance(qp[rackup], qp[rackup + 1])}');
-
-      // distance will only show if there are more than 1 point(s)
-      if (qp.length > 1) {
-        TextSpan span = TextSpan(
-            style: TextStyle(color: Colors.red[900]),
-            text: '${distance(qp[rackup], qp[rackup + 1])}cm');
-        TextPainter tp = TextPainter(
-            text: span,
-            textAlign: TextAlign.left,
-            textDirection: TextDirection.ltr,
-            textScaleFactor: 1.0);
-        tp.layout();
-        tp.paint(canvas, midPoint(qp[rackup], qp[rackup + 1]));
-
-        // ignore: avoid_print
-        print(
-            'Angle of ${alphabet[rackup]} and ${alphabet[rackup + 1]}: ${calcAngle(qp[rackup], qp[rackup + 1])}');
-      }
-
-      // indexer
-      ++rackup;
-    }
 
     for (var stroke in strokes) {
       canvas.drawPoints(PointMode.points, stroke, pointPaint);
@@ -167,15 +127,56 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
       canvas.drawPath(strokePath, strokePaint);
     }
 
+//question data
+    for (var point in qp) {
+      //debug logging the getSides() method
+
+      TextSpan span = TextSpan(
+          style: TextStyle(color: Colors.red[900]),
+          text:
+              '${alphabet[count]}(${point.dx.toInt() + -centerX}, ${point.dy.toInt() - centerY})');
+      TextPainter qtp = TextPainter(
+          text: span,
+          textAlign: TextAlign.left,
+          textDirection: TextDirection.ltr,
+          textScaleFactor: .8);
+      qtp.layout();
+      qtp.paint(canvas, Offset(point.dx, point.dy));
+
+      // debug logs
+      // ignore: avoid_print
+      print('Distance:  ${distance(qp[count], qp[count + 1])}');
+
+      // distance will only show if there are more than 1 point(s)
+      if (qp.length > 1) {
+        TextSpan span = TextSpan(
+            style: TextStyle(color: Colors.red[900]),
+            text: '${distance(qp[count], qp[count + 1])}cm');
+        TextPainter tp = TextPainter(
+            text: span,
+            textAlign: TextAlign.left,
+            textDirection: TextDirection.ltr,
+            textScaleFactor: 1.0);
+        tp.layout();
+        tp.paint(canvas, midPoint(qp[count], qp[count + 1]));
+
+        // ignore: avoid_print
+        print(
+            'Angle of ${alphabet[count]} and ${alphabet[count + 1]}: ${calcAngle(qp[count], qp[count + 1])}');
+      }
+
+      // indexer
+      ++count;
+    }
+
     for (var point in points) {
       //debug logging the getSides() method
-      var counter = 0;
 
       // display plotted point coordinates
       TextSpan span = TextSpan(
           style: TextStyle(color: Colors.red[900]),
           text:
-              '${alphabet[counter]}(${point.dx.toInt() - centerX}, ${point.dy.toInt() - centerY})');
+              '${alphabet[count]}(${point.dx.toInt() - centerX}, ${point.dy.toInt() - centerY})');
       TextPainter tp = TextPainter(
           text: span,
           textAlign: TextAlign.left,
@@ -186,28 +187,28 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
 
       // debug logs
       // ignore: avoid_print
-      print('Distance:  ${distance(points[counter], points[counter + 1])}');
+      print('Distance:  ${distance(points[count], points[count + 1])}');
 
       // distance will only show if there are more than 1 point(s)
       if (points.length > 1) {
         TextSpan span = TextSpan(
             style: TextStyle(color: Colors.red[900]),
-            text: '${distance(points[counter], points[counter + 1])}cm');
+            text: '${distance(points[count], points[count + 1])}cm');
         TextPainter tp = TextPainter(
             text: span,
             textAlign: TextAlign.left,
             textDirection: TextDirection.ltr,
             textScaleFactor: 1.0);
         tp.layout();
-        tp.paint(canvas, midPoint(points[counter], points[counter + 1]));
+        tp.paint(canvas, midPoint(points[count], points[count + 1]));
 
         // ignore: avoid_print
         print(
-            'Angle of ${alphabet[counter]} and ${alphabet[counter + 1]}: ${calcAngle(points[counter], points[counter + 1])}');
+            'Angle of ${alphabet[count]} and ${alphabet[count + 1]}: ${calcAngle(points[count], points[count + 1])}');
       }
 
       // indexer
-      ++counter;
+      ++count;
     }
   }
 
