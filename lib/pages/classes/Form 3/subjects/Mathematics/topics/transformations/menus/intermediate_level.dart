@@ -8,13 +8,17 @@ class TransFormationsLevels extends StatelessWidget {
   List<IntermediateLs> levels = [
     IntermediateLs(
         level: '1',
-        question: 'Translate the shape by (3,4)',
+        question: 'Translate the shape by (4,4)',
         rating: '3/3',
-        answer: [],
+        answer: [
+          const Offset(-20, 8),
+          const Offset(-20, 20),
+          const Offset(0, 8)
+        ],
         qPoints: [
-          const Offset(-240, -40),
-          const Offset(-240, -180),
-          const Offset(-40, -40)
+          const Offset(-24, 4),
+          const Offset(-24, 16),
+          const Offset(-4, 4)
         ],
         hint: '',
         timeLimit: 120),
@@ -22,12 +26,17 @@ class TransFormationsLevels extends StatelessWidget {
         level: '2',
         question: 'Translate the rectangle by (5,-8)',
         rating: '3/3',
-        answer: [],
+        answer: [
+          const Offset(-11, -6),
+          const Offset(-11, -8),
+          const Offset(1, -8),
+          const Offset(1, -6)
+        ],
         qPoints: [
-          const Offset(-160, -20),
-          const Offset(-160, -160),
-          const Offset(-40, -160),
-          const Offset(-40, -20),
+          const Offset(-16, 2),
+          const Offset(-16, 16),
+          const Offset(-4, 16),
+          const Offset(-4, 2),
         ],
         hint: '',
         timeLimit: 120),
@@ -35,12 +44,17 @@ class TransFormationsLevels extends StatelessWidget {
         level: '3',
         question: 'Translate the the rectangle by (4,7)',
         rating: '3/3',
-        answer: [],
+        answer: [
+          const Offset(8, 23),
+          const Offset(24, 23),
+          const Offset(24, 11),
+          const Offset(8, 11)
+        ],
         qPoints: [
-          const Offset(40, -160),
-          const Offset(200, -160),
-          const Offset(200, -40),
-          const Offset(40, -40)
+          const Offset(4, 16),
+          const Offset(20, 16),
+          const Offset(20, 4),
+          const Offset(4, 4)
         ],
         hint: '',
         timeLimit: 120),
@@ -51,10 +65,10 @@ class TransFormationsLevels extends StatelessWidget {
         rating: '3/3',
         answer: [],
         qPoints: [
-          const Offset(40, -40),
-          const Offset(40, -160),
-          const Offset(200, -160),
-          const Offset(200, -40)
+          const Offset(4, 4),
+          const Offset(4, 16),
+          const Offset(20, 16),
+          const Offset(20, 4)
         ],
         hint: '',
         timeLimit: 120),

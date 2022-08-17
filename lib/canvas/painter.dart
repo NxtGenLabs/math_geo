@@ -46,8 +46,11 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
   bool hitTest(Offset position) => true;
 
   void startStroke(Offset position) {
-    strokes.add([position]);
-    points.add(position);
+    double snapX = position.dx.roundToDouble();
+    double snapY = position.dy.roundToDouble();
+    Offset snapPos = Offset(snapX, snapY);
+    strokes.add([snapPos]);
+    points.add(snapPos);
     notifyListeners();
   }
 
@@ -90,6 +93,7 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var count = 0;
+    var qcount = 0;
     //creating the center variable
     double centerX = size.width / 2;
     double centerY = size.height / 2;
@@ -99,7 +103,7 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     List<Offset> qp = [];
 
     for (var point in levels.levels[index].qPoints) {
-      qp.add(Offset(point.dx + centerX, point.dy + centerY));
+      qp.add(Offset((point.dx * 10) + centerX, (point.dy * -10) + centerY));
     }
 
     Paint strokePaint = Paint();
@@ -128,88 +132,77 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     }
 
 //question data
-    for (var point in qp) {
-      //debug logging the getSides() method
+    // for (var point in qp) {
+    //   //debug logging the getSides() method
 
-      TextSpan span = TextSpan(
-          style: TextStyle(color: Colors.red[900]),
-          text:
-              '${alphabet[count]}(${point.dx.toInt() + -centerX}, ${point.dy.toInt() - centerY})');
-      TextPainter qtp = TextPainter(
-          text: span,
-          textAlign: TextAlign.left,
-          textDirection: TextDirection.ltr,
-          textScaleFactor: .8);
-      qtp.layout();
-      qtp.paint(canvas, Offset(point.dx, point.dy));
+    //   TextSpan span = TextSpan(
+    //       style: TextStyle(color: Colors.red[900]),
+    //       text:
+    //           '${alphabet[count]}(${point.dx.toInt() + -centerX}, ${point.dy.toInt() - centerY})');
+    //   TextPainter qtp = TextPainter(
+    //       text: span,
+    //       textAlign: TextAlign.left,
+    //       textDirection: TextDirection.ltr,
+    //       textScaleFactor: .8);
+    //   qtp.layout();
+    //   qtp.paint(canvas, Offset(point.dx, point.dy));
 
-      // debug logs
-      // ignore: avoid_print
-      print('Distance:  ${distance(qp[count], qp[count + 1])}');
+    //   // debug logs
+    //   // ignore: avoid_print
+    //   print('Distance:  ${distance(qp[count], qp[count + 1])}');
 
-      // distance will only show if there are more than 1 point(s)
-      if (qp.length > 1) {
-        TextSpan span = TextSpan(
-            style: TextStyle(color: Colors.red[900]),
-            text: '${distance(qp[count], qp[count + 1])}cm');
-        TextPainter tp = TextPainter(
-            text: span,
-            textAlign: TextAlign.left,
-            textDirection: TextDirection.ltr,
-            textScaleFactor: 1.0);
-        tp.layout();
-        tp.paint(canvas, midPoint(qp[count], qp[count + 1]));
-
-        // ignore: avoid_print
-        print(
-            'Angle of ${alphabet[count]} and ${alphabet[count + 1]}: ${calcAngle(qp[count], qp[count + 1])}');
-      }
-
-      // indexer
-      ++count;
-    }
+    //   // distance will only show if there are more than 1 point(s)
+    //   if (qp.length > 1) {
+    //     TextSpan span = TextSpan(
+    //         style: TextStyle(color: Colors.red[900]),
+    //         text: '${distance(qp[count], qp[count + 1])}cm');
+    //     TextPainter qtp = TextPainter(
+    //         text: span,
+    //         textAlign: TextAlign.left,
+    //         textDirection: TextDirection.ltr,
+    //         textScaleFactor: 1.0);
+    //     qtp.layout();
+    //     qtp.paint(canvas, midPoint(qp[count], qp[count + 1]));
+    //   }
+    //   // indexer
+    //   ++count;
+    // }
 
     for (var point in points) {
       //debug logging the getSides() method
 
       // display plotted point coordinates
-      TextSpan span = TextSpan(
+      TextSpan plotText = TextSpan(
           style: TextStyle(color: Colors.red[900]),
           text:
-              '${alphabet[count]}(${point.dx.toInt() - centerX}, ${point.dy.toInt() - centerY})');
-      TextPainter tp = TextPainter(
-          text: span,
+              '${alphabet[qcount]}(${((point.dx.toInt() - centerX) * 0.1).round()}, ${((point.dy.toInt() - centerY) * -0.1).round()})');
+      TextPainter pt = TextPainter(
+          text: plotText,
           textAlign: TextAlign.left,
           textDirection: TextDirection.ltr,
           textScaleFactor: .8);
-      tp.layout();
-      tp.paint(canvas, Offset(point.dx, point.dy));
-
-      // debug logs
-      // ignore: avoid_print
-      print('Distance:  ${distance(points[count], points[count + 1])}');
+      pt.layout();
+      pt.paint(canvas, Offset(point.dx, point.dy));
 
       // distance will only show if there are more than 1 point(s)
       if (points.length > 1) {
-        TextSpan span = TextSpan(
+        TextSpan plotText = TextSpan(
             style: TextStyle(color: Colors.red[900]),
-            text: '${distance(points[count], points[count + 1])}cm');
-        TextPainter tp = TextPainter(
-            text: span,
+            text:
+                '${distance((points[qcount]) * 0.1, (points[qcount + 1] * 0.1))}cm');
+        TextPainter pt = TextPainter(
+            text: plotText,
             textAlign: TextAlign.left,
             textDirection: TextDirection.ltr,
             textScaleFactor: 1.0);
-        tp.layout();
-        tp.paint(canvas, midPoint(points[count], points[count + 1]));
-
-        // ignore: avoid_print
-        print(
-            'Angle of ${alphabet[count]} and ${alphabet[count + 1]}: ${calcAngle(points[count], points[count + 1])}');
+        pt.layout();
+        pt.paint(canvas, midPoint(points[qcount], points[qcount + 1]));
       }
-
       // indexer
-      ++count;
+      ++qcount;
     }
+
+    if (levels.levels[index].answer == points) {}
   }
 
   @override

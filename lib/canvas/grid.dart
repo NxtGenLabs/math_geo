@@ -63,8 +63,8 @@ class MyGridPainter extends CustomPainter {
     canvas.drawPath(centralCoord, centralCordPaint);
 
     for (int xcoord = 0; xcoord <= center.dy * 2; ++xcoord) {
-      if (xcoord % 80 == 0) {
-        String text = xcoord.toString();
+      if (xcoord % 40 == 0) {
+        String text = (xcoord * 0.1).toString();
         TextSpan span =
             TextSpan(style: TextStyle(color: Colors.grey[600]), text: text);
         TextPainter tp = TextPainter(
@@ -79,8 +79,8 @@ class MyGridPainter extends CustomPainter {
     }
 
     for (int ycoord = 0; ycoord <= center.dx * 2; ++ycoord) {
-      if (ycoord % 80 == 0) {
-        String text = ycoord.toString();
+      if (ycoord % 40 == 0) {
+        String text = (ycoord * 0.1).toString();
         TextSpan span =
             TextSpan(style: TextStyle(color: Colors.grey[600]), text: text);
         TextPainter tp = TextPainter(
