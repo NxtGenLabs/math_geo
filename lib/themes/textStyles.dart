@@ -44,6 +44,6 @@ abstract class ThemeText {
   static const TextStyle multipleChoice = TextStyle(
       fontFamily: 'Popins',
       color: Color.fromARGB(255, 60, 64, 58),
-      fontSize: 24,
+      fontSize: 22,
       fontWeight: FontWeight.w800);
 }

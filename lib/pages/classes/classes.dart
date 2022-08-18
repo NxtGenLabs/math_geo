@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,7 +15,9 @@ class Classes extends StatelessWidget {
     List tiles = [
       Tile(
           subject: "Mathematics",
-          onPressed: () {
+          onPressed: () async {
+            final player = AudioPlayer();
+            await player.play(AssetSource('retro_click.wav'));
             Navigator.pushNamed(context, './pages/topics/main');
           }),
       const InactiveTile(

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:math_geometry/themes/textStyles.dart';
+import 'package:math_geometry/widgets/appbarIcon.dart';
 
 class CustomAppBar extends StatefulWidget {
   final String level;
@@ -31,6 +32,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   bool isStartTimer = false;
   bool isCorrect = false;
   bool usedHint = false;
+  bool selected = false;
 
 ///////////timer function
   void _startCountDown() {
@@ -87,6 +89,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     void _showDialog() {
+      setState(() {
+        selected = true;
+        selected = false;
+      });
       showDialog(
           context: context,
           builder: (context) {
@@ -195,10 +201,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
       alignment: AlignmentDirectional.topCenter,
       children: [
         Container(
+          margin: const EdgeInsets.only(top: 15),
           decoration: const BoxDecoration(
               color: Color.fromARGB(255, 242, 242, 242),
               borderRadius: BorderRadius.all(Radius.circular(20))),
-          margin: const EdgeInsets.only(top: 15),
           height: 50,
           width: 400,
           child: Row(
@@ -219,82 +225,45 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   )
                 ],
               ),
-              GestureDetector(
-                onTap: _showDialog,
-                child: const SizedBox(
-                    height: 30,
-                    width: 30,
-                    child: Image(
-                        filterQuality: FilterQuality.high,
-                        image: AssetImage("images/icons/question.png"))),
+              AppBarIcon('question.png', () {
+                _showDialog();
+              }),
+              AppBarIcon('hint.png', () {
+                _showHint();
+                usedHint = true;
+              }),
+              const SizedBox(
+                height: 50,
+                width: 50,
               ),
-              GestureDetector(
-                onTap: () {
-                  _showHint();
-                  usedHint = true;
-                },
-                child: const SizedBox(
-                    height: 30,
-                    width: 30,
-                    child: Image(
-                        filterQuality: FilterQuality.high,
-                        image: AssetImage("images/icons/hint.png"))),
-              ),
-              IconButton(
-                icon: const Icon(Icons.person_pin_circle_outlined),
-                color: Colors.grey[300],
-                onPressed: () {},
-              ),
-              GestureDetector(
-                onTap: () {
-                  if (widget.pick == widget.answer) {
-                    widget.score++;
-                    setState(() {
-                      isStartTimer = true;
-                      isCorrect = true;
-                    });
-                  } else {
-                    setState(() {
-                      isCorrect = false;
-                    });
-                  }
-                  _showResult();
+              AppBarIcon('checkmark.png', () {
+                if (widget.pick == widget.answer) {
+                  widget.score++;
+                  setState(() {
+                    isStartTimer = true;
+                    isCorrect = true;
+                  });
+                } else {
+                  setState(() {
+                    isCorrect = false;
+                  });
+                }
+                _showResult();
 
-                  if (initTime < widget.timeLimit) {
-                    widget.score++;
-                  }
-                  if (retries == 0) {
-                    widget.score++;
-                  }
-                  if (!usedHint) {
-                    widget.score++;
-                  }
-                },
-                child: const SizedBox(
-                    height: 30,
-                    width: 30,
-                    child: Image(
-                        filterQuality: FilterQuality.high,
-                        image: AssetImage("images/icons/checkmark.png"))),
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: const SizedBox(
-                    height: 30,
-                    width: 30,
-                    child: Image(image: AssetImage("images/icons/retry.png"))),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: const SizedBox(
-                    height: 30,
-                    width: 30,
-                    child: Image(
-                        filterQuality: FilterQuality.high,
-                        image: AssetImage("images/icons/home.png"))),
-              )
+                if (initTime < widget.timeLimit) {
+                  widget.score++;
+                }
+                if (retries == 0) {
+                  widget.score++;
+                }
+                if (!usedHint) {
+                  widget.score++;
+                }
+              }),
+              AppBarIcon('retry.png', () {}),
+              AppBarIcon('home.png', () {
+                Navigator.pop(context);
+              })
             ],
           ),
         ),

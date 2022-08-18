@@ -40,7 +40,7 @@ dependencies:
   flutter_staggered_grid_view: ^0.6.2
   font_awesome_flutter: ^10.1.0
   flutter_particles: ^1.0.0+7
-  google_fonts: ^3.0.1
+  audioplayers: ^1.0.1
 
 
 dev_dependencies:
@@ -100,6 +100,15 @@ flutter:
     - images/icons/question.png
     - images/icons/retry.png
     - images/icons/star.png
+
+    ##sfx
+    - assets/bleep.wav
+    - assets/click_close.wav
+    - assets/retro_click.wav
+    - assets/robot_click.wav
+    - assets/warning.wav
+    - assets/bubble.wav
+    - assets/win_notify.wav
     
     
 

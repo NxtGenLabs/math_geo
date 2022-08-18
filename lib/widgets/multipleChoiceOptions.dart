@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:math_geometry/themes/textStyles.dart';
+import 'package:math_geometry/widgets/pick.dart';
 
 class MultipleChoiceOptions extends StatelessWidget {
   final String pick;
@@ -30,53 +30,17 @@ class MultipleChoiceOptions extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      onPicked("A");
-                    },
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
-                          color: Color.fromARGB(255, 217, 217, 217)),
-                      child: const Center(
-                          child: Text("A", style: ThemeText.multipleChoice)),
-                    ),
-                  ),
+                  Pick("A", () {
+                    onPicked("A");
+                  }),
                   const SizedBox(width: 10),
-                  GestureDetector(
-                    onTap: () {
-                      onPicked("B");
-                    },
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
-                          color: Color.fromARGB(255, 217, 217, 217)),
-                      child: const Center(
-                          child: Text("B", style: ThemeText.multipleChoice)),
-                    ),
-                  ),
+                  Pick("B", () {
+                    onPicked("B");
+                  }),
                   const SizedBox(width: 10),
-                  GestureDetector(
-                    onTap: () {
-                      onPicked("C");
-                    },
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
-                          color: Color.fromARGB(255, 217, 217, 217)),
-                      child: const Center(
-                          child: Text(
-                        "C",
-                        style: ThemeText.multipleChoice,
-                      )),
-                    ),
-                  ),
+                  Pick("C", () {
+                    onPicked("C");
+                  })
                 ],
               ),
             ),
