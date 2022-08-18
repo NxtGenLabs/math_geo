@@ -120,7 +120,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
     }
 
 ////////hint function
-    void _showHint() {
+    void _showHint() async {
+      final player = AudioPlayer();
+      await player.play(AssetSource('hint.wav'));
       showDialog(
           context: context,
           builder: (context) {
@@ -237,7 +239,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 height: 50,
                 width: 50,
               ),
-              AppBarIcon('checkmark.png', () {
+              AppBarIcon('checkmark.png', () async {
                 if (widget.pick == widget.answer) {
                   widget.score++;
                   setState(() {
@@ -245,6 +247,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     isCorrect = true;
                   });
                 } else {
+                  final player = AudioPlayer();
+                  await player.play(AssetSource('wrong.wav'));
                   setState(() {
                     isCorrect = false;
                   });
@@ -262,7 +266,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 }
               }),
               AppBarIcon('retry.png', () {}),
-              AppBarIcon('home.png', () {
+              AppBarIcon('home.png', () async {
+                final player = AudioPlayer();
+                await player.play(AssetSource('click.wav'));
                 Navigator.pop(context);
               })
             ],

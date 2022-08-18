@@ -102,18 +102,11 @@ flutter:
     - images/icons/star.png
 
     ##sfx
-    - assets/bleep.wav
-    - assets/pop.wav
-    - assets/click_close.wav
-    - assets/click.wav
-    - assets/satisfying_click.wav
+    - assets/hint.wav
     - assets/popup.wav
-    - assets/retro_click.wav
-    - assets/robot_click.wav
-    - assets/warning.wav
-    - assets/bubble.wav
-    - assets/marimba_chord.wav
-    - assets/win_notify.wav
+    - assets/satisfying_click.wav
+    - assets/wrong.wav
+    - assets/click.wav
     
     
 
