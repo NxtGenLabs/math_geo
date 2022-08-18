@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
@@ -40,9 +41,12 @@ class TrainingStationLevel extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
-                              onPressed: () {
+                              onPressed: () async {
+                                final player = AudioPlayer();
+                                await player.play(AssetSource('click.wav'));
                                 Navigator.pop(context);
                               },
+                              color: const Color.fromARGB(255, 248, 252, 246),
                               icon: const Icon(
                                 FontAwesomeIcons.chevronLeft,
                               ),

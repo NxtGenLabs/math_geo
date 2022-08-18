@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 
@@ -15,7 +16,9 @@ class WorldTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
+        final player = AudioPlayer();
+        await player.play(AssetSource('satisfying_click.wav'));
         Navigator.pushNamed(context, route);
       },
       child: Container(

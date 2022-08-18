@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'dart:math' as math;
@@ -45,7 +46,9 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
   @override
   bool hitTest(Offset position) => true;
 
-  void startStroke(Offset position) {
+  void startStroke(Offset position) async {
+    final player = AudioPlayer();
+    await player.play(AssetSource('pop.wav'));
     double snapX = position.dx.roundToDouble();
     double snapY = position.dy.roundToDouble();
     Offset snapPos = Offset(snapX, snapY);

@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 
@@ -10,7 +11,12 @@ class LevelContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPress,
+      onTap: () async {
+        final player = AudioPlayer();
+        await player.play(AssetSource('satisfying_click.wav'));
+
+        onPress();
+      },
       child: Stack(
         alignment: AlignmentDirectional.topCenter,
         children: [

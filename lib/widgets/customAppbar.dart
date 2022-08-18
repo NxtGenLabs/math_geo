@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/appbarIcon.dart';
@@ -50,7 +51,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration.zero, () {
+    Future.delayed(Duration.zero, () async {
+      final player = AudioPlayer();
+      await player.play(AssetSource('popup.wav'));
       showDialog(
           context: context,
           builder: (context) {
@@ -88,11 +91,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    void _showDialog() {
-      setState(() {
-        selected = true;
-        selected = false;
-      });
+    void _showDialog() async {
+      final player = AudioPlayer();
+      await player.play(AssetSource('popup.wav'));
       showDialog(
           context: context,
           builder: (context) {

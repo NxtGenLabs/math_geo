@@ -17,7 +17,7 @@ class Classes extends StatelessWidget {
           subject: "Mathematics",
           onPressed: () async {
             final player = AudioPlayer();
-            await player.play(AssetSource('retro_click.wav'));
+            await player.play(AssetSource('satisfying_click.wav'));
             Navigator.pushNamed(context, './pages/topics/main');
           }),
       const InactiveTile(
