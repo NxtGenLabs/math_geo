@@ -48,7 +48,7 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
 
   void startStroke(Offset position) async {
     final player = AudioPlayer();
-    await player.play(AssetSource('pop.wav'));
+    await player.play(AssetSource('draw.wav'));
     double snapX = position.dx.roundToDouble();
     double snapY = position.dy.roundToDouble();
     Offset snapPos = Offset(snapX, snapY);

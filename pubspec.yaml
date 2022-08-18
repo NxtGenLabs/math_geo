@@ -107,6 +107,7 @@ flutter:
     - assets/satisfying_click.wav
     - assets/wrong.wav
     - assets/click.wav
+    - assets/draw.wav
     
     
 
