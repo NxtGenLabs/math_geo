@@ -268,7 +268,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
               AppBarIcon('retry.png', () {}),
               AppBarIcon('home.png', () async {
                 final player = AudioPlayer();
-                await player.play(AssetSource('click.wav'));
+                await player.play(AssetSource('satisfying_click.wav'));
                 Navigator.pop(context);
               })
             ],
