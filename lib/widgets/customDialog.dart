@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 
 class CustomDialog extends StatelessWidget {
   final String title;
   final String message;
-  final Color color;
+  final String clsBtnTitle;
   final bool attempt;
+  final secBtnTitle;
+  final secOnPress;
+  final IconData header;
+  final Color headerColor;
+  final Function() onClsBtnPressed;
   const CustomDialog(
       {required this.title,
-      required this.color,
+      required this.clsBtnTitle,
       required this.message,
-      required this.attempt});
+      required this.attempt,
+      this.secBtnTitle,
+      this.secOnPress,
+      required this.header,
+      required this.headerColor,
+      required this.onClsBtnPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +32,16 @@ class CustomDialog extends StatelessWidget {
         clipBehavior: Clip.none,
         alignment: AlignmentDirectional.topCenter,
         children: [
-          SizedBox(
-            height: 180,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(10, 70, 10, 10),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15, 50, 15, 15),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width / 2,
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     title,
-                    style: ThemeText.chapter,
+                    style: ThemeText.title,
                   ),
                   const SizedBox(height: 10),
                   Text(message),
@@ -39,30 +49,27 @@ class CustomDialog extends StatelessWidget {
                   InkWell(
                     onTap: () {},
                     child: Row(
-                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         attempt
-                            ? Ink(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                height: 38,
-                                decoration: const BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                            ? TextButton(
+                                onPressed: secOnPress,
+                                child: Text(
+                                  secBtnTitle,
+                                  style: const TextStyle(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.bold),
                                 ),
-                                child: const Center(child: Text("CLOSE")),
                               )
-                            : Ink(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                height: 38,
-                                decoration: const BoxDecoration(
-                                    color: Colors.green,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10))),
-                                child: const Center(child: Text("ATTEMPT")),
-                              )
+                            : (Container()),
+                        TextButton(
+                          onPressed: onClsBtnPressed,
+                          child: Text(
+                            clsBtnTitle,
+                            style: const TextStyle(
+                                color: Colors.red, fontWeight: FontWeight.bold),
+                          ),
+                        )
                       ],
                     ),
                   )
@@ -82,11 +89,11 @@ class CustomDialog extends StatelessWidget {
                   child: child,
                 );
               },
-              child: const CircleAvatar(
+              child: CircleAvatar(
                 radius: 40,
-                backgroundColor: Colors.amber,
+                backgroundColor: headerColor,
                 child: Icon(
-                  FontAwesomeIcons.lightbulb,
+                  header,
                   size: 30,
                   color: Colors.white,
                 ),

@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/appbarIcon.dart';
+import 'package:math_geometry/widgets/customDialog.dart';
 
 class CustomAppBar extends StatefulWidget {
   final String level;
@@ -57,34 +59,26 @@ class _CustomAppBarState extends State<CustomAppBar> {
       showDialog(
           context: context,
           builder: (context) {
-            return AlertDialog(
-              backgroundColor: Colors.grey[400],
-              title: Text('Level ${widget.level}'),
-              content: Text(widget.question),
-              actions: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    MaterialButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        _startCountDown();
-                      },
-                      color: Colors.teal,
-                      child: const Text('Attempt'),
-                    ),
-                    MaterialButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                      },
-                      color: Colors.red[800],
-                      child: const Text('Quit'),
-                    )
-                  ],
-                )
-              ],
-            );
+            return CustomDialog(
+                title: 'Level ${widget.level}',
+                clsBtnTitle: 'Quit',
+                onClsBtnPressed: () async {
+                  final player = AudioPlayer();
+                  await player.play(AssetSource('satisfying_click.wav'));
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+                message: widget.question,
+                attempt: true,
+                header: FontAwesomeIcons.question,
+                headerColor: Colors.purple,
+                secBtnTitle: 'Attempt',
+                secOnPress: () async {
+                  final player = AudioPlayer();
+                  await player.play(AssetSource('satisfying_click.wav'));
+                  Navigator.pop(context);
+                  _startCountDown();
+                });
           });
     });
   }
@@ -97,24 +91,16 @@ class _CustomAppBarState extends State<CustomAppBar> {
       showDialog(
           context: context,
           builder: (context) {
-            return AlertDialog(
-              backgroundColor: Colors.grey[400],
-              title: Text('Level ${widget.level}'),
-              content: Text(widget.question),
-              actions: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    MaterialButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      color: Colors.red[800],
-                      child: const Text('Close'),
-                    )
-                  ],
-                )
-              ],
+            return CustomDialog(
+              title: 'Level${widget.level}',
+              clsBtnTitle: 'Close',
+              onClsBtnPressed: () {
+                Navigator.pop(context);
+              },
+              message: widget.question,
+              attempt: false,
+              header: FontAwesomeIcons.question,
+              headerColor: Colors.purple,
             );
           });
     }
@@ -126,20 +112,16 @@ class _CustomAppBarState extends State<CustomAppBar> {
       showDialog(
           context: context,
           builder: (context) {
-            return AlertDialog(
-              backgroundColor: Colors.grey[400],
-              title: const Text('Hint'),
-              content: Text(widget.hint),
-              actions: [
-                MaterialButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  color: Colors.red[800],
-                  child: const Text('Close'),
-                )
-              ],
-            );
+            return CustomDialog(
+                title: "Hint",
+                message: widget.hint,
+                clsBtnTitle: "Close",
+                onClsBtnPressed: () {
+                  Navigator.pop(context);
+                },
+                attempt: false,
+                header: FontAwesomeIcons.solidLightbulb,
+                headerColor: Colors.amber);
           });
     }
 
@@ -149,52 +131,38 @@ class _CustomAppBarState extends State<CustomAppBar> {
         showDialog(
             context: context,
             builder: (context) {
-              return AlertDialog(
-                backgroundColor: Colors.grey[400],
-                title: const Text('Correct'),
-                content: const Text("Good job!!"),
-                actions: [
-                  MaterialButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                    },
-                    color: Colors.teal,
-                    child: const Text('Next'),
-                  )
-                ],
-              );
+              return CustomDialog(
+                  title: 'Correct',
+                  clsBtnTitle: 'Next',
+                  onClsBtnPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                  message: 'Good Job!!',
+                  attempt: false,
+                  header: FontAwesomeIcons.check,
+                  headerColor: Colors.green);
             });
       } else {
         showDialog(
             context: context,
             builder: (context) {
-              return AlertDialog(
-                backgroundColor: Colors.grey[400],
-                title: const Text('Wrong'),
-                content: const Text("Ooo!! you just missed it, try again"),
-                actions: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      MaterialButton(
-                        onPressed: () {
-                          retries++;
-                          Navigator.pop(context);
-                        },
-                        color: Colors.teal,
-                        child: const Text('Retry'),
-                      ),
-                      MaterialButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        color: Colors.red[800],
-                        child: const Text('Quit'),
-                      )
-                    ],
-                  ),
-                ],
+              return CustomDialog(
+                header: FontAwesomeIcons.x,
+                headerColor: Colors.red,
+                title: "Wrong",
+                message: "Ooo!! You just missed it, try again.",
+                attempt: true,
+                clsBtnTitle: "Quit",
+                onClsBtnPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+                secBtnTitle: "Retry",
+                secOnPress: () {
+                  retries++;
+                  Navigator.pop(context);
+                },
               );
             });
       }
@@ -216,9 +184,16 @@ class _CustomAppBarState extends State<CustomAppBar> {
             children: [
               Row(
                 children: [
-                  Text(
-                    "${initTime}s",
-                    style: ThemeText.header2,
+                  SizedBox(
+                    width: 35,
+                    child: Text(
+                      "${initTime}s",
+                      style: ThemeText.chapter,
+                      maxLines: 1,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   const SizedBox(width: 5),
                   Container(
@@ -228,18 +203,18 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   )
                 ],
               ),
-              AppBarIcon('question.png', () {
+              AppBarIcon(FontAwesomeIcons.question, () {
                 _showDialog();
-              }),
-              AppBarIcon('hint.png', () {
+              }, Colors.purple),
+              AppBarIcon(FontAwesomeIcons.lightbulb, () {
                 _showHint();
                 usedHint = true;
-              }),
+              }, Colors.amber),
               const SizedBox(
                 height: 50,
                 width: 50,
               ),
-              AppBarIcon('checkmark.png', () async {
+              AppBarIcon(FontAwesomeIcons.check, () async {
                 if (widget.pick == widget.answer) {
                   widget.score++;
                   setState(() {
@@ -264,13 +239,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 if (!usedHint) {
                   widget.score++;
                 }
-              }),
-              AppBarIcon('retry.png', () {}),
-              AppBarIcon('home.png', () async {
+              }, Colors.green),
+              AppBarIcon(FontAwesomeIcons.repeat, () {}, Colors.grey),
+              AppBarIcon(FontAwesomeIcons.x, () async {
                 final player = AudioPlayer();
                 await player.play(AssetSource('satisfying_click.wav'));
                 Navigator.pop(context);
-              })
+              }, Colors.red)
             ],
           ),
         ),

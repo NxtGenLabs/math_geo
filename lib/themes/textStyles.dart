@@ -26,6 +26,11 @@ abstract class ThemeText {
       color: Color.fromARGB(255, 60, 64, 58),
       fontSize: 16,
       fontWeight: FontWeight.w600);
+  static const TextStyle title = TextStyle(
+      fontFamily: 'Popins',
+      color: Color.fromARGB(255, 60, 64, 58),
+      fontSize: 14,
+      fontWeight: FontWeight.w900);
   static const TextStyle world = TextStyle(
       fontFamily: 'Popins',
       color: Color.fromARGB(255, 248, 252, 246),

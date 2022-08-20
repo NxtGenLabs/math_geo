@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
-import 'package:math_geometry/widgets/customDialog.dart';
 import 'package:math_geometry/widgets/inactiveTile.dart';
 
 import '../../widgets/tile.dart';
@@ -114,12 +113,7 @@ class Classes extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height - 250,
                     child: TabBarView(children: [
-                      const CustomDialog(
-                        title: "HINT",
-                        color: Colors.amber,
-                        message: "Blah Blah",
-                        attempt: false,
-                      ),
+                      const Text("1"),
                       const Text("2"),
                       MasonryGridView.count(
                           padding: const EdgeInsets.all(20),
