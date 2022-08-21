@@ -44,34 +44,37 @@ class CustomDialog extends StatelessWidget {
                     style: ThemeText.title,
                   ),
                   const SizedBox(height: 10),
-                  Text(message),
+                  Text(
+                    message,
+                    style: ThemeText.normal,
+                  ),
                   const SizedBox(height: 15),
-                  InkWell(
-                    onTap: () {},
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        attempt
-                            ? TextButton(
-                                onPressed: secOnPress,
-                                child: Text(
-                                  secBtnTitle,
-                                  style: const TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              )
-                            : (Container()),
-                        TextButton(
-                          onPressed: onClsBtnPressed,
-                          child: Text(
-                            clsBtnTitle,
-                            style: const TextStyle(
-                                color: Colors.red, fontWeight: FontWeight.bold),
-                          ),
-                        )
-                      ],
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      attempt
+                          ? TextButton(
+                              onPressed: secOnPress,
+                              child: Text(
+                                secBtnTitle,
+                                style: const TextStyle(
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Poppins'),
+                              ),
+                            )
+                          : (Container()),
+                      TextButton(
+                        onPressed: onClsBtnPressed,
+                        child: Text(
+                          clsBtnTitle,
+                          style: const TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Poppins'),
+                        ),
+                      )
+                    ],
                   )
                 ],
               ),

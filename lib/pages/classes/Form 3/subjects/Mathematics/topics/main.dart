@@ -34,10 +34,11 @@ class Topics extends StatelessWidget {
                           IconButton(
                               onPressed: () async {
                                 final player = AudioPlayer();
-                                await player.play(AssetSource('click.wav'));
+                                await player
+                                    .play(AssetSource('satisfying_click.wav'));
                                 Navigator.pop(context);
                               },
-                              color: Color.fromARGB(255, 248, 252, 246),
+                              color: const Color.fromARGB(255, 248, 252, 246),
                               icon: const Icon(FontAwesomeIcons.chevronLeft),
                               iconSize: 30),
                           Container(

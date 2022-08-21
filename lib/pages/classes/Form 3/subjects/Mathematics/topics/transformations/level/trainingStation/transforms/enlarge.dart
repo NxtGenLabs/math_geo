@@ -38,24 +38,23 @@ class _EnlargeState extends State<Enlarge> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 16.0),
-                        child: Center(
-                          child: Text(
-                            'Enlarge',
-                            style: TextStyle(fontSize: 20),
-                          ),
+                      Container(
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20)),
+                            color: Color.fromARGB(255, 60, 64, 50)),
+                        width: 350,
+                        child: Slider(
+                          value: _scale,
+                          min: -MediaQuery.of(context).size.width / 15,
+                          max: MediaQuery.of(context).size.width / 15,
+                          onChanged: (value) {
+                            setState(() {
+                              _scale = value;
+                            });
+                          },
                         ),
-                      ),
-                      Slider(
-                        value: _scale,
-                        min: -MediaQuery.of(context).size.width / 15,
-                        max: MediaQuery.of(context).size.width / 15,
-                        onChanged: (value) {
-                          setState(() {
-                            _scale = value;
-                          });
-                        },
                       ),
                     ],
                   ),
@@ -64,10 +63,11 @@ class _EnlargeState extends State<Enlarge> {
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               CustomAppBar(
-                level: '',
-                question: '',
+                level: '- Enlargement',
+                question:
+                    'An enlargement is a type of transformation where we change the size of the original shape to make it bigger or smaller by multiplying it by a scale factor.',
                 answer: '',
-                hint: '',
+                hint: 'Drag the slider below to enlarge the shape.',
                 timeLimit: 0,
                 onUpdateScore: () {},
                 score: 0,
@@ -103,7 +103,7 @@ class enlargementPainter extends CustomPainter {
     // object paints and paths
     Paint ogPaint = Paint()
       ..color = Colors.black
-      ..strokeWidth = 2
+      ..strokeWidth = 3
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
     Path ogPath = Path();

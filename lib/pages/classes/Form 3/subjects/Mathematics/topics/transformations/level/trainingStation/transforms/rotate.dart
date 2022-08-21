@@ -36,22 +36,22 @@ class _RotateState extends State<Rotate> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  color: Colors.grey,
-                  height: 100,
-                  width: MediaQuery.of(context).size.width / 2,
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20)),
+                      color: Color.fromARGB(255, 60, 64, 50)),
+                  width: 350,
                   child: Column(children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 16.0, top: 10.0),
-                      child: Text('Rotation'),
-                    ),
                     Slider(
+                      thumbColor: const Color.fromARGB(255, 217, 217, 217),
+                      label: ((_radians * 57.2958).round()).toString(),
                       value: _radians,
                       min: 0.0,
                       max: math.pi,
                       onChanged: (value) {
                         setState(() {
                           _radians = value;
-                          print("Its rotated: $_radians radians");
                         });
                       },
                     ),
@@ -64,10 +64,11 @@ class _RotateState extends State<Rotate> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomAppBar(
-                level: '',
-                question: '',
+                level: '- Rotation.',
+                question:
+                    'Rotation is simply movement in a circle around a fixed point.',
                 answer: '',
-                hint: '',
+                hint: 'Drag the slider below around to rotate the shape.',
                 timeLimit: 0,
                 onUpdateScore: () {},
                 score: 0,
@@ -101,7 +102,7 @@ class rotationPainer extends CustomPainter {
     // object paints and paths
     Paint ogPaint = Paint()
       ..color = Colors.black
-      ..strokeWidth = 2
+      ..strokeWidth = 3
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
     Path ogPath = Path();

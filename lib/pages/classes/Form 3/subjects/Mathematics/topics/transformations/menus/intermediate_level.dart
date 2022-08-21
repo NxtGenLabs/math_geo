@@ -159,8 +159,8 @@ class TransFormationsLevels extends StatelessWidget {
                           IconButton(
                               onPressed: () async {
                                 final player = AudioPlayer();
-                                await player.play(AssetSource('click.wav'));
-                                Navigator.pop(context);
+                                await player
+                                    .play(AssetSource('satisfying_click.wav'));
                               },
                               color: const Color.fromARGB(255, 248, 252, 246),
                               icon: const Icon(FontAwesomeIcons.chevronLeft),

@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
@@ -51,14 +52,18 @@ class RatingDialog extends StatelessWidget {
                   const SizedBox(height: 15),
                   Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        final player = AudioPlayer();
+                        await player.play(AssetSource('satisfying_click.wav'));
                         Navigator.pop(context);
                         Navigator.pop(context);
                       },
                       child: const Text(
                         'Next',
                         style: TextStyle(
-                            color: Colors.red, fontWeight: FontWeight.bold),
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins'),
                       ),
                     )
                   ])

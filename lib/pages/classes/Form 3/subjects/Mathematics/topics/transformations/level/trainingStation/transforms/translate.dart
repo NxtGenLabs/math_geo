@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 // user defined imports
 import 'package:math_geometry/canvas/grid.dart';
+import 'package:math_geometry/themes/textStyles.dart';
 
 import '../../../../../../../../../../widgets/customAppbar.dart';
 
@@ -21,6 +22,8 @@ class _TranslateState extends State<Translate> {
 
   @override
   Widget build(BuildContext context) {
+    double centerX = MediaQuery.of(context).size.width / 2;
+    double centerY = MediaQuery.of(context).size.height / 2;
     return Scaffold(
         body: SafeArea(
             child: Stack(children: [
@@ -35,39 +38,77 @@ class _TranslateState extends State<Translate> {
             ),
           ),
           // for the yaxis slider
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 16.0),
-                child: Text('Move Shape Along X'),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Container(
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20)),
+                    color: Color.fromARGB(255, 60, 64, 50)),
+                width: 350,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 16),
+                          child: Text(
+                            'X',
+                            style: ThemeText.world,
+                          ),
+                        ),
+                        Expanded(
+                          child: Slider(
+                            thumbColor:
+                                const Color.fromARGB(255, 217, 217, 217),
+                            label: ((_moveShapeByY / 10).round()).toString(),
+                            value: _moveShapeByY,
+                            min: -MediaQuery.of(context).size.width / 2.5,
+                            max: MediaQuery.of(context).size.width / 2.5,
+                            onChanged: (value) {
+                              setState(() {
+                                _moveShapeByY = value;
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 16),
+                          child: Text(
+                            'Y',
+                            style: ThemeText.world,
+                          ),
+                        ),
+                        Expanded(
+                          child: Slider(
+                            thumbColor:
+                                const Color.fromARGB(255, 217, 217, 217),
+                            label: ((_moveShapeByX / 10).round()).toString(),
+                            value: _moveShapeByX,
+                            min: -MediaQuery.of(context).size.height / 3,
+                            max: MediaQuery.of(context).size.height / 3,
+                            onChanged: (value) {
+                              setState(() {
+                                _moveShapeByX = value;
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              Slider(
-                value: _moveShapeByY,
-                min: -MediaQuery.of(context).size.width / 2.5,
-                max: MediaQuery.of(context).size.width / 2.5,
-                onChanged: (value) {
-                  setState(() {
-                    _moveShapeByY = value;
-                  });
-                },
-              ),
-              // for the  xaxis slider
-              const Padding(
-                padding: EdgeInsets.only(left: 16.0),
-                child: Text('Move Shape Along Y'),
-              ),
-              Slider(
-                value: _moveShapeByX,
-                min: -MediaQuery.of(context).size.height / 3,
-                max: MediaQuery.of(context).size.height / 3,
-                onChanged: (value) {
-                  setState(() {
-                    _moveShapeByX = value;
-                  });
-                },
-              ),
-            ],
+            ),
           )
           // // for the  xy-axis slider
           // const Padding(
@@ -90,10 +131,12 @@ class _TranslateState extends State<Translate> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CustomAppBar(
-            level: '',
-            question: '',
+            level: '- Translation.',
+            question:
+                'Translation is the moving a shape without rotating or flipping it.',
             answer: '',
-            hint: '',
+            hint:
+                'Drag the sliders below to translate the shape along an axis.',
             timeLimit: 0,
             onUpdateScore: () {},
             score: 0,
@@ -130,7 +173,7 @@ class translationPainter extends CustomPainter {
     // object paints and paths
     Paint ogPaint = Paint()
       ..color = Colors.black
-      ..strokeWidth = 2
+      ..strokeWidth = 3
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
     Path ogPath = Path();

@@ -16,7 +16,11 @@ import 'package:math_geometry/pages/profile/settings.dart';
 
 void main() {
   runApp(MaterialApp(
-    theme: ThemeData(visualDensity: VisualDensity.adaptivePlatformDensity),
+    theme: ThemeData(
+      sliderTheme: SliderThemeData(
+    showValueIndicator: ShowValueIndicator.always,
+  ),
+      visualDensity: VisualDensity.adaptivePlatformDensity),
     home: const Classes(),
     routes: {
       './pages/profile/settings': (context) => Settings(),
