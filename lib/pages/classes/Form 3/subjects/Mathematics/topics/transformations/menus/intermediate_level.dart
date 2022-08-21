@@ -12,9 +12,9 @@ class TransFormationsLevels extends StatelessWidget {
         question: 'Translate the shape by (4,4)',
         rating: '3/3',
         answer: [
-          const Offset(-20, 8),
-          const Offset(-20, 20),
-          const Offset(0, 8)
+          const Offset(-20.0, 8.0),
+          const Offset(-20.0, 20.0),
+          const Offset(0.0, 8.0)
         ],
         qPoints: [
           const Offset(-24, 4),
@@ -162,7 +162,7 @@ class TransFormationsLevels extends StatelessWidget {
                                 await player.play(AssetSource('click.wav'));
                                 Navigator.pop(context);
                               },
-                              color: Color.fromARGB(255, 248, 252, 246),
+                              color: const Color.fromARGB(255, 248, 252, 246),
                               icon: const Icon(FontAwesomeIcons.chevronLeft),
                               iconSize: 30),
                           Container(
