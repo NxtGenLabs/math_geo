@@ -32,7 +32,7 @@ class _EnlargeState extends State<Enlarge> {
                 ),
                 // for the  enlargement slider
 
-                Container(
+                SizedBox(
                   height: 100,
                   width: MediaQuery.of(context).size.width / 2,
                   child: Column(
@@ -62,9 +62,17 @@ class _EnlargeState extends State<Enlarge> {
                 ),
               ],
             ),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [CustomAppBar('', '', '', '', '', 0, () {}, 0)])
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              CustomAppBar(
+                level: '',
+                question: '',
+                answer: '',
+                hint: '',
+                timeLimit: 0,
+                onUpdateScore: () {},
+                score: 0,
+              )
+            ])
           ],
         ),
       ),

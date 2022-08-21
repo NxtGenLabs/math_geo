@@ -46,8 +46,15 @@ class _BeginnerState extends State<Beginner> {
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomAppBar(level.level, level.question, level.answer, pick,
-                  level.hint, score, () {}, level.timeLimit),
+              CustomAppBar(
+                pick: pick,
+                  level: level.level,
+                  question: level.question,
+                  answer: level.answer,
+                  hint: level.hint,
+                  score: 0,
+                  onUpdateScore: () {},
+                  timeLimit: level.timeLimit),
               MultipleChoiceOptions(pick, (String val) {
                 setState(() {
                   pick = val;

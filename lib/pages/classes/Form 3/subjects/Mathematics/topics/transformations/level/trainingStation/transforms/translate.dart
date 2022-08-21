@@ -88,7 +88,17 @@ class _TranslateState extends State<Translate> {
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [CustomAppBar('', '', '', '', '', 0, () {}, 0)],
+        children: [
+          CustomAppBar(
+            level: '',
+            question: '',
+            answer: '',
+            hint: '',
+            timeLimit: 0,
+            onUpdateScore: () {},
+            score: 0,
+          )
+        ],
       )
     ])));
   }

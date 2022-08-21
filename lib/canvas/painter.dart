@@ -204,8 +204,6 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
       // indexer
       ++qcount;
     }
-
-    if (levels.levels[index].answer == points) {}
   }
 
   @override

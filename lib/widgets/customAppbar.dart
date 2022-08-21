@@ -5,18 +5,28 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/appbarIcon.dart';
 import 'package:math_geometry/widgets/customDialog.dart';
+import 'package:math_geometry/widgets/ratingDialog.dart';
 
 class CustomAppBar extends StatefulWidget {
   final String level;
   final String question;
   final String answer;
-  final String pick;
+  final pick;
+  final offsets;
   final String hint;
   final int timeLimit;
   int score;
   final Function onUpdateScore;
-  CustomAppBar(this.level, this.question, this.answer, this.pick, this.hint,
-      this.score, this.onUpdateScore, this.timeLimit);
+  CustomAppBar(
+      {required this.level,
+      required this.question,
+      required this.answer,
+      this.pick,
+      required this.hint,
+      required this.score,
+      required this.onUpdateScore,
+      required this.timeLimit,
+      this.offsets});
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
@@ -131,17 +141,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         showDialog(
             context: context,
             builder: (context) {
-              return CustomDialog(
-                  title: 'Correct',
-                  clsBtnTitle: 'Next',
-                  onClsBtnPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pop(context);
-                  },
-                  message: 'Good Job!!',
-                  attempt: false,
-                  header: FontAwesomeIcons.check,
-                  headerColor: Colors.green);
+              return RatingDialog();
             });
       } else {
         showDialog(
@@ -215,6 +215,20 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 width: 50,
               ),
               AppBarIcon(FontAwesomeIcons.check, () async {
+                print(widget.offsets);
+                if (widget.offsets == widget.answer) {
+                  widget.score++;
+                  setState(() {
+                    isStartTimer = true;
+                    isCorrect = true;
+                  });
+                } else {
+                  final player = AudioPlayer();
+                  await player.play(AssetSource('wrong.wav'));
+                  setState(() {
+                    isCorrect = false;
+                  });
+                }
                 if (widget.pick == widget.answer) {
                   widget.score++;
                   setState(() {

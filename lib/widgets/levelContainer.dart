@@ -39,18 +39,32 @@ class LevelContainer extends StatelessWidget {
               height: 45,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Image(
-                      filterQuality: FilterQuality.high,
-                      height: 30,
-                      image: AssetImage("images/icons/star.png")),
-                  Image(
-                      filterQuality: FilterQuality.high,
-                      image: AssetImage("images/icons/star.png")),
-                  Image(
-                      filterQuality: FilterQuality.high,
-                      height: 30,
-                      image: AssetImage("images/icons/star.png")),
+                children: [
+                  Transform.rotate(
+                    angle: 50,
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      child: const Image(
+                          filterQuality: FilterQuality.high,
+                          height: 30,
+                          image: AssetImage("images/icons/star.png")),
+                    ),
+                  ),
+                  Container(
+                    child: const Image(
+                        filterQuality: FilterQuality.high,
+                        image: AssetImage("images/icons/star.png")),
+                  ),
+                  Transform.rotate(
+                    angle: -50,
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      child: const Image(
+                          filterQuality: FilterQuality.high,
+                          height: 30,
+                          image: AssetImage("images/icons/star.png")),
+                    ),
+                  ),
                 ],
               ),
             ),

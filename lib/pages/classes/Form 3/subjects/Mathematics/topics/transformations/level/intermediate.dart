@@ -70,8 +70,15 @@ class _IntermediateState extends State<Intermediate> {
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomAppBar(level.level, level.question, level.answer.toString(),
-                  '', level.hint, 0, () {}, level.timeLimit),
+              CustomAppBar(
+                  offsets: linePainter.points,
+                  level: level.level,
+                  question: level.question,
+                  answer: level.answer.toString(),
+                  hint: level.hint,
+                  score: 0,
+                  onUpdateScore: () {},
+                  timeLimit: level.timeLimit),
               ToolBar(
                   zoomIn: () {
                     _scale = _scale * 1.1;

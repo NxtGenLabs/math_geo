@@ -55,7 +55,7 @@ class Transformations extends StatelessWidget {
                                 await player.play(AssetSource('click.wav'));
                                 Navigator.pop(context);
                               },
-                              color: Color.fromARGB(255, 248, 252, 246),
+                              color: const Color.fromARGB(255, 248, 252, 246),
                               icon: const Icon(FontAwesomeIcons.chevronLeft),
                               iconSize: 30),
                           Container(
