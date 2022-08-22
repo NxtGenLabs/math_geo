@@ -113,8 +113,12 @@ class Classes extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height - 250,
                     child: TabBarView(children: [
-                      const Text("1"),
-                      const Text("2"),
+                      const Center(
+                          child: Text("Nothing to show here.",
+                              style: ThemeText.normal)),
+                      const Center(
+                          child: Text("Nothing to show here.",
+                              style: ThemeText.normal)),
                       MasonryGridView.count(
                           padding: const EdgeInsets.all(20),
                           mainAxisSpacing: 20,
@@ -124,7 +128,11 @@ class Classes extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return tiles[index];
                           }),
-                      const Text("4")
+                      const Center(
+                          child: Text(
+                        "Nothing to show here.",
+                        style: ThemeText.normal,
+                      )),
                     ]),
                   ),
                 ],

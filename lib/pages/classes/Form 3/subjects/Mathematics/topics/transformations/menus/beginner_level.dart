@@ -10,7 +10,7 @@ class BeginnerLevel extends StatelessWidget {
     BeginnerLs(
         level: '1',
         question:
-            'What type of equation is shown in the graph? \n A. Y-intercept. \n B. X-intercept \n C. Y=X',
+            'Given that A is From the coordinates, calculate what scale factor the shape has been enlarged by?',
         rating: '',
         answer: 'B',
         hint: 'Lets keep putting up points',
