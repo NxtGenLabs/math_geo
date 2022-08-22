@@ -63,6 +63,7 @@ class _EnlargeState extends State<Enlarge> {
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               CustomAppBar(
+                pick: '',
                 level: '- Enlargement',
                 question:
                     'An enlargement is a type of transformation where we change the size of the original shape to make it bigger or smaller by multiplying it by a scale factor.',

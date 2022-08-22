@@ -112,6 +112,7 @@ class _TrainingStationState extends State<TrainingStation> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomAppBar(
+                pick: '',
                 level: '',
                 question: '',
                 answer: '',

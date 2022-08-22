@@ -64,6 +64,7 @@ class _RotateState extends State<Rotate> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomAppBar(
+                pick: '',
                 level: '- Rotation.',
                 question:
                     'Rotation is simply movement in a circle around a fixed point.',

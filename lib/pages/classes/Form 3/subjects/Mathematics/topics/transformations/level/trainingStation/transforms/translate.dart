@@ -131,6 +131,7 @@ class _TranslateState extends State<Translate> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CustomAppBar(
+            pick: '',
             level: '- Translation.',
             question:
                 'Translation is the moving a shape without rotating or flipping it.',

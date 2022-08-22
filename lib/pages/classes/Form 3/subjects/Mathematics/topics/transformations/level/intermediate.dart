@@ -71,6 +71,7 @@ class _IntermediateState extends State<Intermediate> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomAppBar(
+                  pick: '',
                   offsets: linePainter.points,
                   level: level.level,
                   question: level.question,

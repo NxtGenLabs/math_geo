@@ -45,6 +45,7 @@ class TrainingStationLevel extends StatelessWidget {
                                 final player = AudioPlayer();
                                 await player
                                     .play(AssetSource('satisfying_click.wav'));
+                                Navigator.pop(context);
                               },
                               color: const Color.fromARGB(255, 248, 252, 246),
                               icon: const Icon(

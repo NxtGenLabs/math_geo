@@ -11,7 +11,7 @@ class CustomAppBar extends StatefulWidget {
   final String level;
   final String question;
   final String answer;
-  final pick;
+  final String pick;
   final offsets;
   final String hint;
   final int timeLimit;
@@ -21,7 +21,7 @@ class CustomAppBar extends StatefulWidget {
       {required this.level,
       required this.question,
       required this.answer,
-      this.pick,
+      required this.pick,
       required this.hint,
       required this.score,
       required this.onUpdateScore,
@@ -46,6 +46,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   bool isCorrect = false;
   bool usedHint = false;
   bool selected = false;
+  List<Offset> calPts = [];
 
 ///////////timer function
   void _startCountDown() {
@@ -98,11 +99,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
     double centerX = MediaQuery.of(context).size.width / 2;
     double centerY = MediaQuery.of(context).size.height / 2;
 
-    List<Offset> calPts = [];
-    for (Offset point in widget.offsets) {
-      calPts.add(Offset(((point.dx - centerX) / 10).roundToDouble(),
-          ((point.dy - centerY) * -0.1).roundToDouble()));
-    }
     void _showDialog() async {
       final player = AudioPlayer();
       await player.play(AssetSource('popup.wav'));
@@ -223,6 +219,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 width: 50,
               ),
               AppBarIcon(FontAwesomeIcons.check, () async {
+                if (widget.offsets != null) {
+                  for (Offset point in widget.offsets) {
+                    calPts.add(Offset(
+                        ((point.dx - centerX) / 10).roundToDouble(),
+                        ((point.dy - centerY) * -0.1).roundToDouble()));
+                  }
+                }
                 if (widget.pick.toString() == widget.answer ||
                     calPts.toString() == widget.answer) {
                   widget.score++;
