@@ -47,7 +47,7 @@ class _BeginnerState extends State<Beginner> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomAppBar(
-                pick: pick,
+                  pick: pick,
                   level: level.level,
                   question: level.question,
                   answer: level.answer,

@@ -97,6 +97,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
   Widget build(BuildContext context) {
     double centerX = MediaQuery.of(context).size.width / 2;
     double centerY = MediaQuery.of(context).size.height / 2;
+
+    List<Offset> calPts = [];
+    for (Offset point in widget.offsets) {
+      calPts.add(Offset(((point.dx - centerX) / 10).roundToDouble(),
+          ((point.dy - centerY) * -0.1).roundToDouble()));
+    }
     void _showDialog() async {
       final player = AudioPlayer();
       await player.play(AssetSource('popup.wav'));
@@ -217,14 +223,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 width: 50,
               ),
               AppBarIcon(FontAwesomeIcons.check, () async {
-                List<Offset> calPts = [];
-                for (Offset point in widget.offsets) {
-                  calPts.add(Offset(((point.dx - centerX) / 10).roundToDouble(),
-                      ((point.dy - centerY) * -0.1).roundToDouble()));
-                }
-                print(calPts.toString());
-                print(widget.answer);
-                if (widget.pick == widget.answer ||
+                if (widget.pick.toString() == widget.answer ||
                     calPts.toString() == widget.answer) {
                   widget.score++;
                   setState(() {

@@ -4,6 +4,8 @@ import 'package:math_geometry/services/user.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  String tempFullName = '';
+  String tempPassword = '';
 
   MyUser? _userFromFirebaseUser(User user) {
     return user != null ? MyUser(user.uid) : null;
@@ -38,8 +40,8 @@ class AuthService {
   }
 
   storeUsernameAndPassword(String fullname, String password) {
-    String tempFullName = fullname;
-    String tempPassword = password;
+    tempFullName = fullname;
+    tempPassword = password;
   }
 
   Future signOut() async {

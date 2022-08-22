@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:math_geometry/pages/authenticate/signUp.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/actionButton.dart';
 
@@ -14,6 +15,9 @@ class SubmitPage extends StatefulWidget {
 
 class _SubmitPageState extends State<SubmitPage> {
   final AuthService _auth = AuthService();
+  final SignUp _signUp = SignUp(() {});
+
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +62,17 @@ class _SubmitPageState extends State<SubmitPage> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
-                child: ActionButton(text: "Finish", onPress: () {}),
+                child: ActionButton(
+                    text: "Finish",
+                    onPress: () async {
+                      dynamic result = await _auth.registerWithEmailAndPassword(
+                          _auth.tempFullName, _auth.tempPassword);
+                      if (result == null) {
+                        setState(() {
+                          error = 'Could not sign up';
+                        });
+                      }
+                    }),
               )
             ],
           ),
