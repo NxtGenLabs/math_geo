@@ -10,73 +10,84 @@ class BeginnerLevel extends StatelessWidget {
     BeginnerLs(
         level: '1',
         question:
-            'Given that A is From the coordinates, calculate what scale factor the shape has been enlarged by?',
+            'Given the 2 shapes, what scale factor the shape has been enlarged by. \n A. 2 \n B. 1.5 \n C. 2.5',
         rating: '',
         answer: 'B',
         hint: 'Lets keep putting up points',
         timeLimit: 120,
-        qPoints: [const Offset(-1000, 100), const Offset(600, 100)],
-        optionA: [],
+        qPoints: [
+          const Offset(-4, 4),
+          const Offset(-16, 4),
+          const Offset(-16, 12)
+        ],
+        optionA: [
+          const Offset(-6, 6),
+          const Offset(-24, 6),
+          const Offset(-24, 18)
+        ],
         optionB: [],
         optionC: []),
     BeginnerLs(
         level: '2',
         question:
-            'How many degrees has the figure been rotated by? \n A. 180 Degrees. \n B. 90 degrees clockwise. \n C. 90 degrees anti-clockwise.',
+            'Find the scale factor of the enlargement given that the center is the point of enlargement. \n A. 2.5 \n B. 3 \n C. 1.5',
         rating: '',
         answer: 'C',
         hint: 'Lets keep putting up points',
         timeLimit: 1,
         qPoints: [
-          const Offset(-450, 150),
-          const Offset(-200, 150),
-          const Offset(-150, -80),
-          const Offset(-450, -150)
+          const Offset(0, 0),
+          const Offset(0, 8),
+          const Offset(8, 8),
+          const Offset(8, 0),
         ],
         optionA: [
-          const Offset(450, 150),
-          const Offset(200, 150),
-          const Offset(150, -80),
-          const Offset(450, -150)
+          const Offset(0, 0),
+          const Offset(0, 20),
+          const Offset(20, 20),
+          const Offset(20, 0),
         ],
         optionB: [],
         optionC: []),
     BeginnerLs(
         level: '3',
-        question: 'Which triangle is rotated 90 degrees of triangle A?',
+        question: 'Find the scale factor of the enlargement given that the center is the point of enlargement. \n A. 2.5 \n B. 3 \n C. 1.5',
         rating: '',
-        answer: 'B',
+        answer: 'C',
         hint: 'Lets keep putting up points',
         timeLimit: 120,
         qPoints: [
-          const Offset(-100, -100),
-          const Offset(-400, -100),
-          const Offset(-450, -200)
+          const Offset(4, 4),
+          const Offset(16, 12),
+          const Offset(4, 12)
         ],
         optionA: [
-          const Offset(100, -100),
-          const Offset(400, -100),
-          const Offset(50, -200)
+          const Offset(6, 6),
+          const Offset(24, 18),
+          const Offset(6, 18)
         ],
-        optionB: [
-          const Offset(100, 100),
-          const Offset(400, 100),
-          const Offset(50, 200)
-        ],
-        optionC: [
-          const Offset(-100, 100),
-          const Offset(-400, 100),
-          const Offset(-450, 200)
-        ]),
+        optionB: [],
+        optionC: []),
     BeginnerLs(
         level: '4',
-        question: '',
+        question:
+            'By what factor has the shape been translated by? \n A. (24, 24) \n B. (-24, 24) \n C. (24, 12)',
         rating: '',
-        answer: '',
+        answer: 'A',
         hint: 'Lets keep putting up points',
         timeLimit: 1,
-        qPoints: [],
-        optionA: [],
+        qPoints: [
+          const Offset(-4, -4),
+          const Offset(-16, -4),
+          const Offset(-16, -16),
+          const Offset(-4, -16)
+        ],
+        optionA: [
+          const Offset(20, 20),
+          const Offset(8, 20),
+          const Offset(8, 8),
+          const Offset(20, 8)
+        ],
         optionB: [],
         optionC: []),
     BeginnerLs(

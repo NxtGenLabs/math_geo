@@ -45,7 +45,7 @@ class _RotateState extends State<Rotate> {
                   child: Column(children: [
                     Slider(
                       thumbColor: const Color.fromARGB(255, 217, 217, 217),
-                      label: ((_radians * 57.2958).round()).toString(),
+                      label: '${(_radians * 57.2958).round()}°',
                       value: _radians,
                       min: 0.0,
                       max: math.pi,

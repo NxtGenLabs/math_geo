@@ -55,25 +55,25 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
     List<Offset> oC = [];
 
     for (var point in levels.levels[index].qPoints) {
-      qp.add(Offset(point.dx + centerX, point.dy + centerY));
+      qp.add(Offset((point.dx * 10) + centerX, (point.dy * -10) + centerY));
     }
     for (var point in levels.levels[index].optionA) {
-      oA.add(Offset(point.dx + centerX, point.dy + centerY));
+      oA.add(Offset((point.dx * 10) + centerX, (point.dy * -10) + centerY));
     }
     for (var point in levels.levels[index].optionB) {
-      oB.add(Offset(point.dx + centerX, point.dy + centerY));
+      oB.add(Offset((point.dx * 10) + centerX, (point.dy * -10) + centerY));
     }
     for (var point in levels.levels[index].optionC) {
-      oC.add(Offset(point.dx + centerX, point.dy + centerY));
+      oC.add(Offset((point.dx * 10) + centerX, (point.dy * -10) + centerY));
     }
 
     Paint strokePaint = Paint();
     strokePaint.color = Colors.black;
     strokePaint.style = PaintingStyle.stroke;
-    strokePaint.strokeWidth = 4;
+    strokePaint.strokeWidth = 3;
 
     Paint pointPaint = Paint();
-    pointPaint.strokeWidth = 10;
+    pointPaint.strokeWidth = 5;
     pointPaint.color = Colors.white;
     pointPaint.strokeCap = StrokeCap.round;
 

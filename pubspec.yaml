@@ -108,10 +108,12 @@ flutter:
         ##sfx
         - assets/hint.wav
         - assets/popup.wav
+        - assets/pad_confirm.wav
         - assets/satisfying_click.wav
         - assets/wrong.wav
         - assets/click.wav
         - assets/draw.wav
+        - assets/stars.wav
 
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware

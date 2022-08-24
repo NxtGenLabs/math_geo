@@ -140,8 +140,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
     }
 
 //////dialog on submit, plus checks if answer is right or wrong
-    void _showResult() {
+    void _showResult() async {
       if (isCorrect) {
+        final player = AudioPlayer();
+        await player.play(AssetSource('pad_confirm.wav'));
         showDialog(
             context: context,
             builder: (context) {

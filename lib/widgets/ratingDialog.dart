@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 
-class RatingDialog extends StatelessWidget {
+class RatingDialog extends StatefulWidget {
+  @override
+  State<RatingDialog> createState() => _RatingDialogState();
+}
+
+class _RatingDialogState extends State<RatingDialog> {
+  double customScale = 0;
+  double customScale2 = 0;
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -29,23 +36,74 @@ class RatingDialog extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Transform.rotate(
-                        angle: 50,
+                      TweenAnimationBuilder(
+                        onEnd: () async {
+                          final player = AudioPlayer();
+                          await player.play(AssetSource('stars.wav'));
+                          setState(() {
+                            customScale = 1;
+                          });
+                        },
+                        curve: Curves.elasticInOut,
+                        duration: const Duration(milliseconds: 1000),
+                        tween: Tween<double>(begin: 0, end: 1),
+                        builder: (context, dynamic scale, child) {
+                          return Transform.scale(
+                            scale: scale,
+                            child: child,
+                          );
+                        },
+                        child: Transform.rotate(
+                          angle: 50,
+                          child: const SizedBox(
+                              height: 40,
+                              child: Image(
+                                  image: AssetImage('images/icons/star.png'))),
+                        ),
+                      ),
+                      TweenAnimationBuilder(
+                        onEnd: () async {
+                          final player = AudioPlayer();
+                          await player.play(AssetSource('stars.wav'));
+                          setState(() {
+                            customScale2 = 1;
+                          });
+                        },
+                        curve: Curves.elasticInOut,
+                        duration: const Duration(milliseconds: 1000),
+                        tween: Tween<double>(begin: 0, end: customScale),
+                        builder: (context, dynamic scale, child) {
+                          return Transform.scale(
+                            scale: scale,
+                            child: child,
+                          );
+                        },
                         child: const SizedBox(
-                            height: 40,
+                            height: 70,
                             child: Image(
                                 image: AssetImage('images/icons/star.png'))),
                       ),
-                      const SizedBox(
-                          height: 70,
-                          child: Image(
-                              image: AssetImage('images/icons/star.png'))),
-                      Transform.rotate(
-                        angle: -50,
-                        child: const SizedBox(
-                            height: 40,
-                            child: Image(
-                                image: AssetImage('images/icons/star.png'))),
+                      TweenAnimationBuilder(
+                        onEnd: () async {
+                          final player = AudioPlayer();
+                          await player.play(AssetSource('stars.wav'));
+                        },
+                        curve: Curves.elasticInOut,
+                        duration: const Duration(milliseconds: 1000),
+                        tween: Tween<double>(begin: 0, end: customScale2),
+                        builder: (context, dynamic scale, child) {
+                          return Transform.scale(
+                            scale: scale,
+                            child: child,
+                          );
+                        },
+                        child: Transform.rotate(
+                          angle: -50,
+                          child: const SizedBox(
+                              height: 40,
+                              child: Image(
+                                  image: AssetImage('images/icons/star.png'))),
+                        ),
                       ),
                     ],
                   ),
