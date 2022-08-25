@@ -14,7 +14,7 @@ class CustomAppBar extends StatefulWidget {
   final String pick;
   final offsets;
   final String hint;
-  final int timeLimit;
+  int timeLimit;
   int score;
   final Function onUpdateScore;
   CustomAppBar(
@@ -52,7 +52,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   void _startCountDown() {
     Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
-        initTime++;
+        widget.timeLimit--;
       });
       if (isStartTimer) {
         timer.cancel();
@@ -147,7 +147,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         showDialog(
             context: context,
             builder: (context) {
-              return RatingDialog(widget.score, initTime);
+              return RatingDialog(widget.score, widget.timeLimit);
             });
       } else {
         showDialog(
@@ -197,7 +197,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   SizedBox(
                     width: 35,
                     child: Text(
-                      "${initTime}s",
+                      "${widget.timeLimit}s",
                       style: ThemeText.chapter,
                       maxLines: 1,
                       softWrap: true,

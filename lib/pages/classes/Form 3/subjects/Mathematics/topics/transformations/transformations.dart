@@ -22,12 +22,6 @@ class Transformations extends StatelessWidget {
         title: "The Lake",
         color: Color.fromARGB(255, 244, 181, 168),
         route: './pages/topics/transformations/menus/intermediate_level'),
-        const WorldTile(
-        image: "images/the_lake.png",
-        title: "The Lake",
-        color: Color.fromARGB(255, 244, 181, 168),
-        route: './pages/topics/transformations/menus/intermediate_level'),
-        
   ];
 
   @override

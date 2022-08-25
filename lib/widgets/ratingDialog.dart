@@ -130,7 +130,7 @@ class _RatingDialogState extends State<RatingDialog> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text("Time: ", style: ThemeText.title),
+                          const Text("Time Left: ", style: ThemeText.title),
                           Text(
                             "${widget.time}",
                             style: ThemeText.header2,
