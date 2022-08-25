@@ -1,6 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 
 class RatingDialog extends StatefulWidget {
@@ -40,7 +39,9 @@ class _RatingDialogState extends State<RatingDialog> {
           angle: 50,
           child: const SizedBox(
               height: 40,
-              child: Image(image: AssetImage('images/icons/star.png'))),
+              child: Image(
+                  filterQuality: FilterQuality.high,
+                  image: AssetImage('images/icons/star.png'))),
         ),
       ),
       TweenAnimationBuilder(
@@ -62,7 +63,9 @@ class _RatingDialogState extends State<RatingDialog> {
         },
         child: const SizedBox(
             height: 70,
-            child: Image(image: AssetImage('images/icons/star.png'))),
+            child: Image(
+                filterQuality: FilterQuality.high,
+                image: AssetImage('images/icons/star.png'))),
       ),
       TweenAnimationBuilder(
         onEnd: () async {
@@ -82,7 +85,9 @@ class _RatingDialogState extends State<RatingDialog> {
           angle: -50,
           child: const SizedBox(
               height: 40,
-              child: Image(image: AssetImage('images/icons/star.png'))),
+              child: Image(
+                  filterQuality: FilterQuality.high,
+                  image: AssetImage('images/icons/star.png'))),
         ),
       ),
     ];
@@ -95,39 +100,48 @@ class _RatingDialogState extends State<RatingDialog> {
         alignment: AlignmentDirectional.topCenter,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(15, 50, 15, 15),
+            padding: const EdgeInsets.fromLTRB(15, 40, 15, 15),
             child: SizedBox(
               width: MediaQuery.of(context).size.width / 2,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const Text(
-                    'YOU WIN!',
-                    style: ThemeText.title,
+                    'YOU WIN!!',
+                    style: ThemeText.header2,
                   ),
                   const SizedBox(height: 10),
-                  SizedBox(
-                    height: 75,
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: ((widget.score * 3) / 4).round(),
-                        itemBuilder: (context, index) {
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              stars[index],
-                            ],
-                          );
-                        }),
-                  ),
-                  Text(
-                    "Score: ${((widget.score * 3) / 4.toInt()).round()}",
-                    style: ThemeText.chapter,
-                  ),
-                  Text(
-                    "Time:${widget.time}s",
-                    style: ThemeText.chapter,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Score: ",
+                            style: ThemeText.title,
+                          ),
+                          Text(
+                            "${((widget.score * 3) / 4.toInt()).round()}",
+                            style: ThemeText.header2,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text("Time: ", style: ThemeText.title),
+                          Text(
+                            "${widget.time}",
+                            style: ThemeText.header2,
+                          ),
+                          const Text(
+                            "s",
+                            style: ThemeText.title,
+                          )
+                        ],
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 15),
                   Row(mainAxisAlignment: MainAxisAlignment.end, children: [
@@ -153,25 +167,20 @@ class _RatingDialogState extends State<RatingDialog> {
           ),
           Positioned(
             top: -40,
-            child: TweenAnimationBuilder(
-              curve: Curves.elasticInOut,
-              tween: Tween<double>(begin: 0, end: 1),
-              duration: const Duration(milliseconds: 1000),
-              builder: (context, double scale, child) {
-                return Transform.scale(
-                  scale: scale,
-                  child: child,
-                );
-              },
-              child: const CircleAvatar(
-                radius: 40,
-                backgroundColor: Colors.green,
-                child: Icon(
-                  FontAwesomeIcons.check,
-                  size: 30,
-                  color: Colors.white,
-                ),
-              ),
+            child: SizedBox(
+              height: 75,
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: ((widget.score * 3) / 4).round(),
+                  itemBuilder: (context, index) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        stars[index],
+                      ],
+                    );
+                  }),
             ),
           )
         ],
