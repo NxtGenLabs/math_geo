@@ -147,7 +147,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         showDialog(
             context: context,
             builder: (context) {
-              return RatingDialog();
+              return RatingDialog(widget.score, initTime);
             });
       } else {
         showDialog(
@@ -160,12 +160,16 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 message: "Ooo!! You just missed it, try again.",
                 attempt: true,
                 clsBtnTitle: "Quit",
-                onClsBtnPressed: () {
+                onClsBtnPressed: () async {
+                  final player = AudioPlayer();
+                  await player.play(AssetSource('satisfying_click.wav'));
                   Navigator.pop(context);
                   Navigator.pop(context);
                 },
                 secBtnTitle: "Retry",
-                secOnPress: () {
+                secOnPress: () async {
+                  final player = AudioPlayer();
+                  await player.play(AssetSource('satisfying_click.wav'));
                   retries++;
                   Navigator.pop(context);
                 },
@@ -224,8 +228,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 if (widget.offsets != null) {
                   for (Offset point in widget.offsets) {
                     calPts.add(Offset(
-                        ((point.dx - centerX) / 10).roundToDouble(),
-                        ((point.dy - centerY) * -0.1).roundToDouble()));
+                        (((point.dx - centerX) * 0.1) / 4).roundToDouble(),
+                        (((point.dy - centerY) * -0.1) / 4).roundToDouble()));
                   }
                 }
                 if (widget.pick.toString() == widget.answer ||

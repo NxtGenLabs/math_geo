@@ -95,7 +95,6 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var count = 0;
     var qcount = 0;
     //creating the center variable
     double centerX = size.width / 2;
@@ -106,7 +105,7 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     List<Offset> qp = [];
 
     for (var point in levels.levels[index].qPoints) {
-      qp.add(Offset((point.dx * 10) + centerX, (point.dy * -10) + centerY));
+      qp.add(Offset((point.dx * 40) + centerX, (point.dy * -40) + centerY));
     }
 
     Paint strokePaint = Paint();
@@ -176,9 +175,9 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
 
       // display plotted point coordinates
       TextSpan plotText = TextSpan(
-          style: TextStyle(color: Colors.red[900]),
+          style: const TextStyle(color: Colors.black),
           text:
-              '${alphabet[qcount]}(${((point.dx.toInt() - centerX) * 0.1).round()}, ${((point.dy.toInt() - centerY) * -0.1).round()})');
+              '${alphabet[qcount]}(${(((point.dx - centerX) * 0.1) / 4).round()}, ${(((point.dy - centerY) * -0.1) / 4).round()})');
       TextPainter pt = TextPainter(
           text: plotText,
           textAlign: TextAlign.left,
@@ -190,14 +189,14 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
       // distance will only show if there are more than 1 point(s)
       if (points.length > 1) {
         TextSpan plotText = TextSpan(
-            style: TextStyle(color: Colors.red[900]),
+            style: const TextStyle(color: Colors.black),
             text:
                 '${distance((points[qcount]) * 0.1, (points[qcount + 1] * 0.1))}cm');
         TextPainter pt = TextPainter(
             text: plotText,
             textAlign: TextAlign.left,
             textDirection: TextDirection.ltr,
-            textScaleFactor: 1.0);
+            textScaleFactor: .8);
         pt.layout();
         pt.paint(canvas, midPoint(points[qcount], points[qcount + 1]));
       }
