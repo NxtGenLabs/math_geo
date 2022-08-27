@@ -65,8 +65,10 @@ class MyGridPainter extends CustomPainter {
     for (int xcoord = 0; xcoord <= center.dy * 2; ++xcoord) {
       if (xcoord % 40 == 0) {
         String text = ((xcoord * 0.1) / 4).toString();
-        TextSpan span =
-            TextSpan(style: TextStyle(color: Colors.grey[600]), text: text);
+        TextSpan span = TextSpan(
+          style: TextStyle(color: Colors.grey[600], fontFamily: 'Poppins'),
+          text: text,
+        );
         TextPainter tp = TextPainter(
             text: span,
             textAlign: TextAlign.left,
@@ -81,8 +83,9 @@ class MyGridPainter extends CustomPainter {
     for (int ycoord = 0; ycoord <= center.dx * 2; ++ycoord) {
       if (ycoord % 40 == 0) {
         String text = ((ycoord * 0.1) / 4).toString();
-        TextSpan span =
-            TextSpan(style: TextStyle(color: Colors.grey[600]), text: text);
+        TextSpan span = TextSpan(
+            style: TextStyle(color: Colors.grey[600], fontFamily: 'Poppins'),
+            text: text);
         TextPainter tp = TextPainter(
             text: span,
             textAlign: TextAlign.left,

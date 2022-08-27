@@ -229,7 +229,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 width: 50,
               ),
               AppBarIcon(FontAwesomeIcons.check, () async {
-                await widget.target();
+                if (widget.target != null) {
+                  widget.target();
+                }
                 if (widget.offsets != null) {
                   for (Offset point in widget.offsets) {
                     calPts.add(Offset(

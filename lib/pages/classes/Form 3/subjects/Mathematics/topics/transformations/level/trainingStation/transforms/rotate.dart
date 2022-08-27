@@ -70,7 +70,7 @@ class _RotateState extends State<Rotate> {
                     'Rotation is simply movement in a circle around a fixed point.',
                 answer: '',
                 hint: 'Drag the slider below around to rotate the shape.',
-                timeLimit: 0,
+                timeLimit: 120,
                 onUpdateScore: () {},
                 score: 0,
               )

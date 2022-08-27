@@ -175,7 +175,7 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
 
       // display plotted point coordinates
       TextSpan plotText = TextSpan(
-          style: const TextStyle(color: Colors.black),
+          style: const TextStyle(color: Colors.black, fontFamily: 'Poppins'),
           text:
               '${alphabet[qcount]}(${(((point.dx - centerX) * 0.1) / 4).round()}, ${(((point.dy - centerY) * -0.1) / 4).round()})');
       TextPainter pt = TextPainter(
@@ -189,7 +189,7 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
       // distance will only show if there are more than 1 point(s)
       if (points.length > 1) {
         TextSpan plotText = TextSpan(
-            style: const TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.black, fontFamily: 'Poppins'),
             text:
                 '${distance((points[qcount]) * 0.1, (points[qcount + 1] * 0.1))}cm');
         TextPainter pt = TextPainter(

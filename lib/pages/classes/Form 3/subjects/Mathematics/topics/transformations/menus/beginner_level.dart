@@ -34,7 +34,7 @@ class BeginnerLevel extends StatelessWidget {
         rating: '',
         answer: 'C',
         hint: 'Lets keep putting up points',
-        timeLimit: 1,
+        timeLimit: 120,
         qPoints: [
           const Offset(0, 0),
           const Offset(0, 2),
@@ -76,7 +76,7 @@ class BeginnerLevel extends StatelessWidget {
         rating: '',
         answer: 'A',
         hint: 'Lets keep putting up points',
-        timeLimit: 1,
+        timeLimit: 120,
         qPoints: [
           const Offset(-1, -1),
           const Offset(-4, -1),
@@ -98,7 +98,7 @@ class BeginnerLevel extends StatelessWidget {
         rating: '',
         answer: 'A',
         hint: 'Lets keep putting up points',
-        timeLimit: 1,
+        timeLimit: 120,
         qPoints: [
           const Offset(1, 2),
           const Offset(6, 2),
@@ -129,7 +129,7 @@ class BeginnerLevel extends StatelessWidget {
         optionA: [],
         optionB: [],
         optionC: []),
-    BeginnerLs( 
+    BeginnerLs(
         level: '7',
         question: '',
         rating: '',
