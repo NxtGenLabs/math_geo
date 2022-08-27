@@ -12,6 +12,8 @@ class Classes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     List tiles = [
       Tile(
           subject: "Mathematics",
@@ -37,7 +39,7 @@ class Classes extends StatelessWidget {
               children: [
                 SizedBox(
                   height: 150,
-                  width: MediaQuery.of(context).size.width,
+                  width: width,
                   child: const Image(
                       fit: BoxFit.cover,
                       image: AssetImage("images/savannah_cropped.png")),
@@ -90,7 +92,7 @@ class Classes extends StatelessWidget {
                 children: [
                   SizedBox(
                     height: 50,
-                    width: MediaQuery.of(context).size.width,
+                    width: width,
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: TabBar(
@@ -110,8 +112,8 @@ class Classes extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height - 250,
+                    width: width,
+                    height: height - 200,
                     child: TabBarView(children: [
                       const Center(
                           child: Text("Nothing to show here.",
@@ -124,7 +126,7 @@ class Classes extends StatelessWidget {
                           mainAxisSpacing: 20,
                           crossAxisSpacing: 20,
                           itemCount: tiles.length,
-                          crossAxisCount: 2,
+                          crossAxisCount: width ~/ 300,
                           itemBuilder: (context, index) {
                             return tiles[index];
                           }),

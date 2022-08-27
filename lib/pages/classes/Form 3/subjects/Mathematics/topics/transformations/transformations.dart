@@ -31,6 +31,8 @@ class Transformations extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 137, 33, 28),
       body: SafeArea(
@@ -43,8 +45,8 @@ class Transformations extends StatelessWidget {
                 Stack(
                   children: [
                     SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height / 2.5,
+                        width: width,
+                        height: height / 2.5,
                         child: const Image(
                             filterQuality: FilterQuality.high,
                             fit: BoxFit.cover,
@@ -87,8 +89,8 @@ class Transformations extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   margin: const EdgeInsets.symmetric(horizontal: 10),
-                  height: MediaQuery.of(context).size.height / 1.4,
-                  width: MediaQuery.of(context).size.width,
+                  height: height / 1.3,
+                  width: width,
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 242, 242, 242),
                       borderRadius: BorderRadiusDirectional.only(
@@ -98,7 +100,7 @@ class Transformations extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 40),
+                        padding: EdgeInsets.symmetric(vertical: 30),
                         child: Text("World Select", style: ThemeText.header2),
                       ),
                       Expanded(

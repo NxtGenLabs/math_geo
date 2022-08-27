@@ -399,6 +399,8 @@ class BeginnerLevel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -410,8 +412,8 @@ class BeginnerLevel extends StatelessWidget {
                 Stack(
                   children: [
                     SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height / 2,
+                        width: width,
+                        height: height / 2.5,
                         child: const Image(
                             fit: BoxFit.cover,
                             image: AssetImage("images/the_field.png"))),
@@ -453,8 +455,8 @@ class BeginnerLevel extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   margin: const EdgeInsets.symmetric(horizontal: 10),
-                  height: MediaQuery.of(context).size.height / 1.4,
-                  width: MediaQuery.of(context).size.width,
+                  height: height / 1.3,
+                  width: width,
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 242, 242, 242),
                       borderRadius: BorderRadiusDirectional.only(
@@ -464,17 +466,17 @@ class BeginnerLevel extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 40),
+                        padding: EdgeInsets.symmetric(vertical: 30),
                         child: Text("Level Select", style: ThemeText.header2),
                       ),
                       Expanded(
                         child: GridView.builder(
                             itemCount: levels.length,
                             gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisSpacing: 10,
                                     mainAxisSpacing: 10,
-                                    crossAxisCount: 4,
+                                    crossAxisCount: width ~/ 180,
                                     childAspectRatio: .7),
                             itemBuilder: (context, index) {
                               return LevelContainer(

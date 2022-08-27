@@ -27,6 +27,8 @@ class LevelContainer extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(5)),
                 color: Color.fromARGB(255, 98, 166, 62)),
             child: Container(
+              width: 150,
+              height: 200,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                   color: Color.fromARGB(255, 113, 191, 71)),
