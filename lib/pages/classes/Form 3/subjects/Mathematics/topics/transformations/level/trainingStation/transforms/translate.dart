@@ -173,7 +173,7 @@ class translationPainter extends CustomPainter {
 
     // object paints and paths
     Paint ogPaint = Paint()
-      ..color = Colors.black
+      ..color = const Color.fromARGB(255, 96, 102, 92)
       ..strokeWidth = 3
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;

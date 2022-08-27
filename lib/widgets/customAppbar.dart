@@ -10,12 +10,14 @@ import 'package:math_geometry/widgets/ratingDialog.dart';
 class CustomAppBar extends StatefulWidget {
   final String level;
   final String question;
-  final String answer;
+  final answer;
   final String pick;
   final offsets;
   final String hint;
   int timeLimit;
   int score;
+  final retry;
+  final target;
   final Function onUpdateScore;
   CustomAppBar(
       {required this.level,
@@ -26,6 +28,8 @@ class CustomAppBar extends StatefulWidget {
       required this.score,
       required this.onUpdateScore,
       required this.timeLimit,
+      this.retry,
+      this.target,
       this.offsets});
 
   @override
@@ -225,6 +229,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 width: 50,
               ),
               AppBarIcon(FontAwesomeIcons.check, () async {
+                await widget.target();
                 if (widget.offsets != null) {
                   for (Offset point in widget.offsets) {
                     calPts.add(Offset(
@@ -258,7 +263,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   widget.score++;
                 }
               }, Colors.green),
-              AppBarIcon(FontAwesomeIcons.repeat, () {}, Colors.grey),
+              AppBarIcon(FontAwesomeIcons.repeat, widget.retry, Colors.grey),
               AppBarIcon(FontAwesomeIcons.x, () async {
                 final player = AudioPlayer();
                 await player.play(AssetSource('satisfying_click.wav'));

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:math_geometry/pages/authenticate/genderXage.dart';
 import 'package:math_geometry/pages/authenticate/submitPage.dart';
 import 'package:math_geometry/pages/classes/Form%203/subjects/Mathematics/topics/main.dart';
@@ -14,7 +13,8 @@ import 'package:math_geometry/pages/classes/classes.dart';
 import 'package:math_geometry/pages/landing.dart';
 import 'package:math_geometry/pages/profile/profile.dart';
 import 'package:math_geometry/pages/profile/settings.dart';
-import 'package:math_geometry/pages/wrapper.dart';
+import 'pages/classes/Form 3/subjects/Mathematics/topics/transformations/level/advanced.dart';
+import 'pages/classes/Form 3/subjects/Mathematics/topics/transformations/menus/advanced_level.dart';
 
 void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -41,11 +41,15 @@ void main() async {
           BeginnerLevel(),
       './pages/topics/transformations/menus/intermediate_level': (context) =>
           TransFormationsLevels(),
+      './pages/topics/transformations/menus/advanced_level': (context) =>
+          AdvancedLevel(),
       './pages/topics/transformations/level/training_station': (context) =>
           const TrainingStation(),
       './pages/topics/transformations/level/beginner': (context) => Beginner(),
       './pages/topics/transformations/level/intermediate': (context) =>
           const Intermediate(),
+      './pages/topics/transformations/level/advanced': (context) =>
+          const Advanced(),
     },
   ));
 }

@@ -17,7 +17,8 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    final _profile = Column(
+    final profile = SingleChildScrollView(
+        child: Column(
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
@@ -129,9 +130,9 @@ class _ProfileState extends State<Profile> {
           ),
         )
       ],
-    );
+    ));
 
-    final tabs = [_profile, Leaderboard()];
+    final tabs = [profile, const Leaderboard()];
 
     return Scaffold(
       body: SafeArea(

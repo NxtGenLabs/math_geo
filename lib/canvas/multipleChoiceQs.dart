@@ -55,16 +55,16 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
     List<Offset> oC = [];
 
     for (var point in levels.levels[index].qPoints) {
-      qp.add(Offset((point.dx * 10) + centerX, (point.dy * -10) + centerY));
+      qp.add(Offset((point.dx * 40) + centerX, (point.dy * -40) + centerY));
     }
     for (var point in levels.levels[index].optionA) {
-      oA.add(Offset((point.dx * 10) + centerX, (point.dy * -10) + centerY));
+      oA.add(Offset((point.dx * 40) + centerX, (point.dy * -40) + centerY));
     }
     for (var point in levels.levels[index].optionB) {
-      oB.add(Offset((point.dx * 10) + centerX, (point.dy * -10) + centerY));
+      oB.add(Offset((point.dx * 40) + centerX, (point.dy * -40) + centerY));
     }
     for (var point in levels.levels[index].optionC) {
-      oC.add(Offset((point.dx * 10) + centerX, (point.dy * -10) + centerY));
+      oC.add(Offset((point.dx * 40) + centerX, (point.dy * -40) + centerY));
     }
 
     Paint strokePaint = Paint();
@@ -90,12 +90,12 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
 
       // displaying point value
       TextSpan span = TextSpan(
-          style: TextStyle(color: Colors.orange[800]), text: alphabet[counter]);
+          style: const TextStyle(color: Colors.black), text: alphabet[counter]);
       TextPainter tp = TextPainter(
           text: span,
           textAlign: TextAlign.left,
           textDirection: TextDirection.ltr,
-          textScaleFactor: 2);
+          textScaleFactor: .8);
       tp.layout();
       tp.paint(canvas, Offset(point.dx, point.dy));
       ++counter;
@@ -111,7 +111,7 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
           text: span,
           textAlign: TextAlign.left,
           textDirection: TextDirection.ltr,
-          textScaleFactor: 2);
+          textScaleFactor: .8);
       tp.layout();
       tp.paint(canvas, Offset(point.dx, point.dy));
       ++counter;
@@ -128,7 +128,7 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
           text: span,
           textAlign: TextAlign.left,
           textDirection: TextDirection.ltr,
-          textScaleFactor: 1);
+          textScaleFactor: .8);
       tp.layout();
       tp.paint(canvas, Offset(point.dx, point.dy));
       ++counter;

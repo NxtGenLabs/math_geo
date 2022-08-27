@@ -53,6 +53,20 @@ class ToolBar extends StatelessWidget {
                   icon: const Icon(FontAwesomeIcons.minimize),
                 ),
               ),
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
+                padding: const EdgeInsets.all(2),
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                    color: Color.fromARGB(255, 217, 217, 217)),
+                child: IconButton(
+                  color: const Color.fromARGB(255, 45, 46, 47),
+                  onPressed: delete,
+                  icon: const Icon(FontAwesomeIcons.slash),
+                ),
+              ),
               const SizedBox(width: 10),
               Container(
                 padding: const EdgeInsets.all(2),

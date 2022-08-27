@@ -13,17 +13,17 @@ class BeginnerLevel extends StatelessWidget {
             'Given the 2 shapes, what scale factor the shape has been enlarged by. \n A. 2 \n B. 1.5 \n C. 2.5',
         rating: '',
         answer: 'B',
-        hint: 'Lets keep putting up points',
+        hint: 'Find the coordinates of the two shapes, then divide each point by the other.',
         timeLimit: 120,
         qPoints: [
-          const Offset(-4, 4),
-          const Offset(-16, 4),
-          const Offset(-16, 12)
+          const Offset(-1, 1),
+          const Offset(-4, 1),
+          const Offset(-4, 3)
         ],
         optionA: [
-          const Offset(-6, 6),
-          const Offset(-24, 6),
-          const Offset(-24, 18)
+          const Offset(-2, 2),
+          const Offset(-8, 2),
+          const Offset(-8, 6)
         ],
         optionB: [],
         optionC: []),
@@ -37,15 +37,15 @@ class BeginnerLevel extends StatelessWidget {
         timeLimit: 1,
         qPoints: [
           const Offset(0, 0),
-          const Offset(0, 8),
-          const Offset(8, 8),
-          const Offset(8, 0),
+          const Offset(0, 2),
+          const Offset(2, 2),
+          const Offset(2, 0),
         ],
         optionA: [
           const Offset(0, 0),
-          const Offset(0, 20),
-          const Offset(20, 20),
-          const Offset(20, 0),
+          const Offset(0, 5),
+          const Offset(5, 5),
+          const Offset(5, 0),
         ],
         optionB: [],
         optionC: []),
@@ -58,62 +58,78 @@ class BeginnerLevel extends StatelessWidget {
         hint: 'Lets keep putting up points',
         timeLimit: 120,
         qPoints: [
-          const Offset(4, 4),
-          const Offset(16, 12),
-          const Offset(4, 12)
+          const Offset(1, 1),
+          const Offset(4, 3),
+          const Offset(1, 3)
         ],
         optionA: [
-          const Offset(6, 6),
-          const Offset(24, 18),
-          const Offset(6, 18)
+          const Offset(1.5, 1.5),
+          const Offset(6, 4.5),
+          const Offset(1.5, 4.5)
         ],
         optionB: [],
         optionC: []),
     BeginnerLs(
         level: '4',
         question:
-            'By what factor has the shape been translated by? \n A. (24, 24) \n B. (-24, 24) \n C. (24, 12)',
+            'By what factor has the shape been translated by? \n A. (6, 6) \n B. (-6, 6) \n C. (6, 3)',
         rating: '',
         answer: 'A',
         hint: 'Lets keep putting up points',
         timeLimit: 1,
         qPoints: [
+          const Offset(-1, -1),
+          const Offset(-4, -1),
           const Offset(-4, -4),
-          const Offset(-16, -4),
-          const Offset(-16, -16),
-          const Offset(-4, -16)
+          const Offset(-1, -4)
         ],
         optionA: [
-          const Offset(20, 20),
-          const Offset(8, 20),
-          const Offset(8, 8),
-          const Offset(20, 8)
+          const Offset(5, 5),
+          const Offset(2, 5),
+          const Offset(2, 2),
+          const Offset(5, 2)
         ],
         optionB: [],
         optionC: []),
     BeginnerLs(
         level: '5',
-        question: '',
+        question:
+            'For the transformation shown at the right, what is the measure of the angle of rotation of ABCD about the origin? \n A. 90º \n B. 180º \n C. 270º',
         rating: '',
-        answer: '',
+        answer: 'A',
         hint: 'Lets keep putting up points',
         timeLimit: 1,
-        qPoints: [],
-        optionA: [],
+        qPoints: [
+          const Offset(1, 2),
+          const Offset(6, 2),
+          const Offset(8, 6),
+          const Offset(3, 6)
+        ],
+        optionA: [
+          const Offset(2, -1),
+          const Offset(2, -6),
+          const Offset(6, -8),
+          const Offset(6, -3)
+        ],
         optionB: [],
         optionC: []),
     BeginnerLs(
         level: '6',
-        question: '',
+        question:
+            'ΔRST has R(-2,-2), S(3,5) and T(7,-4). What is the image of point T after a rotation of 180º about the origin? \n A.T  (-7,-4) \n B. T  (7,4) \n C. T  (-7,4)',
         rating: '',
-        answer: '',
+        answer: 'C',
         hint: 'Lets keep putting up points',
         timeLimit: 1,
-        qPoints: [],
+        qPoints: [
+          const Offset(-2, -2),
+          const Offset(3, 5),
+          const Offset(7, -4)
+        ],
         optionA: [],
         optionB: [],
         optionC: []),
-    BeginnerLs(
+    BeginnerLs( 
         level: '7',
         question: '',
         rating: '',

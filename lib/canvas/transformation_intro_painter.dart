@@ -17,7 +17,7 @@ class ShapePainter extends CustomPainter {
       ..color = Colors.teal
       ..strokeWidth = 5
       ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
+      ..strokeCap = StrokeCap.butt;
 
     var path = Path();
 
@@ -39,7 +39,8 @@ class ShapePainter extends CustomPainter {
 
     // displaying angle
     TextSpan span = TextSpan(
-        style: TextStyle(color: Colors.red[900]), text: '${Offset(0, 0)}');
+        style: TextStyle(color: Colors.red[900]),
+        text: '${const Offset(0, 0)}');
     TextPainter tp = TextPainter(
         text: span,
         textAlign: TextAlign.left,
