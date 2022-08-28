@@ -4,11 +4,112 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/chapterTile.dart';
 
-import '../../../../../../widgets/activeChapterTile.dart';
+class Topics extends StatefulWidget {
+  @override
+  State<Topics> createState() => _TopicsState();
+}
 
-class Topics extends StatelessWidget {
+class _TopicsState extends State<Topics> {
+  final List<Widget> _chapterTiles = [];
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _addChapters();
+    });
+  }
+
+  void _addChapters() {
+    List<ChapterTile> chapters = [
+      const ChapterTile(
+        chapter: "1. Quadratic expressions and equations II.",
+        isActive: false,
+      ),
+      const ChapterTile(
+        chapter: "2. Irrational numbers.",
+        isActive: false,
+      ),
+      const ChapterTile(
+        chapter: "3. Circles I: Chord properties of a circle.",
+        isActive: false,
+      ),
+      const ChapterTile(
+        chapter: "4. Algebraic fractions.",
+        isActive: false,
+      ),
+      const ChapterTile(
+        chapter: "5. Sets II.",
+        isActive: false,
+      ),
+      const ChapterTile(
+        chapter: "6. Mapping and functions.",
+        isActive: false,
+      ),
+      const ChapterTile(
+        chapter: "7. Circle II: Angle properties of a circle.",
+        isActive: false,
+      ),
+      const ChapterTile(
+        chapter: "8. Transformations.",
+        isActive: true,
+      ),
+      const ChapterTile(
+        chapter: "9. Exponential and logarithimic functions.",
+        isActive: false,
+      ),
+      const ChapterTile(
+        chapter: "10. Change of subject of the formula.",
+        isActive: false,
+      ),
+      const ChapterTile(
+        chapter: "11. Trigonometry 1.",
+        isActive: false,
+      ),
+      const ChapterTile(
+        chapter: "12. Similarity II.",
+        isActive: false,
+      ),
+      const ChapterTile(
+        chapter: "13. Coordinate Geometry.",
+        isActive: false,
+      ),
+      const ChapterTile(
+        chapter: "14. Variation.",
+        isActive: false,
+      ),
+      const ChapterTile(
+        chapter: "15. Inequalities.",
+        isActive: false,
+      ),
+      const ChapterTile(
+        chapter: "16. Graphs of quadratic functions.",
+        isActive: false,
+      ),
+      const ChapterTile(
+        chapter: "17. Statistics II.",
+        isActive: false,
+      ),
+    ];
+
+    Future ft = Future(() {});
+
+    for (var chapter in chapters) {
+      ft = ft.then(
+          (value) => Future.delayed(const Duration(milliseconds: 100), () {
+                _chapterTiles.add(ChapterTile(
+                    chapter: chapter.chapter, isActive: chapter.isActive));
+                _listKey.currentState?.insertItem(_chapterTiles.length - 1);
+              }));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    Tween<Offset> offset =
+        Tween(begin: const Offset(1, 0), end: const Offset(0, 0));
+
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -80,64 +181,15 @@ class Topics extends StatelessWidget {
                         child: Text("Chapters", style: ThemeText.header2),
                       ),
                       Expanded(
-                        child: ListView(
-                          children: [
-                            ChapterTile(
-                                onPress: () {},
-                                chapter:
-                                    "1. Quadratic expressions and equations II."),
-                            ChapterTile(
-                                onPress: () {},
-                                chapter: "2. Irrational numbers."),
-                            ChapterTile(
-                                onPress: () {},
-                                chapter:
-                                    "3. Circles I: Chord properties of a circle."),
-                            ChapterTile(
-                                onPress: () {},
-                                chapter: "4. Algebraic fractions."),
-                            ChapterTile(onPress: () {}, chapter: "5. Sets II."),
-                            ChapterTile(
-                                onPress: () {},
-                                chapter: "6. Mapping and functions."),
-                            ChapterTile(
-                                onPress: () {},
-                                chapter:
-                                    "7. Circle II: Angle properties of a circle."),
-                            ActiveChapterTile(
-                                onPress: () async {
-                                  final player = AudioPlayer();
-                                  await player.play(
-                                      AssetSource('satisfying_click.wav'));
-                                  Navigator.pushNamed(context,
-                                      './pages/classes/transformations');
-                                },
-                                chapter: "8. Transformations."),
-                            ChapterTile(
-                                onPress: () {},
-                                chapter:
-                                    "9. Exponential and logarithimic functions."),
-                            ChapterTile(
-                                onPress: () {},
-                                chapter:
-                                    "10. Change of subject of the formula."),
-                            ChapterTile(
-                                onPress: () {}, chapter: "11. Trigonometry 1."),
-                            ChapterTile(
-                                onPress: () {}, chapter: "12. Similarity II."),
-                            ChapterTile(
-                                onPress: () {},
-                                chapter: "13. Coordinate Geometry."),
-                            ChapterTile(
-                                onPress: () {}, chapter: "14. Variation."),
-                            ChapterTile(
-                                onPress: () {}, chapter: "15. Inequalities."),
-                            ChapterTile(
-                                onPress: () {},
-                                chapter: "16. Graphs of quadratic functions."),
-                            ChapterTile(
-                                onPress: () {}, chapter: "17. Statistics II."),
-                          ],
+                        child: AnimatedList(
+                          key: _listKey,
+                          initialItemCount: _chapterTiles.length,
+                          itemBuilder: (context, index, animation) {
+                            return SlideTransition(
+                              position: animation.drive(offset),
+                              child: _chapterTiles[index],
+                            );
+                          },
                         ),
                       ),
                     ],

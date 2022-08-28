@@ -279,9 +279,12 @@ class AdvancedLevel extends StatelessWidget {
                     SizedBox(
                         width: width,
                         height: height / 2.5,
-                        child: const Image(
-                            fit: BoxFit.cover,
-                            image: AssetImage("images/the_lake.png"))),
+                        child: const Hero(
+                          tag: 'world-images/the_lake.png',
+                          child: Image(
+                              fit: BoxFit.cover,
+                              image: AssetImage("images/the_lake.png")),
+                        )),
                     Padding(
                       padding: const EdgeInsets.all(30.0),
                       child: Row(

@@ -414,9 +414,12 @@ class BeginnerLevel extends StatelessWidget {
                     SizedBox(
                         width: width,
                         height: height / 2.5,
-                        child: const Image(
-                            fit: BoxFit.cover,
-                            image: AssetImage("images/the_field.png"))),
+                        child: const Hero(
+                          tag: 'world-images/the_field.png',
+                          child: Image(
+                              fit: BoxFit.cover,
+                              image: AssetImage("images/the_field.png")),
+                        )),
                     Padding(
                       padding: const EdgeInsets.all(30.0),
                       child: Row(

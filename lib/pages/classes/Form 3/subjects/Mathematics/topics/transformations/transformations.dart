@@ -4,33 +4,69 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/worldTile.dart';
 
-class Transformations extends StatelessWidget {
-  final List _worlds = [
-    const WorldTile(
-      image: "images/training_station.png",
-      title: "Training Station",
-      color: Color.fromARGB(255, 204, 205, 251),
-      route: './pages/topics/transformations/menus/training_station_level',
-    ),
-    const WorldTile(
-        image: "images/the_field.png",
-        title: "The Field",
-        color: Color.fromARGB(255, 106, 117, 21),
-        route: './pages/topics/transformations/menus/beginner_level'),
-    const WorldTile(
-        image: "images/the_lake.png",
-        title: "The Lake",
-        color: Color.fromARGB(255, 244, 181, 168),
-        route: './pages/topics/transformations/menus/intermediate_level'),
-    const WorldTile(
-        image: "images/the_lake.png",
-        title: "The City",
-        color: Colors.red,
-        route: './pages/topics/transformations/menus/advanced_level'),
-  ];
+class Transformations extends StatefulWidget {
+  @override
+  State<Transformations> createState() => _TransformationsState();
+}
+
+class _TransformationsState extends State<Transformations> {
+  final List _worldTiles = [];
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _addWorlds();
+    });
+  }
+
+  void _addWorlds() {
+    List<WorldTile> worlds = [
+      const WorldTile(
+        image: "images/training_station.png",
+        title: "Training Station",
+        color: Color.fromARGB(255, 204, 205, 251),
+        route: './pages/topics/transformations/menus/training_station_level',
+      ),
+      const WorldTile(
+          image: "images/the_field.png",
+          title: "The Field",
+          color: Color.fromARGB(255, 106, 117, 21),
+          route: './pages/topics/transformations/menus/beginner_level'),
+      const WorldTile(
+          image: "images/the_lake.png",
+          title: "The Lake",
+          color: Color.fromARGB(255, 244, 181, 168),
+          route: './pages/topics/transformations/menus/intermediate_level'),
+      const WorldTile(
+          image: "images/the_lake.png",
+          title: "The City",
+          color: Colors.red,
+          route: './pages/topics/transformations/menus/advanced_level'),
+    ];
+
+    Future ft = Future(() {});
+
+    for (var world in worlds) {
+      ft = ft.then(
+          (value) => Future.delayed(const Duration(milliseconds: 100), () {
+                _worldTiles.add(WorldTile(
+                  image: world.image,
+                  title: world.title,
+                  color: world.color,
+                  route: world.route,
+                ));
+                _listKey.currentState?.insertItem(_worldTiles.length - 1);
+              }));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    Tween<Offset> offset =
+        Tween(begin: const Offset(1, 0), end: const Offset(0, 0));
+
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -104,10 +140,14 @@ class Transformations extends StatelessWidget {
                         child: Text("World Select", style: ThemeText.header2),
                       ),
                       Expanded(
-                        child: ListView.builder(
-                            itemCount: _worlds.length,
-                            itemBuilder: (context, index) {
-                              return _worlds[index];
+                        child: AnimatedList(
+                            key: _listKey,
+                            initialItemCount: _worldTiles.length,
+                            itemBuilder: (context, index, animation) {
+                              return SlideTransition(
+                                child: _worldTiles[index],
+                                position: animation.drive(offset),
+                              );
                             }),
                       )
                     ],

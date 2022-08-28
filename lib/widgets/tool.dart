@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:math_geometry/themes/textStyles.dart';
 
-class Pick extends StatefulWidget {
-  final String pick;
+class Tool extends StatefulWidget {
+  final IconData icon;
   final Function() onTap;
-  const Pick(this.pick, this.onTap);
+
+  const Tool(this.icon, this.onTap);
 
   @override
-  State<Pick> createState() => _PickState();
+  State<Tool> createState() => _ToolState();
 }
 
-class _PickState extends State<Pick> with TickerProviderStateMixin {
+class _ToolState extends State<Tool> with TickerProviderStateMixin {
   bool clicked = false;
   late AnimationController _controller;
   late Animation<double> _sizeAnimation;
@@ -26,8 +26,8 @@ class _PickState extends State<Pick> with TickerProviderStateMixin {
     _curve = CurvedAnimation(parent: _controller, curve: Curves.easeInOutExpo);
 
     _sizeAnimation = TweenSequence(<TweenSequenceItem<double>>[
-      TweenSequenceItem<double>(tween: Tween(begin: 40, end: 60), weight: 50),
-      TweenSequenceItem<double>(tween: Tween(begin: 60, end: 40), weight: 50),
+      TweenSequenceItem<double>(tween: Tween(begin: 25, end: 40), weight: 50),
+      TweenSequenceItem<double>(tween: Tween(begin: 40, end: 25), weight: 50),
     ]).animate(_curve);
 
     _controller.addStatusListener((status) {
@@ -57,21 +57,21 @@ class _PickState extends State<Pick> with TickerProviderStateMixin {
         animation: _controller,
         builder: (context, _) {
           return Container(
-            height: _sizeAnimation.value,
-            width: _sizeAnimation.value,
-            padding: const EdgeInsets.all(2),
+            padding: const EdgeInsets.all(5),
             decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(50))),
-            child: TextButton(
-                onPressed: () {
-                  clicked ? _controller.reverse() : _controller.forward();
-                  widget.onTap();
-                },
-                child: Text(
-                  widget.pick,
-                  style: ThemeText.multipleChoice,
-                )),
+                borderRadius: BorderRadius.all(Radius.circular(50)),
+                color: Color.fromARGB(255, 217, 217, 217)),
+            child: IconButton(
+              color: const Color.fromARGB(255, 45, 46, 47),
+              onPressed: () {
+                clicked ? _controller.reverse() : _controller.forward();
+                widget.onTap();
+              },
+              icon: Icon(
+                widget.icon,
+                size: _sizeAnimation.value,
+              ),
+            ),
           );
         });
   }

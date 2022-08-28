@@ -34,9 +34,12 @@ class TrainingStationLevel extends StatelessWidget {
                     SizedBox(
                         width: width,
                         height: height / 2.5,
-                        child: const Image(
-                            fit: BoxFit.cover,
-                            image: AssetImage("images/training_station.png"))),
+                        child: const Hero(
+                          tag: 'world-images/training_station.png',
+                          child: Image(
+                              fit: BoxFit.cover,
+                              image: AssetImage("images/training_station.png")),
+                        )),
                     Padding(
                       padding: const EdgeInsets.all(30.0),
                       child: Row(
