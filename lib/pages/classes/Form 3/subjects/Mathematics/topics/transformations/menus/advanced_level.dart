@@ -79,12 +79,18 @@ class AdvancedLevel extends StatelessWidget {
         ]),
     AdvancedLs(
         level: '6',
-        question: '',
+        question:
+            'Rotate the shape 90 degrees anti-clockwise about the origin.',
         answer: [],
         hint: '',
         timeLimit: 120,
         target: 90,
-        qPoints: []),
+        qPoints: [
+          const Offset(5, 1),
+          const Offset(2, 1),
+          const Offset(2, 3),
+          const Offset(4, 3)
+        ]),
     AdvancedLs(
         level: '7',
         question: '',
