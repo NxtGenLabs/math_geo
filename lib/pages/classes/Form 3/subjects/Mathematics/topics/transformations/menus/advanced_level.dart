@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:math_geometry/widgets/title.dart';
 
 import '../../../../../../../../themes/textStyles.dart';
 import '../../../../../../../../widgets/levelContainer.dart';
@@ -46,20 +47,36 @@ class AdvancedLevel extends StatelessWidget {
         ]),
     AdvancedLs(
         level: '4',
-        question: '',
-        answer: [],
+        question: ' Rotate this shape 180° about the origin.',
+        answer: [
+          const Offset(-4, 2),
+          const Offset(-3, 4),
+          const Offset(-1, 2),
+          const Offset(-3, 1)
+        ],
         hint: '',
         timeLimit: 120,
-        target: 90,
-        qPoints: []),
+        target: -180,
+        qPoints: [
+          const Offset(-4, 2),
+          const Offset(-3, 4),
+          const Offset(-1, 2),
+          const Offset(-3, 1)
+        ]),
     AdvancedLs(
         level: '5',
-        question: '',
+        question:
+            'Rotate the square 90 degrees anit-clockwise about the origin.',
         answer: [],
         hint: '',
         timeLimit: 120,
         target: 90,
-        qPoints: []),
+        qPoints: [
+          const Offset(2, 2),
+          const Offset(5, 2),
+          const Offset(5, 4),
+          const Offset(2, 4)
+        ]),
     AdvancedLs(
         level: '6',
         question: '',
@@ -280,10 +297,10 @@ class AdvancedLevel extends StatelessWidget {
                         width: width,
                         height: height / 2.5,
                         child: const Hero(
-                          tag: 'world-images/the_lake.png',
+                          tag: 'world-images/city.png',
                           child: Image(
                               fit: BoxFit.cover,
-                              image: AssetImage("images/the_lake.png")),
+                              image: AssetImage("images/city.png")),
                         )),
                     Padding(
                       padding: const EdgeInsets.all(30.0),
@@ -314,7 +331,7 @@ class AdvancedLevel extends StatelessWidget {
                     ),
                   ],
                 ),
-                const Text("The City", style: ThemeText.levelHeader),
+                const AnimatedTitle(title: "The City")
               ],
             ),
             Column(
@@ -323,7 +340,7 @@ class AdvancedLevel extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   margin: const EdgeInsets.symmetric(horizontal: 10),
-                  height: height / 1.3,
+                  height: height / 1.4,
                   width: width,
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 242, 242, 242),

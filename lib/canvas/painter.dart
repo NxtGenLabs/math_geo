@@ -8,9 +8,7 @@ import '../pages/classes/Form 3/subjects/Mathematics/topics/transformations/menu
 class LinePainter extends ChangeNotifier implements CustomPainter {
   late int index;
 
-  LinePainter(int index) {
-    this.index = index;
-  }
+  LinePainter(this.index);
   TransFormationsLevels levels = TransFormationsLevels();
 
   var strokes = <List<Offset>>[];
@@ -109,13 +107,13 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     }
 
     Paint strokePaint = Paint();
-    strokePaint.color = const Color.fromARGB(255, 188, 141, 47);
+    strokePaint.color = const Color.fromARGB(255, 42, 49, 50);
     strokePaint.style = PaintingStyle.stroke;
     strokePaint.strokeWidth = 3;
 
     Paint pointPaint = Paint();
     pointPaint.strokeWidth = 15;
-    pointPaint.color = const Color.fromARGB(255, 188, 141, 47);
+    pointPaint.color = const Color.fromARGB(255, 42, 49, 50);
     pointPaint.strokeCap = StrokeCap.round;
 
     //question points
@@ -132,43 +130,6 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
       strokePath.addPolygon(points, true);
       canvas.drawPath(strokePath, strokePaint);
     }
-
-//question data
-    // for (var point in qp) {
-    //   //debug logging the getSides() method
-
-    //   TextSpan span = TextSpan(
-    //       style: TextStyle(color: Colors.red[900]),
-    //       text:
-    //           '${alphabet[count]}(${point.dx.toInt() + -centerX}, ${point.dy.toInt() - centerY})');
-    //   TextPainter qtp = TextPainter(
-    //       text: span,
-    //       textAlign: TextAlign.left,
-    //       textDirection: TextDirection.ltr,
-    //       textScaleFactor: .8);
-    //   qtp.layout();
-    //   qtp.paint(canvas, Offset(point.dx, point.dy));
-
-    //   // debug logs
-    //   // ignore: avoid_print
-    //   print('Distance:  ${distance(qp[count], qp[count + 1])}');
-
-    //   // distance will only show if there are more than 1 point(s)
-    //   if (qp.length > 1) {
-    //     TextSpan span = TextSpan(
-    //         style: TextStyle(color: Colors.red[900]),
-    //         text: '${distance(qp[count], qp[count + 1])}cm');
-    //     TextPainter qtp = TextPainter(
-    //         text: span,
-    //         textAlign: TextAlign.left,
-    //         textDirection: TextDirection.ltr,
-    //         textScaleFactor: 1.0);
-    //     qtp.layout();
-    //     qtp.paint(canvas, midPoint(qp[count], qp[count + 1]));
-    //   }
-    //   // indexer
-    //   ++count;
-    // }
 
     for (var point in points) {
       //debug logging the getSides() method

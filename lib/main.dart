@@ -21,6 +21,7 @@ void main() async {
   // await Firebase.initializeApp();
   runApp(MaterialApp(
     theme: ThemeData(
+      
         sliderTheme: const SliderThemeData(
           showValueIndicator: ShowValueIndicator.always,
         ),

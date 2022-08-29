@@ -37,7 +37,10 @@ class Classes extends StatelessWidget {
           children: [
             Stack(
               children: [
-                SizedBox(
+                Container(
+                  decoration: const BoxDecoration(
+                      borderRadius:
+                          BorderRadius.only(bottomRight: Radius.circular(20))),
                   height: 150,
                   width: width,
                   child: const Image(

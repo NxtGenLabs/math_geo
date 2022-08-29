@@ -3,7 +3,9 @@ import 'package:math_geometry/canvas/grid.dart';
 import 'package:math_geometry/canvas/multipleChoiceQs.dart';
 import 'package:math_geometry/pages/classes/Form%203/subjects/Mathematics/topics/transformations/menus/beginner_level.dart';
 import 'package:math_geometry/widgets/multipleChoiceOptions.dart';
-import 'package:math_geometry/widgets/customAppbar.dart';
+
+import '../../../../../../../../widgets/appbars/fieldAppbar.dart';
+import '../../../../../../../loading.dart';
 
 class Beginner extends StatefulWidget {
   @override
@@ -13,6 +15,17 @@ class Beginner extends StatefulWidget {
 class _BeginnerState extends State<Beginner> {
   String pick = '';
   int score = 0;
+  bool isLoading = true;
+
+    void initState(){
+    super.initState();
+     Future.delayed(const Duration(seconds: 4), () {
+      setState(() {
+        isLoading = false;
+      });
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,31 +35,22 @@ class _BeginnerState extends State<Beginner> {
       body: Stack(
         alignment: AlignmentDirectional.topCenter,
         children: [
-          Stack(
-            children: [
-              SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  child: const Image(
-                      fit: BoxFit.cover,
-                      image: AssetImage("images/dummy_field.png"))),
-              SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  child: CustomPaint(
-                    foregroundPainter: MultipleChoiceQs(
-                      int.parse(level.level) - 1,
-                    ),
-                    child: const Visibility(
-                      child: MyGrid(),
-                    ),
-                  )),
-            ],
-          ),
+          Container(
+              color: const Color.fromARGB(255, 151, 188, 98),
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: CustomPaint(
+                foregroundPainter: MultipleChoiceQs(
+                  int.parse(level.level) - 1,
+                ),
+                child: const Visibility(
+                  child: MyGrid(),
+                ),
+              )),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomAppBar(
+              FieldAppBar(
                   pick: pick,
                   level: level.level,
                   question: level.question,
@@ -61,7 +65,8 @@ class _BeginnerState extends State<Beginner> {
                 });
               }),
             ],
-          )
+          ),
+          Visibility(visible: isLoading, child: Loading())
         ],
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 
-class CustomDialog extends StatelessWidget {
+class CustomDialog extends StatefulWidget {
   final String title;
   final String message;
   final String clsBtnTitle;
@@ -23,6 +23,13 @@ class CustomDialog extends StatelessWidget {
       required this.onClsBtnPressed});
 
   @override
+  State<CustomDialog> createState() => _CustomDialogState();
+}
+
+class _CustomDialogState extends State<CustomDialog> {
+  final double _width = 200;
+
+  @override
   Widget build(BuildContext context) {
     return Dialog(
       shape: const RoundedRectangleBorder(
@@ -40,23 +47,23 @@ class CustomDialog extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    title,
+                    widget.title,
                     style: ThemeText.title,
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    message,
+                    widget.message,
                     style: ThemeText.normal,
                   ),
                   const SizedBox(height: 15),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      attempt
+                      widget.attempt
                           ? TextButton(
-                              onPressed: secOnPress,
+                              onPressed: widget.secOnPress,
                               child: Text(
-                                secBtnTitle,
+                                widget.secBtnTitle,
                                 style: const TextStyle(
                                     color: Colors.green,
                                     fontWeight: FontWeight.bold,
@@ -65,9 +72,9 @@ class CustomDialog extends StatelessWidget {
                             )
                           : (Container()),
                       TextButton(
-                        onPressed: onClsBtnPressed,
+                        onPressed: widget.onClsBtnPressed,
                         child: Text(
-                          clsBtnTitle,
+                          widget.clsBtnTitle,
                           style: const TextStyle(
                               color: Colors.red,
                               fontWeight: FontWeight.bold,
@@ -94,9 +101,9 @@ class CustomDialog extends StatelessWidget {
               },
               child: CircleAvatar(
                 radius: 40,
-                backgroundColor: headerColor,
+                backgroundColor: widget.headerColor,
                 child: Icon(
-                  header,
+                  widget.header,
                   size: 30,
                   color: Colors.white,
                 ),

@@ -41,6 +41,7 @@ dependencies:
     flutter_particles: ^1.0.0+7
     audioplayers: ^1.0.1
     flutter_launcher_icons: ^0.10.0
+    flutter_spinkit: ^5.1.0
 
 dev_dependencies:
     flutter_test:
@@ -77,11 +78,15 @@ flutter:
 
     # To add assets to your application, add an assets section, like this:
     assets:
-        ##images
+        ##logo
         - images/nxtlogo.png
-        - images/bg.png
-        - images/rotated_bg.png
-        - images/dummy_field.png
+
+        ##
+        - images/trig.png
+        - images/mat_class.png
+        - images/mat_table.jpg
+
+
 
         ##characters
         - images/characters/male_character.png
@@ -91,14 +96,23 @@ flutter:
         - images/submit_bg.jpg
         - images/savannah.jpg
         - images/savannah_cropped.png
+
+        ##subjects
         - images/biology.png
         - images/lock.png
         - images/agriculture.png
         - images/physics.png
         - images/math.png
+
+
+        ##worlds
         - images/training_station.png
         - images/the_field.png
         - images/the_lake.png
+        - images/city.png
+
+
+
         - images/math-set.png
         - images/active_chapter.png
 

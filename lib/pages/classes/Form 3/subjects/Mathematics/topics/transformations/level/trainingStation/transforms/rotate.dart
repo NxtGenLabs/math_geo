@@ -3,7 +3,8 @@ import 'dart:math' as math;
 // user defined imports
 import 'package:math_geometry/canvas/grid.dart';
 
-import '../../../../../../../../../../widgets/customAppbar.dart';
+import '../../../../../../../../../../widgets/appbars/trainingStationAppbar.dart';
+import '../../../../../../../../../loading.dart';
 
 class Rotate extends StatefulWidget {
   @override
@@ -15,6 +16,18 @@ class _RotateState extends State<Rotate> {
   final double _sides = 4;
   final double _radius = 100;
   double _radians = 0.0;
+  bool isLoading = true;
+
+      @override
+  void initState(){
+    super.initState();
+     Future.delayed(const Duration(seconds: 4), () {
+      setState(() {
+        isLoading = false;
+      });
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +36,7 @@ class _RotateState extends State<Rotate> {
       body: SafeArea(
         child: Stack(children: [
           Container(
-            color: const Color.fromARGB(255, 189, 239, 249),
+            color: const Color.fromARGB(255, 44, 120, 115),
             child: CustomPaint(
               foregroundPainter: rotationPainer(_sides, _radius, _radians),
               painter: MyGridPainter(),
@@ -63,7 +76,7 @@ class _RotateState extends State<Rotate> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CustomAppBar(
+              TrainingStationAppbar(
                 pick: '',
                 level: '- Rotation.',
                 question:
@@ -75,7 +88,8 @@ class _RotateState extends State<Rotate> {
                 score: 0,
               )
             ],
-          )
+          ),
+          Visibility(visible: isLoading, child: Loading())
         ]),
       ),
     );
@@ -102,7 +116,7 @@ class rotationPainer extends CustomPainter {
 
     // object paints and paths
     Paint ogPaint = Paint()
-      ..color = const Color.fromARGB(255, 96, 102, 92)
+      ..color = const Color.fromARGB(255, 2, 28, 30)
       ..strokeWidth = 3
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;

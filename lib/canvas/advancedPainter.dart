@@ -2,105 +2,110 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'dart:ui';
 
-double pi = math.pi;
+mixin Painterfunction {
+  double pi = math.pi;
 
 //? to find the distance between two points
-double distanceBetweenTwoPoints(Offset point1, Offset point2) {
-  // delta x
-  var changeInX = point2.dx - point1.dx;
-  var changeInXSquared = math.pow(changeInX, 2);
-  // delta y
-  var changeInY = point2.dy - point1.dy;
-  var changeInYSquared = math.pow(changeInY, 2);
-  // square root of deltas is distance
-  var distance = math.sqrt((changeInXSquared + changeInYSquared));
-  return (distance);
-}
+  double distanceBetweenTwoPoints(Offset point1, Offset point2) {
+    // delta x
+    var changeInX = point2.dx - point1.dx;
+    var changeInXSquared = math.pow(changeInX, 2);
+    // delta y
+    var changeInY = point2.dy - point1.dy;
+    var changeInYSquared = math.pow(changeInY, 2);
+    // square root of deltas is distance
+    var distance = math.sqrt((changeInXSquared + changeInYSquared));
+    return (distance);
+  }
 
 //? to find the angle between two points
-double angleToFind(List<Offset> initialLine, List<Offset> terminalLine) {
-  double ang1 = math.atan2(initialLine.last.dy - initialLine.first.dy,
-          initialLine.last.dx - initialLine.first.dx) *
-      (180 / pi);
-  double ang2 = math.atan2(terminalLine.last.dy - terminalLine.first.dy,
-          terminalLine.last.dx - terminalLine.first.dx) *
-      (180 / pi);
-  double angle = ang2 - ang1;
-  return (angle);
-}
+  double angleToFind(List<Offset> initialLine, List<Offset> terminalLine) {
+    double ang1 = math.atan2(initialLine.last.dy - initialLine.first.dy,
+            initialLine.last.dx - initialLine.first.dx) *
+        (180 / pi);
+    double ang2 = math.atan2(terminalLine.last.dy - terminalLine.first.dy,
+            terminalLine.last.dx - terminalLine.first.dx) *
+        (180 / pi);
+    double angle = ang2 - ang1;
+    return (angle);
+  }
 
 //? checks if two lists are equal
-bool checkAnswer(var list1, var list2) {
-  // check if both are lists
-  if (list1.toString() != list2.toString()) {
-    print('Your coordinates are off.');
-    return false;
+  bool checkAnswer(var list1, var list2) {
+    // check if both are lists
+    if (list1.toString() != list2.toString()) {
+      print('Your coordinates are off.');
+      return false;
+    }
+    // check if elements are equal
+    if (list2.length != list1.length) {
+      print('You drew a different type of polygon');
+      return false;
+    }
+    return true;
   }
-  // check if elements are equal
-  if (list2.length != list1.length) {
-    print('You drew a different type of polygon');
-    return false;
-  }
-  return true;
-}
 
 //? gets random question in list
-getRandomQuestion(List<List<Offset>> list) {
-  final random = math.Random();
-  var i = random.nextInt(list.length);
-  return list[i];
-}
+  getRandomQuestion(List<List<Offset>> list) {
+    final random = math.Random();
+    var i = random.nextInt(list.length);
+    return list[i];
+  }
 
 //? calculating midpoint function
-midPoint(Offset point1, Offset point2) {
-  double midP1 = (point1.dx + point2.dx) / 2;
-  double midP2 = (point1.dy + point2.dy) / 2;
-  return Offset(midP1, midP2);
-}
+  midPoint(Offset point1, Offset point2) {
+    double midP1 = (point1.dx + point2.dx) / 2;
+    double midP2 = (point1.dy + point2.dy) / 2;
+    return Offset(midP1, midP2);
+  }
 
 //? returns shape in units of 1 of divisio by 40
-returnShape(List<Offset> getShape) {
-  List<Offset> original = [];
-  for (var point in getShape) {
-    original.add(Offset(point.dx * 40, point.dy * 40));
+  returnShape(List<Offset> getShape) {
+    List<Offset> original = [];
+    for (var point in getShape) {
+      original.add(Offset(point.dx * 40, point.dy * 40));
+    }
+    return original;
   }
-  return original;
-}
 
 //! PAINTS
-Paint strokePaint = Paint()
-  ..color = const Color.fromARGB(255, 96, 102, 92)
-  ..style = PaintingStyle.stroke
-  ..strokeWidth = 3;
+  Paint strokePaint = Paint()
+    ..color = const Color.fromARGB(255, 96, 102, 92)
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 3;
 
-Paint imagePaint = Paint()
-  ..color = Colors.red
-  ..style = PaintingStyle.stroke
-  ..strokeWidth = 3
-  ..strokeCap = StrokeCap.round;
+  Paint imagePaint = Paint()
+    ..color = Colors.red
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 3
+    ..strokeCap = StrokeCap.round;
 
-Paint pointPaint = Paint()
-  ..strokeWidth = 5
-  ..color = const Color.fromARGB(255, 26, 26, 26)
-  ..strokeCap = StrokeCap.round;
+  Paint pointPaint = Paint()
+    ..strokeWidth = 5
+    ..color = const Color.fromARGB(255, 26, 26, 26)
+    ..strokeCap = StrokeCap.round;
 
-Paint circlePaint = Paint()
-  ..strokeWidth = 5
-  ..color = const Color.fromARGB(255, 96, 102, 92)
-  ..strokeWidth = 5;
+  Paint circlePaint = Paint()
+    ..strokeWidth = 5
+    ..color = const Color.fromARGB(255, 96, 102, 92)
+    ..strokeWidth = 5;
 
-Paint linesPaint = Paint()
-  ..color = const Color.fromARGB(255, 96, 56, 19)
-  ..style = PaintingStyle.stroke;
+  Paint linesPaint = Paint()
+    ..color = const Color.fromARGB(255, 96, 56, 19)
+    ..style = PaintingStyle.stroke;
 
 //! PAINTER
-var strokes = <List<Offset>>[];
-List<Offset> points = [];
+  var strokes = <List<Offset>>[];
+  List<Offset> points = [];
 
 //! ---------------------/////
 //! ORIGINAL PAINTER //////
 //! ---------------------//////
-class GesturePainter extends ChangeNotifier implements CustomPainter {
+}
+
+class GesturePainter extends ChangeNotifier
+    with Painterfunction
+    implements CustomPainter {
   @override
   bool hitTest(Offset position) => true;
 
@@ -228,7 +233,7 @@ class GesturePainter extends ChangeNotifier implements CustomPainter {
 //! ---------------------/////
 //! ORIGINAL PAINTER //////
 //! ---------------------//////
-class OriginalShapePainter extends CustomPainter {
+class OriginalShapePainter extends CustomPainter with Painterfunction {
   late double degrees;
   late List<Offset> original;
   OriginalShapePainter(double value, List<Offset> getShape) {

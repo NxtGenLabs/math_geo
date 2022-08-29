@@ -14,7 +14,7 @@ class CharacterSelect extends StatelessWidget {
         children: [
           const Text("Select Your Character"),
           const SizedBox(height: 20),
-          Container(
+          SizedBox(
               height: 400,
               width: 400,
               child: Swiper(

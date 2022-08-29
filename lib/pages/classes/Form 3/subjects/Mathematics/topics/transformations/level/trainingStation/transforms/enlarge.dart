@@ -3,7 +3,7 @@ import 'dart:math' as math;
 // user defined imports
 import 'package:math_geometry/canvas/grid.dart';
 
-import '../../../../../../../../../../widgets/customAppbar.dart';
+import '../../../../../../../../../../widgets/appbars/trainingStationAppbar.dart';
 
 class Enlarge extends StatefulWidget {
   @override
@@ -27,7 +27,9 @@ class _EnlargeState extends State<Enlarge> {
                   child: CustomPaint(
                     painter: MyGridPainter(),
                     foregroundPainter: enlargementPainter(_sides, _scale),
-                    child: Container(),
+                    child: Container(
+                      color: const Color.fromARGB(255, 44, 120, 115),
+                    ),
                   ),
                 ),
                 // for the  enlargement slider
@@ -43,7 +45,7 @@ class _EnlargeState extends State<Enlarge> {
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20)),
-                            color: Color.fromARGB(255, 60, 64, 50)),
+                            color: Color.fromARGB(255, 44, 120, 115)),
                         width: 350,
                         child: Slider(
                           value: _scale,
@@ -62,7 +64,7 @@ class _EnlargeState extends State<Enlarge> {
               ],
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              CustomAppBar(
+              TrainingStationAppbar(
                 pick: '',
                 level: '- Enlargement',
                 question:
@@ -103,7 +105,7 @@ class enlargementPainter extends CustomPainter {
 
     // object paints and paths
     Paint ogPaint = Paint()
-      ..color = const Color.fromARGB(255, 96, 102, 92)
+      ..color = const Color.fromARGB(255, 2, 28, 30)
       ..strokeWidth = 3
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;

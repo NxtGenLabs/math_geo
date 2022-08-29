@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
+import 'package:math_geometry/widgets/title.dart';
 
 import '../../../../../../../../widgets/levelContainer.dart';
 
@@ -616,7 +617,7 @@ class TransFormationsLevels extends StatelessWidget {
                     ),
                   ],
                 ),
-                const Text("The Lake", style: ThemeText.levelHeader),
+                const AnimatedTitle(title: "The Lake")
               ],
             ),
             Column(
@@ -625,7 +626,7 @@ class TransFormationsLevels extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   margin: const EdgeInsets.symmetric(horizontal: 10),
-                  height: height / 1.3,
+                  height: height / 1.4,
                   width: width,
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 242, 242, 242),

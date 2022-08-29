@@ -4,7 +4,8 @@ import 'dart:math' as math;
 import 'package:math_geometry/canvas/grid.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 
-import '../../../../../../../../../../widgets/customAppbar.dart';
+import '../../../../../../../../../../widgets/appbars/trainingStationAppbar.dart';
+import '../../../../../../../../../loading.dart';
 
 class Translate extends StatefulWidget {
   const Translate({Key? key}) : super(key: key);
@@ -19,6 +20,17 @@ class _TranslateState extends State<Translate> {
   double _moveShapeByY = 0.0;
   double _moveShapeByX = 0.0;
   final double _sides = 3;
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 4), () {
+      setState(() {
+        isLoading = false;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +42,14 @@ class _TranslateState extends State<Translate> {
       Stack(
         children: <Widget>[
           Expanded(
-            child: CustomPaint(
-              painter: MyGridPainter(),
-              foregroundPainter: translationPainter(
-                  _moveShapeByXY, _moveShapeByY, _moveShapeByX, _sides),
-              child: Container(),
+            child: Container(
+              color: const Color.fromARGB(255, 44, 120, 115),
+              child: CustomPaint(
+                painter: MyGridPainter(),
+                foregroundPainter: translationPainter(
+                    _moveShapeByXY, _moveShapeByY, _moveShapeByX, _sides),
+                child: Container(),
+              ),
             ),
           ),
           // for the yaxis slider
@@ -110,27 +125,12 @@ class _TranslateState extends State<Translate> {
               ),
             ),
           )
-          // // for the  xy-axis slider
-          // const Padding(
-          //   padding: EdgeInsets.only(left: 16.0),
-          //   child: Text('move by xy'),
-          // ),
-          // Slider(
-          //   value: _moveShapeByXY,
-          //   min: -MediaQuery.of(context).size.height / 3,
-          //   max: MediaQuery.of(context).size.height / 3,
-          //   onChanged: (value) {
-          //     setState(() {
-          //       _moveShapeByXY = value;
-          //     });
-          //   },
-          // ),
         ],
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CustomAppBar(
+          TrainingStationAppbar(
             pick: '',
             level: '- Translation.',
             question:
@@ -143,7 +143,8 @@ class _TranslateState extends State<Translate> {
             score: 0,
           )
         ],
-      )
+      ),
+      Visibility(visible: isLoading, child: Loading())
     ])));
   }
 }
@@ -173,7 +174,7 @@ class translationPainter extends CustomPainter {
 
     // object paints and paths
     Paint ogPaint = Paint()
-      ..color = const Color.fromARGB(255, 96, 102, 92)
+      ..color = const Color.fromARGB(255, 2, 28, 30)
       ..strokeWidth = 3
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;

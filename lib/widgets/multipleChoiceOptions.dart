@@ -5,7 +5,7 @@ class MultipleChoiceOptions extends StatelessWidget {
   final String pick;
   final Function(String) onPicked;
 
-  const MultipleChoiceOptions(@required this.pick, this.onPicked);
+  const MultipleChoiceOptions(this.pick, this.onPicked);
   @override
   Widget build(BuildContext context) {
     return Row(

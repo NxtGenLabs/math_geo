@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
 import 'package:math_geometry/widgets/chapterTile.dart';
+import 'package:math_geometry/widgets/title.dart';
 
 class Topics extends StatefulWidget {
   @override
@@ -157,7 +158,7 @@ class _TopicsState extends State<Topics> {
                     ),
                   ],
                 ),
-                const Text("Mathematics", style: ThemeText.levelHeader),
+                const AnimatedTitle(title: "Mathematics")
               ],
             ),
             Column(

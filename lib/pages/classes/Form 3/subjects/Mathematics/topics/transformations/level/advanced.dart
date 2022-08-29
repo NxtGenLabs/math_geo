@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:math_geometry/canvas/advancedPainter.dart';
-import 'package:math_geometry/widgets/customAppbar.dart';
+import 'package:math_geometry/widgets/appbars/custom_appbar.dart';
 import 'package:math_geometry/canvas/grid.dart';
 
 import '../../../../../../../../widgets/toolbar.dart';
+import '../../../../../../../loading.dart';
 import '../menus/advanced_level.dart';
 
 class Advanced extends StatefulWidget {
@@ -22,12 +25,18 @@ class _AdvancedState extends State<Advanced> {
   bool isVisible = true;
   double _scale = 1.0;
   final double _previousScale = 1.0;
+  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
     targetDegrees = 0;
     gesturePainter = GesturePainter();
+    Future.delayed(const Duration(seconds: 4), () {
+      setState(() {
+        isLoading = false;
+      });
+    });
   }
 
   void onPanStart(DragStartDetails details) {
@@ -116,6 +125,7 @@ class _AdvancedState extends State<Advanced> {
                   delete: () => gesturePainter.deletePoint()),
             ],
           ),
+          Visibility(visible: isLoading, child: Loading())
         ],
       ),
     );

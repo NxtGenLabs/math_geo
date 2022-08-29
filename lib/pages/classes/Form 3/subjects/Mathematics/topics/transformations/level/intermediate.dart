@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:math_geometry/widgets/customAppbar.dart';
+import 'package:math_geometry/widgets/appbars/custom_appbar.dart';
 import 'package:math_geometry/widgets/toolbar.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
 import 'package:math_geometry/canvas/grid.dart';
 import 'package:math_geometry/canvas/painter.dart';
+import '../../../../../../../loading.dart';
 import '../menus/intermediate_level.dart';
 
 class Intermediate extends StatefulWidget {
@@ -19,18 +20,32 @@ class _IntermediateState extends State<Intermediate> {
   late LinePainter linePainter;
   double _scale = 1.0;
   final double _previousScale = 1.0;
-
   void onPanStart(DragStartDetails details) {
     linePainter.startStroke(details.localPosition);
   }
 
   bool isVisible = true;
+  bool isLoading = true;
+
+  @override
+  void initState(){
+    super.initState();
+     Future.delayed(const Duration(seconds: 4), () {
+      setState(() {
+        isLoading = false;
+      });
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     final level = ModalRoute.of(context)!.settings.arguments as IntermediateLs;
     linePainter = LinePainter(int.parse(level.level) - 1);
 
+   
     return Scaffold(
       body: Stack(
         alignment: AlignmentDirectional.topCenter,
@@ -50,7 +65,7 @@ class _IntermediateState extends State<Intermediate> {
             onPanStart: onPanStart,
             child: RepaintBoundary(
               child: Container(
-                  color: Colors.white,
+                  color: const Color.fromARGB(255, 144, 175, 197),
                   height: double.infinity,
                   width: double.infinity,
                   child: Transform(
@@ -97,6 +112,7 @@ class _IntermediateState extends State<Intermediate> {
                   delete: () => linePainter.deletePoint()),
             ],
           ),
+          Visibility(visible: isLoading, child: Loading())
         ],
       ),
     );

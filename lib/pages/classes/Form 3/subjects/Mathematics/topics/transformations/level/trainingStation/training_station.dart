@@ -4,7 +4,7 @@ import 'dart:math' as math;
 import 'package:math_geometry/canvas/grid.dart';
 import 'package:math_geometry/canvas/transformation_intro_painter.dart';
 
-import '../../../../../../../../../widgets/customAppbar.dart';
+import '../../../../../../../../../widgets/appbars/custom_appbar.dart';
 
 class TrainingStation extends StatefulWidget {
   const TrainingStation({Key? key}) : super(key: key);

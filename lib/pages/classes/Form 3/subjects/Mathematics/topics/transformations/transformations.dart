@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
+import 'package:math_geometry/widgets/title.dart';
 import 'package:math_geometry/widgets/worldTile.dart';
 
 class Transformations extends StatefulWidget {
@@ -40,7 +41,7 @@ class _TransformationsState extends State<Transformations> {
           color: Color.fromARGB(255, 244, 181, 168),
           route: './pages/topics/transformations/menus/intermediate_level'),
       const WorldTile(
-          image: "images/the_lake.png",
+          image: "images/city.png",
           title: "The City",
           color: Colors.red,
           route: './pages/topics/transformations/menus/advanced_level'),
@@ -116,7 +117,7 @@ class _TransformationsState extends State<Transformations> {
                     ),
                   ],
                 ),
-                const Text("Transformations", style: ThemeText.levelHeader),
+                const AnimatedTitle(title: "Transformations")
               ],
             ),
             Column(
@@ -125,7 +126,7 @@ class _TransformationsState extends State<Transformations> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   margin: const EdgeInsets.symmetric(horizontal: 10),
-                  height: height / 1.3,
+                  height: height / 1.4,
                   width: width,
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 242, 242, 242),

@@ -30,7 +30,8 @@ class CustomAppBar extends StatefulWidget {
       required this.timeLimit,
       this.retry,
       this.target,
-      this.offsets});
+      this.offsets,
+      Key? key});
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
@@ -68,7 +69,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration.zero, () async {
+    Future.delayed(const Duration(seconds: 4), () async {
       final player = AudioPlayer();
       await player.play(AssetSource('popup.wav'));
       showDialog(
@@ -231,38 +232,75 @@ class _CustomAppBarState extends State<CustomAppBar> {
               AppBarIcon(FontAwesomeIcons.check, () async {
                 if (widget.target != null) {
                   widget.target();
-                }
-                if (widget.offsets != null) {
-                  for (Offset point in widget.offsets) {
-                    calPts.add(Offset(
-                        (((point.dx - centerX) * 0.1) / 4).roundToDouble(),
-                        (((point.dy - centerY) * -0.1) / 4).roundToDouble()));
-                  }
-                }
-                if (widget.pick.toString() == widget.answer ||
-                    calPts.toString() == widget.answer) {
-                  widget.score++;
-                  setState(() {
-                    isStartTimer = true;
-                    isCorrect = true;
+
+                  Future.delayed(const Duration(seconds: 4), () async {
+                    if (widget.offsets != null) {
+                      for (Offset point in widget.offsets) {
+                        calPts.add(Offset(
+                            (((point.dx - centerX) * 0.1) / 4).roundToDouble(),
+                            (((point.dy - centerY) * -0.1) / 4)
+                                .roundToDouble()));
+                      }
+                    }
+                    if (widget.pick.toString() == widget.answer ||
+                        calPts.toString() == widget.answer) {
+                      widget.score++;
+                      setState(() {
+                        isStartTimer = true;
+                        isCorrect = true;
+                      });
+                    } else {
+                      final player = AudioPlayer();
+                      await player.play(AssetSource('wrong.wav'));
+                      setState(() {
+                        isCorrect = false;
+                      });
+                    }
+                    _showResult();
+
+                    if (widget.timeLimit > 0) {
+                      widget.score++;
+                    }
+                    if (retries == 0) {
+                      widget.score++;
+                    }
+                    if (!usedHint) {
+                      widget.score++;
+                    }
                   });
                 } else {
-                  final player = AudioPlayer();
-                  await player.play(AssetSource('wrong.wav'));
-                  setState(() {
-                    isCorrect = false;
-                  });
-                }
-                _showResult();
+                  if (widget.offsets != null) {
+                    for (Offset point in widget.offsets) {
+                      calPts.add(Offset(
+                          (((point.dx - centerX) * 0.1) / 4).roundToDouble(),
+                          (((point.dy - centerY) * -0.1) / 4).roundToDouble()));
+                    }
+                  }
+                  if (widget.pick.toString() == widget.answer ||
+                      calPts.toString() == widget.answer) {
+                    widget.score++;
+                    setState(() {
+                      isStartTimer = true;
+                      isCorrect = true;
+                    });
+                  } else {
+                    final player = AudioPlayer();
+                    await player.play(AssetSource('wrong.wav'));
+                    setState(() {
+                      isCorrect = false;
+                    });
+                  }
+                  _showResult();
 
-                if (initTime < widget.timeLimit) {
-                  widget.score++;
-                }
-                if (retries == 0) {
-                  widget.score++;
-                }
-                if (!usedHint) {
-                  widget.score++;
+                  if (widget.timeLimit > 0) {
+                    widget.score++;
+                  }
+                  if (retries == 0) {
+                    widget.score++;
+                  }
+                  if (!usedHint) {
+                    widget.score++;
+                  }
                 }
               }, Colors.green),
               AppBarIcon(FontAwesomeIcons.repeat, widget.retry, Colors.grey),

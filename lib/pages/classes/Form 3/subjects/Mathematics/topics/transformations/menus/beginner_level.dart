@@ -2,7 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
-
+import 'package:math_geometry/widgets/title.dart';
 import '../../../../../../../../widgets/levelContainer.dart';
 
 class BeginnerLevel extends StatelessWidget {
@@ -131,79 +131,152 @@ class BeginnerLevel extends StatelessWidget {
         optionC: []),
     BeginnerLs(
         level: '7',
-        question: '',
+        question:
+            'Find the translation (4,-4) of the square ABCD where A(-3,3), B(-1,3), C(-1,1), D(-3,1)',
         rating: '',
-        answer: '',
+        answer: 'B',
         hint: 'Lets keep putting up points',
         timeLimit: 1,
-        qPoints: [],
-        optionA: [],
-        optionB: [],
-        optionC: []),
+        qPoints: [
+          const Offset(-3, 3),
+          const Offset(-1, 3),
+          const Offset(-1, 1),
+          const Offset(-3, 1)
+        ],
+        optionA: [
+          const Offset(1, 1),
+          const Offset(1, 3),
+          const Offset(3, 3),
+          const Offset(3, 1)
+        ],
+        optionB: [
+          const Offset(1, -1),
+          const Offset(1, -3),
+          const Offset(3, -3),
+          const Offset(3, -1)
+        ],
+        optionC: [
+          const Offset(-3, -1),
+          const Offset(-1, -1),
+          const Offset(-1, -3),
+          const Offset(-3, -3)
+        ]),
     BeginnerLs(
         level: '8',
-        question: '',
+        question:
+            'Find the vector of the following translation. \n A. \n B. \n C.',
         rating: '',
         answer: '',
         hint: 'Lets keep putting up points',
-        timeLimit: 1,
-        qPoints: [],
-        optionA: [],
+        timeLimit: 120,
+        qPoints: [
+          const Offset(-1, 1),
+          const Offset(-3, 1),
+          const Offset(-2, 3)
+        ],
+        optionA: [
+          const Offset(1, 3),
+          const Offset(3, 3),
+          const Offset(2, 5)
+        ],
         optionB: [],
         optionC: []),
     BeginnerLs(
         level: '9',
-        question: '',
+        question:
+            'What is the name of the transformation shown in the graph \n A. Reflection. \n B. Translation. \n C. Rotation.',
         rating: '',
-        answer: '',
+        answer: 'C',
         hint: 'Lets keep putting up points',
-        timeLimit: 1,
-        qPoints: [],
-        optionA: [],
+        timeLimit: 60,
+        qPoints: [
+          const Offset(-4, 4),
+          const Offset(-2, 4),
+          const Offset(-2, 2)
+        ],
+        optionA: [
+          const Offset(4, 4),
+          const Offset(4, 2),
+          const Offset(2, 2)
+        ],
         optionB: [],
         optionC: []),
     BeginnerLs(
         level: '10',
-        question: '',
+        question:
+            'Find the scale factor of the enlargement. \n A. 2 \n B. 4 \n C. 3',
         rating: '',
-        answer: '',
-        hint: 'Lets keep putting up points',
-        timeLimit: 1,
-        qPoints: [],
-        optionA: [],
+        answer: 'C',
+        hint: 'Divide the x-y coordinates of the 2 shapes.',
+        timeLimit: 60,
+        qPoints: [
+          const Offset(-1, 1),
+          const Offset(1, 1),
+          const Offset(1, -1),
+          const Offset(-1, -1)
+        ],
+        optionA: [
+          const Offset(-3, 3),
+          const Offset(3, 3),
+          const Offset(3, -3),
+          const Offset(-3, -3)
+        ],
         optionB: [],
         optionC: []),
     BeginnerLs(
         level: '11',
-        question: '',
+        question:
+            'What is the name of the transformation shown in the graph? \n A. Enlargement. \n B. Rotation. \n C. Translation.',
         rating: '',
-        answer: '',
+        answer: 'C',
         hint: 'Lets keep putting up points',
-        timeLimit: 1,
-        qPoints: [],
-        optionA: [],
+        timeLimit: 60,
+        qPoints: [const Offset(-2, 0), const Offset(-1, 2), const Offset(2, 3)],
+        optionA: [const Offset(2, -2), const Offset(3, 0), const Offset(6, 1)],
         optionB: [],
         optionC: []),
     BeginnerLs(
         level: '12',
-        question: '',
+        question:
+            'Describe the rotation shown in the graph. \n A. 180 degree rotation about (-1,0) \n B. 180 degrees about the origin.\n C. 180 degrees anti-clockwise about the origin.',
         rating: '',
-        answer: '',
+        answer: 'A',
         hint: 'Lets keep putting up points',
-        timeLimit: 1,
-        qPoints: [],
-        optionA: [],
+        timeLimit: 90,
+        qPoints: [
+          const Offset(-6, 1),
+          const Offset(-3, 1),
+          const Offset(-3, 3),
+          const Offset(-6, 3)
+        ],
+        optionA: [
+          const Offset(1, -1),
+          const Offset(4, -1),
+          const Offset(4, -3),
+          const Offset(1, -2)
+        ],
         optionB: [],
         optionC: []),
     BeginnerLs(
         level: '13',
-        question: '',
+        question:
+            'Describe the rotation shown. \n A. 180 degrees about the origin.\n B. 90 degrees about the origin. \n C. 90 degrees about the point (1,1)',
         rating: '',
-        answer: '',
+        answer: 'B',
         hint: 'Lets keep putting up points',
-        timeLimit: 1,
-        qPoints: [],
-        optionA: [],
+        timeLimit: 120,
+        qPoints: [
+          const Offset(-1, 1),
+          const Offset(-3, 1),
+          const Offset(-3, 4),
+          const Offset(-1, 4)
+        ],
+        optionA: [
+          const Offset(1, -1),
+          const Offset(1, -3),
+          const Offset(4, -3),
+          const Offset(4, -1)
+        ],
         optionB: [],
         optionC: []),
     BeginnerLs(
@@ -449,7 +522,7 @@ class BeginnerLevel extends StatelessWidget {
                     ),
                   ],
                 ),
-                const Text("The Field", style: ThemeText.levelHeader),
+                const AnimatedTitle(title: "The Field")
               ],
             ),
             Column(
@@ -458,7 +531,7 @@ class BeginnerLevel extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   margin: const EdgeInsets.symmetric(horizontal: 10),
-                  height: height / 1.3,
+                  height: height / 1.4,
                   width: width,
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 242, 242, 242),

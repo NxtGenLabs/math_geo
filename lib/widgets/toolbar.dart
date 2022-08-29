@@ -49,5 +49,3 @@ class ToolBar extends StatelessWidget {
     );
   }
 }
-
-void _tapped() {}

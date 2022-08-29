@@ -6,9 +6,7 @@ import '../pages/classes/Form 3/subjects/Mathematics/topics/transformations/leve
 class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
   late int index;
 
-  MultipleChoiceQs(int index) {
-    this.index = index;
-  }
+  MultipleChoiceQs(this.index);
   List<String> alphabet = [
     'a',
     'b',
@@ -68,7 +66,7 @@ class MultipleChoiceQs extends ChangeNotifier implements CustomPainter {
     }
 
     Paint strokePaint = Paint();
-    strokePaint.color = Colors.black;
+    strokePaint.color = const Color.fromARGB(255, 44, 95, 45);
     strokePaint.style = PaintingStyle.stroke;
     strokePaint.strokeWidth = 3;
 
