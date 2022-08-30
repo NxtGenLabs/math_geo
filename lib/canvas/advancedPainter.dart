@@ -68,6 +68,74 @@ mixin Painterfunction {
     return original;
   }
 
+//? return flutter's coordinate system
+  List<Offset> returnFlutterAppropritateShape(
+      List<Offset> original, Offset center) {
+    //
+    List<Offset> originalFlutterCoords = [];
+    //! coordinate conversions
+    for (var point in original) {
+      double x = point.dx;
+      double y = point.dy;
+
+      //! multiplying coordinates by -1 because they are negative
+      //! to achieve flutter's coordinate system we minus
+      //! there a minus by center on given question coordiante
+      //! result in a conversion back to positive
+      //! i.e center.dx - -40 = center.dx + 40;
+      //! this wont work when coordinate is less than 0
+
+      // conversions when greater than center on both
+      if (x > 0 && y > 0) {
+        // quadrant I
+        x = center.dx + x;
+        y = center.dy - y;
+      } else if (x < 0 && y > 0) {
+        // quadrant II
+        x = x * -1;
+        x = center.dx - x;
+        y = center.dy - y;
+      } else if (x < 0 && y < 0) {
+        // quadrant III
+        x = x * -1;
+        y = y * -1;
+        x = center.dx - x;
+        y = center.dy + y;
+      } else if (x > 0 && y < 0) {
+        // quadrant IV
+        y = y * -1;
+        x = center.dx + x;
+        y = center.dy + y;
+      }
+      /* conversions when one's at center*/
+      else if (x == 0 && y > 0) {
+        // quadrant I
+        x = center.dx;
+        y = center.dy - y;
+      } else if (x > 0 && y == 0) {
+        // quadrant IV
+        x = center.dx + x;
+        y = center.dy;
+      } else if (x < 0 && y == 0) {
+        // quadrant II
+        x = x * -1;
+        x = center.dx - x;
+        y = center.dy;
+      } else if (x == 0 && y < 0) {
+        // quadrant III
+        y = y * -1;
+        x = center.dx;
+        y = center.dy + y;
+      } else {
+        // completely at center
+        x = center.dx;
+        y = center.dy;
+      }
+      originalFlutterCoords.add(Offset(x.roundToDouble(), y.roundToDouble()));
+    }
+    return originalFlutterCoords;
+  }
+
 //! PAINTS
   Paint strokePaint = Paint()
     ..color = const Color.fromARGB(255, 96, 102, 92)
@@ -325,15 +393,121 @@ class OriginalShapePainter extends CustomPainter with Painterfunction {
   @override
   void paint(Canvas canvas, Size size) {
     Offset screenCenter = Offset(size.width / 2, size.height / 2);
+
+    //! image
+    List<Offset> image = [];
+    Path imagePath = Path();
+
+    // alphacoordinate indicator
+    Offset preCenter = Offset(
+        screenCenter.dx.roundToDouble(), screenCenter.dy.roundToDouble());
+    Offset pivot = preCenter;
+    int indicator = 0;
+    List<Offset> originalFlutterCoords =
+        returnFlutterAppropritateShape(original, preCenter);
+    Path originalShapePath = Path()..addPolygon(originalFlutterCoords, true);
+
+    List<Offset> imageCheckerShape = [];
+    Path imageCheckerShapePath = Path();
+    //!
+    for (var point in originalFlutterCoords) {
+      //? lines of reference
+      List<Offset> initialLine = [
+        pivot,
+        Offset(size.width, preCenter.dy),
+      ];
+      List<Offset> terminalLine = [
+        initialLine.first,
+        point,
+      ];
+
+      //? angle and distance of reference
+      double theta = angleToFind(initialLine, terminalLine);
+      double dist =
+          distanceBetweenTwoPoints(terminalLine.first, terminalLine.last);
+      if (point.dy < preCenter.dy) {
+        theta = theta * -1;
+      }
+
+      double angle = theta * (pi / 180);
+
+      double x = dist * math.cos(angle + degrees) + pivot.dx;
+      double y = pivot.dy - dist * math.sin(angle + degrees);
+      if (point.dy > preCenter.dy) {
+        y = pivot.dy + dist * math.sin(angle + degrees);
+      }
+      imageCheckerShape.add(Offset(x, y));
+    }
+        //!
+    for (var point in imageCheckerShape) {
+      canvas.drawLine(pivot, point, linesPaint);
+      //? lines of reference
+      List<Offset> initialLine = [
+        pivot,
+        Offset(size.width, preCenter.dy),
+      ];
+      List<Offset> terminalLine = [
+        initialLine.first,
+        point,
+      ];
+
+      //? angle and distance of reference
+      double dist = distanceBetweenTwoPoints(pivot, point);
+      dist = (dist / 40).roundToDouble(); // to 1:1 ratio
+      String ang = "";
+      double theta = angleToFind(initialLine, terminalLine);
+      // if (point.dy > center.dy) {
+      //   ang = '-${theta.toInt()}°';
+      // }
+      if (point.dy < preCenter.dy) {
+        theta = theta * -1;
+        ang = '${theta.toInt()}°';
+      }
+      if ((point.dx > preCenter.dx && point.dy > preCenter.dy) || point.dx < preCenter.dx && point.dy > preCenter.dy) {
+        print('theta: $theta');
+        double temp = 180 - theta;
+        ang = (temp + 180).toInt().toString();
+      }
+
+      if (point.dy == preCenter.dy) {
+        ang = '${theta.toInt()}°';
+      }
+
+      //? displying angle
+      TextSpan plotText = TextSpan(
+        style: const TextStyle(color: Colors.teal),
+        text: '$ang, ${dist}cm',
+      );
+      TextPainter pt = TextPainter(
+          text: plotText,
+          textAlign: TextAlign.left,
+          textDirection: TextDirection.ltr,
+          textScaleFactor: 1);
+      pt.layout();
+      pt.paint(canvas, Offset(point.dx, point.dy));
+      // ? displying coordinate indicator
+      TextSpan alphText = TextSpan(
+        style: const TextStyle(color: Colors.black),
+        text: coordinateMarkers[indicator],
+      );
+      TextPainter alphTextPainter = TextPainter(
+          text: alphText,
+          textAlign: TextAlign.left,
+          textDirection: TextDirection.ltr,
+          textScaleFactor: 1);
+      alphTextPainter.layout();
+      alphTextPainter.paint(canvas, Offset(point.dx + 5, point.dy - 20));
+      indicator++;
+    }
+
+    // classical cartesian coordinate system
     canvas.translate(screenCenter.dx, screenCenter.dy);
     canvas.scale(1, -1);
 
     //! origin coordinates
     Offset center = const Offset(0, 0);
-    //? displaying image
-    List<Offset> image = [];
-    Path imagePath = Path();
 
+    //? displaying imag
     for (var point in original) {
       //!
       List<Offset> initialLine = [
