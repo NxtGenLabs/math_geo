@@ -94,15 +94,43 @@ mixin Painterfunction {
     ..color = const Color.fromARGB(255, 96, 56, 19)
     ..style = PaintingStyle.stroke;
 
+  List<String> coordinateMarkers = [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z'
+  ];
+
 //! PAINTER
   var strokes = <List<Offset>>[];
   List<Offset> points = [];
+}
 
 //! ---------------------/////
 //! ORIGINAL PAINTER //////
 //! ---------------------//////
-}
-
 class GesturePainter extends ChangeNotifier
     with Painterfunction
     implements CustomPainter {
@@ -150,6 +178,7 @@ class GesturePainter extends ChangeNotifier
     Path drawAnswerPath = Path();
     List<Offset> drawAnswerCoords = [];
     var pointer = [];
+    int indicator = 0;
 
     //!
     for (var point in strokes) {
@@ -190,30 +219,82 @@ class GesturePainter extends ChangeNotifier
     for (var stroke in strokes) {
       Path strokePath = Path();
 
-      Offset a = center /*stroke.first*/;
-      Offset b = stroke.last;
+      Offset anchor = center /*stroke.first*/;
+      Offset plotPoint = stroke.last;
 
-      drawAnswerCoords.add(b);
+      drawAnswerCoords.add(plotPoint);
 
-      strokePath.moveTo(a.dx, a.dy);
-      strokePath.lineTo(b.dx, b.dy);
-      canvas.drawPoints(PointMode.points, [a, b], pointPaint);
+      strokePath.moveTo(anchor.dx, anchor.dy);
+      strokePath.lineTo(plotPoint.dx, plotPoint.dy);
+      canvas.drawPoints(PointMode.points, [anchor, plotPoint], pointPaint);
       canvas.drawPath(strokePath, linesPaint);
-      canvas.drawCircle(b, 8, circlePaint);
+      canvas.drawCircle(plotPoint, 8, circlePaint);
 
       //!
       List<Offset> initialLine = [
-        a,
+        anchor,
         Offset(size.width, center.dy),
       ];
       List<Offset> terminalLine = [
         initialLine.first,
-        b,
+        plotPoint,
       ];
 
       //? displaying angle, line length(distance) and coordinates
       double theta = angleToFind(initialLine, terminalLine);
-      double dist = distanceBetweenTwoPoints(a, b);
+      double dist = distanceBetweenTwoPoints(anchor, plotPoint);
+      dist = dist / 40; // to 1:1 ratio
+      if (plotPoint.dy < center.dy) {
+        theta = theta * -1;
+      }
+      if (plotPoint.dx < center.dx && plotPoint.dy > center.dy) {
+        double diff = (180 - theta);
+        theta = 180 + diff;
+      } else if (plotPoint.dx > center.dx && plotPoint.dy > center.dy) {
+        double diff = (180 - theta);
+        theta = 180 + diff;
+      }
+      // displaying angle
+      TextSpan angleText = TextSpan(
+        style: const TextStyle(color: Colors.teal),
+        text: '${theta.toInt()}°',
+      );
+      TextPainter angleTextPainter = TextPainter(
+          text: angleText,
+          textAlign: TextAlign.left,
+          textDirection: TextDirection.ltr,
+          textScaleFactor: 1);
+      angleTextPainter.layout();
+      angleTextPainter.paint(
+          canvas, Offset(plotPoint.dx - 20, plotPoint.dy - 20));
+
+      // displaying distance
+      TextSpan distText = TextSpan(
+        style: const TextStyle(color: Colors.teal),
+        text: '${dist.toInt()}cm',
+      );
+      TextPainter distTextPainter = TextPainter(
+          text: distText,
+          textAlign: TextAlign.left,
+          textDirection: TextDirection.ltr,
+          textScaleFactor: 1);
+      distTextPainter.layout();
+      distTextPainter.paint(canvas, midPoint(anchor, plotPoint));
+      // displying coordinate indicator
+      TextSpan alphText = TextSpan(
+        style: const TextStyle(color: Colors.black),
+        text: coordinateMarkers[indicator],
+      );
+      TextPainter alphTextPainter = TextPainter(
+          text: alphText,
+          textAlign: TextAlign.left,
+          textDirection: TextDirection.ltr,
+          textScaleFactor: 1);
+      alphTextPainter.layout();
+      alphTextPainter.paint(
+          canvas, Offset(plotPoint.dx + 10, plotPoint.dy - 20));
+      indicator++;
+      //! end
     }
     drawAnswerPath.addPolygon(drawAnswerCoords, true);
     canvas.drawPath(drawAnswerPath, strokePaint);
