@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'dart:ui';
@@ -53,7 +55,7 @@ mixin Painterfunction {
   }
 
 //? calculating midpoint function
-  midPoint(Offset point1, Offset point2) {
+  Offset midPoint(Offset point1, Offset point2) {
     double midP1 = (point1.dx + point2.dx) / 2;
     double midP2 = (point1.dy + point2.dy) / 2;
     return Offset(midP1, midP2);
@@ -325,42 +327,33 @@ class GesturePainter extends ChangeNotifier
       // displaying angle
       TextSpan angleText = TextSpan(
         style: const TextStyle(color: Colors.teal),
-        text: '${theta.toInt()}°',
+        text: '${coordinateMarkers[indicator]} ${theta.toInt()}°',
       );
       TextPainter angleTextPainter = TextPainter(
-          text: angleText,
-          textAlign: TextAlign.left,
-          textDirection: TextDirection.ltr,
-          textScaleFactor: 1);
+        text: angleText,
+        textAlign: TextAlign.left,
+        textDirection: TextDirection.ltr,
+        textScaleFactor: 1,
+      );
       angleTextPainter.layout();
       angleTextPainter.paint(
-          canvas, Offset(plotPoint.dx - 20, plotPoint.dy - 20));
+          canvas, Offset(plotPoint.dx - 20, plotPoint.dy - 30));
 
-      // displaying distance
+      // displaying distance + coordinate marker
+      Offset midLinePoint =
+          midPoint(Offset(anchor.dx - 20, anchor.dy - 20), plotPoint);
       TextSpan distText = TextSpan(
         style: const TextStyle(color: Colors.teal),
         text: '${dist.toInt()}cm',
       );
       TextPainter distTextPainter = TextPainter(
-          text: distText,
-          textAlign: TextAlign.left,
-          textDirection: TextDirection.ltr,
-          textScaleFactor: 1);
-      distTextPainter.layout();
-      distTextPainter.paint(canvas, midPoint(anchor, plotPoint));
-      // displying coordinate indicator
-      TextSpan alphText = TextSpan(
-        style: const TextStyle(color: Colors.black),
-        text: coordinateMarkers[indicator],
+        text: distText,
+        textAlign: TextAlign.left,
+        textDirection: TextDirection.ltr,
+        textScaleFactor: 1,
       );
-      TextPainter alphTextPainter = TextPainter(
-          text: alphText,
-          textAlign: TextAlign.left,
-          textDirection: TextDirection.ltr,
-          textScaleFactor: 1);
-      alphTextPainter.layout();
-      alphTextPainter.paint(
-          canvas, Offset(plotPoint.dx + 10, plotPoint.dy - 20));
+      distTextPainter.layout();
+      distTextPainter.paint(canvas, midLinePoint);
       indicator++;
       //! end
     }
@@ -397,117 +390,15 @@ class OriginalShapePainter extends CustomPainter with Painterfunction {
     //! image
     List<Offset> image = [];
     Path imagePath = Path();
-
-    // alphacoordinate indicator
-    Offset preCenter = Offset(
-        screenCenter.dx.roundToDouble(), screenCenter.dy.roundToDouble());
-    Offset pivot = preCenter;
-    int indicator = 0;
-    List<Offset> originalFlutterCoords =
-        returnFlutterAppropritateShape(original, preCenter);
-    Path originalShapePath = Path()..addPolygon(originalFlutterCoords, true);
-
-    List<Offset> imageCheckerShape = [];
-    Path imageCheckerShapePath = Path();
     //!
-    for (var point in originalFlutterCoords) {
-      //? lines of reference
-      List<Offset> initialLine = [
-        pivot,
-        Offset(size.width, preCenter.dy),
-      ];
-      List<Offset> terminalLine = [
-        initialLine.first,
-        point,
-      ];
-
-      //? angle and distance of reference
-      double theta = angleToFind(initialLine, terminalLine);
-      double dist =
-          distanceBetweenTwoPoints(terminalLine.first, terminalLine.last);
-      if (point.dy < preCenter.dy) {
-        theta = theta * -1;
-      }
-
-      double angle = theta * (pi / 180);
-
-      double x = dist * math.cos(angle + degrees) + pivot.dx;
-      double y = pivot.dy - dist * math.sin(angle + degrees);
-      if (point.dy > preCenter.dy) {
-        y = pivot.dy + dist * math.sin(angle + degrees);
-      }
-      imageCheckerShape.add(Offset(x, y));
-    }
-        //!
-    for (var point in imageCheckerShape) {
-      canvas.drawLine(pivot, point, linesPaint);
-      //? lines of reference
-      List<Offset> initialLine = [
-        pivot,
-        Offset(size.width, preCenter.dy),
-      ];
-      List<Offset> terminalLine = [
-        initialLine.first,
-        point,
-      ];
-
-      //? angle and distance of reference
-      double dist = distanceBetweenTwoPoints(pivot, point);
-      dist = (dist / 40).roundToDouble(); // to 1:1 ratio
-      String ang = "";
-      double theta = angleToFind(initialLine, terminalLine);
-      // if (point.dy > center.dy) {
-      //   ang = '-${theta.toInt()}°';
-      // }
-      if (point.dy < preCenter.dy) {
-        theta = theta * -1;
-        ang = '${theta.toInt()}°';
-      }
-      if ((point.dx > preCenter.dx && point.dy > preCenter.dy) || point.dx < preCenter.dx && point.dy > preCenter.dy) {
-        print('theta: $theta');
-        double temp = 180 - theta;
-        ang = (temp + 180).toInt().toString();
-      }
-
-      if (point.dy == preCenter.dy) {
-        ang = '${theta.toInt()}°';
-      }
-
-      //? displying angle
-      TextSpan plotText = TextSpan(
-        style: const TextStyle(color: Colors.teal),
-        text: '$ang, ${dist}cm',
-      );
-      TextPainter pt = TextPainter(
-          text: plotText,
-          textAlign: TextAlign.left,
-          textDirection: TextDirection.ltr,
-          textScaleFactor: 1);
-      pt.layout();
-      pt.paint(canvas, Offset(point.dx, point.dy));
-      // ? displying coordinate indicator
-      TextSpan alphText = TextSpan(
-        style: const TextStyle(color: Colors.black),
-        text: coordinateMarkers[indicator],
-      );
-      TextPainter alphTextPainter = TextPainter(
-          text: alphText,
-          textAlign: TextAlign.left,
-          textDirection: TextDirection.ltr,
-          textScaleFactor: 1);
-      alphTextPainter.layout();
-      alphTextPainter.paint(canvas, Offset(point.dx + 5, point.dy - 20));
-      indicator++;
-    }
-
-    // classical cartesian coordinate system
     canvas.translate(screenCenter.dx, screenCenter.dy);
     canvas.scale(1, -1);
 
     //! origin coordinates
     Offset center = const Offset(0, 0);
 
-    //? displaying imag
+    //? displaying image
+    int indicator = 0;
     for (var point in original) {
       //!
       List<Offset> initialLine = [
@@ -518,10 +409,6 @@ class OriginalShapePainter extends CustomPainter with Painterfunction {
         initialLine.first,
         point,
       ];
-
-      //?
-      // canvas.drawCircle(point, 5, pointPaint);
-
       //?
       double theta = angleToFind(initialLine, terminalLine);
       double angle = theta * (pi / 180);
@@ -531,18 +418,44 @@ class OriginalShapePainter extends CustomPainter with Painterfunction {
       double x = dist * math.cos(angle + degrees);
       double y = dist * math.sin(angle + degrees);
       image.add(Offset(x, y));
-
-      //? angle lines
-      // Path linePath = Path()
-      //   ..moveTo(point.dx, point.dy)
-      //   ..lineTo(center.dx, center.dy);
-      // canvas.drawPath(linePath, imagePaint);
-
       //! og shape painter ends here
     }
-
     imagePath.addPolygon(image, true);
     canvas.drawPath(imagePath, strokePaint);
+
+    //! displaying point markers and angle
+    for (var point in image) {
+      canvas.drawCircle(
+          point, 5, circlePaint..color = Color.fromARGB(255, 1, 35, 63));
+
+      List<Offset> initialLine = [
+        center,
+        Offset(size.width, center.dy),
+      ];
+      List<Offset> terminalLine = [
+        initialLine.first,
+        point,
+      ];
+      //?
+      double theta = angleToFind(initialLine, terminalLine).roundToDouble();
+      //? displying angle
+      String pointer = '$theta°, ${coordinateMarkers[indicator]}';
+      TextSpan plotText = TextSpan(
+        style: const TextStyle(color: Colors.black87),
+        text: pointer,
+      );
+      TextPainter pt = TextPainter(
+        text: plotText,
+        textAlign: TextAlign.left,
+        textDirection: TextDirection.ltr,
+        textScaleFactor: 1,
+      );
+      pt.layout();
+      pt.paint(canvas, Offset(point.dx, point.dy));
+
+      //!
+      indicator++;
+    }
     // ends here
   }
 
