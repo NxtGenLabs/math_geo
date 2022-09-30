@@ -7,6 +7,7 @@ Do not clone project for commercial use. You are encouraged to be inspired by th
 - Mr. Namba
 - Mr. Nthani
 - Mr. Chawanda
+
 The Project is still in development and such all cloning all of the repository are used only by developers wishing to grasp an understanding of the underlying technologies used.
 Thank you so much for your understanding, patience and support,
 NxtGen Labs.
