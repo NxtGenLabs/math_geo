@@ -32,7 +32,7 @@ class LevelContainer extends StatelessWidget {
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                   color: Color.fromARGB(255, 113, 191, 71)),
-              child: Center(child: Text(level, style: ThemeText.level)),
+              child: Center(child: Text(level, style: ThemeText.level)), 
             ),
           ),
           Positioned(
@@ -45,27 +45,24 @@ class LevelContainer extends StatelessWidget {
                   Transform.rotate(
                     angle: 50,
                     child: Container(
-                      margin: const EdgeInsets.only(top: 10),
-                      child: const Image(
-                          filterQuality: FilterQuality.high,
-                          height: 30,
-                          image: AssetImage("images/icons/star.png")),
-                    ),
+                        margin: const EdgeInsets.only(top: 10),
+                        child: Image.asset('images/icons/star5.png',
+                            height: 30, filterQuality: FilterQuality.high)),
                   ),
                   Container(
-                    child: const Image(
-                        filterQuality: FilterQuality.high,
-                        image: AssetImage("images/icons/star.png")),
-                  ),
+                      child: Image.asset(
+                    'images/icons/star5.png',
+                    filterQuality: FilterQuality.high,
+                  )),
                   Transform.rotate(
                     angle: -50,
                     child: Container(
-                      margin: const EdgeInsets.only(top: 10),
-                      child: const Image(
-                          filterQuality: FilterQuality.high,
+                        margin: const EdgeInsets.only(top: 10),
+                        child: Image.asset(
+                          'images/icons/star5.png',
                           height: 30,
-                          image: AssetImage("images/icons/star.png")),
-                    ),
+                          filterQuality: FilterQuality.high,
+                        )),
                   ),
                 ],
               ),
