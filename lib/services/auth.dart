@@ -37,11 +37,6 @@ class AuthService {
     }
   }
 
-  storeUsernameAndPassword(String fullname, String password) {
-    tempFullName = fullname;
-    tempPassword = password;
-  }
-
   Future signOut() async {
     try {
       return await _auth.signOut();

@@ -36,7 +36,7 @@ class LevelContainer extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: -5,
+            top: 0,
             child: SizedBox(
               height: 45,
               child: Row(
@@ -46,12 +46,12 @@ class LevelContainer extends StatelessWidget {
                     angle: 50,
                     child: Container(
                         margin: const EdgeInsets.only(top: 10),
-                        child: Image.asset('images/icons/star5.png',
+                        child: Image.asset('images/icons/star6.png',
                             height: 30, filterQuality: FilterQuality.high)),
                   ),
                   Container(
                       child: Image.asset(
-                    'images/icons/star5.png',
+                    'images/icons/star6.png',
                     filterQuality: FilterQuality.high,
                   )),
                   Transform.rotate(
@@ -59,7 +59,7 @@ class LevelContainer extends StatelessWidget {
                     child: Container(
                         margin: const EdgeInsets.only(top: 10),
                         child: Image.asset(
-                          'images/icons/star5.png',
+                          'images/icons/star6.png',
                           height: 30,
                           filterQuality: FilterQuality.high,
                         )),
