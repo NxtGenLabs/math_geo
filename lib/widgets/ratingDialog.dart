@@ -41,7 +41,7 @@ class _RatingDialogState extends State<RatingDialog> {
               height: 40,
               child: Image(
                   filterQuality: FilterQuality.high,
-                  image: AssetImage('images/icons/star.png'))),
+                  image: AssetImage('images/icons/star6.png'))),
         ),
       ),
       TweenAnimationBuilder(
@@ -65,7 +65,7 @@ class _RatingDialogState extends State<RatingDialog> {
             height: 70,
             child: Image(
                 filterQuality: FilterQuality.high,
-                image: AssetImage('images/icons/star.png'))),
+                image: AssetImage('images/icons/star6.png'))),
       ),
       TweenAnimationBuilder(
         onEnd: () async {
@@ -87,7 +87,7 @@ class _RatingDialogState extends State<RatingDialog> {
               height: 40,
               child: Image(
                   filterQuality: FilterQuality.high,
-                  image: AssetImage('images/icons/star.png'))),
+                  image: AssetImage('images/icons/star6.png'))),
         ),
       ),
     ];

@@ -123,6 +123,7 @@ flutter:
         - images/icons/star3.png
         - images/icons/star4.png
         - images/icons/star5.png
+        - images/icons/star6.png
 
         ##sfx
         - assets/hint.wav

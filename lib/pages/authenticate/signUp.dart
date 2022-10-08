@@ -30,7 +30,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-      child: Background(
+      child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -133,10 +133,7 @@ class _SignUpState extends State<SignUp> {
                       text: "Continue",
                       onPress: () async {
                         if (_formkey.currentState!.validate()) {
-                          dynamic result = await _auth.storeUsernameAndPassword(
-                              fullname, password);
-                          Navigator.pushNamed(
-                              context, './pages/authenticate/genderXage');
+                          dynamic result = await _auth.registerWithEmailAndPassword(fullname, password);
                         }
                       }),
                 )

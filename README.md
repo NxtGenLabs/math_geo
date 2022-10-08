@@ -5,8 +5,7 @@ A Mathematics EduGame Application
 Do not clone this project for commercial use. You are encouraged to be inspired by the works made by the team at NxtGen Labs Malawi, namely:
 - Mr. Kamvantope
 - Mr. Namba
-- Mr. Nthani
-- Mr. Chawanda
+- Mr. Nthara
 
 The Project is still in development and as such all cloning of the repository are to be used only by developers wishing to grasp an understanding of the underlying technologies used.
 

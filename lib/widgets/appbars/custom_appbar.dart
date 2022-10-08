@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:math_geometry/themes/textStyles.dart';
@@ -62,6 +63,16 @@ class _CustomAppBarState extends State<CustomAppBar> {
       if (isStartTimer) {
         timer.cancel();
       }
+    });
+  }
+
+  //submit score to firebase
+  void submitScore() {
+    var database = FirebaseFirestore.instance;
+    database.collection('Scores').add({
+      "Level": widget.level,
+      "Score": widget.score,
+      "Time": widget.timeLimit
     });
   }
 
@@ -230,6 +241,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 width: 50,
               ),
               AppBarIcon(FontAwesomeIcons.check, () async {
+                submitScore();
                 if (widget.target != null) {
                   widget.target();
 

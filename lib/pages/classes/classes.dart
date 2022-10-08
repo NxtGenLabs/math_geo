@@ -116,7 +116,7 @@ class Classes extends StatelessWidget {
                   ),
                   SizedBox(
                     width: width,
-                    height: height - 200,
+                    height: height - 225,
                     child: TabBarView(children: [
                       const Center(
                           child: Text("Nothing to show here.",

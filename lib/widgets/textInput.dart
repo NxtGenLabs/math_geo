@@ -18,7 +18,6 @@ class TextInput extends StatelessWidget {
           borderRadius: BorderRadius.circular(5)),
       child: TextFormField(
         onChanged: onChange,
-        obscureText: true,
         cursorColor: Colors.white,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(

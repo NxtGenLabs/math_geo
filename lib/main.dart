@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:math_geometry/pages/authenticate/genderXage.dart';
 import 'package:math_geometry/pages/authenticate/submitPage.dart';
 import 'package:math_geometry/pages/classes/Form%203/subjects/Mathematics/topics/main.dart';
@@ -13,12 +14,13 @@ import 'package:math_geometry/pages/classes/classes.dart';
 import 'package:math_geometry/pages/landing.dart';
 import 'package:math_geometry/pages/profile/profile.dart';
 import 'package:math_geometry/pages/profile/settings.dart';
-import 'pages/classes/Form 3/subjects/Mathematics/topics/transformations/level/advanced.dart';
+import 'package:math_geometry/pages/wrapper.dart';
+import 'pages/classes/Form 3/subjects/Mathematics/topics/transformations/level/advanced.dart';   
 import 'pages/classes/Form 3/subjects/Mathematics/topics/transformations/menus/advanced_level.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MaterialApp(
     theme: ThemeData(
       
@@ -26,7 +28,7 @@ void main() async {
           showValueIndicator: ShowValueIndicator.always,
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity),
-    home: const Classes(),
+    home: Wrapper(),
     routes: {
       './pages/profile/settings': (context) => Settings(),
       './pages/profile/profile': (context) => const Profile(),
