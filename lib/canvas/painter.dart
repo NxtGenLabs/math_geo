@@ -14,14 +14,14 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
   var strokes = <List<Offset>>[];
   var points = <Offset>[];
   List<String> alphabet = [
-    'a',
-    'b',
-    'c',
-    'd',
-    'e',
-    'f',
-    'g',
-    'h',
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
     'I',
     'J',
     'K',
@@ -39,7 +39,7 @@ class LinePainter extends ChangeNotifier implements CustomPainter {
     'W',
     'X',
     'Y',
-    'Z'
+    'Z',
   ];
   @override
   bool hitTest(Offset position) => true;

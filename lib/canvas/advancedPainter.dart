@@ -36,12 +36,10 @@ mixin Painterfunction {
   bool checkAnswer(var list1, var list2) {
     // check if both are lists
     if (list1.toString() != list2.toString()) {
-      print('Your coordinates are off.');
       return false;
     }
     // check if elements are equal
     if (list2.length != list1.length) {
-      print('You drew a different type of polygon');
       return false;
     }
     return true;
@@ -73,7 +71,6 @@ mixin Painterfunction {
 //? return flutter's coordinate system
   List<Offset> returnFlutterAppropritateShape(
       List<Offset> original, Offset center) {
-    //
     List<Offset> originalFlutterCoords = [];
     //! coordinate conversions
     for (var point in original) {
@@ -190,7 +187,7 @@ mixin Painterfunction {
     'W',
     'X',
     'Y',
-    'Z'
+    'Z',
   ];
 
 //! PAINTER
@@ -199,7 +196,7 @@ mixin Painterfunction {
 }
 
 //! ---------------------/////
-//! ORIGINAL PAINTER //////
+//! Gesture PAINTER //////
 //! ---------------------//////
 class GesturePainter extends ChangeNotifier
     with Painterfunction
@@ -208,14 +205,12 @@ class GesturePainter extends ChangeNotifier
   bool hitTest(Offset position) => true;
 
   void startStroke(Offset position) {
-    // print("start stroke");
     strokes.add([position]);
     points.add(Offset(position.dx, position.dy));
     notifyListeners();
   }
 
   void appendStroke(Offset position) {
-    // print("appending stroke");
     var stroke = strokes.last;
     stroke.add(position);
     notifyListeners();
@@ -278,6 +273,7 @@ class GesturePainter extends ChangeNotifier
         pointer.add(Offset(x, y));
       }
     }
+
     // painging origin
     canvas.drawCircle(center, 5, pointPaint);
 
@@ -324,6 +320,7 @@ class GesturePainter extends ChangeNotifier
         double diff = (180 - theta);
         theta = 180 + diff;
       }
+
       // displaying angle
       TextSpan angleText = TextSpan(
         style: const TextStyle(color: Colors.teal),
@@ -392,7 +389,7 @@ class OriginalShapePainter extends CustomPainter with Painterfunction {
     Path imagePath = Path();
     //!
     canvas.translate(screenCenter.dx, screenCenter.dy);
-    canvas.scale(1, -1);
+    // canvas.scale(1, -1);
 
     //! origin coordinates
     Offset center = const Offset(0, 0);
@@ -416,7 +413,7 @@ class OriginalShapePainter extends CustomPainter with Painterfunction {
           distanceBetweenTwoPoints(terminalLine.first, terminalLine.last);
 
       double x = dist * math.cos(angle + degrees);
-      double y = dist * math.sin(angle + degrees);
+      double y = -dist * math.sin(angle + degrees);
       image.add(Offset(x, y));
       //! og shape painter ends here
     }
@@ -436,10 +433,19 @@ class OriginalShapePainter extends CustomPainter with Painterfunction {
         initialLine.first,
         point,
       ];
-      //?
+      //? setting proper values for angle
       double theta = angleToFind(initialLine, terminalLine).roundToDouble();
+      if (point.dx < center.dx && point.dy > center.dy) {
+        double diff = (180 - theta);
+        theta = 180 + diff;
+        theta *= -1;
+      } else if (point.dx > center.dx && point.dy > center.dy) {
+        double diff = (180 - theta);
+        theta = 180 + diff;
+        theta *= -1;
+      }
       //? displying angle
-      String pointer = '$theta°, ${coordinateMarkers[indicator]}';
+      String pointer = '${coordinateMarkers[indicator]}, ${(theta * -1)}°';
       TextSpan plotText = TextSpan(
         style: const TextStyle(color: Colors.black87),
         text: pointer,
